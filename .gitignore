@@ -14,3 +14,13 @@ runtime.env
 
 __pycache__/
 *.pyc
+
+# Local credentials and certificate material
+.ssh/
+secrets/
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*

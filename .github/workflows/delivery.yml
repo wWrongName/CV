@@ -1,4 +1,4 @@
-name: Check, build and deploy
+name: Test, build and deploy
 
 on:
   pull_request:
@@ -14,7 +14,8 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  check:
+  test:
+    name: Test
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
@@ -31,21 +32,10 @@ jobs:
       - run: node scripts/check-navigation.cjs
       - run: bash -n scripts/deploy-ssh.sh scripts/deploy-server.sh
       - run: python3 scripts/check-deploy.py
-      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
-      - name: Build production container
-        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
-        with:
-          context: .
-          load: true
-          tags: resume-site:ci
-          cache-from: type=gha,scope=resume-site
-          cache-to: type=gha,scope=resume-site,mode=max
-      - name: Check routes, PDFs and container under light load
-        run: python3 scripts/benchmark-docker.py --image resume-site:ci --seconds 5 --idle-seconds 2 --concurrency 4
 
-  publish:
-    needs: check
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+  build:
+    name: Build
+    needs: test
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
@@ -65,12 +55,25 @@ jobs:
         run: echo "image=ghcr.io/${REPOSITORY,,}" >> "$GITHUB_OUTPUT"
       - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
       - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - name: Build production container
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          load: true
+          tags: resume-site:ci
+          cache-from: type=gha,scope=resume-site
+          cache-to: type=gha,scope=resume-site,mode=max
+      - name: Check routes, PDFs and container under light load
+        run: python3 scripts/benchmark-docker.py --image resume-site:ci --seconds 5 --idle-seconds 2 --concurrency 4
+
       - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish AMD64 and ARM64 image
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         id: build
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
@@ -83,10 +86,19 @@ jobs:
             org.opencontainers.image.revision=${{ github.sha }}
           cache-from: type=gha,scope=resume-site
           cache-to: type=gha,scope=resume-site,mode=max
+      - name: Verify published AMD64 image
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        env:
+          IMAGE: ${{ steps.name.outputs.image }}@${{ steps.build.outputs.digest }}
+        run: |
+          docker pull --platform linux/amd64 "$IMAGE"
+          python3 scripts/benchmark-docker.py --image "$IMAGE" --seconds 5 --idle-seconds 2 --concurrency 4
+
 
   deploy:
-    needs: publish
-    if: vars.DEPLOY_ENABLED == 'true'
+    name: Deploy
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.DEPLOY_ENABLED == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     environment: production
@@ -109,7 +121,7 @@ jobs:
           DEPLOY_PORT: ${{ vars.DEPLOY_PORT || '22' }}
           DEPLOY_PATH: ${{ vars.DEPLOY_PATH || '/opt/resume-site' }}
           APP_PORT: ${{ vars.APP_PORT || '3000' }}
-          DEPLOY_IMAGE: ${{ needs.publish.outputs.image }}@${{ needs.publish.outputs.digest }}
+          DEPLOY_IMAGE: ${{ needs.build.outputs.image }}@${{ needs.build.outputs.digest }}
           GHCR_USER: ${{ github.actor }}
           GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bash scripts/deploy-ssh.sh
