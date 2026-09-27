@@ -5,7 +5,7 @@ import {useEffect,useMemo,useRef,type RefObject} from "react";
 import {AdditiveBlending,CatmullRomCurve3,Color,Vector3,type Group,type Mesh,type Points} from "three";
 import {useTheme} from "./theme-switch";
 import type {Journey,SystemNode,Vector} from "@/lib/journeys";
-type Props={light?:boolean;journey:Journey;step:number;reduced:boolean;onUnavailable:()=>void;overview?:boolean;openProjectLabel:string;onSelect?:(id:string)=>void};
+type Props={transitionKey:string;light?:boolean;journey:Journey;step:number;reduced:boolean;onUnavailable:()=>void;overview?:boolean;openProjectLabel:string;onSelect?:(id:string)=>void};
 const CYAN="#68d9ee",AMBER="#efa86b",DIM="#163c4d",BLACK="#111111",LIGHT_ACCENT="#986b3d";
 const HOME_POSITION:Vector=[20,10,27],HOME_TARGET:Vector=[-5,0,-6];
 function Camera({journey,step,reduced,overview}:Props){
@@ -24,9 +24,29 @@ function Particles({reduced}:{reduced:boolean}){
  useFrame((_,delta)=>{if(cloud.current&&!reduced)cloud.current.rotation.y+=delta*.006});
  return <points ref={cloud}><bufferGeometry><bufferAttribute attach="attributes-position" args={[positions,3]}/></bufferGeometry><pointsMaterial size={.035} color="#759aae" transparent opacity={.55} sizeAttenuation depthWrite={false}/></points>
 }
-function Boundary({step,reduced,light}:{step:number;reduced:boolean;light?:boolean}){
- const rings=useRef<Group>(null);useFrame((_,delta)=>{if(rings.current&&!reduced)rings.current.rotation.y+=delta*.024});
- return <group position={[0,-3.4,-6]}><group ref={rings}>{[9,11,14].map((r,i)=><mesh key={r} rotation={[-Math.PI/2,0,i]}><torusGeometry args={[r,.012,4,160,Math.PI*(1.15+i*.2)]}/><meshBasicMaterial color={light?BLACK:i===0?"#327b8c":"#163747"} transparent opacity={light?.3:.8}/></mesh>)}</group><mesh rotation={[-Math.PI/2,0,0]}><circleGeometry args={[9,80]}/><meshBasicMaterial visible={!light} color="#071722" transparent opacity={.55} side={2} depthWrite={false}/></mesh>{Array.from({length:48},(_,i)=>{const angle=i/48*Math.PI*2;return <mesh key={i} position={[Math.cos(angle)*11,0,Math.sin(angle)*11]} rotation={[-Math.PI/2,0,-angle]}><planeGeometry args={[i%4===0?.45:.15,.026]}/><meshBasicMaterial color={light?BLACK:i%4===0?"#75bfd1":"#305267"}/></mesh>})}<mesh position={[0,.07,0]} rotation={[-Math.PI/2,0,0]}><ringGeometry args={[8.98,9.03,120]}/><meshBasicMaterial color={light?BLACK:step<0?"#438ba0":"#58c6d9"} transparent opacity={.3} side={2}/></mesh></group>
+function Boundary({step,reduced,light,transitionKey}:{step:number;reduced:boolean;light?:boolean;transitionKey:string}){
+ const platform=useRef<Group>(null);
+ const innerRing=useRef<Group>(null);
+ const targetAngle=useRef(0);
+ const {invalidate}=useThree();
+ useEffect(()=>{
+   if(reduced){targetAngle.current=0;if(platform.current)platform.current.rotation.y=0;if(innerRing.current)innerRing.current.rotation.y=0;}
+   else targetAngle.current=(platform.current?.rotation.y??0)+Math.PI/15;
+   invalidate();
+ },[transitionKey,reduced,invalidate]);
+ useFrame((_,delta)=>{
+   if(!platform.current||reduced)return;
+   const elapsed=Math.min(delta,.05);
+   // Slow idle rotation (one turn in about three minutes), plus transition easing.
+   const drift=elapsed*.035;
+   targetAngle.current+=drift;
+   platform.current.rotation.y+=drift;
+   const remaining=targetAngle.current-platform.current.rotation.y;
+   platform.current.rotation.y=Math.abs(remaining)<.0001?targetAngle.current:platform.current.rotation.y+remaining*(1-Math.exp(-elapsed*7));
+   // Cancel the parent rotation and mirror it for the inner arc.
+   if(innerRing.current)innerRing.current.rotation.y=-2*platform.current.rotation.y;
+ });
+ return <group ref={platform} position={[0,-3.4,-6]}><group>{[9,11,14].map((r,i)=><group key={r} ref={i===0?innerRing:undefined}><mesh rotation={[-Math.PI/2,0,i]}><torusGeometry args={[r,.012,4,160,Math.PI*(1.15+i*.2)]}/><meshBasicMaterial color={light?BLACK:i===0?"#327b8c":"#163747"} transparent opacity={light?.3:.8}/></mesh></group>)}</group><mesh rotation={[-Math.PI/2,0,0]}><circleGeometry args={[9,80]}/><meshBasicMaterial visible={!light} color="#071722" transparent opacity={.55} side={2} depthWrite={false}/></mesh>{Array.from({length:48},(_,i)=>{const angle=i/48*Math.PI*2;return <mesh key={i} position={[Math.cos(angle)*11,0,Math.sin(angle)*11]} rotation={[-Math.PI/2,0,-angle]}><planeGeometry args={[i%4===0?.45:.15,.026]}/><meshBasicMaterial color={light?BLACK:i%4===0?"#75bfd1":"#305267"}/></mesh>})}<mesh position={[0,.07,0]} rotation={[-Math.PI/2,0,0]}><ringGeometry args={[8.98,9.03,120]}/><meshBasicMaterial color={light?BLACK:step<0?"#438ba0":"#58c6d9"} transparent opacity={.3} side={2}/></mesh></group>
 }
 // Subtle face shading adds depth while keeping the light theme predominantly outlined.
 function LightFaces({active}:{active:boolean}){
@@ -54,7 +74,7 @@ function ProjectLabels({journey,step,labels,overview}:{journey:Journey;step:numb
 }
 function Scene(props:Props&{labels:RefObject<(HTMLElement|null)[]>}){
  const focus=props.journey.chapters[props.step]?.focus??[];
- return <><color attach="background" args={[props.light?"#eef3f5":"#040911"]}/><fog attach="fog" args={[props.light?"#eef3f5":"#040911",30,95]}/><ambientLight intensity={.8}/><directionalLight position={[5,15,5]} color="#8bbcd4" intensity={2}/><pointLight position={[0,6,-5]} color="#4ca1ba" intensity={35} distance={30}/><Camera {...props}/>{!props.light&&<Particles reduced={props.reduced}/>}<Boundary step={props.step} reduced={props.reduced} light={props.light}/>{props.journey.nodes.map((n,i)=><Service key={n.id} node={n} index={i} light={props.light} active={props.step<0||focus.includes(n.id)} step={props.step} reduced={props.reduced}/>)}{props.journey.links.map(([a,b],i)=>{const from=props.journey.nodes.find(n=>n.id===a)!,to=props.journey.nodes.find(n=>n.id===b)!;return <Connection key={a+b} from={from.position} to={to.position} active={props.step<0||(focus.includes(a)&&focus.includes(b))} reduced={props.reduced} index={i} light={props.light}/>})}<ProjectLabels journey={props.journey} step={props.step} labels={props.labels} overview={props.overview}/></>
+ return <><color attach="background" args={[props.light?"#eef3f5":"#040911"]}/><fog attach="fog" args={[props.light?"#eef3f5":"#040911",30,95]}/><ambientLight intensity={.8}/><directionalLight position={[5,15,5]} color="#8bbcd4" intensity={2}/><pointLight position={[0,6,-5]} color="#4ca1ba" intensity={35} distance={30}/><Camera {...props}/>{!props.light&&<Particles reduced={props.reduced}/>}<Boundary transitionKey={props.transitionKey} step={props.step} reduced={props.reduced} light={props.light}/>{props.journey.nodes.map((n,i)=><Service key={n.id} node={n} index={i} light={props.light} active={props.step<0||focus.includes(n.id)} step={props.step} reduced={props.reduced}/>)}{props.journey.links.map(([a,b],i)=>{const from=props.journey.nodes.find(n=>n.id===a)!,to=props.journey.nodes.find(n=>n.id===b)!;return <Connection key={a+b} from={from.position} to={to.position} active={props.step<0||(focus.includes(a)&&focus.includes(b))} reduced={props.reduced} index={i} light={props.light}/>})}<ProjectLabels journey={props.journey} step={props.step} labels={props.labels} overview={props.overview}/></>
 }
 function ContextHealth({onUnavailable}:{onUnavailable:()=>void}){const {gl}=useThree();useEffect(()=>{const canvas=gl.domElement;canvas.addEventListener("webglcontextlost",onUnavailable);return()=>canvas.removeEventListener("webglcontextlost",onUnavailable)},[gl,onUnavailable]);return null}
 export default function World(props:Props){const theme=useTheme();const labels=useRef<(HTMLElement|null)[]>([]);return <><Canvas aria-hidden="true" camera={{position:HOME_POSITION,fov:44,near:.1,far:120}} dpr={[1,1.5]} frameloop={props.reduced?"demand":"always"} gl={{antialias:true,alpha:false,powerPreference:"high-performance"}}><Scene {...props} light={theme==="light"} labels={labels}/><ContextHealth onUnavailable={props.onUnavailable}/></Canvas><div className={`component-labels ${props.overview?"project-map-labels":""}`}>{props.journey.nodes.map((n,i)=>props.overview?<button type="button" className="component-label project-map-label" key={n.id} ref={el=>{labels.current[i]=el}} onClick={()=>props.onSelect?.(n.id)} aria-label={`${props.openProjectLabel}: ${n.label}`}><span className="component-symbol">{n.symbol}</span><span>{n.label}<small>{n.detail} ↗</small></span></button>:<div className="component-label" key={n.id} ref={el=>{labels.current[i]=el}}><span className="component-symbol">{n.symbol}</span><div>{n.label}<small>{n.detail}</small></div></div>)}</div></>}

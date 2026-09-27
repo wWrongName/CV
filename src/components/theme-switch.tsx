@@ -1,5 +1,5 @@
 "use client";
-import { useSyncExternalStore } from "react";
+import { useLayoutEffect, useSyncExternalStore } from "react";
 import type { Locale } from "@/lib/i18n";
 
 const key = "resume-theme";
@@ -19,6 +19,16 @@ function subscribe(notify: () => void) {
     window.removeEventListener("resume-theme-change", notify);
     window.removeEventListener("storage", sync);
   };
+}
+// Restore the preference when the locale layout mounts, including client navigation.
+export function ThemeInitializer() {
+  useLayoutEffect(() => {
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem(key) === "light" ? "light" : "dark";
+    } catch { /* Keep the current theme when storage is unavailable. */ }
+    window.dispatchEvent(new Event("resume-theme-change"));
+  }, []);
+  return null;
 }
 export function useTheme() { return useSyncExternalStore(subscribe, snapshot, serverSnapshot); }
 export function ThemeSwitch({ locale }: { locale: Locale }) {

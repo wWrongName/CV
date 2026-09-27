@@ -1079,7 +1079,7 @@ export const projectMap: Journey = {
       "symbol": "DEV",
       "position": [
         -6,
-        -3,
+        -2.3,
         -6
       ],
       "layer": "delivery"

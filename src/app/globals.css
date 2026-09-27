@@ -151,3 +151,8 @@
 
 /* Keep narration responsive during rapid wheel navigation. */
 .experience-content{animation-duration:.18s}
+
+.identity-mark{display:block;flex-shrink:0;width:34px;height:34px}
+
+.identity-mark{filter:brightness(0) saturate(100%) invert(88%) sepia(20%) saturate(555%) hue-rotate(139deg)}
+[data-theme=light] .identity-mark{filter:brightness(0) saturate(100%) opacity(.85)}
