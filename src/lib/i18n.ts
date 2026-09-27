@@ -2,6 +2,12 @@ export type Locale = "ru" | "en";
 export const isLocale = (value: string): value is Locale => value === "ru" || value === "en";
 export const messages = {
   "ru": {
+    "introName": "Иван\nВеличко",
+    "introLabel": "РАЗРАБОТКА И ИНФРАСТРУКТУРА",
+    "introLead": "Разрабатываю веб-приложения и инфраструктуру для их работы.",
+    "introSummary": "Здесь — проекты, моя роль и решения, которые я принимал.",
+    "exploreProjects": "Посмотреть проекты",
+    "backToIntro": "На стартовый экран",
     "name": "ИВАН ВЕЛИЧКО",
     "specialization": "РАЗРАБОТКА / ИНФРАСТРУКТУРА / МЕНЕДЖМЕНТ",
     "loading": "Собираем пространство",
@@ -44,6 +50,12 @@ export const messages = {
     "researchPrototype": "Исследование и прототип"
   },
   "en": {
+    "introName": "Ivan\nVelichko",
+    "introLabel": "DEVELOPMENT & INFRASTRUCTURE",
+    "introLead": "I build web applications and the infrastructure behind them.",
+    "introSummary": "Explore my projects, my role, and the decisions I made along the way.",
+    "exploreProjects": "Explore projects",
+    "backToIntro": "Back to introduction",
     "name": "IVAN VELICHKO",
     "specialization": "DEVELOPMENT / INFRASTRUCTURE / MANAGEMENT",
     "loading": "Loading the scene",

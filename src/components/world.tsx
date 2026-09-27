@@ -5,16 +5,16 @@ import {useEffect,useMemo,useRef,type RefObject} from "react";
 import {AdditiveBlending,CatmullRomCurve3,Color,Vector3,type Group,type Mesh,type Points} from "three";
 import {useTheme} from "./theme-switch";
 import type {Journey,SystemNode,Vector} from "@/lib/journeys";
-type Props={transitionKey:string;light?:boolean;journey:Journey;step:number;reduced:boolean;onUnavailable:()=>void;overview?:boolean;openProjectLabel:string;onSelect?:(id:string)=>void};
+type Props={transitionKey:string;light?:boolean;journey:Journey;step:number;reduced:boolean;onUnavailable:()=>void;overview?:boolean;introduction?:boolean;openProjectLabel:string;onSelect?:(id:string)=>void};
 const CYAN="#68d9ee",AMBER="#efa86b",DIM="#163c4d",BLACK="#111111",LIGHT_ACCENT="#986b3d";
 const HOME_POSITION:Vector=[20,10,27],HOME_TARGET:Vector=[-5,0,-6];
-function Camera({journey,step,reduced,overview}:Props){
+function Camera({journey,step,reduced,overview,introduction}:Props){
  const {camera,size,invalidate}=useThree();const target=useRef(new Vector3(...HOME_TARGET));
  const endCamera=useRef(new Vector3(...HOME_POSITION)),endTarget=useRef(new Vector3(...HOME_TARGET));
  useEffect(()=>{const chapter=journey.chapters[step];const mobile=size.width<700;endCamera.current.set(...(chapter?.camera??HOME_POSITION));endTarget.current.set(...(chapter?.target??HOME_TARGET));
  // Keep the system above the narration on phones and to its right on wide screens.
- if(overview){endCamera.current.set(0,9,size.width<1100?40:34);endTarget.current.set(size.width<1100?-4:-9,1,-6)}else if(mobile){endCamera.current.add(new Vector3(4,7,9));endTarget.current.y-=3}else{endTarget.current.x-=5.5}
- invalidate();},[journey,step,size.width,overview,invalidate]);
+ if(introduction){endCamera.current.set(0,7,mobile?29:23);endTarget.current.set(0,1,-6)}else if(overview){endCamera.current.set(0,9,size.width<1100?40:34);endTarget.current.set(size.width<1100?-4:-9,1,-6)}else if(mobile){endCamera.current.add(new Vector3(4,7,9));endTarget.current.y-=3}else{endTarget.current.x-=5.5}
+ invalidate();},[journey,step,size.width,overview,introduction,invalidate]);
  useFrame((state,delta)=>{const f=reduced?1:1-Math.exp(-Math.min(delta,.05)*2.15);camera.position.lerp(endCamera.current,f);target.current.lerp(endTarget.current,f);camera.lookAt(target.current);if(reduced&&(camera.position.distanceTo(endCamera.current)>.005))invalidate();});
  return null;
 }

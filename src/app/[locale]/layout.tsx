@@ -1,3 +1,4 @@
+import { WanderingEye } from "@/components/wandering-eye";
 import { SiteVersion } from "@/components/site-version";
 import type { Metadata } from "next";
 import { ThemeInitializer } from "@/components/theme-switch";
@@ -14,5 +15,5 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  return <html lang={locale} data-theme="dark" suppressHydrationWarning><body><ThemeInitializer />{children}<Analytics /><SiteVersion /></body></html>;
+  return <html lang={locale} data-theme="dark" suppressHydrationWarning><body><ThemeInitializer />{children}<WanderingEye /><Analytics /><SiteVersion /></body></html>;
 }

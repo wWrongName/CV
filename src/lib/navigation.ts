@@ -1,3 +1,4 @@
+// Step -2 is the introduction (project 0 only); -1 is a project preview.
 export type JourneyPosition = { project: number; step: number };
 
 export function advanceJourney(
@@ -6,6 +7,7 @@ export function advanceJourney(
   chapterCounts: readonly number[],
 ): JourneyPosition {
   const { project, step } = position;
+  if (step === -2) return direction === 1 ? { project: 0, step: -1 } : position;
   if (direction === 1) {
     if (step < chapterCounts[project] - 1) return { project, step: step + 1 };
     if (project === chapterCounts.length - 1) return position;
