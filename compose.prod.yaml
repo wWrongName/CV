@@ -1,0 +1,29 @@
+name: resume-site
+services:
+  website:
+    image: ${IMAGE:?Set an immutable image reference}
+    ports:
+      - "127.0.0.1:${APP_PORT:-3000}:3000"
+    env_file:
+      - path: ${RUNTIME_ENV_FILE:-./.env.production.local}
+        required: false
+    volumes:
+      - site-data:/app/data
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 20s
+    mem_limit: ${MEMORY_LIMIT:-512m}
+    cpus: ${CPU_LIMIT:-1.0}
+    pids_limit: 128
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  site-data:
