@@ -184,3 +184,32 @@
   .gateway-copy .label-divider{display:inline;width:auto;height:auto;background:none}
   .gateway-copy .label-divider::after{content:" · "}
 }
+
+/* Fit the immersive view to the actual phone viewport, including browser chrome. */
+@media(max-width:700px){
+  .immersive{height:100svh;height:100dvh;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+  .hud-header{position:relative;inset:auto;grid-row:1;min-width:0;padding:12px 22px 0}
+  .experience-content,.at-gateway .experience-content,.in-story .experience-content{position:relative;inset:auto;grid-row:2;min-height:0;width:auto;margin:clamp(12px,4dvh,36px) 26px 12px;padding:0 0 10px;overflow-y:auto;overscroll-behavior:contain;pointer-events:auto;scrollbar-width:thin}
+  .in-story .experience-content{margin-top:clamp(20px,12dvh,95px)}
+  .hud-footer{position:relative;inset:auto;grid-row:3;min-width:0;margin:0 26px;padding:8px 0 calc(30px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--paper) 24%)}
+  .footer-utility,.at-gateway .footer-utility{margin-top:10px;gap:12px}
+  .archive-picker{gap:8px}
+  .project-name{margin-top:16px}
+  .gateway-copy h1{margin:12px 0 16px}
+  .enter-story{margin-top:18px}
+  .hud-header nav.is-open{top:60px}
+}
+@media(max-width:700px) and (max-height:700px){
+  .hud-header{padding-top:8px;row-gap:6px}
+  .hud-project{padding-top:6px}
+  .experience-content,.at-gateway .experience-content{margin-top:12px}
+  .in-story .experience-content{margin-top:24px}
+  .gateway-copy h1,.narration h1{font-size:clamp(32px,8vw,42px);line-height:1.06;margin:10px 0 12px}
+  .project-name{margin-top:10px;font-size:12px}
+  .gateway-summary,.narration-body{font-size:13px;line-height:1.55}
+  .enter-story{margin-top:14px;gap:12px}
+  .enter-symbol{width:40px;height:40px;flex:none}
+  .enter-story small{margin-top:5px}
+  .hud-footer{padding-top:4px}
+  .footer-utility,.at-gateway .footer-utility{margin-top:8px}
+}
