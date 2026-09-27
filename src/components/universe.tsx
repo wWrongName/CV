@@ -28,6 +28,7 @@ export function Universe({ locale }: { locale: Locale }) {
   const [position, setPosition] = useState<JourneyPosition>({ project: 0, step: -1 });
   const [reduced, setReduced] = useState(false);
   const [quiet, setQuiet] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [unsupported, setUnsupported] = useState(false);
   const narrationRef = useRef<HTMLDivElement>(null);
   const { project, step } = position;
@@ -67,7 +68,7 @@ export function Universe({ locale }: { locale: Locale }) {
         event.preventDefault();
         if (!event.repeat) move(event.key === "ArrowRight" || event.key === "ArrowDown" ? 1 : -1);
       }
-      if (event.key === "Escape") toMap();
+      if (event.key === "Escape") { setMenuOpen(false); toMap(); }
     };
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
@@ -78,6 +79,7 @@ export function Universe({ locale }: { locale: Locale }) {
     let lastEvent = 0;
     let pendingTick: ReturnType<typeof setTimeout> | undefined;
     const wheel = (event: WheelEvent) => {
+      if (menuOpen) return;
       if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY) || event.deltaY === 0) return;
       const target = event.target as HTMLElement;
       if (target.closest("input,textarea,select,[contenteditable=true]")) return;
@@ -115,7 +117,7 @@ export function Universe({ locale }: { locale: Locale }) {
     };
     window.addEventListener("wheel", wheel, { passive: false });
     return () => { window.removeEventListener("wheel", wheel); clearTimeout(pendingTick); };
-  }, [move]);
+  }, [move, menuOpen]);
 
   const fallback = <div className="space-fallback"><span>{ui.no3d}</span><Link href={`/${locale}/experience`}>{ui.readResume} →</Link></div>;
   return <main className={`immersive ${inside ? "in-story" : "at-gateway"}`}>
@@ -128,7 +130,8 @@ export function Universe({ locale }: { locale: Locale }) {
     <header className="hud-header">
       <button className="identity" onClick={toMap} aria-label={ui.backToMap}><Mark /><span>{ui.name}<small>{ui.specialization}</small></span></button>
       <div className="hud-project" aria-live="polite"><span>{ui.project} {journey.index} / {String(journeys.length).padStart(2,"0")}</span><strong>{journey.name}</strong>{inside && <small>{ui.chapter} {step + 1} / {journey.chapters.length}</small>}</div>
-      <nav aria-label={ui.navigation}><LanguageSwitch locale={locale} /><ThemeSwitch locale={locale} /><Link className="resume-nav-link" href={`/${locale}/experience`}>{ui.resume}</Link><a href="https://t.me/wr0ngn4m3" target="_blank" rel="noreferrer">{ui.discuss} <span>↗</span></a></nav>
+      <button type="button" className="mobile-menu-toggle" aria-label={locale === "ru" ? (menuOpen ? "Закрыть меню" : "Открыть меню") : (menuOpen ? "Close menu" : "Open menu")} aria-expanded={menuOpen} aria-controls="portfolio-navigation" onClick={() => setMenuOpen(open => !open)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d={menuOpen ? "M6 6l12 12M6 18L18 6" : "M4 7h16M4 12h16M4 17h16"} /></svg></button>
+      <nav id="portfolio-navigation" className={menuOpen ? "is-open" : undefined} aria-label={ui.navigation} onClick={event => { if ((event.target as HTMLElement).closest("a")) setMenuOpen(false); }}><LanguageSwitch locale={locale} /><ThemeSwitch locale={locale} /><Link className="resume-nav-link" href={`/${locale}/experience`}>{ui.resume}</Link><a href="https://t.me/wr0ngn4m3" target="_blank" rel="noreferrer">{ui.discuss} <span>↗</span></a></nav>
     </header>
     <div className="edge-coordinate left-coordinate" aria-hidden="true">IV / SYSTEM ARCHIVE</div>
     <div className="edge-coordinate right-coordinate" aria-hidden="true">{journey.name.toUpperCase()} / {inside ? `CHAPTER 0${step + 1}` : "ORIGIN"}</div>
@@ -150,7 +153,7 @@ export function Universe({ locale }: { locale: Locale }) {
     <div className="scene-caption" aria-hidden="true"><span className="caption-cross">+</span><div>{inside ? ui.diagram : ui.map}<small>{inside ? ui.components : ui.chooseProject.toUpperCase()}</small></div></div>
     {unsupported && <div className="unsupported-note">{ui.simplified} · <Link href={`/${locale}/experience`}>{ui.readResume}</Link></div>}
     <footer className="hud-footer">
-      {!inside ? <div className="archive-picker"><span className="footer-label">{ui.chooseProject.toUpperCase()}</span><div role="group" aria-label={ui.chooseProject}>{journeys.map((j, i) => <button key={j.id} onClick={() => setPosition({ project: i, step: -1 })} aria-pressed={i === project}><span>{j.index}</span>{j.name}<i /></button>)}</div></div>
+      {!inside ? <div className="archive-picker"><span className="footer-label">{ui.chooseProject.toUpperCase()}</span><div role="group" aria-label={ui.chooseProject}>{journeys.map((j, i) => <button key={j.id} onClick={() => setPosition({ project: i, step: -1 })} aria-pressed={i === project} aria-label={`${j.index}: ${j.name}`} title={j.name}><span>{j.index}</span><span className="project-option-name">{j.name}</span><i /></button>)}</div></div>
         : <div className="chapter-nav"><div className="chapter-track" role="group" aria-label={ui.sections}>{journey.chapters.map((c, i) => <button key={c.label} onClick={() => setPosition({ project, step: i })} aria-label={`${ui.chapter} ${i + 1}: ${c.label}`} aria-current={i === step ? "step" : undefined} className={i < step ? "complete" : ""}><span>0{i + 1}</span><span className="chapter-title">{c.label}</span><i /></button>)}</div>
           <div className="transport"><button onClick={() => move(-1)} aria-label={ui.back} disabled={project === 0 && step === -1} title={`${ui.previousStage} · ←`}>←</button><button className="next-chapter" onClick={() => move(1)} aria-label={ui.next} disabled={project === journeys.length - 1 && step === journey.chapters.length - 1} title={`${ui.nextStage} · →`}>{ui.next} <span>→</span></button></div>
         </div>}
