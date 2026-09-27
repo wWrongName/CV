@@ -1,10 +1,12 @@
 # syntax=docker/dockerfile:1
-FROM node:22-alpine AS base
+FROM node:24.21.0-alpine AS base
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN npm install --global pnpm@11.19.0
+RUN npm install --global pnpm@12.6.0
 
 FROM base AS dependencies
+# Native SQLite installation requires node-gyp build tools in this stage only.
+RUN apk add --no-cache python3 make g++
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store \
     pnpm install --frozen-lockfile --store-dir=/pnpm/store
@@ -14,7 +16,7 @@ COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 RUN pnpm build
 
-FROM node:22-alpine AS runner
+FROM node:24.21.0-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 PORT=3000 HOSTNAME=0.0.0.0
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs && mkdir -p /app/data && chown nextjs:nodejs /app/data

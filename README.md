@@ -4,7 +4,7 @@ Interactive 3D portfolio and resume built with Next.js, TypeScript, React Three 
 
 ## Requirements
 
-Node.js 22, pnpm 11.19.0 and GNU Make. Docker Engine with Compose v2 for container commands.
+Node.js 24.21.0 LTS (see `.nvmrc`), pnpm 12.6.0 and GNU Make. Docker Engine with Compose v2 for container commands.
 
 ## Commands
 
