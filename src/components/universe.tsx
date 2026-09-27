@@ -8,6 +8,7 @@ import { LanguageSwitch } from "./language-switch";
 import { ThemeSwitch } from "./theme-switch";
 import { advanceJourney, type JourneyPosition } from "@/lib/navigation";
 import { Mark } from "./mark";
+import { MobileNavigation } from "./mobile-navigation";
 import { trackEvent } from "@/lib/analytics-client";
 
 const Scene = dynamic(() => import("./world"), {
@@ -130,8 +131,11 @@ export function Universe({ locale }: { locale: Locale }) {
     <header className="hud-header">
       <button className="identity" onClick={toMap} aria-label={ui.backToMap}><Mark /><span>{ui.name}<small>{ui.specialization}</small></span></button>
       <div className="hud-project" aria-live="polite"><span>{ui.project} {journey.index} / {String(journeys.length).padStart(2,"0")}</span><strong>{journey.name}</strong>{inside && <small>{ui.chapter} {step + 1} / {journey.chapters.length}</small>}</div>
-      <button type="button" className="mobile-menu-toggle" aria-label={locale === "ru" ? (menuOpen ? "Закрыть меню" : "Открыть меню") : (menuOpen ? "Close menu" : "Open menu")} aria-expanded={menuOpen} aria-controls="portfolio-navigation" onClick={() => setMenuOpen(open => !open)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d={menuOpen ? "M6 6l12 12M6 18L18 6" : "M4 7h16M4 12h16M4 17h16"} /></svg></button>
-      <nav id="portfolio-navigation" className={menuOpen ? "is-open" : undefined} aria-label={ui.navigation} onClick={event => { if ((event.target as HTMLElement).closest("a")) setMenuOpen(false); }}><LanguageSwitch locale={locale} /><ThemeSwitch locale={locale} /><Link className="resume-nav-link" href={`/${locale}/experience`}>{ui.resume}</Link><a href="https://t.me/wr0ngn4m3" target="_blank" rel="noreferrer">{ui.discuss} <span>↗</span></a></nav>
+      <MobileNavigation locale={locale} open={menuOpen} onOpenChange={setMenuOpen}>
+        <div className="nav-preferences"><LanguageSwitch locale={locale} /><ThemeSwitch locale={locale} /></div>
+        <Link className="resume-nav-link" href={`/${locale}/experience`}>{ui.resume}</Link>
+        <a href="https://t.me/wr0ngn4m3" target="_blank" rel="noreferrer">{ui.discuss} <span>↗</span></a>
+      </MobileNavigation>
     </header>
     <div className="edge-coordinate left-coordinate" aria-hidden="true">IV / SYSTEM ARCHIVE</div>
     <div className="edge-coordinate right-coordinate" aria-hidden="true">{journey.name.toUpperCase()} / {inside ? `CHAPTER 0${step + 1}` : "ORIGIN"}</div>

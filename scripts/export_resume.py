@@ -20,11 +20,11 @@ from reportlab.platypus import (
     HRFlowable, Table, TableStyle, PageBreak,
 )
 
-INK = colors.HexColor('#202e39')
+INK = colors.HexColor('#142c39')
 MUTED = colors.HexColor('#5b6b75')
-ACCENT = colors.HexColor('#256b71')
+ACCENT = colors.HexColor('#245e72')
 RULE = colors.HexColor('#d9e2e4')
-PAPER_TINT = colors.HexColor('#f0f5f5')
+PAPER_TINT = colors.HexColor('#f1f5f7')
 MARGIN = 42
 WIDTH = A4[0] - MARGIN * 2
 
@@ -40,24 +40,24 @@ def export(root, font_dir, output, locale='ru'):
     pdfmetrics.registerFontFamily('CV', normal='CV', bold='CVBold', italic='CV', boldItalic='CVBold')
     en = locale == 'en'
     labels = {
-        'experience': 'EXPERIENCE' if en else 'ОПЫТ РАБОТЫ',
-        'skills': 'EXPERTISE' if en else 'КОМПЕТЕНЦИИ',
-        'education': 'EDUCATION' if en else 'ОБРАЗОВАНИЕ',
-        'languages': 'LANGUAGES' if en else 'ЯЗЫКИ',
+        'experience': '01  /  EXPERIENCE' if en else '01  /  ОПЫТ РАБОТЫ',
+        'skills': '02  /  EXPERTISE' if en else '02  /  КОМПЕТЕНЦИИ',
+        'education': '03  /  EDUCATION' if en else '03  /  ОБРАЗОВАНИЕ',
+        'languages': '04  /  LANGUAGES' if en else '04  /  ЯЗЫКИ',
     }
     styles = {
         'body': ParagraphStyle('body', fontName='CV', fontSize=9.1, leading=12.7, textColor=INK, spaceAfter=3),
-        'bullet': ParagraphStyle('bullet', fontName='CV', fontSize=9.1, leading=12.7, textColor=INK, leftIndent=9, firstLineIndent=-9, spaceAfter=3),
-        'name': ParagraphStyle('name', fontName='Display', fontSize=30, leading=35, textColor=INK, spaceAfter=6),
+        'bullet': ParagraphStyle('bullet', fontName='CV', fontSize=9.1, leading=12.2, textColor=INK, leftIndent=9, firstLineIndent=-9, spaceAfter=2),
+        'name': ParagraphStyle('name', fontName='Display', fontSize=28, leading=33, textColor=INK, spaceAfter=6),
         'headline': ParagraphStyle('headline', fontName='CV', fontSize=11.7, leading=16.5, textColor=ACCENT, spaceAfter=8),
         'meta': ParagraphStyle('meta', fontName='CV', fontSize=8, leading=11.5, textColor=MUTED, spaceAfter=4),
         'intro': ParagraphStyle('intro', fontName='CV', fontSize=9.3, leading=13.2, textColor=INK),
         'label': ParagraphStyle('label', fontName='CVBold', fontSize=8, leading=11, textColor=ACCENT, spaceAfter=8, keepWithNext=True),
-        'company': ParagraphStyle('company', fontName='Display', fontSize=17, leading=22, textColor=INK),
+        'company': ParagraphStyle('company', fontName='Display', fontSize=16, leading=21, textColor=INK),
         'dates': ParagraphStyle('dates', fontName='CV', fontSize=8, leading=11.5, textColor=MUTED, alignment=TA_RIGHT),
         'role': ParagraphStyle('role', fontName='CVBold', fontSize=9, leading=12.5, textColor=ACCENT, spaceAfter=5),
         'context': ParagraphStyle('context', fontName='CV', fontSize=8.8, leading=12.3, textColor=MUTED, spaceAfter=3),
-        'subheading': ParagraphStyle('subheading', fontName='CVBold', fontSize=9.1, leading=12.7, textColor=INK, spaceBefore=6, spaceAfter=3, keepWithNext=True),
+        'subheading': ParagraphStyle('subheading', fontName='CVBold', fontSize=9.1, leading=12.7, textColor=INK, spaceBefore=5, spaceAfter=3, keepWithNext=True),
         'compact': ParagraphStyle('compact', fontName='CV', fontSize=8.3, leading=11.6, textColor=INK, spaceAfter=4),
         'compactHeading': ParagraphStyle('compactHeading', fontName='CVBold', fontSize=8.5, leading=11.8, textColor=INK, spaceBefore=5, spaceAfter=3, keepWithNext=True),
         'compactMeta': ParagraphStyle('compactMeta', fontName='CV', fontSize=7.7, leading=10.5, textColor=MUTED, spaceAfter=4),
@@ -74,12 +74,15 @@ def export(root, font_dir, output, locale='ru'):
         heading.setStyle(TableStyle([
             ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
             ('LEFTPADDING', (0, 0), (-1, -1), 0), ('RIGHTPADDING', (0, 0), (-1, -1), 0),
-            ('TOPPADDING', (0, 0), (-1, -1), 0), ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+            ('BACKGROUND', (0, 0), (-1, -1), PAPER_TINT),
+            ('LINEBEFORE', (0, 0), (0, 0), 2, ACCENT),
+            ('LEFTPADDING', (0, 0), (0, 0), 9), ('RIGHTPADDING', (1, 0), (1, 0), 9),
+            ('TOPPADDING', (0, 0), (-1, -1), 5), ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
         ]))
         first = job['sections'][0]
         # Keep the employer, role, context and first result together.
         blocks = [KeepTogether([
-            heading, p(job['role'], 'role'), p(job['context'], 'context'),
+            heading, Spacer(1, 6), p(job['role'], 'role'), p(job['context'], 'context'),
             p(first['title'], 'subheading'), p('• ' + first['items'][0], 'bullet'),
         ])]
         blocks.extend(p('• ' + item, 'bullet') for item in first['items'][1:])
@@ -91,7 +94,8 @@ def export(root, font_dir, output, locale='ru'):
     def frame_page(canvas, doc):
         canvas.saveState()
         canvas.setFillColor(ACCENT)
-        canvas.rect(MARGIN, A4[1] - 24, 28, 3, fill=1, stroke=0)
+        canvas.setFont('Display', 11)
+        canvas.drawString(MARGIN, A4[1] - 26, 'wwn')
         canvas.setFont('CV', 7.5)
         canvas.setFillColor(MUTED)
         canvas.drawRightString(A4[0] - MARGIN, A4[1] - 25, 'CURRICULUM VITAE  /  ' + locale.upper())
@@ -114,7 +118,7 @@ def export(root, font_dir, output, locale='ru'):
     story = [p(data['fullName'], 'name'), p(data['headline'], 'headline'),
              p(data['location'] + '  ·  ' + data['format'], 'meta')]
     contacts = ' &nbsp;&nbsp; / &nbsp;&nbsp; '.join(
-        f'<link href={quoteattr(c["href"])} color="#256b71">{clean(c["label"])}</link>' for c in data['contacts'])
+        f'<link href={quoteattr(c["href"])} color="#245e72">{clean(c["label"])}</link>' for c in data['contacts'])
     story.extend([Paragraph(contacts, styles['meta']), Spacer(1, 7)])
     intro = Table([[p(data['summary'], 'intro')]], colWidths=[WIDTH])
     intro.setStyle(TableStyle([
@@ -123,34 +127,57 @@ def export(root, font_dir, output, locale='ru'):
         ('LEFTPADDING', (0, 0), (-1, -1), 12), ('RIGHTPADDING', (0, 0), (-1, -1), 12),
         ('TOPPADDING', (0, 0), (-1, -1), 9), ('BOTTOMPADDING', (0, 0), (-1, -1), 9),
     ]))
-    story.extend([intro, Spacer(1, 16), p(labels['experience'], 'label')])
+    story.extend([intro, Spacer(1, 12), p(labels['experience'], 'label')])
     for job in data['jobs'][:2]:
         if job is not data['jobs'][0]:
-            story.append(rule(10, 10))
+            story.append(Spacer(1, 12))
         story.extend(job_block(job))
     story.extend([PageBreak(), p(labels['experience'], 'label')])
     for job in data['jobs'][2:]:
         story.extend(job_block(job))
     story.extend([rule(12, 12)])
 
+    def panel(content, width):
+        box = Table([[content]], colWidths=[width])
+        box.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, -1), PAPER_TINT),
+            ('LEFTPADDING', (0, 0), (-1, -1), 10), ('RIGHTPADDING', (0, 0), (-1, -1), 10),
+            ('TOPPADDING', (0, 0), (-1, -1), 7), ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
+        ]))
+        return box
+
+    column_width = (WIDTH - 20) / 2
     skills = [p(labels['skills'], 'label')]
     for skill in data['skills']:
-        skills.extend([p(skill['label'], 'compactHeading'), p(skill['text'], 'compact')])
-    skills.extend([Spacer(1, 7), p(labels['languages'], 'label'), p(data['languages'], 'compact')])
+        skills.extend([panel([p(skill['label'], 'compactHeading'), p(skill['text'], 'compact')], column_width), Spacer(1, 5)])
     education = [p(labels['education'], 'label')]
     for item in data['education']:
-        education.extend([p(item['title'], 'compactHeading'), p(item['dates'], 'compactMeta'),
-                          p(item['institution'], 'compact')])
+        content = [p(item['title'], 'compactHeading'), p(item['dates'], 'compactMeta'),
+                   p(item['institution'], 'compact')]
         if item['detail']:
-            education.append(p(item['detail'], 'compact'))
-        education.append(Spacer(1, 5))
-    bottom = Table([[skills, education]], colWidths=[WIDTH * .50, WIDTH * .50])
+            content.append(p(item['detail'], 'compact'))
+        education.extend([panel(content, column_width), Spacer(1, 8)])
+    education.extend([Spacer(1, 5), p(labels['languages'], 'label')])
+    language_cells = []
+    for entry in data['languages'].split(', '):
+        parts = entry.split(' — ')
+        label = clean(parts[0][0].upper() + parts[0][1:])
+        if len(parts) > 1:
+            label += ' &nbsp; <font color="#245e72"><b>' + clean(parts[1]) + '</b></font>'
+        language_cells.append(Paragraph(label, styles['compact']))
+    languages = Table([language_cells], colWidths=[column_width / len(language_cells)] * len(language_cells))
+    languages.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, -1), PAPER_TINT),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('LEFTPADDING', (0, 0), (-1, -1), 10),
+        ('TOPPADDING', (0, 0), (-1, -1), 8), ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+    ]))
+    education.append(languages)
+    bottom = Table([[skills, '', education]], colWidths=[column_width, 20, column_width])
     bottom.setStyle(TableStyle([
         ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-        ('LEFTPADDING', (0, 0), (0, 0), 0), ('RIGHTPADDING', (0, 0), (0, 0), 17),
-        ('LEFTPADDING', (1, 0), (1, 0), 17), ('RIGHTPADDING', (1, 0), (1, 0), 0),
+        ('LEFTPADDING', (0, 0), (-1, -1), 0), ('RIGHTPADDING', (0, 0), (-1, -1), 0),
         ('TOPPADDING', (0, 0), (-1, -1), 0), ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
-        ('LINEBEFORE', (1, 0), (1, 0), .6, RULE),
     ]))
     story.append(bottom)
     output.parent.mkdir(parents=True, exist_ok=True)

@@ -17,7 +17,8 @@ export function proxy(request: NextRequest) {
   response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
   response.headers.set("X-Frame-Options", "DENY");
   response.headers.set("X-Content-Type-Options", "nosniff");
-  response.headers.set("Referrer-Policy", "no-referrer");
+  // Native form POSTs need a non-null Origin; never disclose the private URL path.
+  response.headers.set("Referrer-Policy", "strict-origin");
   response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
   return response;
 }
