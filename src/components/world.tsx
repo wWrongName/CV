@@ -1,0 +1,60 @@
+"use client";
+import {Canvas,useFrame,useThree} from "@react-three/fiber";
+import {Edges,Line} from "@react-three/drei";
+import {useEffect,useMemo,useRef,type RefObject} from "react";
+import {AdditiveBlending,CatmullRomCurve3,Color,Vector3,type Group,type Mesh,type Points} from "three";
+import {useTheme} from "./theme-switch";
+import type {Journey,SystemNode,Vector} from "@/lib/journeys";
+type Props={light?:boolean;journey:Journey;step:number;reduced:boolean;onUnavailable:()=>void;overview?:boolean;openProjectLabel:string;onSelect?:(id:string)=>void};
+const CYAN="#68d9ee",AMBER="#efa86b",DIM="#163c4d",BLACK="#111111",LIGHT_ACCENT="#986b3d";
+const HOME_POSITION:Vector=[20,10,27],HOME_TARGET:Vector=[-5,0,-6];
+function Camera({journey,step,reduced,overview}:Props){
+ const {camera,size,invalidate}=useThree();const target=useRef(new Vector3(...HOME_TARGET));
+ const endCamera=useRef(new Vector3(...HOME_POSITION)),endTarget=useRef(new Vector3(...HOME_TARGET));
+ useEffect(()=>{const chapter=journey.chapters[step];const mobile=size.width<700;endCamera.current.set(...(chapter?.camera??HOME_POSITION));endTarget.current.set(...(chapter?.target??HOME_TARGET));
+ // Keep the system above the narration on phones and to its right on wide screens.
+ if(overview){endCamera.current.set(0,9,size.width<1100?40:34);endTarget.current.set(size.width<1100?-4:-9,1,-6)}else if(mobile){endCamera.current.add(new Vector3(4,7,9));endTarget.current.y-=3}else{endTarget.current.x-=5.5}
+ invalidate();},[journey,step,size.width,overview,invalidate]);
+ useFrame((state,delta)=>{const f=reduced?1:1-Math.exp(-Math.min(delta,.05)*2.15);camera.position.lerp(endCamera.current,f);target.current.lerp(endTarget.current,f);camera.lookAt(target.current);if(reduced&&(camera.position.distanceTo(endCamera.current)>.005))invalidate();});
+ return null;
+}
+function Particles({reduced}:{reduced:boolean}){
+ const cloud=useRef<Points>(null);
+ const positions=useMemo(()=>{const out=new Float32Array(1100*3);let seed=27491;const random=()=>{seed=(seed*16807)%2147483647;return(seed-1)/2147483646};for(let i=0;i<1100;i++){out[i*3]=(random()-.5)*100;out[i*3+1]=(random()-.5)*45;out[i*3+2]=(random()-.5)*90-15}return out},[]);
+ useFrame((_,delta)=>{if(cloud.current&&!reduced)cloud.current.rotation.y+=delta*.006});
+ return <points ref={cloud}><bufferGeometry><bufferAttribute attach="attributes-position" args={[positions,3]}/></bufferGeometry><pointsMaterial size={.035} color="#759aae" transparent opacity={.55} sizeAttenuation depthWrite={false}/></points>
+}
+function Boundary({step,reduced,light}:{step:number;reduced:boolean;light?:boolean}){
+ const rings=useRef<Group>(null);useFrame((_,delta)=>{if(rings.current&&!reduced)rings.current.rotation.y+=delta*.024});
+ return <group position={[0,-3.4,-6]}><group ref={rings}>{[9,11,14].map((r,i)=><mesh key={r} rotation={[-Math.PI/2,0,i]}><torusGeometry args={[r,.012,4,160,Math.PI*(1.15+i*.2)]}/><meshBasicMaterial color={light?BLACK:i===0?"#327b8c":"#163747"} transparent opacity={light?.3:.8}/></mesh>)}</group><mesh rotation={[-Math.PI/2,0,0]}><circleGeometry args={[9,80]}/><meshBasicMaterial visible={!light} color="#071722" transparent opacity={.55} side={2} depthWrite={false}/></mesh>{Array.from({length:48},(_,i)=>{const angle=i/48*Math.PI*2;return <mesh key={i} position={[Math.cos(angle)*11,0,Math.sin(angle)*11]} rotation={[-Math.PI/2,0,-angle]}><planeGeometry args={[i%4===0?.45:.15,.026]}/><meshBasicMaterial color={light?BLACK:i%4===0?"#75bfd1":"#305267"}/></mesh>})}<mesh position={[0,.07,0]} rotation={[-Math.PI/2,0,0]}><ringGeometry args={[8.98,9.03,120]}/><meshBasicMaterial color={light?BLACK:step<0?"#438ba0":"#58c6d9"} transparent opacity={.3} side={2}/></mesh></group>
+}
+// Subtle face shading adds depth while keeping the light theme predominantly outlined.
+function LightFaces({active}:{active:boolean}){
+ return <>{["#c8d8df","#e5edf1","#ffffff","#b7c9d3","#edf4f7","#c8d8df"].map((color,i)=><meshBasicMaterial key={i} attach={`material-${i}`} color={color} transparent opacity={active?.42:.12} depthWrite={false}/>)}</>;
+}
+function Service({node,active,index,step,reduced,light}:{node:SystemNode;active:boolean;index:number;step:number;reduced:boolean;light?:boolean}){
+ const group=useRef<Group>(null);const materialColor=light?BLACK:(active?CYAN:DIM);const size:Vector=node.layer==="infra"?[2.8,.18,2.4]:[2.35,1.45,.16];
+ useFrame(({clock},delta)=>{if(!group.current)return;const target=step<0?1:active?1:.78;group.current.scale.lerp(new Vector3(target,target,target),Math.min(delta*3,1));group.current.position.y=node.position[1]+(reduced?0:Math.sin(clock.elapsedTime*.55+index)*.055)});
+ return <group ref={group} position={node.position}>
+ <mesh><boxGeometry args={size}/>{light?<LightFaces active={active}/>:<meshStandardMaterial color={active?"#0d2837":"#07121d"} emissive={active?"#12364a":"#050d15"} emissiveIntensity={active?.8:.4} metalness={.6} roughness={.4}/>}<Edges color={materialColor} fog={!light} transparent opacity={light?(active?.95:.25):(active?.7:.2)}/></mesh>
+ {node.layer==="infra"?<group>{[-.72,0,.72].flatMap((x,i)=>[-.6,.25].map((z,j)=><mesh key={`${i}-${j}`} position={[x,.33,z]}><boxGeometry args={[.5,.42,.5]}/>{light?<LightFaces active={active}/>:<meshStandardMaterial color="#0e2f40" emissive={active?"#215e75":"#0b1c27"} emissiveIntensity={.6}/>}<Edges color={materialColor} fog={!light} transparent opacity={light?(active?.95:.25):(active?.8:.2)}/></mesh>))}</group>:<group>{Array.from({length:4},(_,i)=><mesh key={i} position={[-.12,.36-i*.24,.095]}><planeGeometry args={[i===0?1.68:1.15+i*.12,.026]}/><meshBasicMaterial color={light?(i===0&&active?LIGHT_ACCENT:BLACK):i===0&&active?AMBER:materialColor} transparent opacity={active?.65:.18}/></mesh>)}<mesh position={[-.95,.55,.095]}><planeGeometry args={[.1,.1]}/><meshBasicMaterial color={light?(active?LIGHT_ACCENT:BLACK):active?AMBER:DIM}/></mesh></group>}
+ <Line points={[[0,-.75,0],[0,-node.position[1]-3.2,0]]} color={materialColor} lineWidth={.6} transparent opacity={active?.22:.05}/>
+ </group>
+}
+function Connection({from,to,active,reduced,index,light}:{from:Vector;to:Vector;active:boolean;reduced:boolean;index:number;light?:boolean}){
+ const packet=useRef<Mesh>(null);
+ const curve=useMemo(()=>new CatmullRomCurve3([new Vector3(...from),new Vector3(from[0],from[1]+.5,(from[2]+to[2])/2),new Vector3(to[0],to[1]+.5,(from[2]+to[2])/2),new Vector3(...to)]),[from,to]);
+ const points=useMemo(()=>curve.getPoints(50),[curve]);
+ useFrame(({clock})=>{if(packet.current)packet.current.position.copy(curve.getPoint(reduced?.4:(clock.elapsedTime*.13+index*.17)%1))});
+ return <><Line points={points} color={light?BLACK:(active?CYAN:DIM)} lineWidth={active?1.25:.65} transparent opacity={active?.55:.2}/>{active&&<mesh ref={packet}><sphereGeometry args={[.055,8,8]}/><meshBasicMaterial color={light?LIGHT_ACCENT:"#c9f8ff"} toneMapped={false}/></mesh>}</>
+}
+function ProjectLabels({journey,step,labels,overview}:{journey:Journey;step:number;labels:RefObject<(HTMLElement|null)[]>;overview?:boolean}){
+ const point=useRef(new Vector3());
+ useFrame(({camera,size})=>{journey.nodes.forEach((n,i)=>{const el=labels.current[i];if(!el)return;const active=overview||(step>=0&&journey.chapters[step]?.focus.includes(n.id));point.current.set(n.position[0],n.position[1]+(n.layer==="infra"?1:1.25),n.position[2]).project(camera);const x=(point.current.x*.5+.5)*size.width,y=(-point.current.y*.5+.5)*size.height;const visible=active&&point.current.z<1&&x>60&&x<size.width-65&&y>90&&y<size.height-120;el.style.visibility=visible?'visible':'hidden';el.style.transform=`translate(-50%,-100%) translate(${x}px,${y}px)`;});});return null;
+}
+function Scene(props:Props&{labels:RefObject<(HTMLElement|null)[]>}){
+ const focus=props.journey.chapters[props.step]?.focus??[];
+ return <><color attach="background" args={[props.light?"#eef3f5":"#040911"]}/><fog attach="fog" args={[props.light?"#eef3f5":"#040911",30,95]}/><ambientLight intensity={.8}/><directionalLight position={[5,15,5]} color="#8bbcd4" intensity={2}/><pointLight position={[0,6,-5]} color="#4ca1ba" intensity={35} distance={30}/><Camera {...props}/>{!props.light&&<Particles reduced={props.reduced}/>}<Boundary step={props.step} reduced={props.reduced} light={props.light}/>{props.journey.nodes.map((n,i)=><Service key={n.id} node={n} index={i} light={props.light} active={props.step<0||focus.includes(n.id)} step={props.step} reduced={props.reduced}/>)}{props.journey.links.map(([a,b],i)=>{const from=props.journey.nodes.find(n=>n.id===a)!,to=props.journey.nodes.find(n=>n.id===b)!;return <Connection key={a+b} from={from.position} to={to.position} active={props.step<0||(focus.includes(a)&&focus.includes(b))} reduced={props.reduced} index={i} light={props.light}/>})}<ProjectLabels journey={props.journey} step={props.step} labels={props.labels} overview={props.overview}/></>
+}
+function ContextHealth({onUnavailable}:{onUnavailable:()=>void}){const {gl}=useThree();useEffect(()=>{const canvas=gl.domElement;canvas.addEventListener("webglcontextlost",onUnavailable);return()=>canvas.removeEventListener("webglcontextlost",onUnavailable)},[gl,onUnavailable]);return null}
+export default function World(props:Props){const theme=useTheme();const labels=useRef<(HTMLElement|null)[]>([]);return <><Canvas aria-hidden="true" camera={{position:HOME_POSITION,fov:44,near:.1,far:120}} dpr={[1,1.5]} frameloop={props.reduced?"demand":"always"} gl={{antialias:true,alpha:false,powerPreference:"high-performance"}}><Scene {...props} light={theme==="light"} labels={labels}/><ContextHealth onUnavailable={props.onUnavailable}/></Canvas><div className={`component-labels ${props.overview?"project-map-labels":""}`}>{props.journey.nodes.map((n,i)=>props.overview?<button type="button" className="component-label project-map-label" key={n.id} ref={el=>{labels.current[i]=el}} onClick={()=>props.onSelect?.(n.id)} aria-label={`${props.openProjectLabel}: ${n.label}`}><span className="component-symbol">{n.symbol}</span><span>{n.label}<small>{n.detail} ↗</small></span></button>:<div className="component-label" key={n.id} ref={el=>{labels.current[i]=el}}><span className="component-symbol">{n.symbol}</span><div>{n.label}<small>{n.detail}</small></div></div>)}</div></>}

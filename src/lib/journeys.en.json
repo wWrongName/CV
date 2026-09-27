@@ -1,0 +1,1036 @@
+[
+  {
+    "id": "paas",
+    "index": "01",
+    "name": "PaaS platform",
+    "title": "PaaS\nplatform",
+    "summary": "A service management interface and infrastructure automation, developed by a team of three.",
+    "category": "CLOUD-NATIVE PLATFORM",
+    "nodes": [
+      {
+        "id": "web",
+        "label": "Next.js",
+        "detail": "Platform interface",
+        "symbol": "{ }",
+        "position": [
+          -6,
+          2,
+          0
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "api",
+        "label": "FastAPI",
+        "detail": "Backend · colleagues’ work",
+        "symbol": "API",
+        "position": [
+          0,
+          2,
+          -4
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "tasks",
+        "label": "Celery",
+        "detail": "Backend · colleagues’ work",
+        "symbol": "Q",
+        "position": [
+          6,
+          2,
+          -7
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "git",
+        "label": "Git",
+        "detail": "Source code",
+        "symbol": "</>",
+        "position": [
+          -8,
+          -0.4,
+          -11
+        ],
+        "layer": "delivery"
+      },
+      {
+        "id": "ci",
+        "label": "CI/CD",
+        "detail": "Build and delivery",
+        "symbol": "CI",
+        "position": [
+          -2,
+          -0.4,
+          -13
+        ],
+        "layer": "delivery"
+      },
+      {
+        "id": "argo",
+        "label": "Argo CD",
+        "detail": "GitOps",
+        "symbol": "SYNC",
+        "position": [
+          4,
+          -0.4,
+          -15
+        ],
+        "layer": "delivery"
+      },
+      {
+        "id": "kube",
+        "label": "Kubernetes",
+        "detail": "Shared DevOps work",
+        "symbol": "K8S",
+        "position": [
+          1,
+          -2,
+          -4
+        ],
+        "layer": "infra"
+      },
+      {
+        "id": "infra",
+        "label": "Terraform · Ansible",
+        "detail": "Infrastructure as code",
+        "symbol": "IaC",
+        "position": [
+          -7,
+          -2,
+          -5
+        ],
+        "layer": "infra"
+      }
+    ],
+    "links": [
+      [
+        "web",
+        "api"
+      ],
+      [
+        "api",
+        "tasks"
+      ],
+      [
+        "git",
+        "ci"
+      ],
+      [
+        "ci",
+        "argo"
+      ],
+      [
+        "argo",
+        "kube"
+      ],
+      [
+        "infra",
+        "kube"
+      ]
+    ],
+    "chapters": [
+      {
+        "label": "CONTEXT",
+        "title": "A platform\nfor services",
+        "text": "The project started without existing infrastructure or DevOps processes. The team needed a platform to deploy and operate applications: a user interface, backend services and a runtime environment.",
+        "note": "A team of three",
+        "focus": [
+          "web",
+          "api",
+          "kube"
+        ],
+        "camera": [
+          16,
+          9,
+          19
+        ],
+        "target": [
+          -2,
+          0,
+          -6
+        ]
+      },
+      {
+        "label": "MY CONTRIBUTION",
+        "title": "Frontend\nand automation",
+        "text": "Built the frontend with Next.js and TypeScript and coordinated frontend development. Wrote scripts for cloud operations and backend infrastructure. DevOps was a shared responsibility; my colleagues developed and led the backend.",
+        "note": "My area of ownership: frontend",
+        "focus": [
+          "web",
+          "infra",
+          "kube"
+        ],
+        "camera": [
+          8,
+          6,
+          12
+        ],
+        "target": [
+          0,
+          2,
+          -4
+        ]
+      },
+      {
+        "label": "TECHNOLOGY",
+        "title": "Code\nand environments",
+        "text": "The platform used Kubernetes, Argo CD, Terraform and Ansible. The frontend used Next.js with SSR; the team’s backend used FastAPI and Celery. My infrastructure contribution focused on automating cloud and environment operations.",
+        "note": "GitOps · IaC · CI/CD",
+        "focus": [
+          "git",
+          "ci",
+          "argo",
+          "kube",
+          "infra"
+        ],
+        "camera": [
+          8,
+          9,
+          1
+        ],
+        "target": [
+          -2,
+          -0.4,
+          -10
+        ]
+      },
+      {
+        "label": "OUTCOME",
+        "title": "Interface\nand tooling",
+        "text": "Delivered the platform frontend and scripts for cloud operations and backend infrastructure. The team’s shared infrastructure provided a repeatable delivery process through CI/CD and GitOps.",
+        "note": "A team result",
+        "focus": [
+          "web",
+          "api",
+          "tasks",
+          "kube",
+          "infra"
+        ],
+        "camera": [
+          18,
+          12,
+          19
+        ],
+        "target": [
+          0,
+          0,
+          -7
+        ]
+      }
+    ]
+  },
+  {
+    "id": "operations",
+    "index": "02",
+    "name": "Kubernetes & CI/CD",
+    "title": "Kubernetes\nand operations",
+    "summary": "Automated configuration and more reliable services for a commercial system.",
+    "category": "PRODUCTION INFRASTRUCTURE",
+    "nodes": [
+      {
+        "id": "iac",
+        "label": "Terraform · Ansible",
+        "detail": "Infrastructure configuration",
+        "symbol": "IaC",
+        "position": [
+          -6,
+          2,
+          0
+        ],
+        "layer": "delivery"
+      },
+      {
+        "id": "ci",
+        "label": "GitLab CI · Jenkins",
+        "detail": "Applying changes",
+        "symbol": "CI",
+        "position": [
+          0,
+          2,
+          -4
+        ],
+        "layer": "delivery"
+      },
+      {
+        "id": "kube",
+        "label": "Kubernetes · Helm",
+        "detail": "Applications and environments",
+        "symbol": "K8S",
+        "position": [
+          6,
+          2,
+          -7
+        ],
+        "layer": "infra"
+      },
+      {
+        "id": "sentry",
+        "label": "Sentry · Snuba",
+        "detail": "Error processing",
+        "symbol": "OBS",
+        "position": [
+          -6,
+          -1,
+          -8
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "grafana",
+        "label": "Grafana · ELK",
+        "detail": "Monitoring, alerts and logs",
+        "symbol": "MON",
+        "position": [
+          1,
+          -1,
+          -12
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "access",
+        "label": "Vault · LDAP",
+        "detail": "Secrets and access",
+        "symbol": "KEY",
+        "position": [
+          5,
+          -1,
+          -3
+        ],
+        "layer": "infra"
+      },
+      {
+        "id": "registry",
+        "label": "Harbor",
+        "detail": "Registry maintenance",
+        "symbol": "OCI",
+        "position": [
+          -7,
+          -2,
+          -5
+        ],
+        "layer": "delivery"
+      }
+    ],
+    "links": [
+      [
+        "iac",
+        "ci"
+      ],
+      [
+        "ci",
+        "kube"
+      ],
+      [
+        "registry",
+        "kube"
+      ],
+      [
+        "kube",
+        "sentry"
+      ],
+      [
+        "sentry",
+        "grafana"
+      ],
+      [
+        "access",
+        "kube"
+      ]
+    ],
+    "chapters": [
+      {
+        "label": "BEFORE",
+        "title": "Manual work\nand outages",
+        "text": "Configuration changes were applied manually. Infrastructure and service operations needed to become easier to manage. Sentry also suffered recurring outages: backups blocked disk access and Snuba consumers crashed.",
+        "note": "Automation and reliability",
+        "focus": [
+          "iac",
+          "kube",
+          "sentry"
+        ],
+        "camera": [
+          16,
+          9,
+          19
+        ],
+        "target": [
+          -2,
+          0,
+          -6
+        ]
+      },
+      {
+        "label": "MY CONTRIBUTION",
+        "title": "Configuration\nas code",
+        "text": "Automated infrastructure and service configuration with IaC, including e-commerce and Grafana. For e-commerce, replaced manual configuration rollout with a GitLab-triggered workflow. Maintained Kubernetes, Helm, CI/CD and the existing Harbor registry.",
+        "note": "Terraform · Ansible · GitLab CI · Helm",
+        "focus": [
+          "iac",
+          "ci",
+          "kube",
+          "registry"
+        ],
+        "camera": [
+          8,
+          6,
+          12
+        ],
+        "target": [
+          0,
+          2,
+          -4
+        ]
+      },
+      {
+        "label": "OPERATIONS",
+        "title": "Reliable\nSentry operation",
+        "text": "Traced Snuba consumer crashes to backups and disk blocking. Configured restarts, monitoring and Grafana alerts. Also worked with ELK, Vault and LDAP for logging, secrets and access management.",
+        "note": "Diagnosis · recovery · observability",
+        "focus": [
+          "sentry",
+          "grafana",
+          "access"
+        ],
+        "camera": [
+          8,
+          9,
+          1
+        ],
+        "target": [
+          -2,
+          -0.4,
+          -10
+        ]
+      },
+      {
+        "label": "OUTCOME",
+        "title": "Faster changes.\nFewer outages.",
+        "text": "E-commerce configuration rollout became faster: a GitLab action replaced manual steps. Sentry now operates reliably and the recurring outages no longer interrupt developers. Infrastructure and service configuration is automated through IaC.",
+        "note": "Configuration rollout · Sentry reliability",
+        "focus": [
+          "iac",
+          "ci",
+          "sentry",
+          "grafana"
+        ],
+        "camera": [
+          18,
+          12,
+          19
+        ],
+        "target": [
+          0,
+          0,
+          -7
+        ]
+      }
+    ]
+  },
+  {
+    "id": "delivery-platform",
+    "index": "03",
+    "name": "Developer platform",
+    "title": "Developer\nplatform",
+    "summary": "Shared build, delivery and code-quality workflows for teams using different stacks.",
+    "category": "DEVELOPMENT & DELIVERY",
+    "nodes": [
+      {
+        "id": "code",
+        "label": "Python · .NET · Node.js",
+        "detail": "Team projects",
+        "symbol": "CODE",
+        "position": [
+          -6,
+          2,
+          0
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "ci",
+        "label": "GitLab CI · Jenkins",
+        "detail": "Shared pipelines",
+        "symbol": "CI",
+        "position": [
+          0,
+          2,
+          -4
+        ],
+        "layer": "delivery"
+      },
+      {
+        "id": "quality",
+        "label": "SonarQube",
+        "detail": "Quality and synchronization",
+        "symbol": "QA",
+        "position": [
+          6,
+          2,
+          -7
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "helm",
+        "label": "Helm",
+        "detail": "Deployment standards",
+        "symbol": "HELM",
+        "position": [
+          -6,
+          -1,
+          -8
+        ],
+        "layer": "delivery"
+      },
+      {
+        "id": "runtime",
+        "label": "Kubernetes",
+        "detail": "Application environments",
+        "symbol": "K8S",
+        "position": [
+          1,
+          -1,
+          -12
+        ],
+        "layer": "infra"
+      },
+      {
+        "id": "observe",
+        "label": "Logs & monitoring",
+        "detail": "Shared tools",
+        "symbol": "OBS",
+        "position": [
+          5,
+          -1,
+          -3
+        ],
+        "layer": "app"
+      }
+    ],
+    "links": [
+      [
+        "code",
+        "ci"
+      ],
+      [
+        "ci",
+        "quality"
+      ],
+      [
+        "ci",
+        "helm"
+      ],
+      [
+        "helm",
+        "runtime"
+      ],
+      [
+        "runtime",
+        "observe"
+      ]
+    ],
+    "chapters": [
+      {
+        "label": "CONTEXT",
+        "title": "Different stacks.\nShared workflows.",
+        "text": "Several teams used different technology stacks without a consistent approach to delivery and operations. Build, deployment and onboarding workflows needed to be standardized.",
+        "note": "Python · .NET · Node.js",
+        "focus": [
+          "code",
+          "ci",
+          "runtime"
+        ],
+        "camera": [
+          16,
+          9,
+          19
+        ],
+        "target": [
+          -2,
+          0,
+          -6
+        ]
+      },
+      {
+        "label": "MY CONTRIBUTION",
+        "title": "Repeatable\ndelivery",
+        "text": "Built and maintained GitLab CI and Jenkins pipelines. Worked on shared Helm chart standards, common logging and monitoring tools, and infrastructure documentation.",
+        "note": "CI/CD · Helm · Kubernetes",
+        "focus": [
+          "ci",
+          "helm",
+          "runtime",
+          "observe"
+        ],
+        "camera": [
+          8,
+          6,
+          12
+        ],
+        "target": [
+          0,
+          2,
+          -4
+        ]
+      },
+      {
+        "label": "AUTOMATION",
+        "title": "Code quality\nchecks",
+        "text": "Deployed and maintained SonarQube. Automated project synchronization through the GitLab and SonarQube APIs, connecting team projects to a shared quality-checking system.",
+        "note": "GitLab API · SonarQube API",
+        "focus": [
+          "code",
+          "ci",
+          "quality"
+        ],
+        "camera": [
+          8,
+          9,
+          1
+        ],
+        "target": [
+          -2,
+          -0.4,
+          -10
+        ]
+      },
+      {
+        "label": "OUTCOME",
+        "title": "Easier service\nonboarding",
+        "text": "Shared pipelines and deployment standards simplified project onboarding. SonarQube synchronization is automated. Teams have a consistent delivery process and common diagnostic tools.",
+        "note": "Shared practices across technology stacks",
+        "focus": [
+          "ci",
+          "quality",
+          "helm",
+          "runtime",
+          "observe"
+        ],
+        "camera": [
+          18,
+          12,
+          19
+        ],
+        "target": [
+          0,
+          0,
+          -7
+        ]
+      }
+    ]
+  },
+  {
+    "id": "resilience",
+    "index": "04",
+    "name": "Anti-DDoS & resilience",
+    "title": "Anti-DDoS\nand resilience",
+    "summary": "Automated interaction with protection services and fewer manual steps during incidents.",
+    "category": "INFRASTRUCTURE SECURITY",
+    "nodes": [
+      {
+        "id": "traffic",
+        "label": "Incoming traffic",
+        "detail": "Service requests",
+        "symbol": "NET",
+        "position": [
+          -6,
+          2,
+          0
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "protection",
+        "label": "Anti-DDoS",
+        "detail": "Protection services",
+        "symbol": "EDGE",
+        "position": [
+          0,
+          2,
+          -4
+        ],
+        "layer": "infra"
+      },
+      {
+        "id": "app",
+        "label": "Applications",
+        "detail": "Production system",
+        "symbol": "APP",
+        "position": [
+          6,
+          2,
+          -7
+        ],
+        "layer": "infra"
+      },
+      {
+        "id": "api",
+        "label": "APIs & scripts",
+        "detail": "Operations automation",
+        "symbol": "API",
+        "position": [
+          -6,
+          -1,
+          -8
+        ],
+        "layer": "delivery"
+      },
+      {
+        "id": "monitor",
+        "label": "Monitoring",
+        "detail": "Alerts and diagnostics",
+        "symbol": "MON",
+        "position": [
+          1,
+          -1,
+          -12
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "runbook",
+        "label": "Response procedures",
+        "detail": "Operational guidance",
+        "symbol": "DOC",
+        "position": [
+          5,
+          -1,
+          -3
+        ],
+        "layer": "app"
+      }
+    ],
+    "links": [
+      [
+        "traffic",
+        "protection"
+      ],
+      [
+        "protection",
+        "app"
+      ],
+      [
+        "api",
+        "protection"
+      ],
+      [
+        "protection",
+        "monitor"
+      ],
+      [
+        "monitor",
+        "runbook"
+      ]
+    ],
+    "chapters": [
+      {
+        "label": "CONTEXT",
+        "title": "Responding\nto network attacks",
+        "text": "A production system faced network attacks. Incident response needed fewer manual operations and a clear sequence of actions.",
+        "note": "Resilience of commercial services",
+        "focus": [
+          "traffic",
+          "protection",
+          "app"
+        ],
+        "camera": [
+          16,
+          9,
+          19
+        ],
+        "target": [
+          -2,
+          0,
+          -6
+        ]
+      },
+      {
+        "label": "MY CONTRIBUTION",
+        "title": "Protection\nthrough APIs",
+        "text": "Automated interaction with StormWall and Qrator Labs anti-DDoS services, moving protection-service operations into scripts.",
+        "note": "Anti-DDoS API integrations",
+        "focus": [
+          "api",
+          "protection"
+        ],
+        "camera": [
+          8,
+          6,
+          12
+        ],
+        "target": [
+          0,
+          2,
+          -4
+        ]
+      },
+      {
+        "label": "OPERATIONS",
+        "title": "Monitoring\nand response",
+        "text": "Configured monitoring and alerts and documented response procedures, connecting problem detection to specific engineering actions.",
+        "note": "Monitoring · alerts · documentation",
+        "focus": [
+          "monitor",
+          "runbook",
+          "protection"
+        ],
+        "camera": [
+          8,
+          9,
+          1
+        ],
+        "target": [
+          -2,
+          -0.4,
+          -10
+        ]
+      },
+      {
+        "label": "OUTCOME",
+        "title": "Less\nmanual work",
+        "text": "Automation reduced manual interaction with protection services and the engineering workload during attacks. Documented procedures made incident response more predictable.",
+        "note": "Automated operations and clear procedures",
+        "focus": [
+          "api",
+          "protection",
+          "monitor",
+          "runbook"
+        ],
+        "camera": [
+          18,
+          12,
+          19
+        ],
+        "target": [
+          0,
+          0,
+          -7
+        ]
+      }
+    ]
+  },
+  {
+    "id": "llm-security",
+    "index": "05",
+    "name": "AI",
+    "category": "AI SECURITY · RESEARCH",
+    "title": "LLM\nsecurity",
+    "summary": "Language-model protection and LoRA adapter verification. Dissertation research with a software prototype and experiments.",
+    "nodes": [
+      {
+        "id": "input",
+        "label": "External input",
+        "detail": "Requests and adversarial inputs",
+        "symbol": "IN",
+        "position": [
+          -6,
+          2,
+          0
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "inference",
+        "label": "LLM + LoRA",
+        "detail": "Generation with a session shift",
+        "symbol": "LLM",
+        "position": [
+          0,
+          2,
+          -4
+        ],
+        "layer": "infra"
+      },
+      {
+        "id": "vrf",
+        "label": "VRF scheme",
+        "detail": "Verifiable shift parameters",
+        "symbol": "VRF",
+        "position": [
+          6,
+          2,
+          -7
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "audit",
+        "label": "Auditor",
+        "detail": "Reference model and logit comparison",
+        "symbol": "VERIFY",
+        "position": [
+          -6,
+          -1,
+          -8
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "eval",
+        "label": "Experiments",
+        "detail": "Attacks, quality and verification time",
+        "symbol": "EVAL",
+        "position": [
+          1,
+          -1,
+          -12
+        ],
+        "layer": "delivery"
+      },
+      {
+        "id": "adapter",
+        "label": "LoRA adapter",
+        "detail": "Version and authenticity checks",
+        "symbol": "LoRA",
+        "position": [
+          5,
+          -1,
+          -3
+        ],
+        "layer": "app"
+      }
+    ],
+    "links": [
+      [
+        "input",
+        "inference"
+      ],
+      [
+        "vrf",
+        "inference"
+      ],
+      [
+        "adapter",
+        "inference"
+      ],
+      [
+        "inference",
+        "audit"
+      ],
+      [
+        "vrf",
+        "audit"
+      ],
+      [
+        "audit",
+        "eval"
+      ]
+    ],
+    "chapters": [
+      {
+        "label": "CONTEXT",
+        "title": "Language-model\nresilience",
+        "text": "When an LLM reads external content or calls tools, manipulated input can change its behavior. My dissertation investigates resilience to adversarial attacks and verification of third-party LoRA adapters.",
+        "note": "Dissertation research · AI security",
+        "focus": [
+          "input",
+          "inference",
+          "adapter"
+        ],
+        "camera": [
+          16,
+          9,
+          19
+        ],
+        "target": [
+          -2,
+          0,
+          -6
+        ]
+      },
+      {
+        "label": "MY CONTRIBUTION",
+        "title": "A VRF + LoRA\nprototype",
+        "text": "Developed a session-dependent LoRA parameter-shift method and its software implementation: verifiable shift generation, attack simulation, inference auditing and quality measurement. Built the testbed with Python, PyTorch, Transformers and PEFT.",
+        "note": "Python · PyTorch · Transformers · PEFT",
+        "focus": [
+          "vrf",
+          "inference",
+          "audit",
+          "eval"
+        ],
+        "camera": [
+          8,
+          6,
+          12
+        ],
+        "target": [
+          0,
+          2,
+          -4
+        ],
+        "details": {
+          "title": "Implementation details",
+          "text": "The prototype derives a verifiable shift using Ed25519 and SHAKE-256. The inference server and auditor can run in separate processes: the auditor reproduces the shift on a reference model and compares logits. The protection module is registered as software under No. 2025665020."
+        }
+      },
+      {
+        "label": "RESULTS",
+        "title": "Experimental\nresults",
+        "text": "Evaluated GCG on TinyLlama-1.1B-Chat using 10 AdvBench prompts. The shift increased attack loss under the same optimization budget. Transferred suffixes failed; direct optimization against the shifted model also produced no successful attacks in this sample.",
+        "note": "Research testbed · limited sample",
+        "focus": [
+          "inference",
+          "vrf",
+          "eval"
+        ],
+        "camera": [
+          8,
+          9,
+          1
+        ],
+        "target": [
+          -2,
+          -0.4,
+          -8
+        ],
+        "metrics": [
+          {
+            "value": "2/10 → 0/10",
+            "label": "successful attacks in the test",
+            "detail": "Without shift → with VRF shift"
+          },
+          {
+            "value": "×3.20",
+            "label": "mean ratio of GCG losses",
+            "detail": "Same budget: 500 optimization steps"
+          }
+        ],
+        "details": {
+          "title": "Test conditions and limitations",
+          "text": "Success was defined by a target affirmative phrase at the beginning of the response. Sample: 10 AdvBench prompts; LoRA r=8; shift amplitude 0.1. On 8 MT-Bench questions, long-answer diversity decreased (distinct-2: 0.91 → 0.62), so amplitude requires tuning. Auditor verification averaged 0.772 s on TinyLlama-1.1B-Chat, Apple MPS, across 10 control queries. These findings apply to the described testbed and do not establish universal protection against prompt injection."
+        }
+      },
+      {
+        "label": "APPLICATION",
+        "title": "Assessing\nAI-system risks",
+        "text": "Practical follow-up work includes pilot LLM robustness assessments, reproducible evaluation testbeds and inference-component verification. Teams can assess protection, response quality and computational costs before integrating a method into a product.",
+        "note": "A research foundation for applied AI work",
+        "focus": [
+          "input",
+          "inference",
+          "audit",
+          "eval",
+          "adapter"
+        ],
+        "camera": [
+          18,
+          12,
+          19
+        ],
+        "target": [
+          0,
+          0,
+          -7
+        ],
+        "details": {
+          "title": "Scope of application",
+          "text": "The approach requires access to model weights and the LoRA adapter. The dissertation recommends standardized ECVRF for industrial use instead of the experimental scheme. Small logit perturbations may remain undetected at the chosen threshold. Natural-language prompt injections require additional detection mechanisms and restrictions on agent permissions."
+        }
+      }
+    ]
+  }
+]

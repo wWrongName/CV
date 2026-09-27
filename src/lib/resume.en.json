@@ -1,0 +1,143 @@
+{
+  "name": "Ivan Velichko",
+  "fullName": "Ivan Velichko",
+  "headline": "Fullstack Development, Infrastructure & Management",
+  "location": "Saint Petersburg",
+  "format": "Remote · project engagements and long-term collaboration",
+  "summary": "I develop frontend and backend applications and automate infrastructure and delivery workflows. Coordinated frontend development for a PaaS platform in a team of three. My experience spans blockchain applications, Kubernetes, CI/CD and production service reliability.",
+  "contacts": [
+    {
+      "label": "wwr0ngn4m3@gmail.com",
+      "href": "mailto:wwr0ngn4m3@gmail.com"
+    },
+    {
+      "label": "Telegram: @wr0ngn4m3",
+      "href": "https://t.me/wr0ngn4m3"
+    }
+  ],
+  "skills": [
+    {
+      "label": "Infrastructure",
+      "text": "Linux, Docker, Kubernetes, Helm, GCP, Yandex Cloud, Terraform, Ansible"
+    },
+    {
+      "label": "CI/CD and automation",
+      "text": "GitLab CI, Jenkins, GitHub Actions, Argo CD, Python, Bash"
+    },
+    {
+      "label": "Observability and access",
+      "text": "Prometheus, Grafana, ELK, Sentry, Vault, LDAP, Harbor, SonarQube"
+    },
+    {
+      "label": "Development and data",
+      "text": "TypeScript, Next.js, React, Redux, Node.js, Express.js, Solidity, Web3, PostgreSQL, MSSQL, MariaDB, MongoDB"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "enecuum",
+      "company": "Enecuum",
+      "dates": "March 2020 — April 2023",
+      "role": "Fullstack Developer",
+      "context": "Worked with the team on blockchain ecosystem services, research prototypes and test infrastructure.",
+      "sections": [
+        {
+          "title": "ENEX DEX and Web3",
+          "items": [
+            "Developed the ENEX DEX backend with Express.js and Docker and the frontend with React/Redux, Babel and Webpack.",
+            "Implemented Web3 authentication, transaction creation and signing, and blockchain data processing. These operations became part of the DEX user workflows.",
+            "Analyzed DeFi services including Uniswap and PancakeSwap."
+          ]
+        },
+        {
+          "title": "Cross-chain and research",
+          "items": [
+            "Contributed to the architecture and implementation of a bridge between Enecuum and Ethereum-like networks.",
+            "Designed and tested smart contracts and contributed to architecture decisions.",
+            "Researched Chainlink VRF and developed a distributed VRF service PoC, including Solidity contracts, consumer contracts and distributed nodes. Delivered a software prototype for evaluating the approach."
+          ]
+        },
+        {
+          "title": "Testing and delivery",
+          "items": [
+            "Built blockchain core test infrastructure with Node.js, Mocha, MongoDB and pm2.",
+            "Automated mobile UI tests with UIAutomator and Appium and worked on Telegram interface integration.",
+            "Configured CI/CD with GitHub Actions and Docker and administered test nodes. Contributed to test scenario design, vulnerability analysis and remediation."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "codeburst",
+      "company": "CodeBurst",
+      "dates": "December 2023 — August 2025",
+      "role": "Frontend development and coordination · DevOps",
+      "context": "Built a PaaS platform in a team of three. Colleagues developed and led the backend; DevOps was a shared responsibility.",
+      "sections": [
+        {
+          "title": "Frontend",
+          "items": [
+            "Developed the platform frontend with TypeScript and Next.js with SSR and coordinated frontend development.",
+            "Delivered the user-facing part of the platform for working with its services."
+          ]
+        },
+        {
+          "title": "Infrastructure and automation",
+          "items": [
+            "Worked on DevOps infrastructure with the team, using Kubernetes, Argo CD, Terraform, Ansible and CI/CD.",
+            "Wrote automation scripts for cloud operations and backend infrastructure, turning these operations into software tools.",
+            "The shared infrastructure supported repeatable delivery through CI/CD and GitOps. The FastAPI and Celery backend was developed by colleagues."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zoloto585",
+      "company": "Zoloto585",
+      "dates": "November 2024 — present",
+      "role": "DevOps Engineer · contract engagement",
+      "context": "Automation, maintenance and development of infrastructure for commercial services.",
+      "sections": [
+        {
+          "title": "IaC and delivery workflows",
+          "items": [
+            "Automated infrastructure and service configuration with IaC, including e-commerce and Grafana. Replaced manual e-commerce configuration rollout with a GitLab-triggered workflow, speeding up deployment of configuration changes.",
+            "Built and maintained GitLab CI and Jenkins pipelines for Python, .NET and Node.js. Worked on shared Helm chart standards and infrastructure documentation.",
+            "Deployed and maintained Kubernetes applications using Helm. Worked with GCP infrastructure and integration of its cloud services."
+          ]
+        },
+        {
+          "title": "Observability and reliability",
+          "items": [
+            "Identified the cause of recurring Sentry outages: backups blocked disk access and Snuba consumers crashed. Configured restarts, monitoring and Grafana alerts. Sentry now operates reliably and the previous outages no longer interrupt developers.",
+            "Administered centralized ELK logging and worked on monitoring and error diagnosis.",
+            "Deployed and maintained SonarQube and automated project synchronization through the GitLab and SonarQube APIs. Shared tooling and workflows simplified onboarding of new projects."
+          ]
+        },
+        {
+          "title": "Services, access and protection",
+          "items": [
+            "Maintained the existing Harbor image registry. Administered PostgreSQL, MSSQL and MariaDB.",
+            "Integrated LDAP for centralized access management and worked with HashiCorp Vault for secrets management.",
+            "Automated interaction with StormWall and Qrator Labs anti-DDoS services. Monitoring, alerts and documented response procedures reduced manual work during incidents."
+          ]
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Specialist degree · Information Security",
+      "institution": "Saint Petersburg State University of Aerospace Instrumentation (SUAI)",
+      "dates": "September 2018 — June 2023",
+      "detail": "Information Security of Automated Systems. Degree completed."
+    },
+    {
+      "title": "Postgraduate study · Information Security",
+      "institution": "Saint Petersburg State University of Aerospace Instrumentation (SUAI)",
+      "dates": "October 2023 — September 2026",
+      "detail": ""
+    }
+  ],
+  "languages": "Russian, English — B1"
+}
