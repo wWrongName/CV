@@ -37,13 +37,13 @@ test: ## Check navigation through all projects and stage boundaries
 	$(NODE) scripts/check-navigation.cjs
 
 check-shell: ## Validate deployment shell script syntax
-	bash -n scripts/deploy-ssh.sh scripts/deploy-server.sh
+	bash -n scripts/deploy-ssh.sh scripts/deploy-server.sh scripts/setup-admin.sh
 
 test-deploy: ## Test deployment and rollback in Linux with a fake Docker CLI
 	$(DOCKER) run --rm --mount "type=bind,source=$(CURDIR),target=/workspace,readonly" -w /workspace python:3.12-slim python3 scripts/check-deploy.py
 
 docker-build: ## Build the production image (IMAGE=cv:local)
-	$(DOCKER) build -t "$(IMAGE)" .
+	$(DOCKER) build --build-arg NEXT_PUBLIC_GIT_SHA=$$(git rev-parse HEAD) -t "$(IMAGE)" .
 
 docker-up: ## Build and start local Docker Compose on port 3000
 	$(DOCKER) compose -f compose.yaml up --build -d
@@ -64,3 +64,7 @@ pdf: ## Export both PDF locales: make pdf FONT_DIR=/path/to/fonts
 	@test -n "$(FONT_DIR)" || { printf '%s\n' 'Set FONT_DIR to the directory containing Noto Sans and Rubik fonts.' >&2; exit 1; }
 	$(PYTHON) scripts/export_resume.py --locale ru --font-dir "$(FONT_DIR)"
 	$(PYTHON) scripts/export_resume.py --locale en --font-dir "$(FONT_DIR)"
+
+.PHONY: admin-setup
+admin-setup: ## Configure admin credentials in the production Docker volume
+	@bash scripts/setup-admin.sh

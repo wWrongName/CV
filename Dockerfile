@@ -14,6 +14,8 @@ RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store \
 FROM base AS builder
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
+ARG NEXT_PUBLIC_GIT_SHA=dev
+ENV NEXT_PUBLIC_GIT_SHA=$NEXT_PUBLIC_GIT_SHA
 RUN pnpm build
 
 FROM node:24.21.0-alpine AS runner
@@ -23,6 +25,7 @@ RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs &&
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --chown=nextjs:nodejs scripts/create-admin-config.mjs ./scripts/create-admin-config.mjs
 USER nextjs
 EXPOSE 3000
 HEALTHCHECK --interval=15s --timeout=5s --start-period=15s --retries=3 \

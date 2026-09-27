@@ -1,4 +1,7 @@
 import "server-only";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { parseEnv } from "node:util";
 import { createHash, createHmac, randomBytes, scrypt, timingSafeEqual } from "node:crypto";
 import { getDatabase } from "./storage";
 
@@ -8,14 +11,20 @@ export const sessionSeconds = 8 * 3600;
 const idleMilliseconds = 30 * 60000;
 type AdminConfig = { key: string; username: string; passwordHash: string; secret: string; origin: string; host: string };
 export function adminConfig(): AdminConfig | null {
-  const key = process.env.ADMIN_ROUTE_KEY || "";
-  const username = process.env.ADMIN_USERNAME || "";
-  const passwordHash = process.env.ADMIN_PASSWORD_HASH || "";
-  const secret = process.env.ADMIN_SESSION_SECRET || "";
+  let settings: Record<string, string | undefined> = process.env;
+  try {
+    settings = parseEnv(readFileSync(join(process.env.DATA_DIR || "/app/data", "admin.env"), "utf8"));
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") return null;
+  }
+  const key = settings.ADMIN_ROUTE_KEY || "";
+  const username = settings.ADMIN_USERNAME || "";
+  const passwordHash = settings.ADMIN_PASSWORD_HASH || "";
+  const secret = settings.ADMIN_SESSION_SECRET || "";
   if (!/^[a-z0-9-]{32,80}$/.test(key) || !/^[a-zA-Z0-9._-]{3,64}$/.test(username)
       || !/^scrypt-v1:[a-f0-9]{32}:[a-f0-9]{128}$/.test(passwordHash) || !/^[a-f0-9]{64,}$/.test(secret)) return null;
   try {
-    const url = new URL(process.env.ADMIN_ORIGIN || "");
+    const url = new URL(settings.ADMIN_ORIGIN || "");
     if (url.username || url.password || url.pathname !== "/" || url.search || url.hash) return null;
     if (production ? url.protocol !== "https:" : !["http:", "https:"].includes(url.protocol)) return null;
     return { key, username, passwordHash, secret, origin: url.origin, host: url.host };

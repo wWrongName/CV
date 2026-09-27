@@ -35,8 +35,16 @@ export function Universe({ locale }: { locale: Locale }) {
   const chapter = journey.chapters[step];
   const inside = step >= 0;
   useEffect(() => { if (inside) trackEvent("project_open", journey.id); }, [inside, journey.id]);
-  const move = useCallback((direction: 1 | -1) => {
-    setPosition(current => advanceJourney(current, direction, chapterCounts));
+  const move = useCallback((direction: 1 | -1, count = 1) => {
+    setPosition(current => {
+      let next = current;
+      for (let index = 0; index < count; index++) {
+        next = advanceJourney(next, direction, chapterCounts);
+        // Never batch past a project preview in a single wheel event.
+        if (next.step === -1) break;
+      }
+      return next;
+    });
   }, [chapterCounts]);
   const toMap = useCallback(() => setPosition(current => ({ ...current, step: -1 })), []);
   const openProject = useCallback((project: number) => setPosition({ project, step: 0 }), []);
@@ -68,7 +76,7 @@ export function Universe({ locale }: { locale: Locale }) {
   useEffect(() => {
     let accumulated = 0;
     let lastEvent = 0;
-    let lastMove = -Infinity;
+    let pendingTick: ReturnType<typeof setTimeout> | undefined;
     const wheel = (event: WheelEvent) => {
       if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY) || event.deltaY === 0) return;
       const target = event.target as HTMLElement;
@@ -80,24 +88,33 @@ export function Universe({ locale }: { locale: Locale }) {
         const canRead = direction > 0
           ? panel.scrollTop + panel.clientHeight < panel.scrollHeight - 2
           : panel.scrollTop > 2;
-        if (canRead) { accumulated = 0; return; }
+        if (canRead) { clearTimeout(pendingTick); accumulated = 0; return; }
       }
       event.preventDefault();
+      clearTimeout(pendingTick);
       const now = performance.now();
       if (now - lastEvent > 180 || Math.sign(accumulated) !== direction) accumulated = 0;
       lastEvent = now;
-      // Avoid skipping several chapters on a single trackpad gesture.
-      if (now - lastMove < 700) { accumulated = 0; return; }
       const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
       accumulated += event.deltaY * unit;
-      if (Math.abs(accumulated) >= 65) {
-        lastMove = now;
+      // Consume wheel distance without a cooldown: fast gestures can cross stages.
+      const steps = Math.min(3, Math.floor(Math.abs(accumulated) / 60));
+      if (steps > 0) {
+        accumulated -= direction * steps * 60;
+        move(direction, steps);
+        // A completed movement must not produce a delayed extra step.
         accumulated = 0;
-        move(direction);
+      } else {
+        // A small isolated wheel tick still advances once; dense trackpad
+        // events accumulate above and continue to support fast navigation.
+        pendingTick = setTimeout(() => {
+          if (accumulated !== 0) move(accumulated > 0 ? 1 : -1);
+          accumulated = 0;
+        }, 80);
       }
     };
     window.addEventListener("wheel", wheel, { passive: false });
-    return () => window.removeEventListener("wheel", wheel);
+    return () => { window.removeEventListener("wheel", wheel); clearTimeout(pendingTick); };
   }, [move]);
 
   const fallback = <div className="space-fallback"><span>{ui.no3d}</span><Link href={`/${locale}/experience`}>{ui.readResume} →</Link></div>;
@@ -133,9 +150,9 @@ export function Universe({ locale }: { locale: Locale }) {
     <div className="scene-caption" aria-hidden="true"><span className="caption-cross">+</span><div>{inside ? ui.diagram : ui.map}<small>{inside ? ui.components : ui.chooseProject.toUpperCase()}</small></div></div>
     {unsupported && <div className="unsupported-note">{ui.simplified} · <Link href={`/${locale}/experience`}>{ui.readResume}</Link></div>}
     <footer className="hud-footer">
-      {!inside ? <div className="archive-picker"><span className="footer-label">{ui.chooseProject.toUpperCase()}</span><div role="group" aria-label={ui.chooseProject}>{journeys.map((j, i) => <button key={j.id} onClick={() => openProject(i)} aria-pressed={i === project}><span>{j.index}</span>{j.name}<i /></button>)}</div></div>
+      {!inside ? <div className="archive-picker"><span className="footer-label">{ui.chooseProject.toUpperCase()}</span><div role="group" aria-label={ui.chooseProject}>{journeys.map((j, i) => <button key={j.id} onClick={() => setPosition({ project: i, step: -1 })} aria-pressed={i === project}><span>{j.index}</span>{j.name}<i /></button>)}</div></div>
         : <div className="chapter-nav"><div className="chapter-track" role="group" aria-label={ui.sections}>{journey.chapters.map((c, i) => <button key={c.label} onClick={() => setPosition({ project, step: i })} aria-label={`${ui.chapter} ${i + 1}: ${c.label}`} aria-current={i === step ? "step" : undefined} className={i < step ? "complete" : ""}><span>0{i + 1}</span><span className="chapter-title">{c.label}</span><i /></button>)}</div>
-          <div className="transport"><button onClick={() => move(-1)} aria-label={ui.back} disabled={project === 0 && step === 0} title={`${ui.previousStage} · ←`}>←</button><button className="next-chapter" onClick={() => move(1)} aria-label={ui.next} disabled={project === journeys.length - 1 && step === journey.chapters.length - 1} title={`${ui.nextStage} · →`}>{ui.next} <span>→</span></button></div>
+          <div className="transport"><button onClick={() => move(-1)} aria-label={ui.back} disabled={project === 0 && step === -1} title={`${ui.previousStage} · ←`}>←</button><button className="next-chapter" onClick={() => move(1)} aria-label={ui.next} disabled={project === journeys.length - 1 && step === journey.chapters.length - 1} title={`${ui.nextStage} · →`}>{ui.next} <span>→</span></button></div>
         </div>}
       <div className="footer-utility"><button aria-pressed={quiet || reduced} onClick={() => setQuiet(v => !v)}>{quiet || reduced ? ui.motionOff : ui.reduceMotion}</button><span className="navigation-hint">{ui.scrollHint}</span><Link href={`/${locale}/experience`}>{ui.fullResume} ↗</Link></div>
     </footer>

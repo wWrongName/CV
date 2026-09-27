@@ -10,9 +10,9 @@ function load(path) {
 const { journeys } = load("src/lib/journeys.ts");
 const { advanceJourney } = load("src/lib/navigation.ts");
 const counts = journeys.map(j => j.chapters.length);
-const positions = journeys.flatMap((j, project) => j.chapters.map((_, step) => ({ project, step })));
+const positions = journeys.flatMap((j, project) => [{ project, step: -1 }, ...j.chapters.map((_, step) => ({ project, step }))]);
 let position = { project: 0, step: -1 };
-for (const expected of positions) {
+for (const expected of positions.slice(1)) {
   position = advanceJourney(position, 1, counts);
   assert.deepEqual(position, expected, "forward traversal must visit every stage, including project boundaries");
 }
@@ -26,7 +26,8 @@ assert.deepEqual(advanceJourney(position, -1, counts), positions[0], "first stag
 for (let project = 0; project < journeys.length; project++) {
   assert.deepEqual(advanceJourney({ project, step: -1 }, 1, counts), { project, step: 0 }, "map starts the selected project");
 }
-assert.deepEqual(advanceJourney({ project: 0, step: 1 }, 1, [2, 5]), { project: 1, step: 0 });
-assert.deepEqual(advanceJourney({ project: 1, step: 0 }, -1, [2, 5]), { project: 0, step: 1 });
+assert.deepEqual(advanceJourney({ project: 0, step: 1 }, 1, [2, 5]), { project: 1, step: -1 });
+assert.deepEqual(advanceJourney({ project: 1, step: 0 }, -1, [2, 5]), { project: 1, step: -1 });
+assert.deepEqual(advanceJourney({ project: 1, step: -1 }, -1, [2, 5]), { project: 0, step: 1 });
 assert.deepEqual(advanceJourney({ project: 0, step: -1 }, -1, counts), { project: 0, step: -1 });
 console.log(`Continuous navigation verified across ${positions.length} stages and ${journeys.length} projects.`);

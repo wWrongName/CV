@@ -145,3 +145,9 @@
 [data-theme=light] .component-label small{color:#444}
 [data-theme=light] .component-symbol{color:#171717;border-color:#a4aaad;background:#f7f9fad9}
 [data-theme=light] .project-map-label{color:#171717;border-color:#a4aaad}
+
+.site-version{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(7px,env(safe-area-inset-bottom));z-index:50;font:10px/1.4 var(--mono);color:var(--muted);pointer-events:none;background:var(--paper);padding:2px 5px;border-radius:3px}
+@media print{.site-version{display:none}}
+
+/* Keep narration responsive during rapid wheel navigation. */
+.experience-content{animation-duration:.18s}

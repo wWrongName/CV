@@ -34,7 +34,7 @@ ssh_options=(-i "$ssh_dir/key" -p "$DEPLOY_PORT" -o BatchMode=yes -o IdentitiesO
   -o StrictHostKeyChecking=yes -o "UserKnownHostsFile=$ssh_dir/known_hosts"
   -o ConnectTimeout=15 -o ServerAliveInterval=15 -o ServerAliveCountMax=4)
 target="$DEPLOY_USER@$DEPLOY_HOST"
-tar -czf - compose.prod.yaml scripts/deploy-server.sh |
+tar -czf - compose.prod.yaml Makefile scripts/setup-admin.sh scripts/deploy-server.sh |
   ssh "${ssh_options[@]}" "$target" "umask 077; mkdir -p '$release' && tar -xzf - -C '$release'"
 printf '%s\n' "$GHCR_TOKEN" |
   ssh "${ssh_options[@]}" "$target" "bash '$release/scripts/deploy-server.sh' '$release' '$DEPLOY_IMAGE' '$GHCR_USER' '$APP_PORT'"

@@ -30,3 +30,17 @@ make pdf FONT_DIR=/path/to/fonts     # Export both PDF locales
 ```
 
 PDF export requires Python 3, ReportLab and `NotoSans-Regular.ttf`, `NotoSans-Bold.ttf`, `Rubik-Bold.ttf` in `FONT_DIR`.
+
+On the server, after deploying this version:
+
+```sh
+cd /opt/resume-site/current
+make admin-setup
+```
+
+Enter a username and password interactively (password input is hidden). The command
+prints the private admin URL and stores only the password hash and generated secrets
+in `resume-site_site-data` at `/app/data/admin.env` (mode `0600`). Existing credentials
+are never overwritten. The volume configuration takes priority over legacy admin
+environment variables and survives container replacement. Back up this volume securely;
+`docker compose down -v` deletes it. The server needs Make, Bash and Docker Compose.
