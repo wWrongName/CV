@@ -4,7 +4,7 @@
   "headline": "Fullstack Development, Infrastructure & Management",
   "location": "Saint Petersburg",
   "format": "Remote · project engagements and long-term collaboration",
-  "summary": "I develop frontend and backend applications and automate infrastructure and delivery workflows. Coordinated frontend development for a PaaS platform in a team of three. My experience spans blockchain applications, Kubernetes, CI/CD and production service reliability.",
+  "summary": "I develop frontend and backend applications and automate infrastructure and delivery workflows. Coordinated frontend development for a PaaS platform as part of a team. My experience spans blockchain applications, Kubernetes, CI/CD and production service reliability.",
   "contacts": [
     {
       "label": "wwr0ngn4m3@gmail.com",
@@ -17,20 +17,20 @@
   ],
   "skills": [
     {
-      "label": "Infrastructure",
-      "text": "Linux, Docker, Kubernetes, Helm, GCP, Yandex Cloud, Terraform, Ansible"
+      "label": "Infrastructure and access",
+      "text": "Linux, Docker, Kubernetes, Helm, GCP, Yandex Cloud, Terraform, Ansible, HashiCorp Vault, LDAP"
     },
     {
       "label": "CI/CD and automation",
-      "text": "GitLab CI, Jenkins, GitHub Actions, Argo CD, Python, Bash"
+      "text": "GitLab CI, Jenkins, GitHub Actions, Argo CD, Harbor, SonarQube, Python, Bash"
     },
     {
-      "label": "Observability and access",
-      "text": "Prometheus, Grafana, ELK, Sentry, Vault, LDAP, Harbor, SonarQube"
+      "label": "Observability",
+      "text": "Prometheus, Grafana, ELK, Sentry"
     },
     {
       "label": "Development and data",
-      "text": "TypeScript, Next.js, React, Redux, Node.js, Express.js, Solidity, Web3, PostgreSQL, MSSQL, MariaDB, MongoDB"
+      "text": "TypeScript, Next.js, React, Redux, Node.js, Express.js, Solidity, Web3, PostgreSQL, Microsoft SQL Server, MariaDB, MongoDB"
     }
   ],
   "jobs": [
@@ -60,8 +60,8 @@
         {
           "title": "Testing and delivery",
           "items": [
-            "Built blockchain core test infrastructure with Node.js, Mocha, MongoDB and pm2.",
-            "Automated mobile UI tests with UIAutomator and Appium and worked on Telegram interface integration.",
+            "Built blockchain core test infrastructure with Node.js, Mocha, MongoDB and PM2.",
+            "Automated mobile UI tests with UI Automator and Appium and worked on Telegram interface integration.",
             "Configured CI/CD with GitHub Actions and Docker and administered test nodes. Contributed to test scenario design, vulnerability analysis and remediation."
           ]
         }
@@ -72,7 +72,7 @@
       "company": "CodeBurst",
       "dates": "December 2023 — August 2025",
       "role": "Frontend development and coordination · DevOps",
-      "context": "Built a PaaS platform in a team of three. Colleagues developed and led the backend; DevOps was a shared responsibility.",
+      "context": "Built a PaaS platform as part of a team. Colleagues developed and led the backend; DevOps was a shared responsibility.",
       "sections": [
         {
           "title": "Frontend",
@@ -117,7 +117,7 @@
         {
           "title": "Services, access and protection",
           "items": [
-            "Maintained the existing Harbor image registry. Administered PostgreSQL, MSSQL and MariaDB.",
+            "Maintained the existing Harbor image registry. Administered PostgreSQL, Microsoft SQL Server and MariaDB.",
             "Integrated LDAP for centralized access management and worked with HashiCorp Vault for secrets management.",
             "Automated interaction with StormWall and Qrator Labs anti-DDoS services. Monitoring, alerts and documented response procedures reduced manual work during incidents."
           ]

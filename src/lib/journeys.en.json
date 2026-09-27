@@ -4,7 +4,7 @@
     "index": "01",
     "name": "PaaS platform",
     "title": "PaaS\nplatform",
-    "summary": "A service management interface and infrastructure automation, developed by a team of three.",
+    "summary": "A service management interface and infrastructure automation, developed collaboratively.",
     "category": "CLOUD-NATIVE PLATFORM",
     "nodes": [
       {
@@ -135,7 +135,7 @@
         "label": "CONTEXT",
         "title": "A platform\nfor services",
         "text": "The project started without existing infrastructure or DevOps processes. The team needed a platform to deploy and operate applications: a user interface, backend services and a runtime environment.",
-        "note": "A team of three",
+        "note": "Team development",
         "focus": [
           "web",
           "api",
