@@ -1,7 +1,7 @@
 "use client";
 import {Canvas,useFrame,useThree} from "@react-three/fiber";
 import {Edges,Line} from "@react-three/drei";
-import {useEffect,useMemo,useRef,type RefObject} from "react";
+import {useEffect,useLayoutEffect,useMemo,useRef,useState,type RefObject} from "react";
 import {AdditiveBlending,CatmullRomCurve3,Color,Vector3,type Group,type Mesh,type Points} from "three";
 import {useTheme} from "./theme-switch";
 import type {Journey,SystemNode,Vector} from "@/lib/journeys";
@@ -9,14 +9,64 @@ type Props={transitionKey:string;light?:boolean;journey:Journey;step:number;redu
 const CYAN="#68d9ee",AMBER="#efa86b",DIM="#163c4d",BLACK="#111111",LIGHT_ACCENT="#986b3d";
 const COMPACT_PROJECT_LABELS:Record<string,string>={paas:"PaaS",operations:"Kubernetes","delivery-platform":"CI/CD",resilience:"Anti-DDoS","llmops":"LLMOps"};
 const HOME_POSITION:Vector=[20,10,27],HOME_TARGET:Vector=[-5,0,-6];
-function Camera({journey,step,reduced,overview,introduction}:Props){
- const {camera,size,invalidate}=useThree();const target=useRef(new Vector3(...HOME_TARGET));
+type Flight={journey:Journey;node:Vector;destination:string};
+type SceneProps=Props&{flight?:Flight|null};
+function Camera({journey,step,reduced,overview,introduction,flight}:SceneProps){
+ const {camera,size,invalidate}=useThree();
+ const target=useRef(new Vector3(...HOME_TARGET));
+ const startCamera=useRef(new Vector3()),startTarget=useRef(new Vector3());
  const endCamera=useRef(new Vector3(...HOME_POSITION)),endTarget=useRef(new Vector3(...HOME_TARGET));
- useEffect(()=>{const chapter=journey.chapters[step];const mobile=size.width<700;endCamera.current.set(...(chapter?.camera??HOME_POSITION));endTarget.current.set(...(chapter?.target??HOME_TARGET));
- // Keep the system above the narration on phones and to its right on wide screens.
- if(introduction){endCamera.current.set(0,7,mobile?29:23);endTarget.current.set(0,1,-6)}else if(overview){endCamera.current.set(0,9,size.width<1100?40:34);endTarget.current.set(size.width<1100?-4:-9,1,-6)}else if(mobile){endCamera.current.add(new Vector3(4,7,9));endTarget.current.y-=3}else{endTarget.current.x-=5.5}
- invalidate();},[journey,step,size.width,overview,introduction,invalidate]);
- useFrame((state,delta)=>{const f=reduced?1:1-Math.exp(-Math.min(delta,.05)*2.15);camera.position.lerp(endCamera.current,f);target.current.lerp(endTarget.current,f);camera.lookAt(target.current);if(reduced&&(camera.position.distanceTo(endCamera.current)>.005))invalidate();});
+ const elapsed=useRef(0),wasFlying=useRef(false);
+ useEffect(()=>{
+  const chapter=journey.chapters[step],mobile=size.width<700;
+  endCamera.current.set(...(chapter?.camera??HOME_POSITION));endTarget.current.set(...(chapter?.target??HOME_TARGET));
+  if(introduction){endCamera.current.set(14,12,mobile?29:23);endTarget.current.set(0,1,-6)}
+  else if(overview){endCamera.current.set(17,16,size.width<1100?36:30);endTarget.current.set(size.width<1100?-4:-9,1,-6)}
+  else if(mobile){endCamera.current.add(new Vector3(4,7,9));endTarget.current.y-=3}
+  else{
+   endTarget.current.x-=5.5;
+   // Pan along the camera's horizontal axis, preserving the viewing angle.
+   const left=endCamera.current.clone().sub(endTarget.current).cross(new Vector3(0,1,0)).normalize();
+   const shift=size.width>=1100?3.2:1.2;
+   endCamera.current.addScaledVector(left,shift);endTarget.current.addScaledVector(left,shift);
+  }
+  if(!overview&&!introduction&&journey.id==="llmops"&&step===1&&size.width>=1100){
+   // Only this close-up needs a horizontal correction; keep its original zoom.
+   const probe=camera.clone();
+   probe.position.copy(endCamera.current);probe.lookAt(endTarget.current);probe.updateMatrixWorld(true);
+   const forward=endTarget.current.clone().sub(endCamera.current).normalize();
+   const right=forward.clone().cross(new Vector3(0,1,0)).normalize();
+   let shift=0;
+   for(const node of journey.nodes.filter(node=>chapter?.focus.includes(node.id))){
+    const edge=new Vector3(...node.position).addScaledVector(right,2.6);
+    const projected=edge.clone().project(probe);
+    const depth=edge.clone().sub(endCamera.current).dot(forward);
+    shift=Math.max(shift,(projected.x-.88)*depth*Math.tan(22*Math.PI/180)*size.width/size.height);
+   }
+   endCamera.current.addScaledVector(right,shift);endTarget.current.addScaledVector(right,shift);
+  }
+  if(flight&&!reduced){
+   endTarget.current.set(...flight.node);
+   const approach=camera.position.clone().sub(endTarget.current).normalize();
+   endCamera.current.copy(endTarget.current).addScaledVector(approach,.65);
+  }else if(wasFlying.current&&!reduced&&!overview){
+   // The system unfolds outward; avoid a second, opposing camera zoom.
+   camera.position.copy(endCamera.current);
+   target.current.copy(endTarget.current);
+  }
+  wasFlying.current=!!flight;
+  startCamera.current.copy(camera.position);startTarget.current.copy(target.current);elapsed.current=0;
+  if(reduced){camera.position.copy(endCamera.current);target.current.copy(endTarget.current);camera.lookAt(target.current)}
+  invalidate();
+ },[journey,step,size.width,size.height,overview,introduction,flight,reduced,camera,invalidate]);
+ useFrame((_,delta)=>{
+  elapsed.current+=delta;
+  const t=reduced?1:Math.min(elapsed.current/(flight ? .18 : .22),1);
+  const eased=t*t*(3-2*t);
+  camera.position.lerpVectors(startCamera.current,endCamera.current,eased);
+  target.current.lerpVectors(startTarget.current,endTarget.current,eased);
+  camera.lookAt(target.current);
+ });
  return null;
 }
 function Particles({reduced}:{reduced:boolean}){
@@ -72,13 +122,42 @@ function Connection({from,to,active,reduced,index,light}:{from:Vector;to:Vector;
  useFrame(({clock})=>{if(packet.current)packet.current.position.copy(curve.getPoint(reduced?.4:(clock.elapsedTime*.13+index*.17)%1))});
  return <><Line points={points} color={light?BLACK:(active?CYAN:DIM)} lineWidth={active?1.25:.65} transparent opacity={active?.55:.2}/>{active&&<mesh ref={packet}><sphereGeometry args={[.055,8,8]}/><meshBasicMaterial color={light?LIGHT_ACCENT:"#c9f8ff"} toneMapped={false}/></mesh>}</>
 }
-function ProjectLabels({journey,step,labels,overview}:{journey:Journey;step:number;labels:RefObject<(HTMLElement|null)[]>;overview?:boolean}){
+function ProjectLabels({journey,step,labels,overview,system}:{journey:Journey;step:number;labels:RefObject<(HTMLElement|null)[]>;overview?:boolean;system:RefObject<Group|null>}){
  const point=useRef(new Vector3());
- useFrame(({camera,size})=>{journey.nodes.forEach((n,i)=>{const el=labels.current[i];if(!el)return;const active=overview||(step>=0&&journey.chapters[step]?.focus.includes(n.id));point.current.set(n.position[0],n.position[1]+(n.layer==="infra"?1:1.25),n.position[2]).project(camera);const x=(point.current.x*.5+.5)*size.width,y=(-point.current.y*.5+.5)*size.height;const margin=overview&&size.width<1100?36:65;const visible=active&&point.current.z<1&&x>margin&&x<size.width-margin&&y>90&&y<size.height-100;el.style.visibility=visible?'visible':'hidden';el.style.transform=`translate(-50%,-100%) translate(${x}px,${y}px)`;});});return null;
+ useFrame(({camera,size})=>{journey.nodes.forEach((n,i)=>{const el=labels.current[i];if(!el)return;const active=overview||(step>=0&&journey.chapters[step]?.focus.includes(n.id));point.current.set(n.position[0],n.position[1]+(n.layer==="infra"?1:1.25),n.position[2]);if(system.current){system.current.updateWorldMatrix(true,false);point.current.applyMatrix4(system.current.matrixWorld)}point.current.project(camera);const x=(point.current.x*.5+.5)*size.width,y=(-point.current.y*.5+.5)*size.height;const margin=overview&&size.width<1100?36:65;const visible=active&&point.current.z<1&&x>margin&&x<size.width-margin&&y>90&&y<size.height-100;el.style.visibility=visible?'visible':'hidden';el.style.opacity=String(Math.max(0,Math.min(1,((system.current?.scale.x??1)-.45)/.55)));el.style.transform=`translate(-50%,-100%) translate(${x}px,${y}px)`;});});return null;
 }
-function Scene(props:Props&{labels:RefObject<(HTMLElement|null)[]>}){
+function Scene(props:SceneProps&{labels:RefObject<(HTMLElement|null)[]>}){
  const focus=props.journey.chapters[props.step]?.focus??[];
- return <><color attach="background" args={[props.light?"#eef3f5":"#040911"]}/><fog attach="fog" args={[props.light?"#eef3f5":"#040911",30,95]}/><ambientLight intensity={.8}/><directionalLight position={[5,15,5]} color="#8bbcd4" intensity={2}/><pointLight position={[0,6,-5]} color="#4ca1ba" intensity={35} distance={30}/><Camera {...props}/>{!props.light&&<Particles reduced={props.reduced}/>}<Boundary transitionKey={props.transitionKey} step={props.step} reduced={props.reduced} light={props.light}/>{props.journey.nodes.map((n,i)=><Service key={n.id} node={n} index={i} light={props.light} active={props.step<0||focus.includes(n.id)} step={props.step} reduced={props.reduced}/>)}{props.journey.links.map(([a,b],i)=>{const from=props.journey.nodes.find(n=>n.id===a)!,to=props.journey.nodes.find(n=>n.id===b)!;return <Connection key={a+b} from={from.position} to={to.position} active={props.step<0||(focus.includes(a)&&focus.includes(b))} reduced={props.reduced} index={i} light={props.light}/>})}<ProjectLabels journey={props.journey} step={props.step} labels={props.labels} overview={props.overview}/></>
+ const system=useRef<Group>(null),wasOverview=useRef(props.overview),opening=useRef(1);
+ useLayoutEffect(()=>{
+  opening.current=wasOverview.current&&!props.overview&&!props.reduced?0:1;
+  wasOverview.current=props.overview;
+  if(system.current){const scale=opening.current===0?.025:1;system.current.scale.setScalar(scale);system.current.position.set(0,0,-6*(1-scale))}
+ },[props.overview,props.reduced]);
+ useFrame((_,delta)=>{
+  if(!system.current)return;
+  opening.current=props.reduced?1:Math.min(1,opening.current+delta/.24);
+  const t=opening.current,ease=1-Math.pow(1-t,3),scale=.025+.975*ease;
+  // Expand nodes, connections and platform from their shared central point.
+  system.current.scale.setScalar(scale);system.current.position.set(0,0,-6*(1-scale));
+ });
+ return <><color attach="background" args={[props.light?"#eef3f5":"#040911"]}/><fog attach="fog" args={[props.light?"#eef3f5":"#040911",30,95]}/><ambientLight intensity={.8}/><directionalLight position={[5,15,5]} color="#8bbcd4" intensity={2}/><pointLight position={[0,6,-5]} color="#4ca1ba" intensity={35} distance={30}/><Camera {...props}/>{!props.light&&<Particles reduced={props.reduced}/>}<group ref={system}><Boundary transitionKey={props.transitionKey} step={props.step} reduced={props.reduced} light={props.light}/>{props.journey.nodes.map((n,i)=><Service key={n.id} node={n} index={i} light={props.light} active={props.step<0||focus.includes(n.id)} step={props.step} reduced={props.reduced}/>)}{props.journey.links.map(([a,b],i)=>{const from=props.journey.nodes.find(n=>n.id===a)!,to=props.journey.nodes.find(n=>n.id===b)!;return <Connection key={a+b} from={from.position} to={to.position} active={props.step<0||(focus.includes(a)&&focus.includes(b))} reduced={props.reduced} index={i} light={props.light}/>})}</group><ProjectLabels system={system} journey={props.journey} step={props.step} labels={props.labels} overview={props.overview}/></>
 }
 function ContextHealth({onUnavailable}:{onUnavailable:()=>void}){const {gl}=useThree();useEffect(()=>{const canvas=gl.domElement;canvas.addEventListener("webglcontextlost",onUnavailable);return()=>canvas.removeEventListener("webglcontextlost",onUnavailable)},[gl,onUnavailable]);return null}
-export default function World(props:Props){const theme=useTheme();const labels=useRef<(HTMLElement|null)[]>([]);return <><Canvas aria-hidden="true" camera={{position:HOME_POSITION,fov:44,near:.1,far:120}} dpr={[1,1.5]} frameloop={props.reduced?"demand":"always"} gl={{antialias:true,alpha:false,powerPreference:"high-performance"}}><Scene {...props} light={theme==="light"} labels={labels}/><ContextHealth onUnavailable={props.onUnavailable}/></Canvas><div className={`component-labels ${props.overview?"project-map-labels":""}`}>{props.journey.nodes.map((n,i)=>props.overview?<button type="button" className="component-label project-map-label" key={n.id} ref={el=>{labels.current[i]=el}} onClick={()=>props.onSelect?.(n.id)} aria-label={`${props.openProjectLabel}: ${n.label}`}><span className="component-symbol">{n.symbol}</span><span className="map-label-full">{n.label}<small>{n.detail} ↗</small></span><span className="map-label-compact">{COMPACT_PROJECT_LABELS[n.id]??n.label}</span></button>:<div className="component-label" key={n.id} ref={el=>{labels.current[i]=el}}><span className="component-symbol">{n.symbol}</span><div>{n.label}<small>{n.detail}</small></div></div>)}</div></>}
+export default function World(props:Props){
+ const theme=useTheme(),labels=useRef<(HTMLElement|null)[]>([]);
+ const previous=useRef({journey:props.journey,overview:props.overview});
+ const [flight,setFlight]=useState<Flight|null>(null);
+ useEffect(()=>{
+  const old=previous.current;
+  previous.current={journey:props.journey,overview:props.overview};
+  const node=old.overview&&!props.overview?old.journey.nodes.find(n=>n.id===props.journey.id):undefined;
+  if(!node||props.reduced){setFlight(null);return}
+  setFlight({journey:old.journey,node:node.position,destination:props.journey.id});
+  const timer=window.setTimeout(()=>setFlight(null),180);
+  return()=>window.clearTimeout(timer);
+ },[props.journey,props.overview,props.step,props.reduced]);
+ const activeFlight=!props.reduced&&flight?.destination===props.journey.id?flight:null;
+ const sceneProps=activeFlight?{...props,journey:activeFlight.journey,overview:true,introduction:false,step:-1}:props;
+ return <><Canvas aria-hidden="true" camera={{position:HOME_POSITION,fov:44,near:.1,far:120}} dpr={[1,1.5]} frameloop={props.reduced?"demand":"always"} gl={{antialias:true,alpha:false,powerPreference:"high-performance"}}><Scene {...sceneProps} flight={activeFlight} light={theme==="light"} labels={labels}/><ContextHealth onUnavailable={props.onUnavailable}/></Canvas><div className={`component-labels ${sceneProps.overview?"project-map-labels":""}`} style={activeFlight?{opacity:0,pointerEvents:"none"}:undefined}>{sceneProps.journey.nodes.map((n,i)=>sceneProps.overview?<button type="button" className="component-label project-map-label" key={n.id} ref={el=>{labels.current[i]=el}} onClick={()=>props.onSelect?.(n.id)} aria-label={`${props.openProjectLabel}: ${n.label}`}><span className="component-symbol">{n.symbol}</span><span className="map-label-full">{n.label}<small>{n.detail} ↗</small></span><span className="map-label-compact">{COMPACT_PROJECT_LABELS[n.id]??n.label}</span></button>:<div className="component-label" key={n.id} ref={el=>{labels.current[i]=el}}><span className="component-symbol">{n.symbol}</span><div>{n.label}<small>{n.detail}</small></div></div>)}</div></>
+}

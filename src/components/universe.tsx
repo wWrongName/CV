@@ -124,7 +124,7 @@ export function Universe({ locale, initialView = "intro" }: { locale: Locale; in
   const fallback = <div className="space-fallback"><span>{ui.no3d}</span><Link href={`/${locale}/experience`}>{ui.readResume} →</Link></div>;
   return <main className={`immersive ${intro ? "at-intro" : inside ? "in-story" : "at-gateway"}`}>
     <div className="world-surface"><SceneBoundary fallback={fallback}>
-      <Scene transitionKey={`${journey.id}-${step}`} key={inside ? journey.id : "project-map"} journey={inside ? journey : projectMap} overview={!inside} introduction={intro}
+      <Scene transitionKey={`${journey.id}-${step}`} journey={inside ? journey : projectMap} overview={!inside} introduction={intro}
         onSelect={id => { const index = journeys.findIndex(j => j.id === id); if (index >= 0) openProject(index); }}
         openProjectLabel={ui.openProject} step={step} reduced={reduced || quiet} onUnavailable={onUnavailable} />
     </SceneBoundary></div>

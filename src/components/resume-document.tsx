@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ResumeInteractions } from "./resume-interactions";
 import { MobileNavigation } from "./mobile-navigation";
 import { Mark } from "@/components/mark";
 import russian from "@/lib/resume.json";
@@ -10,7 +11,7 @@ export function ResumeDocument({ locale }: { locale: Locale }) {
   const resume = locale === "en" ? english : russian;
   const ui = messages[locale];
   const pdf = locale === "en" ? "/resume-ivan-velichko-en.pdf" : "/resume-ivan-velichko.pdf";
-  return <main className="document resume-page">
+  return <ResumeInteractions>
     <header className="topbar">
       <Link href={`/${locale}/projects`} className="identity"><Mark /><span>{ui.name}<small>{ui.specialization}</small></span></Link>
       <MobileNavigation locale={locale} className="resume-top-actions">
@@ -61,5 +62,5 @@ export function ResumeDocument({ locale }: { locale: Locale }) {
         <a href="https://t.me/wr0ngn4m3" className="resume-footer-action"><span>{locale === "ru" ? "Написать в Telegram" : "Message on Telegram"}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" /></svg></a>
       </footer>
     </article>
-  </main>;
+  </ResumeInteractions>;
 }
