@@ -4,7 +4,7 @@
   "headline": "Fullstack Development, Infrastructure & Management",
   "location": "Saint Petersburg",
   "format": "Remote · project engagements and long-term collaboration",
-  "summary": "I develop frontend and backend applications and automate infrastructure and delivery workflows. Coordinated frontend development for a PaaS platform as part of a team. My experience spans blockchain applications, Kubernetes, CI/CD and production service reliability. I use LLMs and AI coding assistants, including Claude Code and OpenAI Codex, in my development workflow.",
+  "summary": "I build web services, accelerate software delivery and keep infrastructure running reliably. I combine fullstack development, DevOps and frontend team coordination, from the user interface to deployment and maintenance. I automate manual operations so teams spend less time on repetitive work and service failures. I use LLMs, Claude Code and OpenAI Codex in development.",
   "contacts": [
     {
       "label": "wwr0ngn4m3@gmail.com",
@@ -48,25 +48,40 @@
         {
           "title": "ENEX DEX and Web3",
           "items": [
-            "Developed the ENEX DEX backend with Express.js and Docker and the frontend with React/Redux, Babel and Webpack.",
-            "Implemented Web3 authentication, transaction creation and signing, and blockchain data processing. These operations became part of the DEX user workflows.",
-            "Analyzed DeFi services including Uniswap and PancakeSwap."
+            {
+              "work": "Implemented ENEX DEX Web3 authentication, transaction creation and signing. React/Redux frontend; Express.js and Docker backend.",
+              "impact": "Delivered the DEX transaction layer, enabling blockchain operations through the product interface."
+            },
+            {
+              "work": "Analyzed Uniswap and PancakeSwap mechanics for DeFi services.",
+              "impact": "Established a basis for product and technical decisions informed by existing DeFi service mechanics."
+            }
           ]
         },
         {
           "title": "Cross-chain and research",
           "items": [
-            "Contributed to the architecture and implementation of a bridge between Enecuum and Ethereum-like networks.",
-            "Designed and tested smart contracts and contributed to architecture decisions.",
-            "Researched Chainlink VRF and developed a distributed VRF service PoC, including Solidity contracts, consumer contracts and distributed nodes. Delivered a software prototype for evaluating the approach."
+            {
+              "work": "Designed and tested smart contracts; contributed to the architecture of the Enecuum bridge to Ethereum-like networks.",
+              "impact": "Contributed to broader Enecuum interoperability by implementing bridge components for Ethereum-like networks."
+            },
+            {
+              "work": "Developed a distributed VRF PoC with Solidity contracts, consumer contracts and distributed nodes.",
+              "impact": "Turned a research concept into a software prototype, providing a technical basis for evaluating further development."
+            }
           ]
         },
         {
           "title": "Testing and delivery",
           "items": [
-            "Built blockchain core test infrastructure with Node.js, Mocha, MongoDB and PM2.",
-            "Automated mobile UI tests with UI Automator and Appium and worked on Telegram interface integration.",
-            "Configured CI/CD with GitHub Actions and Docker and administered test nodes. Contributed to test scenario design, vulnerability analysis and remediation."
+            {
+              "work": "Built core network test infrastructure with Node.js, Mocha, MongoDB and PM2; mobile UI tests with UI Automator and Appium.",
+              "impact": "Reduced repetitive manual testing of the network core and mobile application through automated test scenarios."
+            },
+            {
+              "work": "Configured GitHub Actions and Docker, maintained test nodes, contributed vulnerability fixes and Telegram interface integration.",
+              "impact": "Automated test version preparation and provided an environment for change validation and vulnerability remediation."
+            }
           ]
         }
       ]
@@ -75,22 +90,33 @@
       "id": "codeburst",
       "company": "CodeBurst",
       "dates": "December 2023 — August 2025",
-      "role": "Frontend development and coordination · DevOps",
-      "context": "Built a PaaS platform as part of a team. Colleagues developed and led the backend; DevOps was a shared responsibility.",
+      "role": "Fullstack development · frontend coordination · DevOps",
+      "context": "Team development of a PaaS platform. My contribution: frontend implementation and coordination, backend integrations for automation, and shared DevOps work.",
       "sections": [
         {
           "title": "Frontend",
           "items": [
-            "Developed the platform frontend with TypeScript and Next.js with SSR and coordinated frontend development.",
-            "Delivered the user-facing part of the platform for working with its services."
+            {
+              "work": "Developed the PaaS frontend with TypeScript, Next.js and SSR.",
+              "impact": "Delivered the PaaS user interface for service management, connecting frontend workflows to platform functionality."
+            },
+            {
+              "work": "Coordinated frontend development alongside hands-on interface implementation.",
+              "impact": "Provided frontend coordination from technical decisions through implementation, combining delivery responsibility with hands-on development."
+            }
           ]
         },
         {
-          "title": "Infrastructure and automation",
+          "title": "Backend integrations and automation",
           "items": [
-            "Worked on DevOps infrastructure with the team, using Kubernetes, Argo CD, Terraform, Ansible and CI/CD.",
-            "Wrote automation scripts for cloud operations and backend infrastructure, turning these operations into software tools.",
-            "The shared infrastructure supported repeatable delivery through CI/CD and GitOps. The FastAPI and Celery backend was developed by colleagues."
+            {
+              "work": "Developed DevOps scripts for cloud and infrastructure operations and backend code integrating them into the platform.",
+              "impact": "Integrated infrastructure automation into the platform backend, replacing recurring manual operations with programmatic workflows."
+            },
+            {
+              "work": "Contributed to shared DevOps work with Kubernetes, Argo CD, Terraform, Ansible and CI/CD.",
+              "impact": "Established repeatable deployment within shared team infrastructure, reducing reliance on manual execution."
+            }
           ]
         }
       ]
@@ -105,25 +131,74 @@
         {
           "title": "IaC and delivery workflows",
           "items": [
-            "Automated infrastructure and service configuration with IaC, including e-commerce and Grafana. Replaced manual e-commerce configuration rollout with a GitLab-triggered workflow, speeding up deployment of configuration changes.",
-            "Built and maintained GitLab CI and Jenkins pipelines for Python, .NET and Node.js. Worked on shared Helm chart standards and infrastructure documentation.",
-            "Deployed and maintained Kubernetes applications using Helm. Worked with GCP infrastructure and integration of its cloud services."
+            {
+              "work": "Automated e-commerce configuration with IaC and GitLab-triggered deployment; IaC for Grafana and other services.",
+              "impact": "Reduced configuration deployment time to roughly one-third. Automation replaced manual application associated with errors, repeated deployments and delays of up to 5 minutes."
+            },
+            {
+              "work": "Built and maintained GitLab CI and Jenkins for Python, .NET and Node.js; contributed Helm chart standards and documentation.",
+              "impact": "Standardized build and deployment workflows across 3 technology stacks. Shared pipelines and standards establish a consistent release process."
+            },
+            {
+              "work": "Deployed applications with Helm, maintained Kubernetes and GCP infrastructure and integrated cloud services.",
+              "impact": "Provided operational support for applications in Kubernetes and GCP, including deployment and infrastructure service integration."
+            }
           ]
         },
         {
           "title": "Observability and reliability",
           "items": [
-            "Identified the cause of recurring Sentry outages: backups blocked disk access and Snuba consumers crashed. Configured restarts, monitoring and Grafana alerts. Sentry now operates reliably and the previous outages no longer interrupt developers.",
-            "Administered centralized ELK logging and worked on monitoring and error diagnosis.",
-            "Deployed and maintained SonarQube and automated project synchronization through the GitLab and SonarQube APIs. Shared tooling and workflows simplified onboarding of new projects."
+            {
+              "work": "Diagnosed backup-related Sentry disk blocking; configured Snuba consumer recovery, monitoring and Grafana alerts.",
+              "impact": "Eliminated manual Sentry recovery after backup-related failures. Previously, outages occurred roughly twice a week; stable operation has continued since the fix through the present."
+            },
+            {
+              "work": "Deployed SonarQube and automated project synchronization through GitLab and SonarQube APIs.",
+              "impact": "Eliminated manual project synchronization between GitLab and SonarQube, reducing administrative work in code quality onboarding."
+            },
+            {
+              "work": "Maintained centralized ELK logging and service monitoring.",
+              "impact": "Centralized access to service diagnostic data, reducing separate log collection during troubleshooting."
+            }
           ]
         },
         {
           "title": "Services, access and protection",
           "items": [
-            "Maintained the existing Harbor image registry. Administered PostgreSQL, Microsoft SQL Server and MariaDB.",
-            "Integrated LDAP for centralized access management and worked with HashiCorp Vault for secrets management.",
-            "Automated interaction with StormWall and Qrator Labs anti-DDoS services. Monitoring, alerts and documented response procedures reduced manual work during incidents."
+            {
+              "work": "Automated StormWall and Qrator Labs interactions; configured monitoring, alerts and documented response procedures.",
+              "impact": "Reduced manual operations during DDoS incidents through automated actions and documented response procedures."
+            },
+            {
+              "work": "Integrated LDAP and worked with HashiCorp Vault.",
+              "impact": "Centralized access administration and established secrets management through Vault."
+            },
+            {
+              "work": "Maintained the existing Harbor registry and administered PostgreSQL, Microsoft SQL Server and MariaDB.",
+              "impact": "Provided maintenance for the image registry and databases used in application deployment and operation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "llmops",
+      "company": "LLMOps",
+      "dates": "July 2026 — present",
+      "role": "Project development · LLMOps Engineer",
+      "context": "LLM operations platform development alongside the Zoloto585 engagement.",
+      "sections": [
+        {
+          "title": "Development and integration",
+          "items": [
+            {
+              "work": "Deployed Open WebUI and Ollama, connected the web interface to models, and configured Angie as the LLM service entry reverse proxy.",
+              "impact": "Provided browser-based model access without requiring inference tools on each user’s workstation. Model execution and ingress are managed on the service side."
+            },
+            {
+              "work": "Design of Langfuse integration: call tracing, prompt versioning and dataset-based response evaluation. Definition of latency, error and token usage metrics.",
+              "impact": "Target outcome: detect regressions before release and diagnose poor responses using traces."
+            }
           ]
         }
       ]

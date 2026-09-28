@@ -43,7 +43,8 @@ export function ResumeDocument({ locale }: { locale: Locale }) {
         {resume.jobs.map(j=><section className="resume-job" id={j.id} key={j.id}>
           <div className="resume-job-header"><span>{j.dates}</span><h3>{j.company}</h3><p className="resume-role">{j.role}</p></div>
           <div className="resume-job-content"><p className="resume-context">{j.context}</p>
-          {j.sections.map(s=><div className="resume-job-section" key={s.title}><h4>{s.title}</h4><ul>{s.items.map(item=><li key={item}>{item}</li>)}</ul></div>)}
+          <div className="resume-column-labels" aria-hidden="true"><span>{locale === "ru" ? "Работа и вклад" : "Work and contribution"}</span><span>{locale === "ru" ? "Практический результат" : "Practical impact"}</span></div>
+          {j.sections.map(s=><div className="resume-job-section" key={s.title}><h4>{s.title}</h4><ul className="resume-results">{s.items.map(item=><li key={item.work}><p className="resume-work">{item.work}</p><p className="resume-impact"><span className="resume-impact-label">{locale === "ru" ? "Результат" : "Impact"}</span>{item.impact}</p></li>)}</ul></div>)}
           </div>
         </section>)}
       </section>

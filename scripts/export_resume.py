@@ -69,27 +69,34 @@ def export(root, font_dir, output, locale='ru'):
     def rule(before=8, after=10):
         return HRFlowable(width='100%', thickness=.6, color=RULE, spaceBefore=before, spaceAfter=after)
 
+    styles['experienceCell'] = ParagraphStyle('experienceCell', parent=styles['body'], fontSize=8.5, leading=11.3, spaceAfter=2)
+
     def job_block(job):
-        heading = Table([[p(job['company'], 'company'), p(job['dates'], 'dates')]], colWidths=[WIDTH * .48, WIDTH * .52])
-        heading.setStyle(TableStyle([
-            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-            ('LEFTPADDING', (0, 0), (-1, -1), 0), ('RIGHTPADDING', (0, 0), (-1, -1), 0),
-            ('BACKGROUND', (0, 0), (-1, -1), PAPER_TINT),
-            ('LINEBEFORE', (0, 0), (0, 0), 2, ACCENT),
-            ('LEFTPADDING', (0, 0), (0, 0), 9), ('RIGHTPADDING', (1, 0), (1, 0), 9),
-            ('TOPPADDING', (0, 0), (-1, -1), 5), ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
+        widths = [WIDTH * .20, WIDTH * .43, WIDTH * .37]
+        company = [p(job['company'], 'role')]
+        company_meta = [p(job['dates'], 'meta'), p(job['role'], 'meta')]
+        rows = [[company, p('WORK AND CONTRIBUTION' if en else 'РАБОТА И ВКЛАД', 'label'), p('PRACTICAL IMPACT' if en else 'ПРАКТИЧЕСКИЙ РЕЗУЛЬТАТ', 'label')]]
+        for section in job['sections']:
+            rows.append([company_meta if len(rows) == 1 else '', p(section['title'], 'subheading'), ''])
+            for item in section['items']:
+                rows.append(['', p(item['work'], 'experienceCell'), p(item['impact'], 'experienceCell')])
+        table = Table(rows, colWidths=widths, hAlign='LEFT', repeatRows=1)
+        table.setStyle(TableStyle([
+            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+            ('BACKGROUND', (0, 0), (0, -1), PAPER_TINT),
+            ('TEXTCOLOR', (2, 0), (2, -1), ACCENT),
+            ('LINEBEFORE', (2, 0), (2, -1), .5, RULE),
+            ('LEFTPADDING', (0, 0), (-1, -1), 8),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+            ('TOPPADDING', (0, 0), (-1, -1), 2),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 2),
         ]))
-        first = job['sections'][0]
-        # Keep the employer, role, context and first result together.
-        blocks = [KeepTogether([
-            heading, Spacer(1, 6), p(job['role'], 'role'), p(job['context'], 'context'),
-            p(first['title'], 'subheading'), p('• ' + first['items'][0], 'bullet'),
-        ])]
-        blocks.extend(p('• ' + item, 'bullet') for item in first['items'][1:])
-        for section in job['sections'][1:]:
-            blocks.append(p(section['title'], 'subheading'))
-            blocks.extend(p('• ' + item, 'bullet') for item in section['items'])
-        return blocks
+        keep_rows = [('NOSPLIT', (0, 0), (-1, 2))]
+        for row_index, row in enumerate(rows[1:], 1):
+            if row[2] == '' and row_index + 1 < len(rows):
+                keep_rows.append(('NOSPLIT', (0, row_index), (-1, row_index + 1)))
+        table.setStyle(TableStyle(keep_rows))
+        return [table]
 
     def frame_page(canvas, doc):
         canvas.saveState()
@@ -112,7 +119,7 @@ def export(root, font_dir, output, locale='ru'):
         canvas.setFillColor(MUTED)
         canvas.setFont('CV', 7)
         canvas.drawString(MARGIN, 23, 'Fullstack / Infrastructure / Management')
-        canvas.drawRightString(A4[0] - MARGIN, 23, f'{doc.page:02d} / 02')
+        canvas.drawRightString(A4[0] - MARGIN, 23, f'{doc.page:02d}')
         canvas.restoreState()
 
     story = [p(data['fullName'], 'name'), p(data['headline'], 'headline'),
@@ -132,8 +139,10 @@ def export(root, font_dir, output, locale='ru'):
         if job is not data['jobs'][0]:
             story.append(Spacer(1, 12))
         story.extend(job_block(job))
-    story.extend([PageBreak(), p(labels['experience'], 'label')])
-    for job in data['jobs'][2:]:
+    story.append(Spacer(1, 12))
+    for index, job in enumerate(data['jobs'][2:]):
+        if index:
+            story.append(Spacer(1, 12))
         story.extend(job_block(job))
     story.extend([rule(12, 12)])
 
@@ -190,8 +199,8 @@ def export(root, font_dir, output, locale='ru'):
         PageTemplate(id='later', frames=later, onPage=frame_page),
     ])
     doc.build(story)
-    if doc.page != 2:
-        raise RuntimeError(f'Expected a two-page CV, got {doc.page} pages; review content and layout before publishing.')
+    if doc.page not in (3, 4):
+        raise RuntimeError(f'Expected a three- or four-page CV, got {doc.page} pages; review content and layout before publishing.')
     print(output)
 
 
