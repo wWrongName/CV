@@ -4,7 +4,7 @@
   "headline": "Fullstack Development, Infrastructure & Management",
   "location": "Saint Petersburg",
   "format": "Remote · project engagements and long-term collaboration",
-  "summary": "I develop frontend and backend applications and automate infrastructure and delivery workflows. Coordinated frontend development for a PaaS platform as part of a team. My experience spans blockchain applications, Kubernetes, CI/CD and production service reliability.",
+  "summary": "I develop frontend and backend applications and automate infrastructure and delivery workflows. Coordinated frontend development for a PaaS platform as part of a team. My experience spans blockchain applications, Kubernetes, CI/CD and production service reliability. I use LLMs and AI coding assistants, including Claude Code and OpenAI Codex, in my development workflow.",
   "contacts": [
     {
       "label": "wwr0ngn4m3@gmail.com",
@@ -31,6 +31,10 @@
     {
       "label": "Development and data",
       "text": "TypeScript, Next.js, React, Redux, Node.js, Express.js, Solidity, Web3, PostgreSQL, Microsoft SQL Server, MariaDB, MongoDB"
+    },
+    {
+      "label": "AI development tools",
+      "text": "LLM, Claude Code, OpenAI Codex"
     }
   ],
   "jobs": [

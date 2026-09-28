@@ -4,7 +4,7 @@
   "headline": "Fullstack-разработка, инфраструктура и менеджмент",
   "location": "Санкт-Петербург",
   "format": "Удалённая работа · проектная работа и долгосрочное сотрудничество",
-  "summary": "Разрабатываю frontend и backend, автоматизирую инфраструктуру и процессы доставки ПО. Координировал frontend-разработку PaaS-платформы в команде. Опыт включает блокчейн-приложения, Kubernetes, CI/CD и обеспечение стабильной работы коммерческих сервисов.",
+  "summary": "Разрабатываю frontend и backend, автоматизирую инфраструктуру и процессы доставки ПО. Координировал frontend-разработку PaaS-платформы в команде. Опыт включает блокчейн-приложения, Kubernetes, CI/CD и обеспечение стабильной работы коммерческих сервисов. Использую LLM и AI-ассистентов Claude Code и OpenAI Codex в разработке.",
   "contacts": [
     {
       "label": "wwr0ngn4m3@gmail.com",
@@ -31,6 +31,10 @@
     {
       "label": "Разработка и данные",
       "text": "TypeScript, Next.js, React, Redux, Node.js, Express.js, Solidity, Web3, PostgreSQL, Microsoft SQL Server, MariaDB, MongoDB"
+    },
+    {
+      "label": "AI-инструменты разработки",
+      "text": "LLM, Claude Code, OpenAI Codex"
     }
   ],
   "jobs": [

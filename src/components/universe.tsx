@@ -8,7 +8,6 @@ import { LanguageSwitch } from "./language-switch";
 import { ThemeSwitch } from "./theme-switch";
 import { advanceJourney, type JourneyPosition } from "@/lib/navigation";
 import { Mark } from "./mark";
-import { CuriousEye } from "./curious-eye";
 import { MobileNavigation } from "./mobile-navigation";
 import { trackEvent } from "@/lib/analytics-client";
 
@@ -123,7 +122,7 @@ export function Universe({ locale, initialView = "intro" }: { locale: Locale; in
   }, [move, menuOpen]);
 
   const fallback = <div className="space-fallback"><span>{ui.no3d}</span><Link href={`/${locale}/experience`}>{ui.readResume} →</Link></div>;
-  return <main data-eye-paused={intro || quiet || reduced ? "true" : undefined} className={`immersive ${intro ? "at-intro" : inside ? "in-story" : "at-gateway"}`}>
+  return <main className={`immersive ${intro ? "at-intro" : inside ? "in-story" : "at-gateway"}`}>
     <div className="world-surface"><SceneBoundary fallback={fallback}>
       <Scene transitionKey={`${journey.id}-${step}`} key={inside ? journey.id : "project-map"} journey={inside ? journey : projectMap} overview={!inside} introduction={intro}
         onSelect={id => { const index = journeys.findIndex(j => j.id === id); if (index >= 0) openProject(index); }}
@@ -131,7 +130,6 @@ export function Universe({ locale, initialView = "intro" }: { locale: Locale; in
     </SceneBoundary></div>
     <div className="space-haze" /><div className="space-grain" />
     {intro && <>
-      <div className="intro-eye-layer" data-motion={quiet || reduced ? "off" : "on"} aria-hidden="true"><CuriousEye reduced={reduced || quiet} /></div>
       <div className="intro-backdrop" aria-hidden="true" />
       <div className="intro-preferences"><LanguageSwitch locale={locale} /><ThemeSwitch locale={locale} /></div>
     </>}
@@ -140,6 +138,7 @@ export function Universe({ locale, initialView = "intro" }: { locale: Locale; in
       {!intro && <div className="hud-project" aria-live="polite"><span>{ui.project} {journey.index} / {String(journeys.length).padStart(2,"0")}</span><strong>{journey.name}</strong>{inside && <small>{ui.chapter} {step + 1} / {journey.chapters.length}</small>}</div>}
       <MobileNavigation locale={locale} open={menuOpen} onOpenChange={setMenuOpen}>
         <div className="nav-preferences"><LanguageSwitch locale={locale} /><ThemeSwitch locale={locale} /></div>
+        <Link href={`/${locale}/research`}>{ui.research}</Link>
         <Link className="resume-nav-link" href={`/${locale}/experience`}>{ui.resume}</Link>
         <a href="https://t.me/wr0ngn4m3" target="_blank" rel="noreferrer">{ui.discuss} <span>↗</span></a>
       </MobileNavigation>
@@ -148,7 +147,6 @@ export function Universe({ locale, initialView = "intro" }: { locale: Locale; in
     <div className="edge-coordinate right-coordinate" aria-hidden="true">{intro ? "IV / PORTFOLIO" : `${journey.name.toUpperCase()} / ${inside ? `CHAPTER 0${step + 1}` : "ORIGIN"}`}</div>
     <div className="experience-content" key={`${journey.id}-${step}`} ref={narrationRef}>
       {intro ? <section className="intro-copy" aria-labelledby="intro-title">
-        <div className="intro-eye-space" aria-hidden="true" />
         <div className="intro-text">
         <div className="overline">{ui.introLabel}</div>
         <h1 id="intro-title">{ui.introName}</h1>
@@ -171,6 +169,7 @@ export function Universe({ locale, initialView = "intro" }: { locale: Locale; in
         <h1>{chapter.title}</h1><p className="narration-body">{chapter.text}</p>
         {chapter.metrics && <div className="research-metrics">{chapter.metrics.map(metric => <div key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span><small>{metric.detail}</small></div>)}</div>}
         <div className="story-note"><span aria-hidden="true">⌁</span>{chapter.note}</div>
+        {journey.id === "llmops" && step === journey.chapters.length - 1 && <div className="story-end-links"><Link href={`/${locale}/research`}>{ui.research}: LLM security ↗</Link></div>}
         {chapter.details && <details className="research-details"><summary>{chapter.details.title}</summary><p>{chapter.details.text}</p></details>}
         {step === journey.chapters.length - 1 && <div className="story-end-links"><Link href={`/${locale}/experience`}>{ui.fullResume} ↗</Link><a href="https://t.me/wr0ngn4m3" target="_blank" rel="noreferrer">{ui.discuss} ↗</a></div>}
       </section>}

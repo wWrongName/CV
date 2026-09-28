@@ -5,7 +5,7 @@ import { readMetrics, type EventKind, type EventRow } from "@/lib/server/storage
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
-const projectNames: Record<string, string> = { paas: "PaaS-платформа", operations: "Kubernetes и CI/CD", "delivery-platform": "Платформа разработки", resilience: "Anti-DDoS и устойчивость", "llm-security": "AI" };
+const projectNames: Record<string, string> = { paas: "PaaS-платформа", operations: "Kubernetes и CI/CD", "delivery-platform": "Платформа разработки", resilience: "Anti-DDoS и устойчивость", "llm-security": "AI · исследование", llmops: "LLMOps" };
 function Breakdown({ title, kind, rows }: { title: string; kind: EventKind; rows: EventRow[] }) {
   const totals = new Map<string, number>();
   rows.filter(row => row.kind === kind).forEach(row => totals.set(row.value, (totals.get(row.value) || 0) + row.count));

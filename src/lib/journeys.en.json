@@ -3,8 +3,8 @@
     "id": "paas",
     "index": "01",
     "name": "PaaS platform",
-    "title": "PaaS\nplatform",
-    "summary": "A service management interface and infrastructure automation, developed collaboratively.",
+    "title": "Services in\none interface",
+    "summary": "A platform interface, automated cloud operations and repeatable delivery of changes.",
     "category": "CLOUD-NATIVE PLATFORM",
     "nodes": [
       {
@@ -22,7 +22,7 @@
       {
         "id": "api",
         "label": "FastAPI",
-        "detail": "Backend · colleagues’ work",
+        "detail": "Platform backend",
         "symbol": "API",
         "position": [
           0,
@@ -34,7 +34,7 @@
       {
         "id": "tasks",
         "label": "Celery",
-        "detail": "Backend · colleagues’ work",
+        "detail": "Platform backend",
         "symbol": "Q",
         "position": [
           6,
@@ -132,10 +132,10 @@
     ],
     "chapters": [
       {
-        "label": "CONTEXT",
-        "title": "A platform\nfor services",
-        "text": "The project started without existing infrastructure or DevOps processes. The team needed a platform to deploy and operate applications: a user interface, backend services and a runtime environment.",
-        "note": "Team development",
+        "label": "PROBLEM",
+        "title": "Code needs\nan operating environment",
+        "text": "Launching a service takes more than code: it needs an interface, backend, environments and a delivery process. When infrastructure and DevOps processes are not yet established, these components must be built and coordinated from scratch.",
+        "note": "Application delivery and operations",
         "focus": [
           "web",
           "api",
@@ -153,10 +153,10 @@
         ]
       },
       {
-        "label": "MY CONTRIBUTION",
-        "title": "Frontend\nand automation",
-        "text": "Built the frontend with Next.js and TypeScript and coordinated frontend development. Wrote scripts for cloud operations and backend infrastructure. DevOps was a shared responsibility; my colleagues developed and led the backend.",
-        "note": "My area of ownership: frontend",
+        "label": "SOLUTION",
+        "title": "Service workflows\nin one place",
+        "text": "The interface brings platform workflows together, while automation handles repeated cloud and environment operations. Working with the application and its infrastructure becomes a connected process.",
+        "note": "Next.js · TypeScript · automation",
         "focus": [
           "web",
           "infra",
@@ -174,10 +174,10 @@
         ]
       },
       {
-        "label": "TECHNOLOGY",
-        "title": "Code\nand environments",
-        "text": "The platform used Kubernetes, Argo CD, Terraform and Ansible. The frontend used Next.js with SSR; the team’s backend used FastAPI and Celery. My infrastructure contribution focused on automating cloud and environment operations.",
-        "note": "GitOps · IaC · CI/CD",
+        "label": "HOW IT WORKS",
+        "title": "From user action\nto running service",
+        "text": "The interface connects users to platform services. Scripts handle cloud operations, environments are defined in code, and changes follow a shared delivery process. Operations can be repeated without manually recreating settings.",
+        "note": "Next.js · Terraform · Ansible · Kubernetes · Argo CD",
         "focus": [
           "git",
           "ci",
@@ -198,9 +198,9 @@
       },
       {
         "label": "OUTCOME",
-        "title": "Interface\nand tooling",
-        "text": "Delivered the platform frontend and scripts for cloud operations and backend infrastructure. The team’s shared infrastructure provided a repeatable delivery process through CI/CD and GitOps.",
-        "note": "A team result",
+        "title": "Service management\nwithout routine manual work",
+        "text": "A single interface for working with services, automated cloud operations and repeatable deployment. Less manual maintenance means more time for product development.",
+        "note": "Platform interface and automation",
         "focus": [
           "web",
           "api",
@@ -222,11 +222,213 @@
     ]
   },
   {
-    "id": "operations",
+    "id": "llmops",
     "index": "02",
+    "name": "LLMOps",
+    "category": "LLMOPS · REFERENCE ARCHITECTURE",
+    "title": "An AI service\nyou can operate",
+    "summary": "An internal AI assistant in your own infrastructure: shared model access, controlled load and quality checks before release. Reference architecture.",
+    "nodes": [
+      {
+        "id": "app",
+        "label": "Application",
+        "detail": "AI assistant",
+        "symbol": "APP",
+        "position": [
+          -6,
+          2,
+          0
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "gateway",
+        "label": "Kong Enterprise",
+        "detail": "AI gateway · access and limits",
+        "symbol": "API",
+        "position": [
+          0,
+          2,
+          -4
+        ],
+        "layer": "delivery"
+      },
+      {
+        "id": "inference",
+        "label": "vLLM",
+        "detail": "Inference in Kubernetes",
+        "symbol": "LLM",
+        "position": [
+          6,
+          2,
+          -7
+        ],
+        "layer": "infra"
+      },
+      {
+        "id": "observe",
+        "label": "Prometheus / Grafana",
+        "detail": "Metrics and alerts",
+        "symbol": "OBS",
+        "position": [
+          -6,
+          -1,
+          -8
+        ],
+        "layer": "app"
+      },
+      {
+        "id": "eval",
+        "label": "Langfuse",
+        "detail": "Traces and evaluation",
+        "symbol": "EVAL",
+        "position": [
+          1,
+          -1,
+          -12
+        ],
+        "layer": "delivery"
+      },
+      {
+        "id": "config",
+        "label": "Git / CI/CD",
+        "detail": "Versions and releases",
+        "symbol": "GIT",
+        "position": [
+          5,
+          -1,
+          -3
+        ],
+        "layer": "app"
+      }
+    ],
+    "links": [
+      [
+        "app",
+        "gateway"
+      ],
+      [
+        "gateway",
+        "inference"
+      ],
+      [
+        "inference",
+        "observe"
+      ],
+      [
+        "app",
+        "eval"
+      ],
+      [
+        "config",
+        "eval"
+      ],
+      [
+        "config",
+        "inference"
+      ]
+    ],
+    "chapters": [
+      {
+        "label": "PROBLEM",
+        "title": "The prototype works.\nWhat comes next?",
+        "text": "An AI assistant answers test prompts, but daily use requires more: application access, load limits, error diagnosis and a way to check whether a new model or prompt makes answers worse.",
+        "note": "Internal AI assistant · reference scenario",
+        "focus": [
+          "app",
+          "inference"
+        ],
+        "camera": [
+          16,
+          9,
+          19
+        ],
+        "target": [
+          -2,
+          0,
+          -6
+        ]
+      },
+      {
+        "label": "SOLUTION",
+        "title": "A shared foundation\nfor LLM operations",
+        "text": "Teams connect applications through a shared gateway with application identities and access policies. Models run in the company’s Kubernetes cluster; configuration and prompts are versioned. Changes are evaluated before rollout, so adding AI does not create a separate, unmanaged service for every team.",
+        "note": "Kubernetes · Kong Gateway Enterprise · AI Proxy Advanced · vLLM",
+        "focus": [
+          "gateway",
+          "inference",
+          "config"
+        ],
+        "camera": [
+          8,
+          6,
+          12
+        ],
+        "target": [
+          0,
+          2,
+          -4
+        ]
+      },
+      {
+        "label": "HOW IT WORKS",
+        "title": "From request\nto evaluated release",
+        "text": "The gateway validates access and routes requests to the model. Metrics show latency, errors and load, while traces help investigate answers. Before release, the new version is compared with the previous one on agreed test inputs; quality and latency thresholds are defined for the use case.",
+        "note": "OIDC · AI Rate Limiting Advanced · Langfuse · Prometheus · Grafana",
+        "focus": [
+          "app",
+          "gateway",
+          "inference",
+          "observe",
+          "eval"
+        ],
+        "camera": [
+          8,
+          9,
+          1
+        ],
+        "target": [
+          -2,
+          -0.4,
+          -8
+        ]
+      },
+      {
+        "label": "OUTCOME",
+        "title": "AI operations\nunder team control",
+        "text": "The target design provides controlled access, visible load and a clear update process. Teams can evaluate changes before release and investigate issues using operational data. This is a reference architecture: quality, performance and cost must be validated in a pilot.",
+        "note": "Pilot criteria · quality · latency · resources",
+        "focus": [
+          "app",
+          "gateway",
+          "inference",
+          "observe",
+          "eval",
+          "config"
+        ],
+        "camera": [
+          18,
+          12,
+          19
+        ],
+        "target": [
+          0,
+          0,
+          -7
+        ],
+        "details": {
+          "title": "Pilot scenario",
+          "text": "Reference design: a text assistant with vLLM in Kubernetes and a self-managed Kong Gateway Enterprise with licensed AI plugins. Corporate identity and application policies control access; the inference endpoint is not exposed directly. Langfuse collects application traces and evaluation results inside the same environment. A pilot validates quality, p95 latency, time to first token, GPU use and recovery after a failure. Token limits are not a GPU cost estimate. Model licensing, gateway subscription availability, hardware, data masking and retention must be agreed before implementation."
+        }
+      }
+    ]
+  },
+  {
+    "id": "operations",
+    "index": "03",
     "name": "Kubernetes & CI/CD",
-    "title": "Kubernetes\nand operations",
-    "summary": "Automated configuration and more reliable services for a commercial system.",
+    "title": "Less manual work.\nMore stable services.",
+    "summary": "Changes without repeated manual setup, clear deployment workflows and visibility into service health.",
     "category": "PRODUCTION INFRASTRUCTURE",
     "nodes": [
       {
@@ -342,10 +544,10 @@
     ],
     "chapters": [
       {
-        "label": "BEFORE",
-        "title": "Manual work\nand outages",
-        "text": "Configuration changes were applied manually. Infrastructure and service operations needed to become easier to manage. Sentry also suffered recurring outages: backups blocked disk access and Snuba consumers crashed.",
-        "note": "Automation and reliability",
+        "label": "PROBLEM",
+        "title": "Manual operations\nslow down change",
+        "text": "When configuration is applied manually, every change takes engineering time and attention. Fragmented settings and recurring failures increase the maintenance burden and pull teams away from developing services.",
+        "note": "Operations with less manual work",
         "focus": [
           "iac",
           "kube",
@@ -363,10 +565,10 @@
         ]
       },
       {
-        "label": "MY CONTRIBUTION",
-        "title": "Configuration\nas code",
-        "text": "Automated infrastructure and service configuration with IaC, including e-commerce and Grafana. For e-commerce, replaced manual configuration rollout with a GitLab-triggered workflow. Maintained Kubernetes, Helm, CI/CD and the existing Harbor registry.",
-        "note": "Terraform · Ansible · GitLab CI · Helm",
+        "label": "SOLUTION",
+        "title": "Infrastructure\nas a managed system",
+        "text": "Infrastructure and service configuration is defined in code, with changes delivered through CI/CD. Deployment, monitoring and access management form a shared operational process.",
+        "note": "IaC · CI/CD · observability",
         "focus": [
           "iac",
           "ci",
@@ -385,10 +587,10 @@
         ]
       },
       {
-        "label": "OPERATIONS",
-        "title": "Reliable\nSentry operation",
-        "text": "Traced Snuba consumer crashes to backups and disk blocking. Configured restarts, monitoring and Grafana alerts. Also worked with ELK, Vault and LDAP for logging, secrets and access management.",
-        "note": "Diagnosis · recovery · observability",
+        "label": "HOW IT WORKS",
+        "title": "Changes\nunder control",
+        "text": "Configuration is defined in code and applied through a pipeline. Applications follow shared deployment standards, with monitoring tracking their health afterwards. When something fails, alerts draw attention and logs help identify the cause.",
+        "note": "Terraform · Ansible · GitLab CI · Kubernetes · Helm · Grafana · ELK",
         "focus": [
           "sentry",
           "grafana",
@@ -403,13 +605,17 @@
           -2,
           -0.4,
           -10
-        ]
+        ],
+        "details": {
+          "title": "Example: Sentry reliability",
+          "text": "Diagnosis linked Snuba consumer failures to disk blocking during backups. Restarts, monitoring and Grafana alerts helped restore stable operation, and the previous outages stopped interrupting developers."
+        }
       },
       {
         "label": "OUTCOME",
-        "title": "Faster changes.\nFewer outages.",
-        "text": "E-commerce configuration rollout became faster: a GitLab action replaced manual steps. Sentry now operates reliably and the recurring outages no longer interrupt developers. Infrastructure and service configuration is automated through IaC.",
-        "note": "Configuration rollout · Sentry reliability",
+        "title": "Less routine work.\nMore control.",
+        "text": "Configuration as code, repeatable deployment and visibility into service health. Fewer manual steps and a clear maintenance process help infrastructure evolve beyond recurring incident response.",
+        "note": "Automated changes · operational visibility",
         "focus": [
           "iac",
           "ci",
@@ -431,10 +637,10 @@
   },
   {
     "id": "delivery-platform",
-    "index": "03",
+    "index": "04",
     "name": "Developer platform",
-    "title": "Developer\nplatform",
-    "summary": "Shared build, delivery and code-quality workflows for teams using different stacks.",
+    "title": "From code\nto service",
+    "summary": "Shared builds, quality checks and deployment for Python, .NET and Node.js teams.",
     "category": "DEVELOPMENT & DELIVERY",
     "nodes": [
       {
@@ -534,10 +740,10 @@
     ],
     "chapters": [
       {
-        "label": "CONTEXT",
-        "title": "Different stacks.\nShared workflows.",
-        "text": "Several teams used different technology stacks without a consistent approach to delivery and operations. Build, deployment and onboarding workflows needed to be standardized.",
-        "note": "Python · .NET · Node.js",
+        "label": "PROBLEM",
+        "title": "Every service needs\na different guide",
+        "text": "Different pipelines and deployment methods complicate project onboarding. Without shared standards, teams must repeatedly work out software delivery and operational configuration.",
+        "note": "Different stacks · fragmented processes",
         "focus": [
           "code",
           "ci",
@@ -555,10 +761,10 @@
         ]
       },
       {
-        "label": "MY CONTRIBUTION",
-        "title": "Repeatable\ndelivery",
-        "text": "Built and maintained GitLab CI and Jenkins pipelines. Worked on shared Helm chart standards, common logging and monitoring tools, and infrastructure documentation.",
-        "note": "CI/CD · Helm · Kubernetes",
+        "label": "SOLUTION",
+        "title": "Shared standards,\ndifferent applications",
+        "text": "New services adopt an established build, check and deployment workflow. Stack-specific requirements are handled in configuration, while delivery and maintenance remain consistent across the team.",
+        "note": "GitLab CI · Jenkins · Helm · Python · .NET · Node.js",
         "focus": [
           "ci",
           "helm",
@@ -577,10 +783,10 @@
         ]
       },
       {
-        "label": "AUTOMATION",
-        "title": "Code quality\nchecks",
-        "text": "Deployed and maintained SonarQube. Automated project synchronization through the GitLab and SonarQube APIs, connecting team projects to a shared quality-checking system.",
-        "note": "GitLab API · SonarQube API",
+        "label": "HOW IT WORKS",
+        "title": "A clear path\nfor every change",
+        "text": "Each change follows a shared workflow for building, quality checks and deployment. New projects adopt existing delivery standards, with automatic synchronization to code analysis. After deployment, logs and monitoring help teams understand service behavior and locate the source of problems.",
+        "note": "GitLab CI · Jenkins · Helm · SonarQube",
         "focus": [
           "code",
           "ci",
@@ -599,9 +805,9 @@
       },
       {
         "label": "OUTCOME",
-        "title": "Easier service\nonboarding",
-        "text": "Shared pipelines and deployment standards simplified project onboarding. SonarQube synchronization is automated. Teams have a consistent delivery process and common diagnostic tools.",
-        "note": "Shared practices across technology stacks",
+        "title": "A new service.\nA familiar process.",
+        "text": "An established path from code to a running service: builds, quality checks and deployment follow shared standards. Less repeated setup when launching projects means more focus on development. Teams use different stacks while keeping a consistent approach to delivery and maintenance.",
+        "note": "Shared process · less repeated work",
         "focus": [
           "ci",
           "quality",
@@ -624,10 +830,10 @@
   },
   {
     "id": "resilience",
-    "index": "04",
+    "index": "05",
     "name": "Anti-DDoS & resilience",
-    "title": "Anti-DDoS\nand resilience",
-    "summary": "Automated interaction with protection services and fewer manual steps during incidents.",
+    "title": "Clear actions\nduring an attack",
+    "summary": "Automated anti-DDoS service operations and documented incident response procedures.",
     "category": "INFRASTRUCTURE SECURITY",
     "nodes": [
       {
@@ -727,10 +933,10 @@
     ],
     "chapters": [
       {
-        "label": "CONTEXT",
-        "title": "Responding\nto network attacks",
-        "text": "A production system faced network attacks. Incident response needed fewer manual operations and a clear sequence of actions.",
-        "note": "Resilience of commercial services",
+        "label": "PROBLEM",
+        "title": "Attacks create\nmore manual work",
+        "text": "During a network attack, engineers must monitor the application while operating protection tools. Manual tasks add pressure precisely when a clear sequence of actions matters.",
+        "note": "Operational pressure during incidents",
         "focus": [
           "traffic",
           "protection",
@@ -748,10 +954,10 @@
         ]
       },
       {
-        "label": "MY CONTRIBUTION",
-        "title": "Protection\nthrough APIs",
-        "text": "Automated interaction with StormWall and Qrator Labs anti-DDoS services, moving protection-service operations into scripts.",
-        "note": "Anti-DDoS API integrations",
+        "label": "SOLUTION",
+        "title": "Automation\nwith clear procedures",
+        "text": "Repeated protection-service operations move into scripts. Monitoring, alerts and documented scenarios connect problem detection with concrete response actions.",
+        "note": "Protection services · response procedures",
         "focus": [
           "api",
           "protection"
@@ -768,10 +974,10 @@
         ]
       },
       {
-        "label": "OPERATIONS",
-        "title": "Monitoring\nand response",
-        "text": "Configured monitoring and alerts and documented response procedures, connecting problem detection to specific engineering actions.",
-        "note": "Monitoring · alerts · documentation",
+        "label": "HOW IT WORKS",
+        "title": "From signal\nto action",
+        "text": "An alert flags the problem, a prepared scenario defines the response, and scripts handle repeated operations with protection services. Engineers can move to action without assembling a procedure from scratch during an attack.",
+        "note": "StormWall · Qrator Labs · APIs · monitoring",
         "focus": [
           "monitor",
           "runbook",
@@ -790,9 +996,9 @@
       },
       {
         "label": "OUTCOME",
-        "title": "Less\nmanual work",
-        "text": "Automation reduced manual interaction with protection services and the engineering workload during attacks. Documented procedures made incident response more predictable.",
-        "note": "Automated operations and clear procedures",
+        "title": "Fewer steps\nat a critical moment",
+        "text": "Prepared scenarios and automated protection-service operations reduce the operational burden during an attack. More attention goes to system health and decisions, with less spent on repetitive tasks.",
+        "note": "Automated operations · response procedures",
         "focus": [
           "api",
           "protection",
@@ -809,227 +1015,6 @@
           0,
           -7
         ]
-      }
-    ]
-  },
-  {
-    "id": "llm-security",
-    "index": "05",
-    "name": "AI",
-    "category": "AI SECURITY · RESEARCH",
-    "title": "LLM\nsecurity",
-    "summary": "Language-model protection and LoRA adapter verification. Dissertation research with a software prototype and experiments.",
-    "nodes": [
-      {
-        "id": "input",
-        "label": "External input",
-        "detail": "Requests and adversarial inputs",
-        "symbol": "IN",
-        "position": [
-          -6,
-          2,
-          0
-        ],
-        "layer": "app"
-      },
-      {
-        "id": "inference",
-        "label": "LLM + LoRA",
-        "detail": "Generation with a session shift",
-        "symbol": "LLM",
-        "position": [
-          0,
-          2,
-          -4
-        ],
-        "layer": "infra"
-      },
-      {
-        "id": "vrf",
-        "label": "VRF scheme",
-        "detail": "Verifiable shift parameters",
-        "symbol": "VRF",
-        "position": [
-          6,
-          2,
-          -7
-        ],
-        "layer": "app"
-      },
-      {
-        "id": "audit",
-        "label": "Auditor",
-        "detail": "Reference model and logit comparison",
-        "symbol": "VERIFY",
-        "position": [
-          -6,
-          -1,
-          -8
-        ],
-        "layer": "app"
-      },
-      {
-        "id": "eval",
-        "label": "Experiments",
-        "detail": "Attacks, quality and verification time",
-        "symbol": "EVAL",
-        "position": [
-          1,
-          -1,
-          -12
-        ],
-        "layer": "delivery"
-      },
-      {
-        "id": "adapter",
-        "label": "LoRA adapter",
-        "detail": "Version and authenticity checks",
-        "symbol": "LoRA",
-        "position": [
-          5,
-          -1,
-          -3
-        ],
-        "layer": "app"
-      }
-    ],
-    "links": [
-      [
-        "input",
-        "inference"
-      ],
-      [
-        "vrf",
-        "inference"
-      ],
-      [
-        "adapter",
-        "inference"
-      ],
-      [
-        "inference",
-        "audit"
-      ],
-      [
-        "vrf",
-        "audit"
-      ],
-      [
-        "audit",
-        "eval"
-      ]
-    ],
-    "chapters": [
-      {
-        "label": "CONTEXT",
-        "title": "Language-model\nresilience",
-        "text": "When an LLM reads external content or calls tools, manipulated input can change its behavior. My dissertation investigates resilience to adversarial attacks and verification of third-party LoRA adapters.",
-        "note": "Dissertation research · AI security",
-        "focus": [
-          "input",
-          "inference",
-          "adapter"
-        ],
-        "camera": [
-          16,
-          9,
-          19
-        ],
-        "target": [
-          -2,
-          0,
-          -6
-        ]
-      },
-      {
-        "label": "MY CONTRIBUTION",
-        "title": "A VRF + LoRA\nprototype",
-        "text": "Developed a session-dependent LoRA parameter-shift method and its software implementation: verifiable shift generation, attack simulation, inference auditing and quality measurement. Built the testbed with Python, PyTorch, Transformers and PEFT.",
-        "note": "Python · PyTorch · Transformers · PEFT",
-        "focus": [
-          "vrf",
-          "inference",
-          "audit",
-          "eval"
-        ],
-        "camera": [
-          8,
-          6,
-          12
-        ],
-        "target": [
-          0,
-          2,
-          -4
-        ],
-        "details": {
-          "title": "Implementation details",
-          "text": "The prototype derives a verifiable shift using Ed25519 and SHAKE-256. The inference server and auditor can run in separate processes: the auditor reproduces the shift on a reference model and compares logits. The protection module is registered as software under No. 2025665020."
-        }
-      },
-      {
-        "label": "RESULTS",
-        "title": "Experimental\nresults",
-        "text": "Evaluated GCG on TinyLlama-1.1B-Chat using 10 AdvBench prompts. The shift increased attack loss under the same optimization budget. Transferred suffixes failed; direct optimization against the shifted model also produced no successful attacks in this sample.",
-        "note": "Research testbed · limited sample",
-        "focus": [
-          "inference",
-          "vrf",
-          "eval"
-        ],
-        "camera": [
-          8,
-          9,
-          1
-        ],
-        "target": [
-          -2,
-          -0.4,
-          -8
-        ],
-        "metrics": [
-          {
-            "value": "2/10 → 0/10",
-            "label": "successful attacks in the test",
-            "detail": "Without shift → with VRF shift"
-          },
-          {
-            "value": "×3.20",
-            "label": "mean ratio of GCG losses",
-            "detail": "Same budget: 500 optimization steps"
-          }
-        ],
-        "details": {
-          "title": "Test conditions and limitations",
-          "text": "Success was defined by a target affirmative phrase at the beginning of the response. Sample: 10 AdvBench prompts; LoRA r=8; shift amplitude 0.1. On 8 MT-Bench questions, long-answer diversity decreased (distinct-2: 0.91 → 0.62), so amplitude requires tuning. Auditor verification averaged 0.772 s on TinyLlama-1.1B-Chat, Apple MPS, across 10 control queries. These findings apply to the described testbed and do not establish universal protection against prompt injection."
-        }
-      },
-      {
-        "label": "APPLICATION",
-        "title": "Assessing\nAI-system risks",
-        "text": "Practical follow-up work includes pilot LLM robustness assessments, reproducible evaluation testbeds and inference-component verification. Teams can assess protection, response quality and computational costs before integrating a method into a product.",
-        "note": "A research foundation for applied AI work",
-        "focus": [
-          "input",
-          "inference",
-          "audit",
-          "eval",
-          "adapter"
-        ],
-        "camera": [
-          18,
-          12,
-          19
-        ],
-        "target": [
-          0,
-          0,
-          -7
-        ],
-        "details": {
-          "title": "Scope of application",
-          "text": "The approach requires access to model weights and the LoRA adapter. The dissertation recommends standardized ECVRF for industrial use instead of the experimental scheme. Small logit perturbations may remain undetected at the chosen threshold. Natural-language prompt injections require additional detection mechanisms and restrictions on agent permissions."
-        }
       }
     ]
   }

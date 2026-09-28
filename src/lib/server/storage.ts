@@ -38,8 +38,8 @@ export function getDatabase() {
 }
 
 export const eventValues = {
-  page_view: ["/ru", "/en", "/ru/experience", "/en/experience"],
-  project_open: ["paas", "operations", "delivery-platform", "resilience", "llm-security"],
+  page_view: ["/ru", "/en", "/ru/experience", "/en/experience", "/ru/research", "/en/research"],
+  project_open: ["paas", "operations", "delivery-platform", "resilience", "llm-security", "llmops"],
   pdf_download: ["ru", "en"],
 } as const;
 export type EventKind = keyof typeof eventValues;

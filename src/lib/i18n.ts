@@ -4,8 +4,8 @@ export const messages = {
   "ru": {
     "introName": "Иван\nВеличко",
     "introLabel": "РАЗРАБОТКА И ИНФРАСТРУКТУРА",
-    "introLead": "Разрабатываю веб-приложения и инфраструктуру для их работы.",
-    "introSummary": "Здесь — проекты, моя роль и решения, которые я принимал.",
+    "introLead": "Разработка сервисов, автоматизация процессов и инфраструктура.",
+    "introSummary": "Software / Infrastructure / Management",
     "exploreProjects": "Посмотреть проекты",
     "backToIntro": "На стартовый экран",
     "name": "ИВАН ВЕЛИЧКО",
@@ -47,13 +47,14 @@ export const messages = {
     "education": "Образование",
     "telegram": "Связаться в Telegram",
     "language": "Язык",
-    "researchPrototype": "Исследование и прототип"
+    "researchPrototype": "Референсная архитектура",
+    "research": "Исследование"
   },
   "en": {
     "introName": "Ivan\nVelichko",
     "introLabel": "DEVELOPMENT & INFRASTRUCTURE",
-    "introLead": "I build web applications and the infrastructure behind them.",
-    "introSummary": "Explore my projects, my role, and the decisions I made along the way.",
+    "introLead": "Service development, process automation, and infrastructure you can rely on.",
+    "introSummary": "Software / Infrastructure / Management",
     "exploreProjects": "Explore projects",
     "backToIntro": "Back to introduction",
     "name": "IVAN VELICHKO",
@@ -95,6 +96,7 @@ export const messages = {
     "education": "Education",
     "telegram": "Contact on Telegram",
     "language": "Language",
-    "researchPrototype": "Research and prototype"
+    "researchPrototype": "Reference architecture",
+    "research": "Research"
   }
 };

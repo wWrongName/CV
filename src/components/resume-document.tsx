@@ -16,6 +16,7 @@ export function ResumeDocument({ locale }: { locale: Locale }) {
       <MobileNavigation locale={locale} className="resume-top-actions">
         <div className="nav-preferences"><LanguageSwitch locale={locale} /><ThemeSwitch locale={locale} /></div>
         <Link href={`/${locale}/projects`} className="text-link">← {ui.projects}</Link>
+        <Link href={`/${locale}/research`}>{ui.research}</Link>
         <a href={pdf} download className="resume-download">{ui.download} ↓</a>
       </MobileNavigation>
     </header>

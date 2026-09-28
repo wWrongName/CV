@@ -1,0 +1,217 @@
+{
+  "id": "llm-security",
+  "index": "05",
+  "name": "AI",
+  "category": "AI SECURITY · RESEARCH",
+  "title": "Assessing AI\nrobustness",
+  "summary": "A research prototype for evaluating LLM attacks and verifying LoRA adapters, with measurements and defined limitations.",
+  "nodes": [
+    {
+      "id": "input",
+      "label": "External input",
+      "detail": "Requests and adversarial inputs",
+      "symbol": "IN",
+      "position": [
+        -6,
+        2,
+        0
+      ],
+      "layer": "app"
+    },
+    {
+      "id": "inference",
+      "label": "LLM + LoRA",
+      "detail": "Generation with a session shift",
+      "symbol": "LLM",
+      "position": [
+        0,
+        2,
+        -4
+      ],
+      "layer": "infra"
+    },
+    {
+      "id": "vrf",
+      "label": "VRF scheme",
+      "detail": "Verifiable shift parameters",
+      "symbol": "VRF",
+      "position": [
+        6,
+        2,
+        -7
+      ],
+      "layer": "app"
+    },
+    {
+      "id": "audit",
+      "label": "Auditor",
+      "detail": "Reference model and logit comparison",
+      "symbol": "VERIFY",
+      "position": [
+        -6,
+        -1,
+        -8
+      ],
+      "layer": "app"
+    },
+    {
+      "id": "eval",
+      "label": "Experiments",
+      "detail": "Attacks, quality and verification time",
+      "symbol": "EVAL",
+      "position": [
+        1,
+        -1,
+        -12
+      ],
+      "layer": "delivery"
+    },
+    {
+      "id": "adapter",
+      "label": "LoRA adapter",
+      "detail": "Version and authenticity checks",
+      "symbol": "LoRA",
+      "position": [
+        5,
+        -1,
+        -3
+      ],
+      "layer": "app"
+    }
+  ],
+  "links": [
+    [
+      "input",
+      "inference"
+    ],
+    [
+      "vrf",
+      "inference"
+    ],
+    [
+      "adapter",
+      "inference"
+    ],
+    [
+      "inference",
+      "audit"
+    ],
+    [
+      "vrf",
+      "audit"
+    ],
+    [
+      "audit",
+      "eval"
+    ]
+  ],
+  "chapters": [
+    {
+      "label": "PROBLEM",
+      "title": "Model behavior\nneeds verification",
+      "text": "Adversarial inputs can change language-model behavior. Third-party LoRA adapters also require verification. Before adopting a defense, both robustness and its effect on answer quality need evaluation.",
+      "note": "Dissertation research · AI security",
+      "focus": [
+        "input",
+        "inference",
+        "adapter"
+      ],
+      "camera": [
+        16,
+        9,
+        19
+      ],
+      "target": [
+        -2,
+        0,
+        -6
+      ]
+    },
+    {
+      "label": "SOLUTION",
+      "title": "Test the defense\nin a controlled setting",
+      "text": "The prototype combines session-based LoRA parameter shifts, attack simulation and computation auditing. It supports experimental comparison of model behavior and answer quality under different defense settings.",
+      "note": "Research prototype · VRF + LoRA",
+      "focus": [
+        "vrf",
+        "inference",
+        "audit",
+        "eval"
+      ],
+      "camera": [
+        8,
+        6,
+        12
+      ],
+      "target": [
+        0,
+        2,
+        -4
+      ]
+    },
+    {
+      "label": "HOW IT WORKS",
+      "title": "Assess protection\nand answer quality",
+      "text": "The testbed simulates attacks and compares model behavior under different defense settings. A separate auditor verifies computations against a reference model. Evaluation covers both robustness and the cost of protection: changes in answers and computational overhead.",
+      "note": "Python · PyTorch · Transformers · PEFT · LoRA",
+      "focus": [
+        "inference",
+        "vrf",
+        "eval"
+      ],
+      "camera": [
+        8,
+        9,
+        1
+      ],
+      "target": [
+        -2,
+        -0.4,
+        -8
+      ],
+      "details": {
+        "title": "Implementation details",
+        "text": "The prototype derives a verifiable shift using Ed25519 and SHAKE-256. The inference server and auditor can run in separate processes: the auditor reproduces the shift on a reference model and compares logits. The protection module is registered as software under No. 2025665020."
+      }
+    },
+    {
+      "label": "OUTCOME",
+      "title": "A basis for pilots,\nwith measured limits",
+      "text": "On 10 AdvBench prompts with TinyLlama-1.1B-Chat, transferred GCG suffixes and direct optimization with the shift produced 0 successful attacks. Long-answer diversity also decreased. These findings support further pilot evaluations, not a claim of universal LLM protection.",
+      "note": "Limited sample · quality trade-off",
+      "focus": [
+        "input",
+        "inference",
+        "audit",
+        "eval",
+        "adapter"
+      ],
+      "camera": [
+        18,
+        12,
+        19
+      ],
+      "target": [
+        0,
+        0,
+        -7
+      ],
+      "details": {
+        "title": "Conditions and limitations",
+        "text": "Success was defined by a target affirmative phrase at the beginning of the response. Sample: 10 AdvBench prompts; LoRA r=8; shift amplitude 0.1. On 8 MT-Bench questions, long-answer diversity decreased (distinct-2: 0.91 → 0.62), so amplitude requires tuning. Auditor verification averaged 0.772 s on TinyLlama-1.1B-Chat, Apple MPS, across 10 control queries. These findings apply to the described testbed and do not establish universal protection against prompt injection. The approach requires access to model weights and the LoRA adapter. The dissertation recommends standardized ECVRF for industrial use instead of the experimental scheme. Small logit perturbations may remain undetected at the chosen threshold. Natural-language prompt injections require additional detection mechanisms and restrictions on agent permissions."
+      },
+      "metrics": [
+        {
+          "value": "2/10 → 0/10",
+          "label": "successful attacks in the test",
+          "detail": "Without shift → with VRF shift"
+        },
+        {
+          "value": "×3.20",
+          "label": "mean ratio of GCG losses",
+          "detail": "Same budget: 500 optimization steps"
+        }
+      ]
+    }
+  ]
+}
