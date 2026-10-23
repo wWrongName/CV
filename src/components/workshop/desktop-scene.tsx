@@ -10,6 +10,7 @@ import { WorkshopArt } from "./art";
 import { useWorkshopInteraction } from "./interaction-provider";
 import { WindowLife } from "./window-life";
 import { WorkshopEnvironment } from "./environment";
+import { WorkshopStartupPreview } from "./startup-preview";
 import { visiblePosition } from "@/lib/workshop/presentation";
 import { WorkshopReaction, reactionFrames } from "./reactions";
 import { WorkshopFurniture } from "./furniture";
@@ -117,7 +118,6 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
     else if (decoded[target]) setDisplayed(target);
   }, [target, decoded]);
   useEffect(() => {
-    if (!enabled) return;
     let cancelled = false;
     const afterLoad = async () => {
       // Visible room artwork and the initial character own the first network pass.
@@ -154,7 +154,8 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
   const boardCopy = boardTarget ? getBoardCopy(boardTarget, locale) : { title: ui.greeting, description: ui.boardIntro };
   const openAbout = () => { send({ type: "activate", target: "about" }); onEnter("about"); };
   const openContacts = () => { send({ type: "activate", target: "contact" }); onEnter("contact"); };
-  return <main className="desktop-workshop" aria-label={ui.title}>
+  return <main className="desktop-workshop" aria-label={ui.title} aria-busy={!sceneLoaded} data-scene-ready={sceneLoaded}>
+    <WorkshopStartupPreview ready={sceneLoaded} locale={locale} />
     <div ref={stage} className="workshop-stage"
       onPointerMove={event => {
         if (event.pointerType === "touch") return;

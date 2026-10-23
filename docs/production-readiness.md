@@ -29,3 +29,20 @@ Measurements and browser screenshots are saved in the task workspace under outpu
 - Additional desktop positions enter an idle queue only after window load and room-image decoding. Only one background sprite is requested at a time; requested hover positions bypass the queue at high priority.
 - Production build and make test passed. Browser checked both initial and cached reload: clouds playing, no desktop positions on mobile, all eight desktop sprite requests after loadEventEnd. In the cached local run, loadEventEnd was 54.2ms and first sprite request 301ms; these are ordering evidence on localhost, not a mobile-network benchmark.
 - QA report/screenshots: output/wwn-workshop/clouds-preload-fixed.{json,png} in the task workspace.
+
+## Live desktop weight audit and startup preview — 2026-10-23
+
+Two cold browser runs per profile, 1280x800 CSS pixels / DPR 2.36, user window unchanged. Published wwncv.tech content was forwarded through a local HTTPS proxy with browser caching disabled. The constrained profile used a shared aggregate 10 Mbit/s pipe plus 100ms response latency. These include forwarding overhead and are controlled measurements, not a universal end-user guarantee.
+
+| Profile | LCP | Room and default motion ready | All eight positions ready | Transfer |
+| --- | --- | --- | --- | --- |
+| Unthrottled | 0.96–1.18s | 2.00–2.10s | 3.20s | 7.22 MiB |
+| 10 Mbit/s + 100ms | 4.55–4.81s | 6.30–6.50s | 9.60–10.32s | 7.22 MiB |
+
+89 resource requests, including 69 workshop art requests. Artwork transferred 6.94 MiB, JavaScript 0.18 MiB. About 5.62 MiB was requested before background positions and 1.59 MiB afterward. All eight pose requests began after loadEventEnd in all four runs. No long tasks were recorded in this desktop browser; phone/GPU/battery behavior was not measured. A separate direct HTTP/2 HTML request gave TTFB 253ms, total 325ms, gzip transfer 13,312 bytes. The primary loading cost is artwork rather than HTML or JavaScript.
+
+Largest deliveries: center room tile 1,106 KiB; blank chalkboard 483 KiB; left vine 337 KiB; counter 321 KiB; rug 252 KiB. These are candidates for responsive size/encoding reductions; this follow-up does not alter their quality.
+
+Added a CSS spinner over the existing 9,466-byte room preview. The preview URL is shared with the environment, so no extra bitmap is downloaded. It covers partial room assembly until the initial room image decode pass finishes; background pose preparation is not part of this gate. A throttled local production QA showed the preview/spinner visible at about 0.32s, then hidden with aria-busy=false once the room was ready. Mobile picture sources remain 1px placeholders; reduced-motion disables the spinner and does not block readiness; no-JavaScript shows the original static scene. Production build and make test passed.
+
+Raw reports: desktop-speed-{fast,fast-repeat,10mbps,10mbps-repeat}.json. Visual QA: desktop-startup-{loading,ready}.png. All stored in the task workspace output/wwn-workshop/, outside deployable public files.
