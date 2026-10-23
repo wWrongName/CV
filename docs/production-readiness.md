@@ -22,3 +22,10 @@ Measurements and browser screenshots are saved in the task workspace under outpu
 - Desktop browser verified all eight positions prepared before hover, detailed city revision d00e825b7442, 22 distant windows with independent 12–21.6 second light cycles and 18 near windows at 10% modulation. Traffic, aircraft and SVG clouds are removed.
 - Mobile clouds remain a separate upper-sky 220-second one-direction loop; the lower half preserves its original artwork. Blog ivy is an independent item loaded only for its active scene. Combined motion item assets: 388,190 bytes.
 - Network and Docker measurements above describe the baseline audit, not this revised artwork/preload delivery. They were not repeated for this follow-up.
+
+## Cached sky and loading-order fix — 2026-10-23
+
+- Cloud readiness now checks the already-complete image at hydration, rather than relying only on a future load event. This fixes the paused cloud strip reproduced on wwncv.tech.
+- Additional desktop positions enter an idle queue only after window load and room-image decoding. Only one background sprite is requested at a time; requested hover positions bypass the queue at high priority.
+- Production build and make test passed. Browser checked both initial and cached reload: clouds playing, no desktop positions on mobile, all eight desktop sprite requests after loadEventEnd. In the cached local run, loadEventEnd was 54.2ms and first sprite request 301ms; these are ordering evidence on localhost, not a mobile-network benchmark.
+- QA report/screenshots: output/wwn-workshop/clouds-preload-fixed.{json,png} in the task workspace.

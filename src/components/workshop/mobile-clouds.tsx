@@ -8,9 +8,18 @@ const desktopEmpty = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAA
 /** Two identical strips trade places outside the viewport at every loop boundary. */
 export function MobileClouds({ active }: { active: boolean }) {
   const root = useRef<HTMLDivElement>(null);
+  const cloud = useRef<HTMLImageElement>(null);
   const [artboard, setArtboard] = useState<CSSProperties>();
   const [allowed, setAllowed] = useState(false);
   const [ready, setReady] = useState(false);
+  useEffect(() => {
+    // SSR images can finish before hydration attaches React's load handler.
+    const image = cloud.current;
+    if (!image) return;
+    const update = () => setReady(image.complete && image.naturalWidth > 1);
+    image.addEventListener("load", update); image.addEventListener("error", update); update();
+    return () => { image.removeEventListener("load", update); image.removeEventListener("error", update); };
+  }, []);
   useLayoutEffect(() => {
     const node = root.current;
     if (!node) return;
@@ -34,7 +43,7 @@ export function MobileClouds({ active }: { active: boolean }) {
       <div className="mobile-cloud-track">
         {[0, 1].map(copy => <picture key={copy}>
           <source media="(min-width: 900px)" srcSet={desktopEmpty} />
-          <img src="/workshop/mobile-about-clouds-v1.webp" width="768" height="256" alt="" draggable={false} decoding="async" fetchPriority="low"
+          <img ref={copy === 0 ? cloud : undefined} src="/workshop/mobile-about-clouds-v1.webp" width="768" height="256" alt="" draggable={false} decoding="async" fetchPriority="low"
             onLoad={event => setReady(event.currentTarget.naturalWidth > 1)} />
         </picture>)}
       </div>

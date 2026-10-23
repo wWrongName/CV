@@ -97,6 +97,9 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
   const ui = workshopCopy[locale];
   const { state, send } = useWorkshopInteraction();
   const [enabled, setEnabled] = useState(false);
+  const stage = useRef<HTMLDivElement>(null);
+  const [sceneLoaded, setSceneLoaded] = useState(false);
+  const [preparedPositions, setPreparedPositions] = useState<ObjectId[]>([]);
   const [displayed, setDisplayed] = useState<ObjectId | null>(null);
   const [decoded, setDecoded] = useState<Partial<Record<ObjectId, boolean>>>({});
   const markReady = useCallback((id: ObjectId) => setDecoded(value => value[id] ? value : { ...value, [id]: true }), []);
@@ -113,10 +116,36 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
     if (!target) setDisplayed(null);
     else if (decoded[target]) setDisplayed(target);
   }, [target, decoded]);
-  // Prepare every desktop position and its motion textures before the first hover.
-  // The media guard keeps these downloads off phones and reduced-motion views.
+  useEffect(() => {
+    if (!enabled) return;
+    let cancelled = false;
+    const afterLoad = async () => {
+      // Visible room artwork and the initial character own the first network pass.
+      const images = Array.from(stage.current?.querySelectorAll<HTMLImageElement>("img") || []);
+      await Promise.allSettled(images.map(image => image.decode()));
+      if (!cancelled) setSceneLoaded(true);
+    };
+    if (document.readyState === "complete") void afterLoad();
+    else window.addEventListener("load", afterLoad, { once: true });
+    return () => { cancelled = true; window.removeEventListener("load", afterLoad); };
+  }, [enabled]);
+  useEffect(() => {
+    if (!enabled || !sceneLoaded) return;
+    // Only one background sprite is requested at a time. A hovered sprite bypasses
+    // this queue and keeps high fetch priority; decoded positions remain mounted.
+    if (preparedPositions.some(id => !Object.prototype.hasOwnProperty.call(decoded, id))) return;
+    const next = sectionIds.find(id => !preparedPositions.includes(id) && !Object.prototype.hasOwnProperty.call(decoded, id) && id !== target);
+    if (!next) return;
+    const prepare = () => setPreparedPositions(previous => previous.includes(next) ? previous : [...previous, next]);
+    if ("requestIdleCallback" in window) {
+      const task = window.requestIdleCallback(prepare, { timeout: 2000 });
+      return () => window.cancelIdleCallback(task);
+    }
+    const task = setTimeout(prepare, 200);
+    return () => clearTimeout(task);
+  }, [enabled, sceneLoaded, preparedPositions, decoded, target]);
   const mountedPositions = Array.from(new Set([
-    ...(enabled ? sectionIds : []),
+    ...preparedPositions,
     ...Object.keys(decoded) as ObjectId[],
     ...(active ? [active] : []),
     ...(target ? [target] : []),
@@ -126,7 +155,7 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
   const openAbout = () => { send({ type: "activate", target: "about" }); onEnter("about"); };
   const openContacts = () => { send({ type: "activate", target: "contact" }); onEnter("contact"); };
   return <main className="desktop-workshop" aria-label={ui.title}>
-    <div className="workshop-stage"
+    <div ref={stage} className="workshop-stage"
       onPointerMove={event => {
         if (event.pointerType === "touch") return;
         const rect = event.currentTarget.getBoundingClientRect();
