@@ -24,10 +24,10 @@
     "width": 3592,
     "height": 2568,
     "file": {
-      "src": "/workshop/tile-024f8f4e96e6-center-q95.webp",
+      "src": "/workshop/tile-d00e825b7442-center.webp",
       "width": 3592,
       "height": 2568,
-      "bytes": 1117246
+      "bytes": 1131912
     }
   },
   {
@@ -55,7 +55,7 @@
     "width": 1284,
     "height": 772,
     "file": {
-      "src": "/workshop/tile-024f8f4e96e6-top-left-q95.webp",
+      "src": "/workshop/tile-d00e825b7442-top-left.webp",
       "width": 1284,
       "height": 772,
       "bytes": 92948
@@ -86,7 +86,7 @@
     "width": 3592,
     "height": 772,
     "file": {
-      "src": "/workshop/tile-024f8f4e96e6-top-center-q95.webp",
+      "src": "/workshop/tile-d00e825b7442-top-center.webp",
       "width": 3592,
       "height": 772,
       "bytes": 233416
@@ -117,7 +117,7 @@
     "width": 1284,
     "height": 772,
     "file": {
-      "src": "/workshop/tile-024f8f4e96e6-top-right-q95.webp",
+      "src": "/workshop/tile-d00e825b7442-top-right.webp",
       "width": 1284,
       "height": 772,
       "bytes": 115790
@@ -148,7 +148,7 @@
     "width": 1284,
     "height": 2568,
     "file": {
-      "src": "/workshop/tile-024f8f4e96e6-middle-left-q95.webp",
+      "src": "/workshop/tile-d00e825b7442-middle-left.webp",
       "width": 1284,
       "height": 2568,
       "bytes": 314828
@@ -179,10 +179,10 @@
     "width": 1284,
     "height": 2568,
     "file": {
-      "src": "/workshop/tile-024f8f4e96e6-middle-right-q95.webp",
+      "src": "/workshop/tile-d00e825b7442-middle-right.webp",
       "width": 1284,
       "height": 2568,
-      "bytes": 392324
+      "bytes": 419600
     }
   },
   {
@@ -210,7 +210,7 @@
     "width": 1284,
     "height": 772,
     "file": {
-      "src": "/workshop/tile-024f8f4e96e6-bottom-left-q95.webp",
+      "src": "/workshop/tile-d00e825b7442-bottom-left.webp",
       "width": 1284,
       "height": 772,
       "bytes": 74528
@@ -241,7 +241,7 @@
     "width": 3592,
     "height": 772,
     "file": {
-      "src": "/workshop/tile-024f8f4e96e6-bottom-center-q95.webp",
+      "src": "/workshop/tile-d00e825b7442-bottom-center.webp",
       "width": 3592,
       "height": 772,
       "bytes": 298818
@@ -272,7 +272,7 @@
     "width": 1284,
     "height": 772,
     "file": {
-      "src": "/workshop/tile-024f8f4e96e6-bottom-right-q95.webp",
+      "src": "/workshop/tile-d00e825b7442-bottom-right.webp",
       "width": 1284,
       "height": 772,
       "bytes": 89556

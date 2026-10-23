@@ -113,8 +113,10 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
     if (!target) setDisplayed(null);
     else if (decoded[target]) setDisplayed(target);
   }, [target, decoded]);
-  // Keep decoded positions mounted so revisiting does not restart image/mesh setup.
+  // Prepare every desktop position and its motion textures before the first hover.
+  // The media guard keeps these downloads off phones and reduced-motion views.
   const mountedPositions = Array.from(new Set([
+    ...(enabled ? sectionIds : []),
     ...Object.keys(decoded) as ObjectId[],
     ...(active ? [active] : []),
     ...(target ? [target] : []),
@@ -167,7 +169,7 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
         <span>{locale === "ru" ? "Контакты" : "Contact"}<small>Telegram / Email</small></span>
       </Link>
       </div>
-      {mountedPositions.map(position => <WorkshopReaction key={position} target={position} visible={position === active} onReady={markReady} onError={markFailed} />)}
+      {mountedPositions.map(position => <WorkshopReaction key={position} target={position} visible={position === active} priority={position === target} onReady={markReady} onError={markFailed} />)}
     </div>
     <div className="workshop-preferences"><LanguageSwitch locale={locale} /></div>
     <Link className="workshop-classic-link" href={`/classic/${locale}`} prefetch={false}>

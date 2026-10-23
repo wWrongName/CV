@@ -1,1 +1,7 @@
-Window ambience: three clipped cloud silhouettes, twelve city window pixels and one occasional distant aircraft. Same environment matrix and conservative glass-pane masks preserve the existing skyline and wooden frame. CSS transform/opacity animation only, no canvas, RAF, video, new bitmap requests or large filters. Pauses automatically with browser background CSS throttling; reduced-motion disables movement.
+Desktop city — 2026-10-23
+
+Detailed skyline is composited only inside lower glass panes of the native room master. The original wooden frame, upper painted sky and room geometry remain unchanged. Native tile revision: d00e825b7442. Previous master and deliveries are retained in ignored artwork/ and deprecated/workshop-assets/.
+
+Forty light rectangles are registered to actual warm windows in the new facade artwork. Distant skyline windows alternate darkening and warm light with independent negative phase and a 12–22 second period. Nearer windows below the crossbar use only 10% of that modulation, retaining almost steady light. Opacity-only CSS; no video, canvas, timers or additional image requests. No moving traffic points, aircraft or artificial SVG clouds. Reduced-motion hides these light overlays.
+
+Mobile welcome clouds are separate and unchanged by the desktop city edit.

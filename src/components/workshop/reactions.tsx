@@ -19,8 +19,8 @@ export type ReactionFrame = {
 export const reactionFrames = frames as Record<ObjectId, ReactionFrame>;
 
 /** The pose changes only after its real image has decoded. No timed reveal. */
-export function WorkshopReaction({ target, visible, onReady, onError }: {
-  target: ObjectId; visible: boolean;
+export function WorkshopReaction({ target, visible, priority, onReady, onError }: {
+  target: ObjectId; visible: boolean; priority: boolean;
   onReady: (id: ObjectId) => void; onError: (id: ObjectId) => void;
 }) {
   const frame = reactionFrames[target];
@@ -45,7 +45,7 @@ export function WorkshopReaction({ target, visible, onReady, onError }: {
     </svg>}
     <picture><source media="(max-width: 899px)" srcSet="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
       <img ref={ref} src={small.src} srcSet={`${small.src} ${small.width}w, ${large.src} ${large.width}w`} sizes={`${frame.width}vw`}
-        width={frame.asset.width} height={frame.asset.height} alt="" draggable={false} decoding="async" fetchPriority="high"
+        width={frame.asset.width} height={frame.asset.height} alt="" draggable={false} decoding="async" fetchPriority={priority ? "high" : "low"}
         onLoad={event => { const image = event.currentTarget; image.decode().then(() => { setBaseSrc(image.currentSrc || image.src); onReady(target); }).catch(() => onError(target)); }}
         onError={() => onError(target)} />
     </picture>

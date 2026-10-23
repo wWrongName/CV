@@ -53,3 +53,15 @@
 @media(max-height:600px) and (max-width:899px){.mobile-scene-card{bottom:73px;padding-block:14px;min-height:92px}.mobile-scene-card p{font-size:12px}.mobile-carousel-controls{bottom:7px}}
 @media(prefers-reduced-motion:reduce){.mobile-carousel-dots button>span{transition:none}}
 @media print{.mobile-workshop{display:none!important}}
+
+/* Real sky layer: fixed room/city silhouettes occlude the drifting cloud items. */
+@media(max-width:899px){
+  .mobile-cloud-sky{position:absolute;inset:0;z-index:-4;overflow:hidden;pointer-events:none}
+  .mobile-cloud-artboard{position:absolute;background:linear-gradient(180deg,#123764 0%,#375b8a 17%,#b78199 30%,#f3b568 37%,#dba596 46%,#95b6d6 64%,#8fafd2 78%,#ad93aa 90%,#ecb598 100%)}
+  .mobile-cloud-track{position:absolute;left:0;top:7%;opacity:.8;width:400%;height:32%;display:flex;animation:mobile-cloud-drift 220s linear infinite;animation-play-state:paused;will-change:transform}
+  .mobile-cloud-track>picture{display:block;flex:0 0 50%;width:50%;height:100%}
+  .mobile-cloud-track img{display:block;width:100%;height:100%;max-width:none}
+  .mobile-cloud-sky[data-playing=true] .mobile-cloud-track{animation-play-state:running}
+}
+@keyframes mobile-cloud-drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@media(prefers-reduced-motion:reduce){.mobile-cloud-track{animation:none;will-change:auto}}

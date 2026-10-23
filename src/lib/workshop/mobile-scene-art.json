@@ -1,18 +1,18 @@
 {
   "about": {
-    "master": "artwork/mobile-welcome-scene-v2.png",
+    "master": "artwork/mobile-welcome-foreground-v4.png",
     "files": [
       {
-        "src": "/workshop/mobile-welcome-scene-v2-480.webp",
+        "src": "/workshop/mobile-welcome-foreground-v4-480.webp",
         "width": 480,
         "height": 1038,
-        "bytes": 192198
+        "bytes": 187572
       },
       {
-        "src": "/workshop/mobile-welcome-scene-v2-853.webp",
+        "src": "/workshop/mobile-welcome-foreground-v4-853.webp",
         "width": 853,
         "height": 1844,
-        "bytes": 449930
+        "bytes": 437112
       }
     ]
   },

@@ -1,6 +1,6 @@
 # Production readiness — 2026-10-23
 
-Local production checks passed. No remote deployment, push, DNS or TLS changes were performed. Actual phone GPU, battery usage and remote hosting were not measured.
+Baseline local production audit passed. The native AMD64/ARM64 workflow and deployment subsequently passed for commit 16cdd1b. DNS and TLS were not separately audited. Actual phone GPU, battery usage and remote hosting were not measured.
 
 - Runtime public delivery: 165 files, 19,358,748 bytes (previous public directory: 112,437,246 bytes). 183 superseded deliveries / 95,807,151 bytes are retained locally under ignored deprecated/workshop-assets/.
 - Desktop background tiles: 26,798,180 -> 2,729,454 bytes, same native geometry and 4px bleed. WebP quality 95; measured PSNR 41.28–45.36 dB. Lossless masters remain local in artwork/.
@@ -14,3 +14,11 @@ Local production checks passed. No remote deployment, push, DNS or TLS changes w
 Build with make docker-build or the existing delivery workflow. The Docker builder packages only referenced artwork via scripts/prepare-production-public.cjs. Source artwork and local verification outputs are excluded from the runtime image.
 
 Measurements and browser screenshots are saved in the task workspace under output/wwn-workshop/ (production-mobile-cold.json, production-desktop-cold.json, docker-benchmark.json, http-smoke.json, production-mobile-cold.png).
+
+## Follow-up delivery checks — 2026-10-23
+
+- Updated city tiles, mobile sky/ivy layers, eager desktop pose preparation and link metadata/icon passed production build (35 pages), make test, TypeScript and diff checks.
+- Current curated public delivery: 168 files / 19,593,575 bytes. The temporary preview HTML is excluded from runtime packaging. Superseded city tiles and welcome deliveries are archived locally and absent from public delivery.
+- Desktop browser verified all eight positions prepared before hover, detailed city revision d00e825b7442, 22 distant windows with independent 12–21.6 second light cycles and 18 near windows at 10% modulation. Traffic, aircraft and SVG clouds are removed.
+- Mobile clouds remain a separate upper-sky 220-second one-direction loop; the lower half preserves its original artwork. Blog ivy is an independent item loaded only for its active scene. Combined motion item assets: 388,190 bytes.
+- Network and Docker measurements above describe the baseline audit, not this revised artwork/preload delivery. They were not repeated for this follow-up.

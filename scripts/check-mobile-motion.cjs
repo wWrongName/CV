@@ -6,7 +6,7 @@ function load(file, imports = {}) {
   new Function("exports", "require", ts.transpileModule(fs.readFileSync(file, "utf8"), {compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText)(exports, name => imports[name]);
   return exports;
 }
-const { mobileMotion, patchOffset, motionBudget, coverTransform, cityWindowLevel, processLampLevel, resumePortraitFrame, sleepingCatScale, mobileLampItems, mobileCatItems, catItemLayout, lampItemAngle } = load("src/lib/workshop/mobile-motion.ts");
+const { mobileMotion, patchOffset, motionBudget, coverTransform, cityWindowLevel, processLampLevel, resumePortraitFrame, sleepingCatScale, mobileLampItems, mobileCatItems, catItemLayout, lampItemAngle, blogVineAngle } = load("src/lib/workshop/mobile-motion.ts");
 const scenes = load("src/lib/workshop/mobile-scenes.ts");
 const { mobileSlideIds, mobileSlideAnchor, mobileSlideFromHash } = load("src/lib/workshop/mobile-navigation.ts", {"./mobile-scenes":scenes});
 assert.deepEqual(Object.keys(mobileMotion).sort(), [...mobileSlideIds].sort());
@@ -62,13 +62,22 @@ for(let i=0;i<12;i++) {
 }
 assert.ok(!mobileMotion.blog.some(p=>p.kind==="paper") && !mobileMotion.research.some(p=>p.kind==="paper"),"paper stays still");
 assert.ok(!Object.values(mobileMotion).flat().some(p=>p.kind==="lamp"||p.kind==="breath"||p.kind==="portrait"),"lamps, cats and portraits use independent items rather than background warps");
-let itemBytes=fs.statSync("public/workshop/mobile-resume-head-v1.webp").size;
+assert.ok(!mobileMotion.about.some(p=>p.kind==="cloud"),"clouds are independent translating items, not oscillating room pixels");
+for(const file of ["mobile-about-clouds-v1.webp","mobile-welcome-foreground-v4-480.webp","mobile-welcome-foreground-v4-853.webp"]) {
+  const image=fs.readFileSync(`public/workshop/${file}`);
+  assert.equal(image.toString("ascii",12,16),"VP8X");
+  assert.ok(image[20]&0x10,`${file}: real alpha preserves sky holes and cloud silhouettes`);
+}
+assert.equal(mobileMotion.blog.length,0,"blog wall/shelves are not warped with the ivy");
+for(let t=0;t<14.4;t+=.1)assert.ok(Math.abs(blogVineAngle(t))<=Math.PI*1.1/180*1.18,"ivy swing is small and bounded");
+assert.ok(Math.abs(blogVineAngle(7.2)-blogVineAngle(0))<1e-9,"ivy cycle joins continuously");
+let itemBytes=["mobile-resume-head-v1.webp","mobile-about-clouds-v1.webp","mobile-blog-vine-v1.webp","mobile-blog-vine-plate-v1.webp"].reduce((n,file)=>n+fs.statSync(`public/workshop/${file}`).size,0);
 for(const [id,item] of Object.entries(mobileLampItems)) {
   for(let t=0;t<item.period;t+=.1) assert.ok(Math.abs(lampItemAngle(t,item.period,item.angle))<=Math.PI*item.angle/180+1e-9);
   for(const suffix of ["lamp-v1","lamp-plate-v1"])itemBytes+=fs.statSync(`public/workshop/mobile-${id}-${suffix}.webp`).size;
 }
 for(const id of Object.keys(mobileCatItems))for(const suffix of ["cat-v1",`cat-plate-${id==="contact"?"v2":"v1"}`])itemBytes+=fs.statSync(`public/workshop/mobile-${id}-${suffix}.webp`).size;
-assert.ok(itemBytes<256*1024,"all small mobile motion items fit within 256KiB combined");
+assert.ok(itemBytes<384*1024,"all small mobile motion items fit within 384KiB combined");
 const tiles=JSON.parse(fs.readFileSync("src/lib/workshop/environment-tiles.json","utf8"));
 assert.ok(tiles.reduce((n,t)=>n+fs.statSync(`public${t.file.src}`).size,0)<4*1024*1024,"desktop delivery background stays within 4MiB at native resolution");
 console.log(`Independent mobile items: natural cat aspect/ground contact, quiet breathing, 3 head turns, visible lights, rigid lamp rotations and ${itemBytes} byte total item budget verified.`);

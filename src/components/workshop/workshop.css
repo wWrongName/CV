@@ -255,20 +255,7 @@
 
 /* The view stays mostly still: a few distant details move on the existing city. */
 .workshop-window-life{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
-.workshop-window-cloud{opacity:.38;animation:workshop-cloud-drift 27s linear infinite alternate}
-.workshop-window-cloud.cloud-two{opacity:.28;animation-duration:39s;animation-delay:-13s}
-.workshop-window-cloud.cloud-three{opacity:.25;animation-duration:33s;animation-delay:-22s}
-@keyframes workshop-cloud-drift{from{transform:translateX(-18px)}to{transform:translateX(42px)}}
-.workshop-city-window{opacity:.7;animation:workshop-city-lights 7s ease-in-out infinite}
-@keyframes workshop-city-lights{0%,100%{opacity:.8;filter:brightness(.35)}17%,37%{opacity:1;filter:brightness(1.25)}52%,76%{opacity:.85;filter:brightness(.45)}89%{opacity:1;filter:brightness(1.1)}}
-.workshop-distant-aircraft{animation:workshop-aircraft-pass 29s linear -7s infinite;opacity:0}
-@keyframes workshop-aircraft-pass{0%{transform:translate(1086px,345px);opacity:0}5%{opacity:.85}67%{opacity:.85}75%{transform:translate(1243px,314px);opacity:0}100%{transform:translate(1243px,314px);opacity:0}}
-@media(prefers-reduced-motion:reduce){.workshop-window-cloud,.workshop-city-window{animation:none}.workshop-distant-aircraft{display:none}}
 
-.workshop-city-traffic{animation:workshop-city-traffic 13s linear -3s infinite;opacity:.8}
-.workshop-city-traffic.traffic-return{animation-direction:reverse;animation-delay:-8s;animation-duration:17s}
-@keyframes workshop-city-traffic{0%{transform:translate(1087px,483px);opacity:0}8%,85%{opacity:.85}100%{transform:translate(1170px,479px);opacity:0}}
-@media(prefers-reduced-motion:reduce){.workshop-city-traffic{display:none}}
 
 /* Shared document panels use the same material and type hierarchy as Cases. */
 .workshop-panel{position:fixed;inset:0;max-width:none;margin:auto;padding:0;overflow:hidden;z-index:30}
@@ -500,3 +487,12 @@
 .workshop-classic-link{position:absolute;left:28px;top:22px;z-index:5;display:inline-flex;align-items:center;gap:8px;min-height:28px;padding:5px 8px;border:1px solid #c6b89326;border-radius:3px;background:#11141666;color:#c5c9bd;font:10px/1.4 var(--workshop-mono)}
 .workshop-classic-link:hover{border-color:#c6b89366;background:#111416b3;color:#eee8d9}
 @media(max-height:650px) and (min-width:900px){.workshop-classic-link{top:12px;left:18px}}
+
+
+/* Distant windows twinkle visibly; nearby facades retain their steady painted light. */
+.workshop-city-window[data-depth=near]{opacity:.1}
+.workshop-city-window-dim{opacity:.45;animation:workshop-city-dim 16s ease-in-out infinite}
+.workshop-city-window-light{opacity:.25;animation:workshop-city-light 16s ease-in-out infinite}
+@keyframes workshop-city-dim{0%,100%{opacity:.78}18%,37%{opacity:.02}53%,77%{opacity:.94}90%{opacity:.06}}
+@keyframes workshop-city-light{0%,100%{opacity:.08}18%,37%{opacity:.94}53%,77%{opacity:.01}90%{opacity:.82}}
+@media(prefers-reduced-motion:reduce){.workshop-city-window{display:none}}

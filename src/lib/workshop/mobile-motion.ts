@@ -2,15 +2,15 @@ import type { SectionId } from "./sections";
 
 // Coordinates use the 480px artwork. Outer mesh vertices never move: furniture,
 // paws, paper clamps and the robot base keep their original contact points.
-export type MotionKind = "leaves" | "cloud" | "spindle";
+export type MotionKind = "leaves" | "spindle";
 export type MotionPatch = { box: [number, number, number, number]; kind: MotionKind; amplitude: number; period: number; phase?: number };
 const p = (kind: MotionKind, box: MotionPatch["box"], amplitude: number, period: number, phase = 0): MotionPatch => ({ kind, box, amplitude, period, phase });
 export const mobileMotion: Record<SectionId, MotionPatch[]> = {
-  about: [p("leaves", [0, 0, 314, 312], 5, 6), p("leaves", [0, 566, 262, 274], 4, 7, 1), p("leaves", [419, 535, 61, 225], 4, 6.5, 2), p("cloud", [157, 104, 192, 210], 6, 42)],
+  about: [p("leaves", [0, 0, 314, 312], 5, 6), p("leaves", [0, 566, 262, 274], 4, 7, 1), p("leaves", [419, 535, 61, 225], 4, 6.5, 2)],
   services: [p("spindle", [295, 418, 35, 92], 4, 6.4)],
   projects: [p("leaves", [0, 0, 249, 352], 4, 6.5), p("leaves", [0, 726, 242, 312], 3.5, 7.2, 2)],
   process: [],
-  blog: [p("leaves", [0, 0, 107, 538], 12, 5.2)],
+  blog: [],
   research: [p("leaves", [270, 10, 151, 230], 12, 5.5)],
   experience: [],
   contact: [p("leaves", [0, 0, 162, 408], 4, 6), p("leaves", [299, 146, 181, 420], 4, 7, 1)],
@@ -19,11 +19,9 @@ export function patchOffset(patch: MotionPatch, u: number, v: number, seconds: n
   if (u <= 0 || u >= 1 || v <= 0 || v >= 1) return [0, 0];
   const pin = Math.sin(Math.PI * u) * Math.sin(Math.PI * v);
   const phase = seconds * Math.PI * 2 / patch.period + (patch.phase || 0);
-  const wave = Math.sin(phase);
   const a = patch.amplitude * pin;
   switch (patch.kind) {
     case "leaves": return [a * leafWeight * Math.sin(phase + v * 1.2), a * leafWeight * .24 * Math.sin(phase + u)];
-    case "cloud": return [a * wave, a * .08 * Math.sin(phase + 1)];
     // Only the telescoping tool below the fixed wrist moves, along its axis.
     case "spindle": return [0, a * Math.sin(phase) * Math.sin(phase)];
   }
@@ -75,4 +73,10 @@ export function catItemLayout(scene: keyof typeof mobileCatItems, sourceWidth: n
   const item = mobileCatItems[scene];
   const height = item.width * sourceHeight / sourceWidth * sleepingCatScale(seconds,scene);
   return { x:item.x, y:item.bottom-height, width:item.width, height };
+}
+
+/** A separate hanging ivy item swings from its fixed upper stem. */
+export function blogVineAngle(seconds: number) {
+  const phase = seconds * 2 * Math.PI / 7.2;
+  return (Math.sin(phase) + .18 * Math.sin(phase * 2)) * Math.PI * 1.1 / 180;
 }

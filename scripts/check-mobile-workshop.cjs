@@ -8,7 +8,6 @@ assert.deepEqual(mobileScenes.map(scene=>scene.id),["services","projects","proce
 assert.equal(new Set(mobileScenes.map(s=>s.id)).size,mobileScenes.length);
 assert.deepEqual(new Set(["about",...mobileScenes.map(s=>s.id)]),new Set(sectionIds),"mobile covers every shared destination");
 for(const scene of mobileScenes){for(const locale of ["ru","en"]){assert.ok(scene.title[locale]&&scene.description[locale]);assert.equal(sectionHref(scene.id,locale),`/${locale}/${scene.id}`);}}
-for(const width of [480,853])assert.ok(fs.statSync(`public/workshop/mobile-welcome-scene-v2-${width}.webp`).size>0);
 const art=JSON.parse(fs.readFileSync("src/lib/workshop/mobile-scene-art.json","utf8"));
 assert.deepEqual(new Set(Object.keys(art)),new Set(sectionIds),"every carousel page has artwork");
 for(const asset of Object.values(art)){if(fs.existsSync(asset.master))assert.ok(fs.statSync(asset.master).size>0);for(const file of asset.files)assert.equal(fs.statSync(`public${file.src}`).size,file.bytes);}

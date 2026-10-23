@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "artwork/mobile-blog-scene-v5.png",
+  "prompts": [
+    {
+      "key": "vine",
+      "transparent": true,
+      "prompt": "Use case: background-extraction. Edit target: this exact mobile blog illustration. Extract ONLY the trailing ivy/leaves and their thin stems along the LEFT EDGE in the UPPER HALF of the supplied picture. Keep all those leaves and stems in precisely the original positions and sizes on the SAME 852x1846 full portrait canvas. Everything else is actual alpha transparency: no wall, shelves, pot, books, globe, lamp, paper or typewriter. Exclude the blurry foreground foliage at the bottom. Only the hanging upper-left ivy from the top edge down to the bottom of the trailing strand just above the pencil mug (approximately y=1050 in the source). The warm yellow edges and dark olive blue-green leaves must match the source exactly. Preserve delicate silhouettes and original proportions; do not redesign the plant, crop, add leaves, relocate or rotate. This is a transparent animation sprite aligned to the source image."
+    },
+    {
+      "key": "clean",
+      "transparent": false,
+      "prompt": "Use case: precise-object-edit. Edit target: the supplied mobile blog illustration. Remove ONLY the trailing ivy/leaves and thin stems hanging along the LEFT EDGE in the UPPER HALF (from the top edge to the strand ending just above the pencil mug, around y=1050). Reconstruct the plausible dark wall, brickwork, shelf and the small visible parts of the green books behind those leaves. Keep the small plant pot, globe and all other objects unchanged. DO NOT remove or alter the blurry foreground foliage at the bottom of the picture. Preserve the full exact 852x1846 portrait composition, shelf alignment, geometry, colors, warm lighting, texture and every other pixel as much as possible. Do not repaint books or alter their lettering; do not change the typewriter, paper, lamp or desk. Only clean the background formerly occluded by that left hanging ivy; no new objects."
+    }
+  ],
+  "outputs": [
+    "artwork/mobile-blog-vine-v1.png",
+    "artwork/mobile-blog-vine-plate-v1.png"
+  ],
+  "note": "The original scene pixels are retained outside the extracted ivy mask; generated clean background only fills previously occluded leaf pixels. Crop [0,0,300,1100] from original 852x1846 source."
+}

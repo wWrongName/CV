@@ -9,6 +9,7 @@ import { mobileScenes } from "@/lib/workshop/mobile-scenes";
 import sceneArt from "@/lib/workshop/mobile-scene-art.json";
 import { mobileSlideAnchor, mobileSlideFromHash, mobileSlideIds } from "@/lib/workshop/mobile-navigation";
 import { MobileSceneMotion } from "./mobile-motion";
+import { MobileClouds } from "./mobile-clouds";
 import { CarvedChevron } from "./carved-chevron";
 
 const desktopEmpty = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
@@ -82,6 +83,7 @@ export function MobileWorkshopIndex({ locale, onEnter, paused = false }: { local
     <header className="mobile-workshop-header"><Link className="mobile-workshop-brand" href={`/${locale}`}>WWN<span>IT SOLUTIONS</span></Link><LanguageSwitch locale={locale} anchor={mobileSlideAnchor(active)} /></header>
     <div className="mobile-carousel" ref={rail} onKeyDown={onKeyDown} role="group" aria-roledescription={ru ? "карусель" : "carousel"} aria-label={ru ? "Разделы мастерской" : "Workshop sections"}>
       <section className="mobile-scene mobile-welcome" id="mobile-about" data-mobile-slide="0" aria-labelledby="mobile-about-title">
+        <MobileClouds active={active === 0 && !paused} />
         <MobileArt files={sceneArt.about.files} scene="about" active={active === 0 && !paused} className="mobile-scene-backdrop" eager sizes="(max-width: 899px) 100vw, 1px" />
         <Link className="mobile-scene-card" data-object="about" href={sectionHref("about",locale)} scroll={false} onNavigate={()=>onEnter("about")}>
           <span className="mobile-card-copy"><h1 id="mobile-about-title">{ui.greeting}</h1><p>{ui.boardIntro}</p></span><CarvedChevron tone="text" className="mobile-card-arrow" />

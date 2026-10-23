@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type RefObject } from "react";
 import type { SectionId } from "@/lib/workshop/sections";
-import { cityWindowLevel, processLampLevel, resumePortraitFrame, mobileLampItems, lampItemAngle, mobileCatItems, catItemLayout, coverTransform, mobileMotion, motionBudget, patchOffset, type MotionPatch } from "@/lib/workshop/mobile-motion";
+import { blogVineAngle, cityWindowLevel, processLampLevel, resumePortraitFrame, mobileLampItems, lampItemAngle, mobileCatItems, catItemLayout, coverTransform, mobileMotion, motionBudget, patchOffset, type MotionPatch } from "@/lib/workshop/mobile-motion";
 
 type Point = [number, number];
 type Texture = { patch: MotionPatch; image: HTMLCanvasElement; weights: number[]; columns: number; rows: number };
@@ -185,6 +185,7 @@ export function MobileSceneMotion({ image, scene, active }: { image: RefObject<H
     const portraits: HTMLCanvasElement[] = [];
     let lamp: HTMLImageElement | null = null, emptyLampImage: HTMLImageElement | null = null, emptyLampPlate: HTMLCanvasElement | null = null;
     function prepareLampPlate() { if (emptyLampImage && !disposed) emptyLampPlate = featheredPlate(emptyLampImage); }
+    let vine: HTMLImageElement | null = null, vinePlate: HTMLImageElement | null = null;
     let cat: HTMLImageElement | null = null, emptyCatImage: HTMLImageElement | null = null, emptyCatPlate: HTMLCanvasElement | null = null;
     function prepareCatPlate() { if (emptyCatImage && !disposed) emptyCatPlate = featheredPlate(emptyCatImage); }
     function loadPortraits() {
@@ -210,6 +211,14 @@ export function MobileSceneMotion({ image, scene, active }: { image: RefObject<H
         ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, el.width, el.height);
         ctx.setTransform(transform.scale, 0, 0, transform.scale, transform.x, transform.y);
         textures.forEach(tex => warp(ctx, tex, elapsed));
+        if (scene === "blog" && vine?.complete && vine.naturalWidth && vinePlate?.complete && vinePlate.naturalWidth) {
+          // Replace only the old ivy crop, then move the transparent plant item.
+          // Its top stem is fixed; shelf, book and wall pixels never move.
+          const width = 300 / 852 * 480, height = 1100 / 852 * 480;
+          ctx.drawImage(vinePlate, 0, 0, width, height);
+          ctx.save(); ctx.translate(36, 0); ctx.rotate(blogVineAngle(elapsed));
+          ctx.drawImage(vine, -36, 0, width, height); ctx.restore();
+        }
         if ((scene === "about" || scene === "contact") && cat?.complete && cat.naturalWidth && emptyCatPlate) {
           const clean = mobileCatItems[scene].plate;
           ctx.drawImage(emptyCatPlate,clean[0],clean[1],clean[2],clean[3]);
@@ -250,6 +259,10 @@ export function MobileSceneMotion({ image, scene, active }: { image: RefObject<H
         emptyCatImage = new Image(); emptyCatImage.decoding = "async";
         emptyCatImage.addEventListener("load",prepareCatPlate,{ once:true });
         emptyCatImage.src = `/workshop/mobile-${scene}-cat-plate-${scene === "contact" ? "v2" : "v1"}.webp`;
+      }
+      if (scene === "blog" && !vine) {
+        vine = new Image(); vine.decoding = "async"; vine.src = "/workshop/mobile-blog-vine-v1.webp";
+        vinePlate = new Image(); vinePlate.decoding = "async"; vinePlate.src = "/workshop/mobile-blog-vine-plate-v1.webp";
       }
       if (scene === "experience" && !portraitImage) {
         portraitImage = new Image(); portraitImage.decoding = "async";

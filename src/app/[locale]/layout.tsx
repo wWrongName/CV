@@ -10,9 +10,15 @@ export const dynamicParams = false;
 export function generateStaticParams() { return [{ locale: "ru" }, { locale: "en" }]; }
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const en = (await params).locale === "en";
+  const title = "WWN - IT Solutions";
+  const description = en
+    ? "Web service development, infrastructure and automation. Projects, research and Ivan Velichko's experience."
+    : "Разработка веб-сервисов, инфраструктура и автоматизация. Проекты, исследования и опыт Ивана Величко.";
   return {
-    title: { default: en ? "WWN — Engineering Workshop" : "WWN — инженерная мастерская", template: "%s · WWN" },
-    description: en ? "Ivan Velichko's independent engineering practice. Development, infrastructure, automation and technical research." : "Независимая инженерная практика Ивана Величко. Разработка, инфраструктура, автоматизация и технические исследования.",
+    title: { default: title, template: "%s · WWN" },
+    description,
+    openGraph: { title, description, siteName: title, type: "website", locale: en ? "en_US" : "ru_RU" },
+    twitter: { card: "summary", title, description },
   };
 }
 export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {

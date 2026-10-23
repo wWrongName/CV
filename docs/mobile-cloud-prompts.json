@@ -1,0 +1,19 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "artwork/mobile-welcome-scene-v2.png",
+  "prompts": [
+    {
+      "key": "foreground",
+      "prompt": "Use case: background-extraction. Edit target: the supplied finished mobile illustration. Make a precise transparent-background cutout of ALL the foreground architecture, wooden balcony, beams, vines, lamp, man, laptop, sleeping cat, and distant city skyline/buildings. Remove ONLY the open sky and every cloud to actual alpha transparency, including the visible sky above the skyline and the lower sky to the right/below the balcony. Keep the city's buildings, antennas, windows, and water, every wooden rail and leaf exactly where they are. Preserve the original composition, framing, original 853:1844 portrait aspect ratio, all silhouettes, geometry, colors and textures. Do not redraw or redesign anything. The image will be composited over a separately animated sky. No new objects, no lettering changes, no crop, no background checkerboard baked into pixels. Output the full aligned scene with sky holes on true transparency."
+    },
+    {
+      "key": "clouds",
+      "prompt": "Use case: stylized-concept. Asset: one seamless-repeat horizontal cloud strip on true transparency for the sky of the supplied mobile illustrated scene. Use the image only as a style/color reference. Create just elongated layered sunset clouds in its exact hand-painted anime / slightly pixel-textured style: muted lavender-blue shadow shapes, soft salmon-pink tops, warm pale peach lower cloud banks. No scenery, no city, no buildings, no person, no sky gradient, no blue opaque background. Cloud silhouettes must have true alpha transparency around and between them. Wide horizontal composition about 3:1, generous transparent margins at top/bottom and transparent left/right ends. Several airy scattered cloud groups across the strip, long thin stratus with one or two modest fluffy groups; keep it light rather than a dense cloud wall. Cloud groups should enter/leave the edges naturally when this strip repeats; endpoints transparent and compatible. Crisp illustrated edges, not photorealistic, not glowy. Suitable for slowly translating as one rigid sky layer. Match the supplied picture's sunset clouds. No text or labels."
+    }
+  ],
+  "outputs": {
+    "foreground": "artwork/mobile-welcome-foreground-v4.png",
+    "clouds": "artwork/mobile-about-clouds-v1.png"
+  },
+  "note": "Lower half remains fully opaque and pixel-identical to the original; only the upper sky is cut out. Preserve original RGB pixels; use the generated cutout alpha as the foreground mask. Encode runtime WebP without changing scene geometry."
+}
