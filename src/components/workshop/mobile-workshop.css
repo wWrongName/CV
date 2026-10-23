@@ -1,0 +1,55 @@
+/* Native horizontal paging; shared section dialogs keep their own vertical scroll. */
+.mobile-workshop{display:none}
+.carved-chevron{display:inline-block;vertical-align:middle;pointer-events:none}
+.workshop-back-chevron{display:none}
+@media(max-width:899px){
+  .mobile-workshop{position:relative;display:block;height:100svh;height:100dvh;overflow:hidden;background:#171e2b;color:#eee8d9}
+  .mobile-carousel{display:flex;width:100%;height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none}
+  .mobile-carousel::-webkit-scrollbar{display:none}
+  .mobile-scene{position:relative;isolation:isolate;overflow:clip;flex:0 0 100%;min-width:0;height:100%;scroll-snap-align:start;scroll-snap-stop:always}
+  .mobile-workshop-header{position:absolute;z-index:7;inset:max(14px,env(safe-area-inset-top)) 20px auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .mobile-workshop::before{content:"";position:absolute;z-index:6;inset:0 0 auto;height:105px;background:linear-gradient(#0d162a99,transparent);pointer-events:none}
+  .mobile-workshop-brand{color:#f1e7d7;font:700 29px/1 Georgia,serif;letter-spacing:.08em;text-shadow:0 1px 4px #101a2b}
+  .mobile-workshop-brand>span{display:block;margin-top:6px;font:8px/1.2 var(--workshop-mono);letter-spacing:.18em;text-align:center;text-indent:.18em;white-space:nowrap}
+  .mobile-workshop-header .language-switch{padding:2px;border:1px solid #d1c5a93d;border-radius:3px;background:#1720329c}
+  .mobile-workshop-header .language-switch a{min-width:44px;min-height:44px;padding:10px;color:#e4d5c3}
+  .mobile-workshop-header .language-switch a[aria-current=page]{background:#d4ad5c20;color:#fff0d0}
+  .mobile-welcome{background:#263c55}
+  .mobile-scene-backdrop{position:absolute;display:block;inset:0;width:100%;height:100%;z-index:-3;pointer-events:none}
+  .mobile-scene-backdrop img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 45%}
+  .mobile-scene::after{content:"";position:absolute;z-index:-1;inset:58% 0 0;background:linear-gradient(transparent,#17202fc9 65%,#171e2b)}
+  .mobile-room{background:radial-gradient(ellipse at 70% 45%,#76553228,transparent 65%),#191e2a}
+  .mobile-room[data-room=services]{background:radial-gradient(ellipse at 50% 48%,#284c4438,transparent 60%),#191e2a}
+  .mobile-room[data-room=contact]{background:radial-gradient(ellipse at 50% 45%,#2947524f,transparent 60%),#191e2a}
+  .mobile-scene-motion{position:absolute;inset:0;z-index:-2;width:100%;height:100%;pointer-events:none}
+  .mobile-scene-card{position:absolute;z-index:4;left:24px;right:24px;bottom:90px;width:calc(100% - 48px);max-width:520px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:19px 20px;background:#111416f2;border:1px solid #c6b89366;border-radius:6px;color:#f3f0e8;box-shadow:0 5px 18px #05080955,inset 0 1px #ffffff06;min-height:110px}
+  .mobile-scene-card::before{content:"";position:absolute;left:28px;top:-7px;width:12px;height:12px;background:#111416;border-top:1px solid #c6b89366;border-left:1px solid #c6b89366;transform:rotate(45deg)}
+  .mobile-room[data-room=contact] .mobile-scene-card{top:clamp(150px,26svh,270px);bottom:auto}
+  .mobile-room[data-room=contact] .mobile-scene-card::before{top:auto;bottom:-7px;left:auto;right:28px;transform:rotate(225deg)}
+  .mobile-card-copy{display:block;flex:1;min-width:0}
+  .mobile-scene-card h1,.mobile-scene-card h2{font:600 21px/1.25 Arial,sans-serif;color:#f3f0e8;margin:0 0 7px;text-wrap:balance}
+  .mobile-scene-card p{font:12px/1.7 var(--workshop-mono);color:#b4c2b9;margin:0}
+  .mobile-card-arrow{display:block;flex:none;width:18px;height:24px}
+  .mobile-scene-card:focus-visible{outline:2px solid #f5d299;outline-offset:5px}
+  .mobile-scene-card:active{background:#1b2223;border-color:#c6b893a6}
+  /* One close action anchored to the dialog, in the thumb reach zone. */
+  .workshop-panel[data-section]{width:100%;height:100dvh;max-height:none;border:0;border-radius:0;padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+  .workshop-panel .workshop-panel-header{position:static}
+  .workshop-panel[data-section] .workshop-panel-close{position:absolute;z-index:5;left:18px;right:18px;bottom:calc(14px + env(safe-area-inset-bottom));width:calc(100% - 36px);max-width:420px;min-height:50px;margin:0 auto;padding:10px 18px;justify-content:center;gap:12px;border:1px solid #c6b89366;border-radius:6px;background:#191f20f5;box-shadow:0 4px 22px #05080970;color:#eee8d9;letter-spacing:.02em;text-transform:none;font:13px/1.4 Arial,sans-serif}
+  .workshop-panel[data-section] .workshop-back-chevron{display:block;flex:none;width:14px;height:20px}
+  .workshop-panel[data-section] .workshop-panel-close>span{font:13px/1.4 Arial,sans-serif}
+  .workshop-panel[data-section] .workshop-panel-close>b{display:none}
+  .workshop-panel[data-section] .workshop-panel-body{padding-bottom:20px;scroll-padding-bottom:24px}
+  .mobile-carousel-controls{position:absolute;z-index:6;bottom:max(15px,env(safe-area-inset-bottom));left:20px;right:20px;display:flex;align-items:center;justify-content:center;gap:10px}
+  .mobile-carousel-dots{display:flex;align-items:center;justify-content:center}
+  .mobile-carousel-dots button{display:flex;align-items:center;justify-content:center;flex:none;width:28px;height:44px;border:0;padding:0;background:transparent;cursor:pointer}
+  .mobile-carousel-dots button>span{display:block;width:6px;height:6px;border-radius:50%;background:#e7e4db55;transition:background .15s,transform .15s}
+  .mobile-carousel-dots button[aria-current=step]>span{background:#f1e7d6;transform:scale(1.3)}
+  .mobile-carousel-dots button:focus-visible{outline:1px solid #eed4a6;outline-offset:-3px;border-radius:4px}
+  .mobile-carousel-count{min-width:37px;text-align:right;font:11px/1.4 var(--workshop-mono);color:#e4ddd0;white-space:nowrap}
+
+}
+@media(max-width:360px){.mobile-scene-card{left:18px;right:18px;width:calc(100% - 36px);padding:16px 18px}.mobile-scene-card h1,.mobile-scene-card h2{font-size:20px}.mobile-scene-card p{font-size:12px}.mobile-carousel-controls{left:14px;right:14px;gap:6px}}
+@media(max-height:600px) and (max-width:899px){.mobile-scene-card{bottom:73px;padding-block:14px;min-height:92px}.mobile-scene-card p{font-size:12px}.mobile-carousel-controls{bottom:7px}}
+@media(prefers-reduced-motion:reduce){.mobile-carousel-dots button>span{transition:none}}
+@media print{.mobile-workshop{display:none!important}}

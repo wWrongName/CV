@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
-import { Universe } from "@/components/universe";
 import { isLocale } from "@/lib/i18n";
+
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  if (!isLocale(locale)) notFound();
-  return <Universe locale={locale} />;
+  if (!isLocale((await params).locale)) notFound();
+  // The persistent locale layout owns the scene; sections are URL-backed pages.
+  return null;
 }

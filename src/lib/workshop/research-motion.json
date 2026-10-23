@@ -1,0 +1,130 @@
+{
+  "position": "research",
+  "canvas": {
+    "width": 1350,
+    "height": 991
+  },
+  "blink": {
+    "src": "/workshop/character-research-blink-v1.webp",
+    "x": 521,
+    "y": 278,
+    "width": 205,
+    "height": 89,
+    "durationMs": 170,
+    "intervalsMs": [
+      4800,
+      5700,
+      4500,
+      6200
+    ]
+  },
+  "breath": {
+    "durationsMs": [
+      4900,
+      5300,
+      4700,
+      5100
+    ]
+  },
+  "head": {
+    "pivot": {
+      "x": 675,
+      "y": 446
+    },
+    "angleDegrees": 1.5,
+    "outline": [
+      [
+        374,
+        152
+      ],
+      [
+        490,
+        22
+      ],
+      [
+        693,
+        0
+      ],
+      [
+        825,
+        103
+      ],
+      [
+        850,
+        229
+      ],
+      [
+        788,
+        343
+      ],
+      [
+        709,
+        437
+      ],
+      [
+        618,
+        450
+      ],
+      [
+        495,
+        385
+      ],
+      [
+        382,
+        321
+      ],
+      [
+        351,
+        244
+      ]
+    ]
+  },
+  "hand": {
+    "pivot": {
+      "x": 430,
+      "y": 760
+    },
+    "angleDegrees": 3.2,
+    "periodMs": 5100,
+    "outline": [
+      [
+        375,
+        710
+      ],
+      [
+        470,
+        720
+      ],
+      [
+        575,
+        825
+      ],
+      [
+        720,
+        865
+      ],
+      [
+        815,
+        960
+      ],
+      [
+        740,
+        985
+      ],
+      [
+        575,
+        940
+      ],
+      [
+        420,
+        850
+      ],
+      [
+        360,
+        790
+      ]
+    ],
+    "restAngleDegrees": -5,
+    "foregroundSrc": "/workshop/character-research-foreground-arm-v1.webp"
+  }
+}

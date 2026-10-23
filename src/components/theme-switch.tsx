@@ -34,7 +34,7 @@ export function useTheme() { return useSyncExternalStore(subscribe, snapshot, se
 export function ThemeSwitch({ locale }: { locale: Locale }) {
   const theme = useTheme();
   const label = locale === "ru"
-    ? theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"
+    ? theme === "dark" ? "Включить светлую тему" : "Включить темную тему"
     : theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
   function toggle() {
     const next = theme === "dark" ? "light" : "dark";

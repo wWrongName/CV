@@ -1,0 +1,103 @@
+{
+  "position": "projects",
+  "canvas": {
+    "width": 629,
+    "height": 1514
+  },
+  "blink": {
+    "src": "/workshop/character-projects-blink-v1.webp",
+    "x": 228,
+    "y": 179,
+    "width": 135,
+    "height": 62,
+    "durationMs": 170,
+    "intervalsMs": [
+      4900,
+      6400,
+      4400,
+      5800
+    ]
+  },
+  "breath": {
+    "durationsMs": [
+      4600,
+      5200,
+      4800,
+      5500
+    ]
+  },
+  "folder": {
+    "pivot": {
+      "x": 315,
+      "y": 610
+    },
+    "angleDegrees": 1.2,
+    "outline": [
+      [
+        0,
+        355
+      ],
+      [
+        156,
+        398
+      ],
+      [
+        378,
+        420
+      ],
+      [
+        458,
+        490
+      ],
+      [
+        511,
+        550
+      ],
+      [
+        529,
+        580
+      ],
+      [
+        541,
+        634
+      ],
+      [
+        480,
+        655
+      ],
+      [
+        430,
+        650
+      ],
+      [
+        385,
+        683
+      ],
+      [
+        191,
+        689
+      ],
+      [
+        139,
+        658
+      ],
+      [
+        57,
+        650
+      ],
+      [
+        18,
+        602
+      ]
+    ]
+  },
+  "head": {
+    "pivot": {
+      "x": 335,
+      "y": 295
+    },
+    "angleDegrees": 2,
+    "blendTop": 270,
+    "blendBottom": 325
+  }
+}

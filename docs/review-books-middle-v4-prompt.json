@@ -1,0 +1,11 @@
+{
+  "tool": "built-in ImageGen",
+  "reference": "artwork/reference-shelf-left-books-v3.png",
+  "source": "exec-660f92d3-5046-45d3-9cd5-c3701ecf1cfd.png",
+  "prompt": "Use case: stylized-concept. Asset: transparent cutout for filling the empty space BETWEEN the two book groups in Image1. Image1 is the EXACT visual style reference. Draw ONLY a compact row of FIVE old upright books matching the LEFT group's books literally: flat blocky rectangular spines, dark desaturated navy, dusty brown, one aged cream spine, restrained ochre markings. Irregular thin near-black handdrawn outlines and small chipped flat paint patches, slightly pixel-edged anime adventure-game illustration. Almost straight-on front view with only a narrow sliver of book top visible. No glossy rendering, no realistic leather, no ornate gold filigree, no mountain logos. Vary book heights subtly, all five BOTTOM EDGES aligned on one perfectly straight horizontal baseline. The GROUP silhouette should be about 1.4 TIMES AS WIDE AS IT IS TALL, e.g.700px wide x500px high. Natural close-packed books touching, no gaps. Entire books including bottoms visible. Actual transparent alpha outside the books, no background, NO SHELF, no floor, no cast shadow, no glow or haze, no frame, no labels. Preserve the reference's muted dark navy/tan/ochre palette and restrained warm highlights. It must look like these books were painted by the same artist on the same reference shelf.",
+  "placement": {
+    "x": 233,
+    "width": 95,
+    "baseline": 486
+  }
+}

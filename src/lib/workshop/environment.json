@@ -1,0 +1,29 @@
+{
+  "source": "exec-f8e285b2-94ac-42b8-9496-b8299d5b6f41.png",
+  "width": 1536,
+  "height": 1024,
+  "xPercent": -50.00360844215375,
+  "yPercent": -49.839998075878086,
+  "widthPercent": 100,
+  "heightPercent": 100,
+  "matrix": [
+    1.9989017065092287,
+    -0.001966955814034229,
+    0.001966955814034229,
+    1.9989017065092287,
+    0,
+    0
+  ],
+  "registration": {
+    "matches": 314,
+    "inliers": 154
+  },
+  "files": [
+    {
+      "src": "/workshop/environment-preview-024f8f4e96e6.webp",
+      "width": 384,
+      "height": 256,
+      "bytes": 9408
+    }
+  ]
+}

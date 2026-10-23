@@ -1,0 +1,138 @@
+{
+  "about": {
+    "master": "artwork/mobile-welcome-scene-v2.png",
+    "files": [
+      {
+        "src": "/workshop/mobile-welcome-scene-v2-480.webp",
+        "width": 480,
+        "height": 1038,
+        "bytes": 192198
+      },
+      {
+        "src": "/workshop/mobile-welcome-scene-v2-853.webp",
+        "width": 853,
+        "height": 1844,
+        "bytes": 449930
+      }
+    ]
+  },
+  "services": {
+    "master": "artwork/mobile-services-scene-v7.png",
+    "files": [
+      {
+        "src": "/workshop/mobile-services-scene-v7-480.webp",
+        "width": 480,
+        "height": 1038,
+        "bytes": 138428
+      },
+      {
+        "src": "/workshop/mobile-services-scene-v7-853.webp",
+        "width": 853,
+        "height": 1844,
+        "bytes": 338732
+      }
+    ]
+  },
+  "projects": {
+    "master": "artwork/mobile-projects-scene-v4.png",
+    "files": [
+      {
+        "src": "/workshop/mobile-projects-scene-v4-480.webp",
+        "width": 480,
+        "height": 1038,
+        "bytes": 144158
+      },
+      {
+        "src": "/workshop/mobile-projects-scene-v4-853.webp",
+        "width": 853,
+        "height": 1844,
+        "bytes": 339170
+      }
+    ]
+  },
+  "research": {
+    "master": "artwork/mobile-research-scene-v5.png",
+    "files": [
+      {
+        "src": "/workshop/mobile-research-scene-v5-480.webp",
+        "width": 480,
+        "height": 1038,
+        "bytes": 176720
+      },
+      {
+        "src": "/workshop/mobile-research-scene-v5-853.webp",
+        "width": 853,
+        "height": 1844,
+        "bytes": 432222
+      }
+    ]
+  },
+  "blog": {
+    "master": "artwork/mobile-blog-scene-v5.png",
+    "files": [
+      {
+        "src": "/workshop/mobile-blog-scene-v5-480.webp",
+        "width": 480,
+        "height": 1040,
+        "bytes": 195836
+      },
+      {
+        "src": "/workshop/mobile-blog-scene-v5-852.webp",
+        "width": 852,
+        "height": 1846,
+        "bytes": 467254
+      }
+    ]
+  },
+  "process": {
+    "master": "artwork/mobile-process-scene-v5.png",
+    "files": [
+      {
+        "src": "/workshop/mobile-process-scene-v5-480.webp",
+        "width": 480,
+        "height": 1038,
+        "bytes": 194700
+      },
+      {
+        "src": "/workshop/mobile-process-scene-v5-853.webp",
+        "width": 853,
+        "height": 1844,
+        "bytes": 484946
+      }
+    ]
+  },
+  "experience": {
+    "master": "artwork/mobile-experience-scene-v5.png",
+    "files": [
+      {
+        "src": "/workshop/mobile-experience-scene-v5-480.webp",
+        "width": 480,
+        "height": 1038,
+        "bytes": 170136
+      },
+      {
+        "src": "/workshop/mobile-experience-scene-v5-853.webp",
+        "width": 853,
+        "height": 1844,
+        "bytes": 412294
+      }
+    ]
+  },
+  "contact": {
+    "master": "artwork/mobile-contact-scene-v5.png",
+    "files": [
+      {
+        "src": "/workshop/mobile-contact-scene-v5-480.webp",
+        "width": 480,
+        "height": 1038,
+        "bytes": 112372
+      },
+      {
+        "src": "/workshop/mobile-contact-scene-v5-853.webp",
+        "width": 853,
+        "height": 1844,
+        "bytes": 253074
+      }
+    ]
+  }
+}

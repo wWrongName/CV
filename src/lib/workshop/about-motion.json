@@ -1,0 +1,66 @@
+{
+  "position": "about",
+  "canvas": {
+    "width": 837,
+    "height": 1474
+  },
+  "blink": {
+    "src": "/workshop/character-about-blink-v1.webp",
+    "x": 394,
+    "y": 218,
+    "width": 101,
+    "height": 46,
+    "durationMs": 170,
+    "intervalsMs": [
+      4800,
+      5900,
+      4300,
+      6200
+    ]
+  },
+  "breath": {
+    "durationsMs": [
+      4600,
+      5100,
+      4900,
+      5400
+    ]
+  },
+  "head": {
+    "pivot": {
+      "x": 477,
+      "y": 350
+    },
+    "angleDegrees": 1.8,
+    "outline": [
+      [
+        368,
+        110
+      ],
+      [
+        575,
+        110
+      ],
+      [
+        638,
+        210
+      ],
+      [
+        614,
+        320
+      ],
+      [
+        548,
+        349
+      ],
+      [
+        430,
+        330
+      ],
+      [
+        378,
+        299
+      ]
+    ]
+  }
+}

@@ -121,7 +121,7 @@ export function Universe({ locale, initialView = "intro" }: { locale: Locale; in
     return () => { window.removeEventListener("wheel", wheel); clearTimeout(pendingTick); };
   }, [move, menuOpen]);
 
-  const fallback = <div className="space-fallback"><span>{ui.no3d}</span><Link href={`/${locale}/experience`}>{ui.readResume} →</Link></div>;
+  const fallback = <div className="space-fallback"><span>{ui.no3d}</span><Link href={`/classic/${locale}/experience`}>{ui.readResume} →</Link></div>;
   return <main className={`immersive ${intro ? "at-intro" : inside ? "in-story" : "at-gateway"}`}>
     <div className="world-surface"><SceneBoundary fallback={fallback}>
       <Scene transitionKey={`${journey.id}-${step}`} journey={inside ? journey : projectMap} overview={!inside} introduction={intro}
@@ -138,8 +138,8 @@ export function Universe({ locale, initialView = "intro" }: { locale: Locale; in
       {!intro && <div className="hud-project" aria-live="polite"><span>{ui.project} {journey.index} / {String(journeys.length).padStart(2,"0")}</span><strong>{journey.name}</strong>{inside && <small>{ui.chapter} {step + 1} / {journey.chapters.length}</small>}</div>}
       <MobileNavigation locale={locale} open={menuOpen} onOpenChange={setMenuOpen}>
         <div className="nav-preferences"><LanguageSwitch locale={locale} /><ThemeSwitch locale={locale} /></div>
-        <Link href={`/${locale}/research`}>{ui.research}</Link>
-        <Link className="resume-nav-link" href={`/${locale}/experience`}>{ui.resume}</Link>
+        <Link href={`/classic/${locale}/research`}>{ui.research}</Link>
+        <Link className="resume-nav-link" href={`/classic/${locale}/experience`}>{ui.resume}</Link>
         <a href="https://t.me/wr0ngn4m3" target="_blank" rel="noreferrer">{ui.discuss} <span>↗</span></a>
       </MobileNavigation>
     </header>
@@ -154,7 +154,7 @@ export function Universe({ locale, initialView = "intro" }: { locale: Locale; in
         <p className="gateway-summary">{ui.introSummary}</p>
         <div className="intro-actions">
           <button className="intro-enter" onClick={() => move(1)}>{ui.exploreProjects}<span aria-hidden="true">↗</span></button>
-          <Link className="intro-resume" href={`/${locale}/experience`}>{ui.resume} →</Link>
+          <Link className="intro-resume" href={`/classic/${locale}/experience`}>{ui.resume} →</Link>
         </div>
         <a className="intro-contact" href="https://t.me/wr0ngn4m3" target="_blank" rel="noreferrer" aria-label={ui.telegram}>Telegram · @wr0ngn4m3 ↗</a>
         <button className="intro-motion" aria-pressed={quiet || reduced} onClick={() => setQuiet(v => !v)}>{quiet || reduced ? ui.motionOff : ui.reduceMotion}</button>
@@ -169,19 +169,19 @@ export function Universe({ locale, initialView = "intro" }: { locale: Locale; in
         <h1>{chapter.title}</h1><p className="narration-body">{chapter.text}</p>
         {chapter.metrics && <div className="research-metrics">{chapter.metrics.map(metric => <div key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span><small>{metric.detail}</small></div>)}</div>}
         <div className="story-note"><span aria-hidden="true">⌁</span>{chapter.note}</div>
-        {journey.id === "llmops" && step === journey.chapters.length - 1 && <div className="story-end-links"><Link href={`/${locale}/research`}>{ui.research}: LLM security ↗</Link></div>}
+        {journey.id === "llmops" && step === journey.chapters.length - 1 && <div className="story-end-links"><Link href={`/classic/${locale}/research`}>{ui.research}: LLM security ↗</Link></div>}
         {chapter.details && <details className="research-details"><summary>{chapter.details.title}</summary><p>{chapter.details.text}</p></details>}
-        {step === journey.chapters.length - 1 && <div className="story-end-links"><Link href={`/${locale}/experience`}>{ui.fullResume} ↗</Link><a href="https://t.me/wr0ngn4m3" target="_blank" rel="noreferrer">{ui.discuss} ↗</a></div>}
+        {step === journey.chapters.length - 1 && <div className="story-end-links"><Link href={`/classic/${locale}/experience`}>{ui.fullResume} ↗</Link><a href="https://t.me/wr0ngn4m3" target="_blank" rel="noreferrer">{ui.discuss} ↗</a></div>}
       </section>}
     </div>
     {!intro && <div className="scene-caption" aria-hidden="true"><span className="caption-cross">+</span><div>{inside ? ui.diagram : ui.map}<small>{inside ? ui.components : ui.chooseProject.toUpperCase()}</small></div></div>}
-    {unsupported && <div className="unsupported-note">{ui.simplified} · <Link href={`/${locale}/experience`}>{ui.readResume}</Link></div>}
+    {unsupported && <div className="unsupported-note">{ui.simplified} · <Link href={`/classic/${locale}/experience`}>{ui.readResume}</Link></div>}
     {!intro && <footer className="hud-footer">
       {!inside ? <div className="archive-picker"><span className="footer-label">{ui.chooseProject.toUpperCase()}</span><div role="group" aria-label={ui.chooseProject}>{journeys.map((j, i) => <button key={j.id} onClick={() => setPosition({ project: i, step: -1 })} aria-pressed={i === project} aria-label={`${j.index}: ${j.name}`} title={j.name}><span>{j.index}</span><span className="project-option-name">{j.name}</span><i /></button>)}</div></div>
         : <div className="chapter-nav"><div className="chapter-track" role="group" aria-label={ui.sections}>{journey.chapters.map((c, i) => <button key={c.label} onClick={() => setPosition({ project, step: i })} aria-label={`${ui.chapter} ${i + 1}: ${c.label}`} aria-current={i === step ? "step" : undefined} className={i < step ? "complete" : ""}><span>0{i + 1}</span><span className="chapter-title">{c.label}</span><i /></button>)}</div>
           <div className="transport"><button onClick={() => move(-1)} aria-label={ui.back} disabled={project === 0 && step === -1} title={`${ui.previousStage} · ←`}>←</button><button className="next-chapter" onClick={() => move(1)} aria-label={ui.next} disabled={project === journeys.length - 1 && step === journey.chapters.length - 1} title={`${ui.nextStage} · →`}>{ui.next} <span>→</span></button></div>
         </div>}
-      <div className="footer-utility"><button aria-pressed={quiet || reduced} onClick={() => setQuiet(v => !v)}>{quiet || reduced ? ui.motionOff : ui.reduceMotion}</button><span className="navigation-hint">{ui.scrollHint}</span><Link href={`/${locale}/experience`}>{ui.fullResume} ↗</Link></div>
+      <div className="footer-utility"><button aria-pressed={quiet || reduced} onClick={() => setQuiet(v => !v)}>{quiet || reduced ? ui.motionOff : ui.reduceMotion}</button><span className="navigation-hint">{ui.scrollHint}</span><Link href={`/classic/${locale}/experience`}>{ui.fullResume} ↗</Link></div>
     </footer>}
   </main>;
 }

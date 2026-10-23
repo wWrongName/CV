@@ -1,0 +1,281 @@
+[
+  {
+    "id": "center",
+    "col": 1,
+    "row": 1,
+    "priority": "high",
+    "source": "artwork/workshop-master.webp",
+    "masterRect": {
+      "x": 1276,
+      "y": 764,
+      "width": 3592,
+      "height": 2568
+    },
+    "coreRect": {
+      "x": 1280,
+      "y": 768,
+      "width": 3584,
+      "height": 2560
+    },
+    "x": 319,
+    "y": 191,
+    "worldWidth": 898,
+    "worldHeight": 642,
+    "width": 3592,
+    "height": 2568,
+    "file": {
+      "src": "/workshop/tile-024f8f4e96e6-center-q95.webp",
+      "width": 3592,
+      "height": 2568,
+      "bytes": 1117246
+    }
+  },
+  {
+    "id": "top-left",
+    "col": 0,
+    "row": 0,
+    "priority": "low",
+    "source": "artwork/workshop-master.webp",
+    "masterRect": {
+      "x": 0,
+      "y": 0,
+      "width": 1284,
+      "height": 772
+    },
+    "coreRect": {
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": 768
+    },
+    "x": 0,
+    "y": 0,
+    "worldWidth": 321,
+    "worldHeight": 193,
+    "width": 1284,
+    "height": 772,
+    "file": {
+      "src": "/workshop/tile-024f8f4e96e6-top-left-q95.webp",
+      "width": 1284,
+      "height": 772,
+      "bytes": 92948
+    }
+  },
+  {
+    "id": "top-center",
+    "col": 1,
+    "row": 0,
+    "priority": "low",
+    "source": "artwork/workshop-master.webp",
+    "masterRect": {
+      "x": 1276,
+      "y": 0,
+      "width": 3592,
+      "height": 772
+    },
+    "coreRect": {
+      "x": 1280,
+      "y": 0,
+      "width": 3584,
+      "height": 768
+    },
+    "x": 319,
+    "y": 0,
+    "worldWidth": 898,
+    "worldHeight": 193,
+    "width": 3592,
+    "height": 772,
+    "file": {
+      "src": "/workshop/tile-024f8f4e96e6-top-center-q95.webp",
+      "width": 3592,
+      "height": 772,
+      "bytes": 233416
+    }
+  },
+  {
+    "id": "top-right",
+    "col": 2,
+    "row": 0,
+    "priority": "low",
+    "source": "artwork/workshop-master.webp",
+    "masterRect": {
+      "x": 4860,
+      "y": 0,
+      "width": 1284,
+      "height": 772
+    },
+    "coreRect": {
+      "x": 4864,
+      "y": 0,
+      "width": 1280,
+      "height": 768
+    },
+    "x": 1215,
+    "y": 0,
+    "worldWidth": 321,
+    "worldHeight": 193,
+    "width": 1284,
+    "height": 772,
+    "file": {
+      "src": "/workshop/tile-024f8f4e96e6-top-right-q95.webp",
+      "width": 1284,
+      "height": 772,
+      "bytes": 115790
+    }
+  },
+  {
+    "id": "middle-left",
+    "col": 0,
+    "row": 1,
+    "priority": "low",
+    "source": "artwork/workshop-master.webp",
+    "masterRect": {
+      "x": 0,
+      "y": 764,
+      "width": 1284,
+      "height": 2568
+    },
+    "coreRect": {
+      "x": 0,
+      "y": 768,
+      "width": 1280,
+      "height": 2560
+    },
+    "x": 0,
+    "y": 191,
+    "worldWidth": 321,
+    "worldHeight": 642,
+    "width": 1284,
+    "height": 2568,
+    "file": {
+      "src": "/workshop/tile-024f8f4e96e6-middle-left-q95.webp",
+      "width": 1284,
+      "height": 2568,
+      "bytes": 314828
+    }
+  },
+  {
+    "id": "middle-right",
+    "col": 2,
+    "row": 1,
+    "priority": "low",
+    "source": "artwork/workshop-master.webp",
+    "masterRect": {
+      "x": 4860,
+      "y": 764,
+      "width": 1284,
+      "height": 2568
+    },
+    "coreRect": {
+      "x": 4864,
+      "y": 768,
+      "width": 1280,
+      "height": 2560
+    },
+    "x": 1215,
+    "y": 191,
+    "worldWidth": 321,
+    "worldHeight": 642,
+    "width": 1284,
+    "height": 2568,
+    "file": {
+      "src": "/workshop/tile-024f8f4e96e6-middle-right-q95.webp",
+      "width": 1284,
+      "height": 2568,
+      "bytes": 392324
+    }
+  },
+  {
+    "id": "bottom-left",
+    "col": 0,
+    "row": 2,
+    "priority": "low",
+    "source": "artwork/workshop-master.webp",
+    "masterRect": {
+      "x": 0,
+      "y": 3324,
+      "width": 1284,
+      "height": 772
+    },
+    "coreRect": {
+      "x": 0,
+      "y": 3328,
+      "width": 1280,
+      "height": 768
+    },
+    "x": 0,
+    "y": 831,
+    "worldWidth": 321,
+    "worldHeight": 193,
+    "width": 1284,
+    "height": 772,
+    "file": {
+      "src": "/workshop/tile-024f8f4e96e6-bottom-left-q95.webp",
+      "width": 1284,
+      "height": 772,
+      "bytes": 74528
+    }
+  },
+  {
+    "id": "bottom-center",
+    "col": 1,
+    "row": 2,
+    "priority": "low",
+    "source": "artwork/workshop-master.webp",
+    "masterRect": {
+      "x": 1276,
+      "y": 3324,
+      "width": 3592,
+      "height": 772
+    },
+    "coreRect": {
+      "x": 1280,
+      "y": 3328,
+      "width": 3584,
+      "height": 768
+    },
+    "x": 319,
+    "y": 831,
+    "worldWidth": 898,
+    "worldHeight": 193,
+    "width": 3592,
+    "height": 772,
+    "file": {
+      "src": "/workshop/tile-024f8f4e96e6-bottom-center-q95.webp",
+      "width": 3592,
+      "height": 772,
+      "bytes": 298818
+    }
+  },
+  {
+    "id": "bottom-right",
+    "col": 2,
+    "row": 2,
+    "priority": "low",
+    "source": "artwork/workshop-master.webp",
+    "masterRect": {
+      "x": 4860,
+      "y": 3324,
+      "width": 1284,
+      "height": 772
+    },
+    "coreRect": {
+      "x": 4864,
+      "y": 3328,
+      "width": 1280,
+      "height": 768
+    },
+    "x": 1215,
+    "y": 831,
+    "worldWidth": 321,
+    "worldHeight": 193,
+    "width": 1284,
+    "height": 772,
+    "file": {
+      "src": "/workshop/tile-024f8f4e96e6-bottom-right-q95.webp",
+      "width": 1284,
+      "height": 772,
+      "bytes": 89556
+    }
+  }
+]

@@ -1,0 +1,1 @@
+Edit supplied WWN sign: replace ENGINEERED with IT; retain SOLUTIONS on second small line. Preserve WWN, pixel lettering, frame, chains, bolts, lighting and composition. Registered generated text patch only, original surrounding pixels preserved. Built-in image_gen.

@@ -1,0 +1,12 @@
+[
+  {
+    "key": "upperBooksV4",
+    "path": "/Users/wwrongname/Repositories/CV/artwork/reference-books-upright-v3.png",
+    "prompt": "Use case: precise-object-edit. Correct perspective of these five antique books standing on a wall shelf. Camera straight ahead at nearly their mid-height: FRONT ELEVATION, no top-down or isometric viewpoint. Show mostly straight rectangular vertical spines; only an extremely narrow hint of top page edges, no large visible cream page trapezoids. All bottoms align on one horizontal shelf baseline, individual heights varied slightly, natural slight lean. Preserve five muted navy, warm brown, desaturated olive covers, worn gold decorative spine motifs and simple mountain icon, crisp pixel-edged cartoon style, navy shadows amber highlights. No new titles. Isolated actual transparent background, no shelf, no glow. Whole group visible, width and height roughly equal. Their support is a front-facing horizontal wooden shelf."
+  },
+  {
+    "key": "upperFrameV4",
+    "path": "/Users/wwrongname/Repositories/CV/artwork/reference-about-v3.png",
+    "prompt": "Use case: precise-object-edit. Correct perspective of this small standing dark wooden picture frame on a front-facing wall shelf. Keep same warm aged brown wooden frame and small mountain landscape with navy pines, blue dusk mountains, tiny cabin and peach clouds. View straight ahead, negligible yaw, no roll: frame's bottom edge level and horizontal, side edges parallel and vertical, front rectangle in natural portrait orientation. Frame leans backward very slightly on a short easel foot, but does NOT lean sideways. Tiny support may peek at right, no large triangle taking space. Camera nearly at frame center height, not above it. Preserve crisp pixel-edged cartoon illustration, subtle amber edges, navy shadows. Isolated actual transparent background, no shelf or backdrop, no glow. Entire frame visible, stable flat bottom on one shelf baseline."
+  }
+]

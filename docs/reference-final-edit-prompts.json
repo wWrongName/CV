@@ -1,0 +1,14 @@
+[
+  {
+    "id": "locked-border-outpaint",
+    "prompt": "Use case: precise-object-edit, outpaint transparent regions only. Image1 is padded canvas1536x1024. Keep the existing opaque CENTRAL RECTANGLE x384..1151,y256..767 PIXEL-EXACTLY UNCHANGED in its current size and location. Fill ONLY transparent surrounding border seamlessly with continuation of same empty workshop: woodenwall left, citywindow right, ceiling above, floor below. No stretching, no moving, no resizing central image, do NOT zoom the room to fillcanvas. The small central chalkboard should REMAIN x~655..975 y318..510, do not enlarge. Maintain dark navy shadows, muted aged brown wood, amber local light, crisp pixel-edged 2Dillustration. No furniture no people no extra items. Output fullyopaque1536x1024, allfourborderareas seamlesslydrawn."
+  },
+  {
+    "id": "thin-notebooks",
+    "prompt": "Use case: stylized-concept. Single isolated transparent sprite. Three VERY THIN worn closed dark navy and brown exercise notebooks stacked FLAT, viewed almost exactly from FRONT at extremely low eye level, only a SLIVER of top cover visible. Overall silhouette width FIVE TIMES its height (5:1), long shallow rectangle. This is a small stack total height3cm, not a pile of thick books. A cream loose sheet edge between them. Thin uneven black outline, handdrawn pixel-edged anime adventuregame item, dark navy mutedbrown coolshadows with tiny amberedges. No text, no background, no halo, no perspective top-down view. Entire object fits with transparent margin."
+  },
+  {
+    "id": "silhouette-cleanup",
+    "prompt": "Use case: background-extraction. Remove glowing haze outside hard silhouette, preserve shape, pose, colours. Actual transparent alpha, no backdrop or aura. Selected services pose: exec-04670aa5-7177-4802-a0eb-b171f18d350e.png."
+  }
+]

@@ -1,0 +1,190 @@
+{
+  "room": {
+    "source": "exec-57c7db23-3bc7-4b21-a713-d9d53e4af7f1.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha": false,
+    "files": [
+      {
+        "src": "/workshop/room-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 158728
+      },
+      {
+        "src": "/workshop/room-1536.webp",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 332708
+      }
+    ]
+  },
+  "character": {
+    "source": "exec-ab301b24-8c23-4c3e-a539-ba85f4dcfec6.png",
+    "master": "artwork/character-idle-neutral-v3.png",
+    "width": 1365,
+    "height": 900,
+    "alpha": true,
+    "files": [
+      {
+        "src": "/workshop/character-idle-neutral-v3-480.webp",
+        "width": 480,
+        "height": 316,
+        "bytes": 36670
+      },
+      {
+        "src": "/workshop/character-idle-neutral-v3-960.webp",
+        "width": 960,
+        "height": 633,
+        "bytes": 103212
+      }
+    ]
+  },
+  "cases": {
+    "source": "exec-da9e501f-b14b-4555-ac62-45953fae600e.png",
+    "master": "artwork/reference-cases-v3.png",
+    "width": 1996,
+    "height": 568,
+    "alpha": true,
+    "files": [
+      {
+        "src": "/workshop/reference-cases-v3-256.webp",
+        "width": 256,
+        "height": 73,
+        "bytes": 12796
+      },
+      {
+        "src": "/workshop/reference-cases-v3-512.webp",
+        "width": 512,
+        "height": 146,
+        "bytes": 44440
+      }
+    ]
+  },
+  "services": {
+    "source": "exec-1fa230d4-05aa-4709-a35a-3559d9d78b28.png",
+    "master": "artwork/reference-services-v3.png",
+    "width": 412,
+    "height": 243,
+    "alpha": true,
+    "files": [
+      {
+        "src": "/workshop/reference-services-v3-256.webp",
+        "width": 256,
+        "height": 151,
+        "bytes": 23130
+      },
+      {
+        "src": "/workshop/reference-services-v3-412.webp",
+        "width": 412,
+        "height": 243,
+        "bytes": 50140
+      }
+    ]
+  },
+  "research": {
+    "source": "exec-cf84bfae-d5e5-46db-b347-2dafdbd401ac.png",
+    "master": "artwork/reference-research-v6.png",
+    "width": 2172,
+    "height": 385,
+    "alpha": true,
+    "files": [
+      {
+        "src": "/workshop/reference-research-v6-256.webp",
+        "width": 256,
+        "height": 45,
+        "bytes": 7820
+      },
+      {
+        "src": "/workshop/reference-research-v6-512.webp",
+        "width": 512,
+        "height": 91,
+        "bytes": 25134
+      }
+    ]
+  },
+  "about": {
+    "source": "exec-871fb141-e324-4659-8c05-dcafd6e04888.png",
+    "master": "artwork/reference-about-aviation-v5.png",
+    "width": 962,
+    "height": 1085,
+    "alpha": true,
+    "files": [
+      {
+        "src": "/workshop/reference-about-aviation-v5-256.webp",
+        "width": 256,
+        "height": 289,
+        "bytes": 41268
+      },
+      {
+        "src": "/workshop/reference-about-aviation-v5-512.webp",
+        "width": 512,
+        "height": 577,
+        "bytes": 119864
+      }
+    ]
+  },
+  "resume": {
+    "source": "exec-09db7f03-784c-4f2a-bebc-8200a97e6055.png",
+    "master": "artwork/reference-resume-v4.png",
+    "width": 1521,
+    "height": 947,
+    "alpha": true,
+    "files": [
+      {
+        "src": "/workshop/reference-resume-v4-256.webp",
+        "width": 256,
+        "height": 159,
+        "bytes": 20598
+      },
+      {
+        "src": "/workshop/reference-resume-v4-512.webp",
+        "width": 512,
+        "height": 319,
+        "bytes": 62026
+      }
+    ]
+  },
+  "blog": {
+    "source": "exec-7fd51f27-6084-4384-ae68-35f13bc11347.png",
+    "master": "artwork/reference-blog-v4.png",
+    "width": 843,
+    "height": 1117,
+    "alpha": true,
+    "files": [
+      {
+        "src": "/workshop/reference-blog-v4-256.webp",
+        "width": 256,
+        "height": 339,
+        "bytes": 48964
+      },
+      {
+        "src": "/workshop/reference-blog-v4-512.webp",
+        "width": 512,
+        "height": 678,
+        "bytes": 157284
+      }
+    ]
+  },
+  "process": {
+    "source": "exec-9652314e-defa-4d86-bb7f-349183e12ace.png",
+    "master": "artwork/reference-process-v5.png",
+    "width": 2129,
+    "height": 409,
+    "alpha": true,
+    "files": [
+      {
+        "src": "/workshop/reference-process-v5-256.webp",
+        "width": 256,
+        "height": 49,
+        "bytes": 10182
+      },
+      {
+        "src": "/workshop/reference-process-v5-512.webp",
+        "width": 512,
+        "height": 98,
+        "bytes": 31994
+      }
+    ]
+  }
+}

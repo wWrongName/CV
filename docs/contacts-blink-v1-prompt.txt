@@ -1,0 +1,2 @@
+Edit target: exact supplied cartoon face crop for registered blink animation. Close both eyes naturally with relaxed dark eyelid curves. Preserve exact head angle, framing, all hair, neutral skin, nose, mouth, amber light, texture and outline. No blush, no red/pink cheek patches, no under-eye hatch marks. No other changes. Preserve transparent background.
+Built-in image_gen.

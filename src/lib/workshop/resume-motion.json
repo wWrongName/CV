@@ -1,0 +1,86 @@
+{
+  "position": "experience",
+  "canvas": {
+    "width": 1371,
+    "height": 1100
+  },
+  "blink": {
+    "src": "/workshop/character-resume-blink-v1.webp",
+    "x": 667,
+    "y": 266,
+    "width": 171,
+    "height": 72,
+    "durationMs": 170,
+    "intervalsMs": [
+      4700,
+      5900,
+      4400,
+      6100
+    ]
+  },
+  "breath": {
+    "durationsMs": [
+      4700,
+      5300,
+      4900,
+      5100
+    ]
+  },
+  "head": {
+    "pivot": {
+      "x": 871,
+      "y": 436
+    },
+    "angleDegrees": 1.7,
+    "outline": [
+      [
+        575,
+        168
+      ],
+      [
+        671,
+        29
+      ],
+      [
+        841,
+        0
+      ],
+      [
+        1041,
+        62
+      ],
+      [
+        1090,
+        206
+      ],
+      [
+        1034,
+        338
+      ],
+      [
+        946,
+        388
+      ],
+      [
+        840,
+        428
+      ],
+      [
+        709,
+        426
+      ],
+      [
+        656,
+        359
+      ]
+    ]
+  },
+  "hand": {
+    "pivot": {
+      "x": 414,
+      "y": 458
+    },
+    "angleDegrees": 1.5,
+    "periodMs": 5400
+  }
+}

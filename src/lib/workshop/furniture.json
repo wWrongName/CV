@@ -1,0 +1,999 @@
+[
+  {
+    "id": "rug",
+    "x": 20.36776351928711,
+    "y": 86.81784057617188,
+    "width": 59.065755208333336,
+    "height": 11.8408203125,
+    "master": "artwork/workshop-rug-v1.png",
+    "nativeWidth": 3629,
+    "nativeHeight": 485,
+    "files": [
+      {
+        "src": "/workshop/workshop-rug-v1-1024.webp",
+        "width": 1024,
+        "height": 137,
+        "bytes": 79434
+      },
+      {
+        "src": "/workshop/workshop-rug-v1-2048.webp",
+        "width": 2048,
+        "height": 274,
+        "bytes": 257932
+      }
+    ],
+    "support": {
+      "surface": "floor, perspective registered to the original environment rug"
+    }
+  },
+  {
+    "id": "chalkboard",
+    "x": 35.48177083333333,
+    "y": 11.9140625,
+    "width": 42.64322916666667,
+    "height": 36.988184041421086,
+    "heightScale": 1.0692815090816354,
+    "source": "exec-a26d7c0c-67d1-43a7-841c-f17ea32577e8.png",
+    "master": "artwork/workshop-chalkboard-blank-v1.png",
+    "nativeWidth": 1527,
+    "nativeHeight": 883,
+    "files": [
+      {
+        "src": "/workshop/workshop-chalkboard-blank-v1-768.webp",
+        "width": 768,
+        "height": 444,
+        "bytes": 130168
+      },
+      {
+        "src": "/workshop/workshop-chalkboard-blank-v1-1536.webp",
+        "width": 1536,
+        "height": 888,
+        "bytes": 494030
+      }
+    ]
+  },
+  {
+    "id": "shelves-left",
+    "x": 6.184895833333334,
+    "y": 24.787554824561404,
+    "width": 21.484375,
+    "height": 10.019759685672515,
+    "source": "exec-4211d1c8-0da3-4dc2-a755-93b80333f0a4.png",
+    "master": "artwork/reference-shelves-left-v3.png",
+    "nativeWidth": 1026,
+    "nativeHeight": 319,
+    "files": [
+      {
+        "src": "/workshop/reference-shelves-left-v3-512.webp",
+        "width": 512,
+        "height": 159,
+        "bytes": 19954
+      },
+      {
+        "src": "/workshop/reference-shelves-left-v3-1026.webp",
+        "width": 1026,
+        "height": 319,
+        "bytes": 56860
+      }
+    ],
+    "support": {
+      "surfaceY": 304,
+      "nativeSurfaceY": 156
+    }
+  },
+  {
+    "id": "shelf-left-middle",
+    "x": 6.510416666666667,
+    "y": 35.85387818113773,
+    "width": 20.182291666666664,
+    "height": 5.136211951097804,
+    "source": "exec-4211d1c8-0da3-4dc2-a755-93b80333f0a4.png",
+    "master": "artwork/reference-shelf-left-middle-v3.png",
+    "nativeWidth": 1002,
+    "nativeHeight": 170,
+    "files": [
+      {
+        "src": "/workshop/reference-shelf-left-middle-v3-512.webp",
+        "width": 512,
+        "height": 87,
+        "bytes": 11818
+      },
+      {
+        "src": "/workshop/reference-shelf-left-middle-v3-1002.webp",
+        "width": 1002,
+        "height": 170,
+        "bytes": 33998
+      }
+    ],
+    "support": {
+      "surfaceY": 369,
+      "nativeSurfaceY": 6
+    }
+  },
+  {
+    "id": "shelf-left-books",
+    "x": 6.380208333333333,
+    "y": 40.37264933628318,
+    "width": 21.484375,
+    "height": 11.122441924778762,
+    "source": "exec-4211d1c8-0da3-4dc2-a755-93b80333f0a4.png",
+    "master": "artwork/reference-shelf-left-books-v3.png",
+    "nativeWidth": 1130,
+    "nativeHeight": 390,
+    "files": [
+      {
+        "src": "/workshop/reference-shelf-left-books-v3-512.webp",
+        "width": 512,
+        "height": 177,
+        "bytes": 31668
+      },
+      {
+        "src": "/workshop/reference-shelf-left-books-v3-1130.webp",
+        "width": 1130,
+        "height": 390,
+        "bytes": 112660
+      }
+    ],
+    "support": {
+      "surfaceY": 480,
+      "nativeSurfaceY": 228
+    }
+  },
+  {
+    "id": "shelf-left-bottom",
+    "x": 6.184895833333334,
+    "y": 59.34476870309568,
+    "width": 21.484375,
+    "height": 5.713715114915572,
+    "source": "exec-4211d1c8-0da3-4dc2-a755-93b80333f0a4.png",
+    "master": "artwork/reference-shelf-left-bottom-v3.png",
+    "nativeWidth": 1066,
+    "nativeHeight": 189,
+    "files": [
+      {
+        "src": "/workshop/reference-shelf-left-bottom-v3-512.webp",
+        "width": 512,
+        "height": 91,
+        "bytes": 13136
+      },
+      {
+        "src": "/workshop/reference-shelf-left-bottom-v3-1066.webp",
+        "width": 1066,
+        "height": 189,
+        "bytes": 39466
+      }
+    ],
+    "support": {
+      "surfaceY": 608,
+      "nativeSurfaceY": 1
+    }
+  },
+  {
+    "id": "shelves-right",
+    "x": 76.04166666666666,
+    "y": 17.08984375,
+    "width": 14.322916666666666,
+    "height": 36.86236962190352,
+    "source": "exec-ab5ef9ff-7cdb-4dce-b1e6-9d2f8114c608.png",
+    "master": "artwork/reference-shelves-right-v3.png",
+    "nativeWidth": 767,
+    "nativeHeight": 1316,
+    "files": [
+      {
+        "src": "/workshop/reference-shelves-right-v3-512.webp",
+        "width": 512,
+        "height": 878,
+        "bytes": 159440
+      },
+      {
+        "src": "/workshop/reference-shelves-right-v3-767.webp",
+        "width": 767,
+        "height": 1316,
+        "bytes": 311172
+      }
+    ]
+  },
+  {
+    "id": "radio-large",
+    "x": 7.682291666666667,
+    "y": 51.350911458333336,
+    "width": 9.114583333333332,
+    "height": 9.000651041666668,
+    "source": "exec-3f3c6f01-428a-42dc-b29c-7e68e7b6a31e.png",
+    "master": "artwork/reference-radio-large-v4.png",
+    "nativeWidth": 1440,
+    "nativeHeight": 948,
+    "files": [
+      {
+        "src": "/workshop/reference-radio-large-v4-256.webp",
+        "width": 256,
+        "height": 169,
+        "bytes": 19308
+      },
+      {
+        "src": "/workshop/reference-radio-large-v4-512.webp",
+        "width": 512,
+        "height": 337,
+        "bytes": 52750
+      }
+    ],
+    "support": {
+      "baseline": 618,
+      "surface": "lower left wall shelf, behind counter"
+    }
+  },
+  {
+    "id": "counter",
+    "x": 11.393229166666668,
+    "y": 60.05859375,
+    "width": 78.58072916666666,
+    "height": 28.98469518442623,
+    "source": "exec-e01e29de-e17a-447d-82ac-419121bd4025.png",
+    "master": "artwork/reference-counter-v3.png",
+    "nativeWidth": 2013,
+    "nativeHeight": 495,
+    "files": [
+      {
+        "src": "/workshop/reference-counter-v3-960.webp",
+        "width": 960,
+        "height": 236,
+        "bytes": 88900
+      },
+      {
+        "src": "/workshop/reference-counter-v3-2013.webp",
+        "width": 2013,
+        "height": 495,
+        "bytes": 328860
+      }
+    ],
+    "support": {
+      "top": 615,
+      "lower": 806
+    }
+  },
+  {
+    "id": "sign",
+    "x": 11.197916666666668,
+    "y": -1.7578125,
+    "width": 19.53125,
+    "height": 24.456744427447553,
+    "source": "exec-38eb4914-07ff-4880-8b57-1ea2650c3616.png",
+    "master": "artwork/reference-sign-it-v4.png",
+    "nativeWidth": 1144,
+    "nativeHeight": 955,
+    "files": [
+      {
+        "src": "/workshop/reference-sign-it-v4-384.webp",
+        "width": 384,
+        "height": 321,
+        "bytes": 44352
+      },
+      {
+        "src": "/workshop/reference-sign-it-v4-768.webp",
+        "width": 768,
+        "height": 641,
+        "bytes": 126684
+      }
+    ]
+  },
+  {
+    "id": "vine-left",
+    "x": 2.734375,
+    "y": -1.953125,
+    "width": 7.8125,
+    "height": 36.54054226069247,
+    "source": "exec-b36a999b-009a-4f1b-b5f0-38e845c04a53.png",
+    "master": "artwork/furniture-vine-left-v1.png",
+    "nativeWidth": 491,
+    "nativeHeight": 1531,
+    "files": [
+      {
+        "src": "/workshop/furniture-vine-left-v1-512.webp",
+        "width": 512,
+        "height": 1596,
+        "bytes": 383084
+      },
+      {
+        "src": "/workshop/furniture-vine-left-v1-491.webp",
+        "width": 491,
+        "height": 1531,
+        "bytes": 344342
+      }
+    ]
+  },
+  {
+    "id": "vine-sign",
+    "x": 27.994791666666668,
+    "y": -0.9765625,
+    "width": 7.291666666666667,
+    "height": 34.10450610997963,
+    "source": "exec-b36a999b-009a-4f1b-b5f0-38e845c04a53.png",
+    "master": "artwork/furniture-vine-left-v1.png",
+    "nativeWidth": 491,
+    "nativeHeight": 1531,
+    "files": [
+      {
+        "src": "/workshop/furniture-vine-left-v1-512.webp",
+        "width": 512,
+        "height": 1596,
+        "bytes": 383084
+      },
+      {
+        "src": "/workshop/furniture-vine-left-v1-491.webp",
+        "width": 491,
+        "height": 1531,
+        "bytes": 344342
+      }
+    ]
+  },
+  {
+    "id": "lamp-pendant",
+    "x": 42.83854166666667,
+    "y": -4.39453125,
+    "width": 6.510416666666667,
+    "height": 21.957492236024844,
+    "source": "exec-877640e3-c55d-4636-8356-c797e945c8db.png",
+    "master": "artwork/furniture-lamp-pendant-v1.png",
+    "nativeWidth": 644,
+    "nativeHeight": 1448,
+    "files": [
+      {
+        "src": "/workshop/furniture-lamp-pendant-v1-512.webp",
+        "width": 512,
+        "height": 1151,
+        "bytes": 89002
+      },
+      {
+        "src": "/workshop/furniture-lamp-pendant-v1-644.webp",
+        "width": 644,
+        "height": 1448,
+        "bytes": 127646
+      }
+    ]
+  },
+  {
+    "id": "lamp-bulb",
+    "x": 6.184895833333334,
+    "y": 7.32421875,
+    "width": 3.90625,
+    "height": 24.209795845272204,
+    "source": "exec-fdcbd2a7-d561-4663-bb5a-a7dbdb5f91ef.png",
+    "master": "artwork/furniture-lamp-bulb-v1.png",
+    "nativeWidth": 349,
+    "nativeHeight": 1442,
+    "files": [
+      {
+        "src": "/workshop/furniture-lamp-bulb-v1-512.webp",
+        "width": 512,
+        "height": 2115,
+        "bytes": 197214
+      },
+      {
+        "src": "/workshop/furniture-lamp-bulb-v1-349.webp",
+        "width": 349,
+        "height": 1442,
+        "bytes": 122166
+      }
+    ]
+  },
+  {
+    "id": "plant-left",
+    "x": -0.6510416666666667,
+    "y": 70.10591947115384,
+    "width": 12.369791666666668,
+    "height": 24.620643028846153,
+    "source": "exec-4e92ebcc-ef2a-46c5-b788-846016c0e230.png",
+    "master": "artwork/furniture-plant-left-v1.png",
+    "nativeWidth": 988,
+    "nativeHeight": 1311,
+    "files": [
+      {
+        "src": "/workshop/furniture-plant-left-v1-512.webp",
+        "width": 512,
+        "height": 679,
+        "bytes": 193640
+      },
+      {
+        "src": "/workshop/furniture-plant-left-v1-988.webp",
+        "width": 988,
+        "height": 1311,
+        "bytes": 552900
+      }
+    ],
+    "support": {
+      "baseline": 970,
+      "surface": "floor behind luggage"
+    }
+  },
+  {
+    "id": "lamp-desk",
+    "x": 80.43125,
+    "y": 41.578950751582276,
+    "width": 8.7890625,
+    "height": 20.72104924841772,
+    "source": "exec-3db6fb85-e912-4be9-815e-ba99ac47232e.png",
+    "master": "artwork/furniture-lamp-desk-v1.png",
+    "nativeWidth": 948,
+    "nativeHeight": 1490,
+    "files": [
+      {
+        "src": "/workshop/furniture-lamp-desk-v1-512.webp",
+        "width": 512,
+        "height": 805,
+        "bytes": 81580
+      },
+      {
+        "src": "/workshop/furniture-lamp-desk-v1-948.webp",
+        "width": 948,
+        "height": 1490,
+        "bytes": 212632
+      }
+    ],
+    "support": {
+      "baseline": 637.952,
+      "surface": "countertop"
+    }
+  },
+  {
+    "id": "plant-right",
+    "x": -2.278645833333333,
+    "y": 23.6328125,
+    "width": 8.463541666666668,
+    "height": 18.531610835123523,
+    "source": "exec-c83996da-1961-4c68-bdab-e8d131c32352.png",
+    "master": "artwork/furniture-plant-right-v1.png",
+    "nativeWidth": 931,
+    "nativeHeight": 1359,
+    "files": [
+      {
+        "src": "/workshop/furniture-plant-right-v1-512.webp",
+        "width": 512,
+        "height": 747,
+        "bytes": 177714
+      },
+      {
+        "src": "/workshop/furniture-plant-right-v1-931.webp",
+        "width": 931,
+        "height": 1359,
+        "bytes": 470450
+      }
+    ]
+  },
+  {
+    "id": "luggage",
+    "x": -0.5208333333333333,
+    "y": 71.3742044479405,
+    "width": 16.796875,
+    "height": 28.625795552059497,
+    "source": "exec-4672b395-f797-4761-947d-b4c99b6231e8.png",
+    "master": "artwork/reference-luggage-v3.png",
+    "nativeWidth": 874,
+    "nativeHeight": 993,
+    "files": [
+      {
+        "src": "/workshop/reference-luggage-v3-512.webp",
+        "width": 512,
+        "height": 582,
+        "bytes": 112416
+      },
+      {
+        "src": "/workshop/reference-luggage-v3-874.webp",
+        "width": 874,
+        "height": 993,
+        "bytes": 304512
+      }
+    ],
+    "support": {
+      "baseline": 1024
+    }
+  },
+  {
+    "id": "drawings",
+    "x": 89.19270833333334,
+    "y": 77.76821333586626,
+    "width": 11.1328125,
+    "height": 22.231786664133736,
+    "source": "exec-edcf8ab2-cb24-46d7-aec9-d3af81f6fcd3.png",
+    "master": "artwork/reference-drawings-v4.png",
+    "nativeWidth": 987,
+    "nativeHeight": 1314,
+    "files": [
+      {
+        "src": "/workshop/reference-drawings-v4-256.webp",
+        "width": 256,
+        "height": 341,
+        "bytes": 34596
+      },
+      {
+        "src": "/workshop/reference-drawings-v4-512.webp",
+        "width": 512,
+        "height": 682,
+        "bytes": 91372
+      }
+    ],
+    "support": {
+      "baseline": 1024,
+      "surface": "floor at right of counter"
+    }
+  },
+  {
+    "id": "stool",
+    "x": 80.72916666666666,
+    "y": 80.71763458975119,
+    "width": 10.15625,
+    "height": 22.61690980450237,
+    "source": "exec-27604350-e842-4355-924f-9c9e6adb140e.png",
+    "master": "artwork/furniture-stool-v1.png",
+    "nativeWidth": 844,
+    "nativeHeight": 1253,
+    "files": [
+      {
+        "src": "/workshop/furniture-stool-v1-512.webp",
+        "width": 512,
+        "height": 760,
+        "bytes": 149250
+      },
+      {
+        "src": "/workshop/furniture-stool-v1-844.webp",
+        "width": 844,
+        "height": 1253,
+        "bytes": 366750
+      }
+    ],
+    "support": {
+      "baseline": 1024,
+      "surface": "floor in front of counter"
+    },
+    "heightScale": 0.8525641025641025
+  },
+  {
+    "id": "window-plant",
+    "x": 82.03125,
+    "y": 13.8671875,
+    "width": 14.973958333333334,
+    "height": 18.077871963562753,
+    "source": "exec-7a79aa78-11d9-4a59-8718-74ffa9b0e13a.png",
+    "master": "artwork/reference-window-plant-v3.png",
+    "nativeWidth": 1235,
+    "nativeHeight": 994,
+    "files": [
+      {
+        "src": "/workshop/reference-window-plant-v3-384.webp",
+        "width": 384,
+        "height": 309,
+        "bytes": 70338
+      },
+      {
+        "src": "/workshop/reference-window-plant-v3-768.webp",
+        "width": 768,
+        "height": 618,
+        "bytes": 206440
+      }
+    ]
+  },
+  {
+    "id": "candle",
+    "x": 19.270833333333336,
+    "y": 48.71961805555556,
+    "width": 3.7109375,
+    "height": 11.338975694444445,
+    "source": "exec-1fa230d4-05aa-4709-a35a-3559d9d78b28.png",
+    "master": "artwork/reference-candle-v3.png",
+    "nativeWidth": 162,
+    "nativeHeight": 330,
+    "files": [
+      {
+        "src": "/workshop/reference-candle-v3-162.webp",
+        "width": 162,
+        "height": 330,
+        "bytes": 26244
+      },
+      {
+        "src": "/workshop/reference-candle-v3-162.webp",
+        "width": 162,
+        "height": 330,
+        "bytes": 26244
+      }
+    ],
+    "support": {
+      "baseline": 615
+    }
+  },
+  {
+    "id": "cat",
+    "x": 64.58333333333334,
+    "y": 56.91280737704918,
+    "width": 5.729166666666666,
+    "height": 4.987192622950819,
+    "source": "exec-1fa230d4-05aa-4709-a35a-3559d9d78b28.png",
+    "master": "artwork/reference-cat-v3.png",
+    "nativeWidth": 305,
+    "nativeHeight": 177,
+    "files": [
+      {
+        "src": "/workshop/reference-cat-v3-256.webp",
+        "width": 256,
+        "height": 149,
+        "bytes": 21572
+      },
+      {
+        "src": "/workshop/reference-cat-v3-305.webp",
+        "width": 305,
+        "height": 177,
+        "bytes": 28308
+      }
+    ],
+    "support": {
+      "baseline": 633.856,
+      "surface": "countertop"
+    }
+  },
+  {
+    "id": "cradle",
+    "x": 26.692708333333332,
+    "y": 68.75225306416726,
+    "width": 8.463541666666668,
+    "height": 9.372746935832732,
+    "source": "exec-57ce5f9b-d14d-4d90-8eae-cdb45e0da374.png",
+    "master": "artwork/reference-cradle-v4.png",
+    "nativeWidth": 1387,
+    "nativeHeight": 1024,
+    "files": [
+      {
+        "src": "/workshop/reference-cradle-v4-256.webp",
+        "width": 256,
+        "height": 189,
+        "bytes": 19732
+      },
+      {
+        "src": "/workshop/reference-cradle-v4-512.webp",
+        "width": 512,
+        "height": 378,
+        "bytes": 53660
+      }
+    ],
+    "support": {
+      "baseline": 800,
+      "surface": "thin notebooks on lower shelf"
+    }
+  },
+  {
+    "id": "terrarium",
+    "x": 39.19270833333333,
+    "y": 69.921875,
+    "width": 7.161458333333333,
+    "height": 11.055370809037901,
+    "source": "exec-1fa230d4-05aa-4709-a35a-3559d9d78b28.png",
+    "master": "artwork/reference-terrarium-v3.png",
+    "nativeWidth": 343,
+    "nativeHeight": 353,
+    "files": [
+      {
+        "src": "/workshop/reference-terrarium-v3-256.webp",
+        "width": 256,
+        "height": 263,
+        "bytes": 49292
+      },
+      {
+        "src": "/workshop/reference-terrarium-v3-343.webp",
+        "width": 343,
+        "height": 353,
+        "bytes": 77372
+      }
+    ],
+    "support": {
+      "baseline": 806
+    },
+    "heightScale": 0.7950038629925316
+  },
+  {
+    "id": "receiver",
+    "x": 53.776041666666664,
+    "y": 68.9758465296496,
+    "width": 8.984375,
+    "height": 9.735090970350404,
+    "source": "exec-1fa230d4-05aa-4709-a35a-3559d9d78b28.png",
+    "master": "artwork/reference-receiver-v3.png",
+    "nativeWidth": 371,
+    "nativeHeight": 268,
+    "files": [
+      {
+        "src": "/workshop/reference-receiver-v3-256.webp",
+        "width": 256,
+        "height": 185,
+        "bytes": 26142
+      },
+      {
+        "src": "/workshop/reference-receiver-v3-371.webp",
+        "width": 371,
+        "height": 268,
+        "bytes": 46824
+      }
+    ],
+    "support": {
+      "baseline": 806
+    }
+  },
+  {
+    "id": "books-upright",
+    "x": 10.9375,
+    "y": 22.137718023255815,
+    "width": 5.143229166666666,
+    "height": 7.549781976744185,
+    "source": "exec-72a28c97-8e28-4a97-b6cf-8ab2bfb5abbc.png",
+    "master": "artwork/reference-books-upper-v4.png",
+    "nativeWidth": 1075,
+    "nativeHeight": 1052,
+    "files": [
+      {
+        "src": "/workshop/reference-books-upper-v4-256.webp",
+        "width": 256,
+        "height": 251,
+        "bytes": 36452
+      },
+      {
+        "src": "/workshop/reference-books-upper-v4-512.webp",
+        "width": 512,
+        "height": 501,
+        "bytes": 105948
+      }
+    ],
+    "support": {
+      "baseline": 304
+    }
+  },
+  {
+    "id": "books-flat-lower",
+    "x": 26.236979166666668,
+    "y": 77.79109281203101,
+    "width": 9.114583333333332,
+    "height": 1.7987509379689843,
+    "source": "exec-8311c259-c264-4b08-982a-f442f410d13f.png",
+    "master": "artwork/reference-books-thin-v3.png",
+    "nativeWidth": 1999,
+    "nativeHeight": 263,
+    "files": [
+      {
+        "src": "/workshop/reference-books-thin-v3-256.webp",
+        "width": 256,
+        "height": 34,
+        "bytes": 5700
+      },
+      {
+        "src": "/workshop/reference-books-thin-v3-512.webp",
+        "width": 512,
+        "height": 67,
+        "bytes": 17330
+      }
+    ],
+    "support": {
+      "baseline": 815,
+      "surface": "lower left shelf"
+    }
+  },
+  {
+    "id": "radio-small",
+    "x": 19.140625,
+    "y": 31.21279761904762,
+    "width": 4.166666666666666,
+    "height": 5.5059523809523805,
+    "source": "exec-e21da21e-f552-45c7-bf6a-c95e4a34c5c3.png",
+    "master": "artwork/reference-radio-small-v3.png",
+    "nativeWidth": 336,
+    "nativeHeight": 296,
+    "files": [
+      {
+        "src": "/workshop/reference-radio-small-v3-256.webp",
+        "width": 256,
+        "height": 226,
+        "bytes": 29314
+      },
+      {
+        "src": "/workshop/reference-radio-small-v3-336.webp",
+        "width": 336,
+        "height": 296,
+        "bytes": 44240
+      }
+    ],
+    "support": {
+      "baseline": 376,
+      "surface": "middle-left upper shelf, measured board face"
+    }
+  },
+  {
+    "id": "pinned-maps",
+    "x": 67.31770833333334,
+    "y": 16.30859375,
+    "width": 7.877604166666667,
+    "height": 14.395231066775244,
+    "source": "exec-e21da21e-f552-45c7-bf6a-c95e4a34c5c3.png",
+    "master": "artwork/reference-pinned-aviation-v4.png",
+    "nativeWidth": 1228,
+    "nativeHeight": 1496,
+    "files": [
+      {
+        "src": "/workshop/reference-pinned-aviation-v4-256.webp",
+        "width": 256,
+        "height": 312,
+        "bytes": 46744
+      },
+      {
+        "src": "/workshop/reference-pinned-aviation-v4-307.webp",
+        "width": 307,
+        "height": 374,
+        "bytes": 62106
+      }
+    ]
+  },
+  {
+    "id": "photo-strip",
+    "x": 38.28125,
+    "y": 17.1875,
+    "width": 3.4505208333333335,
+    "height": 18.583519345238095,
+    "source": "exec-e21da21e-f552-45c7-bf6a-c95e4a34c5c3.png",
+    "master": "artwork/reference-sky-strip-v4.png",
+    "nativeWidth": 420,
+    "nativeHeight": 1508,
+    "files": [
+      {
+        "src": "/workshop/reference-sky-strip-v4-105.webp",
+        "width": 105,
+        "height": 377,
+        "bytes": 19218
+      },
+      {
+        "src": "/workshop/reference-sky-strip-v4-420.webp",
+        "width": 420,
+        "height": 1508,
+        "bytes": 169086
+      }
+    ]
+  },
+  {
+    "id": "telegram-cube",
+    "x": 46.61458333333333,
+    "y": 71.6708096590909,
+    "width": 3.3854166666666665,
+    "height": 7.040127840909091,
+    "source": "exec-e21da21e-f552-45c7-bf6a-c95e4a34c5c3.png",
+    "master": "artwork/reference-telegram-cube-v3.png",
+    "nativeWidth": 176,
+    "nativeHeight": 244,
+    "files": [
+      {
+        "src": "/workshop/reference-telegram-cube-v3-176.webp",
+        "width": 176,
+        "height": 244,
+        "bytes": 26694
+      },
+      {
+        "src": "/workshop/reference-telegram-cube-v3-176.webp",
+        "width": 176,
+        "height": 244,
+        "bytes": 26694
+      }
+    ],
+    "support": {
+      "baseline": 806,
+      "surface": "central lower shelf"
+    }
+  },
+  {
+    "id": "email-cube",
+    "x": 50.130208333333336,
+    "y": 71.6708096590909,
+    "width": 3.3854166666666665,
+    "height": 7.0497455018939394,
+    "heightScale": 0.9986357435197818,
+    "nativeWidth": 1056,
+    "nativeHeight": 1466,
+    "master": "artwork/reference-email-cube-v1.png",
+    "source": "exec-c5a978f4-5562-4c9a-b73e-35288052d74e.png",
+    "files": [
+      {
+        "src": "/workshop/reference-email-cube-v1-256.webp",
+        "width": 256,
+        "height": 355,
+        "bytes": 39150
+      },
+      {
+        "src": "/workshop/reference-email-cube-v1-512.webp",
+        "width": 512,
+        "height": 711,
+        "bytes": 96794
+      }
+    ],
+    "support": {
+      "baseline": 806,
+      "surface": "central lower shelf"
+    }
+  },
+  {
+    "id": "books-left-middle",
+    "x": 15.169270833333334,
+    "y": 40.56017287234043,
+    "width": 6.184895833333334,
+    "height": 6.900764627659574,
+    "source": "exec-660f92d3-5046-45d3-9cd5-c3701ecf1cfd.png",
+    "master": "artwork/reference-books-middle-v4.png",
+    "nativeWidth": 1175,
+    "nativeHeight": 874,
+    "files": [
+      {
+        "src": "/workshop/reference-books-middle-v4-256.webp",
+        "width": 256,
+        "height": 190,
+        "bytes": 25384
+      },
+      {
+        "src": "/workshop/reference-books-middle-v4-512.webp",
+        "width": 512,
+        "height": 381,
+        "bytes": 70352
+      }
+    ],
+    "support": {
+      "baseline": 486,
+      "surface": "measured continuous shelf board top y484..486"
+    }
+  },
+  {
+    "id": "desk-accessories",
+    "x": 53.40219780219782,
+    "y": 52.86637362637363,
+    "width": 12.197802197802199,
+    "height": 8.733626373626374,
+    "source": "furniture-desk-accessories-v1.png",
+    "master": "artwork/reference-desk-accessories-laptop-v3.png",
+    "nativeWidth": 750,
+    "nativeHeight": 358,
+    "files": [
+      {
+        "src": "/workshop/reference-desk-accessories-laptop-v3-384.webp",
+        "width": 384,
+        "height": 183,
+        "bytes": 15396
+      },
+      {
+        "src": "/workshop/reference-desk-accessories-laptop-v3-750.webp",
+        "width": 750,
+        "height": 358,
+        "bytes": 38596
+      }
+    ],
+    "support": {
+      "baseline": 630.784,
+      "surface": "countertop, registered to idle character scale"
+    }
+  },
+  {
+    "id": "desk-accessories-mug",
+    "x": 50.40967032967034,
+    "y": 56.79406593406593,
+    "width": 3.301538461538462,
+    "height": 4.805934065934067,
+    "source": "furniture-desk-accessories-v1.png",
+    "master": "artwork/reference-desk-accessories-mug-v3.png",
+    "nativeWidth": 203,
+    "nativeHeight": 197,
+    "files": [
+      {
+        "src": "/workshop/reference-desk-accessories-mug-v3-192.webp",
+        "width": 192,
+        "height": 186,
+        "bytes": 13666
+      },
+      {
+        "src": "/workshop/reference-desk-accessories-mug-v3-203.webp",
+        "width": 203,
+        "height": 197,
+        "bytes": 13762
+      }
+    ],
+    "support": {
+      "baseline": 630.784,
+      "surface": "countertop, registered to idle character scale"
+    }
+  }
+]

@@ -1,0 +1,1 @@
+Use case: precise-object-edit. Edit ONLY the single visible eye in this side profile crop: close the eyelid for a natural brief blink, relaxed neutral eyelid, not smiling or squinting. Keep eyebrow, hair, cheek, nose, mouth, ear, shadows, texture and exact framing identical. No new blush. Preserve transparency. One matching closed-eye animation frame, not a redesign.

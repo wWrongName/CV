@@ -16,7 +16,7 @@ COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 ARG NEXT_PUBLIC_GIT_SHA=dev
 ENV NEXT_PUBLIC_GIT_SHA=$NEXT_PUBLIC_GIT_SHA
-RUN pnpm build
+RUN pnpm build && node scripts/prepare-production-public.cjs
 
 FROM node:24.21.0-alpine AS runner
 WORKDIR /app
@@ -24,7 +24,7 @@ ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 PORT=3000 HOSTNAME=0.0.0.0
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs && mkdir -p /app/data && chown nextjs:nodejs /app/data
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.production/public ./public
 COPY --chown=nextjs:nodejs scripts/create-admin-config.mjs ./scripts/create-admin-config.mjs
 USER nextjs
 EXPOSE 3000

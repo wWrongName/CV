@@ -1,0 +1,433 @@
+{
+  "referenceSize": [
+    1536,
+    1024
+  ],
+  "palette": {
+    "shadow": "dark navy",
+    "wood": "muted aged brown",
+    "foliage": "desaturated olive",
+    "light": "local amber"
+  },
+  "layers": [
+    {
+      "id": "chalkboard",
+      "rect": [
+        545,
+        122,
+        655,
+        405
+      ],
+      "support": {
+        "surface": "back wall"
+      }
+    },
+    {
+      "id": "shelves-left",
+      "rect": [
+        95,
+        253.82,
+        330,
+        102.6
+      ],
+      "support": {
+        "surfaceY": 304,
+        "nativeSurfaceY": 156
+      }
+    },
+    {
+      "id": "shelf-left-middle",
+      "rect": [
+        100,
+        367.14,
+        310,
+        52.59
+      ],
+      "support": {
+        "surfaceY": 369,
+        "nativeSurfaceY": 6
+      }
+    },
+    {
+      "id": "shelf-left-books",
+      "rect": [
+        98,
+        413.42,
+        330,
+        113.89
+      ],
+      "support": {
+        "surfaceY": 480,
+        "nativeSurfaceY": 228
+      }
+    },
+    {
+      "id": "shelf-left-bottom",
+      "rect": [
+        95,
+        607.69,
+        330,
+        58.51
+      ],
+      "support": {
+        "surfaceY": 608,
+        "nativeSurfaceY": 1
+      }
+    },
+    {
+      "id": "shelves-right",
+      "rect": [
+        1168,
+        175,
+        220,
+        377.47
+      ],
+      "support": null
+    },
+    {
+      "id": "counter",
+      "rect": [
+        175,
+        615,
+        1207,
+        296.8
+      ],
+      "support": {
+        "top": 615,
+        "lower": 806
+      }
+    },
+    {
+      "id": "sign",
+      "rect": [
+        172,
+        -18,
+        300,
+        250.44
+      ],
+      "support": null
+    },
+    {
+      "id": "vine-left",
+      "rect": [
+        42,
+        -20,
+        120,
+        374.18
+      ],
+      "support": null
+    },
+    {
+      "id": "vine-sign",
+      "rect": [
+        430,
+        -10,
+        112,
+        349.23
+      ],
+      "support": null
+    },
+    {
+      "id": "lamp-pendant",
+      "rect": [
+        658,
+        -45,
+        100,
+        224.84
+      ],
+      "support": null
+    },
+    {
+      "id": "lamp-bulb",
+      "rect": [
+        95,
+        75,
+        60,
+        247.91
+      ],
+      "support": null
+    },
+    {
+      "id": "plant-left",
+      "rect": [
+        -10,
+        717.88,
+        190,
+        252.12
+      ],
+      "support": {
+        "baseline": 970,
+        "surface": "floor behind luggage"
+      }
+    },
+    {
+      "id": "lamp-desk",
+      "rect": [
+        1235.424,
+        425.7684556962025,
+        135,
+        212.18354430379748
+      ],
+      "support": {
+        "baseline": 637.952,
+        "surface": "countertop"
+      }
+    },
+    {
+      "id": "plant-right",
+      "rect": [
+        -35,
+        242,
+        130,
+        189.76
+      ],
+      "support": null
+    },
+    {
+      "id": "luggage",
+      "rect": [
+        -8,
+        730.87,
+        258,
+        293.13
+      ],
+      "support": {
+        "baseline": 1024
+      }
+    },
+    {
+      "id": "stool",
+      "rect": [
+        1240,
+        826.5485781990521,
+        156,
+        197.45142180094786
+      ],
+      "support": {
+        "baseline": 1024,
+        "surface": "floor in front of counter"
+      }
+    },
+    {
+      "id": "window-plant",
+      "rect": [
+        1260,
+        142,
+        230,
+        185.12
+      ],
+      "support": null
+    },
+    {
+      "id": "radio-large",
+      "rect": [
+        118,
+        525.8333333333334,
+        140,
+        92.16666666666667
+      ],
+      "support": {
+        "baseline": 618,
+        "surface": "lower left wall shelf, behind counter"
+      }
+    },
+    {
+      "id": "candle",
+      "rect": [
+        296,
+        498.89,
+        57,
+        116.11
+      ],
+      "support": {
+        "baseline": 615
+      }
+    },
+    {
+      "id": "cat",
+      "rect": [
+        992.0000000000001,
+        582.7871475409836,
+        87.99999999999999,
+        51.06885245901639
+      ],
+      "support": {
+        "baseline": 633.856,
+        "surface": "countertop"
+      }
+    },
+    {
+      "id": "cradle",
+      "rect": [
+        410,
+        704.0230713770728,
+        130,
+        95.97692862292718
+      ],
+      "support": {
+        "baseline": 800,
+        "surface": "thin notebooks on lower shelf"
+      }
+    },
+    {
+      "id": "terrarium",
+      "rect": [
+        602,
+        716,
+        110,
+        90
+      ],
+      "support": {
+        "baseline": 806
+      }
+    },
+    {
+      "id": "receiver",
+      "rect": [
+        826,
+        706.31,
+        138,
+        99.69
+      ],
+      "support": {
+        "baseline": 806
+      }
+    },
+    {
+      "id": "drawings",
+      "rect": [
+        1370,
+        796.3465045592706,
+        171,
+        227.65349544072947
+      ],
+      "support": {
+        "baseline": 1024,
+        "surface": "floor at right of counter"
+      }
+    },
+    {
+      "id": "books-upright",
+      "rect": [
+        168,
+        226.69023255813954,
+        78.99999999999999,
+        77.30976744186046
+      ],
+      "support": {
+        "baseline": 304
+      }
+    },
+    {
+      "id": "books-flat-lower",
+      "rect": [
+        403,
+        796.5807903951976,
+        140,
+        18.4192096048024
+      ],
+      "support": {
+        "baseline": 815,
+        "surface": "lower left shelf"
+      }
+    },
+    {
+      "id": "radio-small",
+      "rect": [
+        294,
+        319.62,
+        64,
+        56.38
+      ],
+      "support": {
+        "baseline": 376,
+        "surface": "middle-left upper shelf, measured board face"
+      }
+    },
+    {
+      "id": "pinned-maps",
+      "rect": [
+        1034,
+        167,
+        121,
+        147.41
+      ],
+      "support": null
+    },
+    {
+      "id": "photo-strip",
+      "rect": [
+        588,
+        176,
+        53,
+        190.3
+      ],
+      "support": null
+    },
+    {
+      "id": "telegram-cube",
+      "rect": [
+        716,
+        733.9090909090909,
+        52,
+        72.0909090909091
+      ],
+      "support": {
+        "baseline": 806,
+        "surface": "central lower shelf"
+      }
+    },
+    {
+      "id": "books-left-middle",
+      "rect": [
+        233,
+        415.336170212766,
+        95,
+        70.66382978723404
+      ],
+      "support": {
+        "baseline": 486,
+        "surface": "measured continuous shelf board top y484..486"
+      }
+    },
+    {
+      "id": "desk-accessories",
+      "rect": [
+        820.2577582417584,
+        541.351665934066,
+        187.35824175824177,
+        89.43233406593407
+      ],
+      "support": {
+        "baseline": 630.784,
+        "surface": "countertop, registered to idle character scale"
+      }
+    },
+    {
+      "id": "desk-accessories-mug",
+      "rect": [
+        774.2925362637365,
+        581.5712351648351,
+        50.71163076923077,
+        49.21276483516484
+      ],
+      "support": {
+        "baseline": 630.784,
+        "surface": "countertop, registered to idle character scale"
+      }
+    },
+    {
+      "id": "email-cube",
+      "rect": [
+        770,
+        733.9090909090909,
+        52,
+        72.0909090909091
+      ],
+      "support": {
+        "baseline": 806,
+        "surface": "central lower shelf"
+      }
+    }
+  ]
+}

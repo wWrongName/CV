@@ -1,0 +1,6 @@
+{
+  "tool": "built-in ImageGen",
+  "reference": "artwork/reference-telegram-cube-v3.png",
+  "source": "exec-c5a978f4-5562-4c9a-b73e-35288052d74e.png",
+  "prompt": "Use case: precise-object-edit. Image1 is the exact edit target. Make an EMAIL counterpart of this illustrated Telegram cube trophy. Change ONLY the white paper-airplane emblem on the FRONT FACE into a simple white ENVELOPE icon (rectangle with folded V flap). Keep the same blue glass cube geometry, perspective, chipped pixel-edged dark outlines, cyan glass faces, worn brown/navy square plinth, short upright stem, all lighting and colours, same aspect ratio and exact silhouette. No redesign, no extra objects, no text. Full isolated cutout with ACTUAL TRANSPARENT background. Preserve all transparency and do not add an outer halo, glow or floor shadow."
+}

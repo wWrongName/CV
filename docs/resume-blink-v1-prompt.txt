@@ -1,0 +1,2 @@
+Edit target: exact supplied cartoon face crop for website animation. Preserve framing, pixel registration, head angle, hair, lighting, outline, expression, nose, mouth, ears and original painterly grain. Only two changes: remove ALL red/pink blush and hatch marks under eyes, leaving neutral warm skin; close both eyes naturally in a relaxed blink with thin dark eyelid curves. No other changes, no new objects, no beautification. Keep the same dimensions and composition. Preserve transparent background.
+Built-in image_gen.

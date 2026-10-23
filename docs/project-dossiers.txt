@@ -1,0 +1,33 @@
+Project dossiers — reader-facing content and technical detail
+
+The workshop has five cases with stable project IDs and four stable chapter fragments each. The classic site and its journey records remain unchanged. Titles and narratives in src/lib/workshop/case-stories.ts explain the task, project solution, practical workflow and outcome. Each has a complete RU/EN version. There is no second set of chapter controls inside a diagram.
+
+Content provenance:
+- PaaS: the user clarified the actual workflow in this chat on 2026-10-23: connect a GitHub/GitLab project, click launch, automatic stack detection and tools/library preparation, cloud launch, URL and logs. This now leads the narrative. Supporting implementation facts come from getJourneys descriptions and src/lib/resume.json CodeBurst frontend, backend integrations, infrastructure scripts and shared DevOps work. The narrative does not claim sole implementation of the platform/backend.
+- LLMOps: existing reference architecture and pilot description in journeys.ts. Clearly marked as a reference on the cover and in the outcome. This is not a deployed-client case; no measured quality, speed or cost is claimed. Existing pilot implementation details remain in the technical disclosure.
+- Operations: published Zoloto585 resume and old case text. Manual configuration -> GitLab automation; backup-related Sentry disk blocking, recovery and monitoring. The approximate 3x configuration deployment improvement is already in resume.json/resume.en.json; it is not a new metric. The narrative does not generalize this number to all deployments or claim an uptime SLA.
+- Delivery: published resume and journey for Python/.NET/Node.js pipelines, shared deployment standards, automated GitLab/SonarQube project synchronisation, and existing logging/monitoring. Does not claim sole authorship of deployment standards or a mandatory quality gate.
+- Resilience: existing StormWall/Qrator automation, monitoring, alerts and documented response. Protection is supplied by the protection services; the engineer's work is automating operations and preparing response procedures. No automatic alert-to-script execution or attack prevention guarantee is implied.
+
+Presentation:
+- The main story is ordinary prose, a three-step practical workflow, and concrete deliverables or pilot criteria. Technology diagrams are closed by default under “Technical diagram and tools”, once per case, after the practical workflow.
+- The contact CTA opens the existing contact panel. Typography and badge-like charcoal/off-white/beige materials are retained. No new illustration dependencies, invented clients or conversion claims.
+- Project tabs support arrow/Home/End keys. Existing project and chapter hashes remain valid. Native section dialog closes to locale home independent of hash history.
+
+Technical diagrams:
+The old 3D scene's untyped links are not a directed deployment graph. src/lib/workshop/project-diagrams.ts instead defines labelled logical routes for requests, delivery, telemetry and response. Repeated blocks mean the same component; arrows represent the labelled action/data flow, not necessarily who initiates a network connection. Functional relationships have no arrow.
+- PaaS Git -> Argo CD -> Kubernetes makes desired state explicit; CI build is separate.
+- LLMOps request, traces, metrics, evaluation and release are separate. Langfuse does not deploy inference.
+- Operations error reporting and metrics/logging are separate, without a serial Sentry -> Grafana dependency. IaC input means configuration, while errors are sent by applications.
+- Delivery code analysis returns to CI; CI/Helm handles deployment.
+- Resilience traffic and protection management are separate; the runbook reaches engineer-launched API operations.
+
+Tool-role references (not evidence of project-specific implementation):
+https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/
+https://argo-cd.readthedocs.io/en/stable/user-guide/ci_automation/
+https://prometheus.io/docs/introduction/overview/
+https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/ci-integration.md
+
+Validation: scripts/check-project-diagrams.cjs checks both locale node sets, component coverage, route semantics, complete case narratives, stable chapter count and source support for the deployment metric. Browser QA checks reading without diagrams, optional technical detail, chapter navigation and locale variants without resizing the user's viewport.
+
+Editorial preferences: present the project and its solution, without a personal contribution block. Use Russian е instead of ё in site content and exported PDFs. The PaaS title is “Запуск проектов в облаке”; the repository-to-URL workflow belongs in its description.

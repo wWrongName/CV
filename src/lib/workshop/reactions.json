@@ -1,0 +1,226 @@
+{
+  "projects": {
+    "x": 37.4,
+    "y": 96,
+    "height": 68,
+    "replaceObject": true,
+    "width": 18.83399383531484,
+    "asset": {
+      "source": "exec-b1111846-b6d7-45d3-889c-db53e70c6c9c.png",
+      "master": "artwork/character-projects-neutral-v2.png",
+      "width": 629,
+      "height": 1514,
+      "alpha": true,
+      "files": [
+        {
+          "src": "/workshop/character-projects-neutral-v2-384.webp",
+          "width": 384,
+          "height": 924,
+          "bytes": 79980
+        },
+        {
+          "src": "/workshop/character-projects-neutral-v2-768.webp",
+          "width": 768,
+          "height": 1849,
+          "bytes": 210822
+        }
+      ]
+    }
+  },
+  "services": {
+    "x": 7.964938514804201,
+    "y": 101.77679083094556,
+    "height": 69.3,
+    "width": 14.62779369627507,
+    "replaceObject": false,
+    "asset": {
+      "source": "exec-abd6d588-97d8-40e4-9e1e-c3701246b5c9.png",
+      "master": "artwork/character-services-v9.png",
+      "width": 663,
+      "height": 2094,
+      "alpha": true,
+      "files": [
+        {
+          "src": "/workshop/character-services-v9-384.webp",
+          "width": 384,
+          "height": 1213,
+          "bytes": 97228
+        },
+        {
+          "src": "/workshop/character-services-v9-768.webp",
+          "width": 768,
+          "height": 2426,
+          "bytes": 252020
+        }
+      ]
+    }
+  },
+  "research": {
+    "x": 77.2,
+    "y": 62.3,
+    "height": 27,
+    "replaceObject": false,
+    "width": 24.520686175580224,
+    "asset": {
+      "source": "exec-70c25533-427f-44a4-a96a-acd6c8986926.png",
+      "master": "artwork/character-research-reading-v2.png",
+      "width": 1350,
+      "height": 991,
+      "alpha": true,
+      "files": [
+        {
+          "src": "/workshop/character-research-reading-v2-384.webp",
+          "width": 384,
+          "height": 282,
+          "bytes": 31750
+        },
+        {
+          "src": "/workshop/character-research-reading-v2-768.webp",
+          "width": 768,
+          "height": 564,
+          "bytes": 89600
+        }
+      ]
+    }
+  },
+  "experience": {
+    "x": 34.5,
+    "y": 92.3,
+    "height": 30.5,
+    "replaceObject": false,
+    "width": 25.342727272727274,
+    "asset": {
+      "source": "exec-51a2a019-8198-4bfb-845d-4d05916fa3d9.png",
+      "master": "artwork/character-resume-grounded-v6.png",
+      "width": 1371,
+      "height": 1100,
+      "alpha": true,
+      "files": [
+        {
+          "src": "/workshop/character-resume-grounded-v6-384.webp",
+          "width": 384,
+          "height": 308,
+          "bytes": 36388
+        },
+        {
+          "src": "/workshop/character-resume-grounded-v6-768.webp",
+          "width": 768,
+          "height": 616,
+          "bytes": 106638
+        }
+      ]
+    }
+  },
+  "about": {
+    "x": 32,
+    "y": 98,
+    "height": 74,
+    "replaceObject": false,
+    "width": 28.013568521031207,
+    "asset": {
+      "source": "exec-a845f76d-c82f-48c7-9ce4-fd35c5a744fa.png",
+      "master": "artwork/character-about-neutral-v2.png",
+      "width": 837,
+      "height": 1474,
+      "alpha": true,
+      "files": [
+        {
+          "src": "/workshop/character-about-neutral-v2-384.webp",
+          "width": 384,
+          "height": 676,
+          "bytes": 60466
+        },
+        {
+          "src": "/workshop/character-about-neutral-v2-768.webp",
+          "width": 768,
+          "height": 1352,
+          "bytes": 182276
+        }
+      ]
+    }
+  },
+  "blog": {
+    "x": 68,
+    "y": 98,
+    "height": 65.5,
+    "replaceObject": false,
+    "width": 24.432190091907643,
+    "asset": {
+      "source": "exec-22d857aa-bdfc-4763-b415-eb7febd4bdbd.png",
+      "master": "artwork/character-blog-neutral-v2.png",
+      "width": 832,
+      "height": 1487,
+      "alpha": true,
+      "files": [
+        {
+          "src": "/workshop/character-blog-neutral-v2-384.webp",
+          "width": 384,
+          "height": 686,
+          "bytes": 59936
+        },
+        {
+          "src": "/workshop/character-blog-neutral-v2-768.webp",
+          "width": 768,
+          "height": 1373,
+          "bytes": 175158
+        }
+      ]
+    }
+  },
+  "process": {
+    "x": 85.7,
+    "y": 104.1,
+    "height": 52.5,
+    "replaceObject": true,
+    "width": 22.07726409119696,
+    "asset": {
+      "source": "exec-63320ff6-e20a-437f-95ea-e64fe7e25156.png",
+      "master": "artwork/character-process-v2.png",
+      "width": 996,
+      "height": 1579,
+      "alpha": true,
+      "files": [
+        {
+          "src": "/workshop/character-process-v2-384.webp",
+          "width": 384,
+          "height": 609,
+          "bytes": 67416
+        },
+        {
+          "src": "/workshop/character-process-v2-768.webp",
+          "width": 768,
+          "height": 1218,
+          "bytes": 199792
+        }
+      ]
+    }
+  },
+  "contact": {
+    "x": 52.7,
+    "y": 62.3,
+    "height": 19,
+    "width": 19.120253164556964,
+    "replaceObject": false,
+    "asset": {
+      "source": "exec-ae765904-d911-4d0f-a561-164fea38fb0f.png",
+      "master": "artwork/character-contacts-v2.png",
+      "width": 1431,
+      "height": 948,
+      "alpha": true,
+      "files": [
+        {
+          "src": "/workshop/character-contacts-v2-384.webp",
+          "width": 384,
+          "height": 254,
+          "bytes": 32602
+        },
+        {
+          "src": "/workshop/character-contacts-v2-768.webp",
+          "width": 768,
+          "height": 509,
+          "bytes": 88368
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+Position 01: default, seated behind counter.
+Implemented clips: visible local breathing, irregular quick blink, pointer gaze, hair-tip sway.
+Position, props, badges and click targets remain as approved.
+Blink artwork generated with built-in ImageGen; exact prompt: default-position-blink-v1-prompt.txt.
+Raw generated source: artwork/character-default-blink-source-v1.png.
+Registered against artwork/character-idle-v2.png using 330 SIFT/RANSAC inliers.
+Only two softly bounded eyelid patches are used. All other pixels come from the approved idle master.
+Breathing is a continuous local SVG displacement field over chest and right shoulder; neutral outside these regions. Breath strength increased from scale12 to scale26 after visual review. No whole-sprite translation/scale. Cup, laptop, cheek support and hands are outside the field.
+Clip canvas: 1365 x 900; eyelid patch: x298 y251 258x119. No independently trimmed animation frames.
+Motion metadata: src/lib/workshop/default-motion.json.
+Playback waits for actual image.decode; the original picture is the loading/error fallback. No artificial loading delay. Mobile/reduced-motion keep the static artwork. Hidden tab, inactive position and open panel stop the frame loop.
+Blink 170ms, intervals 4.3/6.1/5.2/7.4/4.8s; breath cycles 4.4/5.1/4.7/5.4s, varied depth.
+Other eight positions remain static pending individual review. Eye tracking is now implemented; drinking and other gestures remain outside this review.
+
+Review 02: added gaze and hair.
+Eye whites backplate generated through built-in ImageGen; prompt default-gaze-v1-prompt.txt; master character-default-eye-whites-source-v1.png. Registration used 374 SIFT/RANSAC inliers. Only the eye openings are taken from the generated image. Moving irises are extracted from the approved original artwork and clipped to the original openings. Both eyes share one smoothed offset bounded to an ellipse (10x6 original pixels). Blink is composited above gaze.
+Gaze uses the interaction provider's pointer ref, no React render per pointer movement. Pointer exit smoothly returns eyes to centre. Hair field affects upper strands; its time signal is independent of breathing. Hair and breath maps are neutral at cheek support, cup, hands and laptop. Fields include 24px padding to avoid clipping hair tips.
+
+Review 03: user could not perceive chest-only breathing. Rebuilt the field to lift the hoodie collar and both shoulder silhouettes, with outward chest expansion. Inhale now raises shoulders (positive source-sampling Y), rather than compressing downward. Breathing scale100, up to about7px at the current901px viewport in strongest regions. Garment regions exclude face and supporting hand; field tapers to exact neutral before mug and hand tops. Hair and gaze remain independent.
+
+Review 04: restored the user-requested previous breathing amplitude (scale26, down from100). Retained the corrected upward shoulder field, gaze and hair motion.

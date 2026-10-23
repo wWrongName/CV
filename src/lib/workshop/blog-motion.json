@@ -1,0 +1,70 @@
+{
+  "position": "blog",
+  "canvas": {
+    "width": 832,
+    "height": 1487
+  },
+  "blink": {
+    "src": "/workshop/character-blog-blink-v1.webp",
+    "x": 291,
+    "y": 209,
+    "width": 107,
+    "height": 62,
+    "durationMs": 170,
+    "intervalsMs": [
+      5100,
+      4400,
+      6100,
+      4700
+    ]
+  },
+  "breath": {
+    "durationsMs": [
+      4800,
+      5300,
+      4600,
+      5100
+    ]
+  },
+  "head": {
+    "pivot": {
+      "x": 322,
+      "y": 355
+    },
+    "angleDegrees": 1.7,
+    "outline": [
+      [
+        161,
+        119
+      ],
+      [
+        333,
+        85
+      ],
+      [
+        434,
+        188
+      ],
+      [
+        413,
+        307
+      ],
+      [
+        363,
+        346
+      ],
+      [
+        270,
+        342
+      ],
+      [
+        164,
+        318
+      ],
+      [
+        134,
+        220
+      ]
+    ]
+  }
+}

@@ -13,11 +13,11 @@ export function ResearchDocument({ locale }: { locale: Locale }) {
   const ui = messages[locale];
   return <main className="document resume-page research-page">
     <header className="topbar">
-      <Link href={`/${locale}/projects`} className="identity"><Mark /><span>{ui.name}<small>{ui.specialization}</small></span></Link>
+      <Link href={`/classic/${locale}/projects`} className="identity"><Mark /><span>{ui.name}<small>{ui.specialization}</small></span></Link>
       <MobileNavigation locale={locale} className="resume-top-actions">
         <div className="nav-preferences"><LanguageSwitch locale={locale} /><ThemeSwitch locale={locale} /></div>
-        <Link href={`/${locale}/projects`}>← {ui.projects}</Link>
-        <Link href={`/${locale}/experience`} className="resume-link">{ui.resume}</Link>
+        <Link href={`/classic/${locale}/projects`}>← {ui.projects}</Link>
+        <Link href={`/classic/${locale}/experience`} className="resume-link">{ui.resume}</Link>
       </MobileNavigation>
     </header>
     <article className="resume-document research-document">
@@ -39,7 +39,7 @@ export function ResearchDocument({ locale }: { locale: Locale }) {
         </div>
       </section>)}
       <footer className="resume-bottom">
-        <Link href={`/${locale}/projects`} className="resume-footer-action">← {ui.projects}</Link>
+        <Link href={`/classic/${locale}/projects`} className="resume-footer-action">← {ui.projects}</Link>
         <a href="https://t.me/wr0ngn4m3" className="resume-footer-action">{locale === "ru" ? "Обсудить исследование ↗" : "Discuss the research ↗"}</a>
       </footer>
     </article>

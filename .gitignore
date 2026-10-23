@@ -24,3 +24,14 @@ secrets/
 *.pfx
 id_rsa*
 id_ed25519*
+
+# Generated local production audit and packaging output
+.next-production-audit/
+.production/
+public/__*
+
+# Local archive of superseded illustration deliveries
+deprecated/workshop-assets/
+
+# Authoring masters stay local; encoded public assets are the deployable source.
+artwork/

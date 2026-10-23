@@ -23,3 +23,16 @@ secrets/
 *.pfx
 id_rsa*
 id_ed25519*
+
+# Generated local production audit and packaging output
+.next-production-audit/
+.production/
+
+# Source artwork and local visual QA never ship in the runtime image
+artwork/
+output/
+docs/
+public/__*
+
+# Local archive of superseded illustration deliveries
+deprecated/workshop-assets/

@@ -1,0 +1,51 @@
+{
+  "referenceSize": [
+    1536,
+    1024
+  ],
+  "method": "Normalize illustrated head scale, then align palms, feet, reach and stool seat with current scene.",
+  "positions": {
+    "projects": {
+      "x": 37.4,
+      "y": 96,
+      "height": 68,
+      "width": 18.83399383531484
+    },
+    "services": {
+      "x": 38.5,
+      "y": 61.6,
+      "height": 27.2,
+      "width": 24.25870236869207
+    },
+    "research": {
+      "x": 78.1,
+      "y": 62.3,
+      "height": 27,
+      "width": 24.520686175580224
+    },
+    "experience": {
+      "x": 34.5,
+      "y": 91.6,
+      "height": 30.5,
+      "width": 25.169703103913626
+    },
+    "about": {
+      "x": 32,
+      "y": 98,
+      "height": 74,
+      "width": 28.013568521031207
+    },
+    "blog": {
+      "x": 68,
+      "y": 98,
+      "height": 65.5,
+      "width": 24.432190091907643
+    },
+    "process": {
+      "x": 85.7,
+      "y": 104.1,
+      "height": 52.5,
+      "width": 22.085561497326204
+    }
+  }
+}

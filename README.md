@@ -1,4 +1,10 @@
-# CV
+# WWN Engineering Workshop
+
+The new illustrated workshop lives at `/ru` and `/en`. The original 3D portfolio remains available at `/classic/ru` and `/classic/en`, with its own projects, resume and research pages. A compact classic-version link is available on desktop.
+
+Desktop workshop: static layered room with real object navigation and URL-backed reading panels. Mobile: eight illustrated scenes in a horizontal carousel, with lightweight animations and shared reading panels. Art loads as soon as ready, without artificial delays. See [architecture](docs/interactive-workshop.md) and [art prompts](docs/workshop-art-prompts.md).
+
+## Original portfolio
 
 Interactive 3D portfolio and resume built with Next.js, TypeScript, React Three Fiber and Three.js. Includes English/Russian locales, light/dark themes, PDF resumes and a SQLite-backed analytics dashboard. Docker deployment via GitHub Actions.
 

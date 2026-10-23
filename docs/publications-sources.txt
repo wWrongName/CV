@@ -1,0 +1,22 @@
+Publications content sources — 2026-10-23
+
+Technical articles were read from the author's open Brave tabs:
+- https://habr.com/ru/users/WrongName/articles/ — four published articles.
+- https://dev.to/dashboard — four published posts by wwr0ngn4m3. Only public post links, titles and language information were used; account statistics and management links are not included.
+
+Two cross-post pairs are represented as single materials, each with RU/EN links:
+- wildcard-certificates: Habr 1071764 + DEV automating-wildcard-certificates-avoid-complex-ns-servers-27n2.
+- database-migration: Habr 1061438 + DEV zero-downtime-mariadb-postgresql-migration-why-the-usual-tools-fell-short-and-how-debezium-cdc-424f.
+Four other materials currently have one verified edition each. Six unique technical articles, eight public edition URLs. Original titles preserved, including fallback to the available language when a locale edition does not exist. No inferred dates, traffic statistics or generated article content.
+
+Scientific papers: dissertation "01 Диссертация (118 л. без титула).pdf", printed page 116 (PDF page 115), bibliography entries 24–25. Both titles, complete author lists, IEEE publisher, venue, publication year and page ranges verified against the DOI registry:
+- https://api.crossref.org/works/10.1109/ICCT62929.2024.10874948
+- https://api.crossref.org/works/10.1109/ICSC60084.2023.10349973
+Public links point to DOI resolver pages. No indexing, citation or degree claims added. Dissertation file is not published on the site.
+
+Russian journal articles added 2026-10-23 (dissertation references 18–20, 22). Grouped separately from IEEE conference proceedings. Titles, authors, issue and page ranges checked on official publisher pages:
+- https://jisp.spbstu.ru/article/2025.20.4/ — attacks review, 2025 no. 1, pp. 43–58; DOI 10.48612/jisp/mbvv-n1u7-z7be.
+- https://jisp.spbstu.ru/article/2025.23.10/ — defense review, 2025 no. 3, pp. 110–120; DOI 10.48612/jisp/2nkk-unee-uuzv.
+- https://i-us.ru/index.php/ius/article/view/16284 — VRF journal article, 2024 no. 3, pp. 32–40; DOI 10.31799/1684-8853-2024-3-32-40.
+- https://journal-ekss.ru/?page_id=5115 — 2026 no. 1 (39) table of contents, LoRA certification article pp. 87–94. Official article link: https://journal-ekss.ru/wp-content/uploads/2026/03/87-94-Величко.pdf. Also verified against the author's provided article PDF. No DOI was found or inferred for this record.
+Publisher peer review information is available from https://jisp.spbstu.ru/ (review policies), https://i-us.ru/index.php/ius/ (review section) and https://journal-ekss.ru/?page_id=3863 (explicit manuscript review procedure). No rank/category badges or citation metrics added. The Wave Electronics conference collection and the software registration certificate are not presented as journal articles.

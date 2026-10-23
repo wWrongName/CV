@@ -13,11 +13,11 @@ export function ResumeDocument({ locale }: { locale: Locale }) {
   const pdf = locale === "en" ? "/resume-ivan-velichko-en.pdf" : "/resume-ivan-velichko.pdf";
   return <ResumeInteractions>
     <header className="topbar">
-      <Link href={`/${locale}/projects`} className="identity"><Mark /><span>{ui.name}<small>{ui.specialization}</small></span></Link>
+      <Link href={`/classic/${locale}/projects`} className="identity"><Mark /><span>{ui.name}<small>{ui.specialization}</small></span></Link>
       <MobileNavigation locale={locale} className="resume-top-actions">
         <div className="nav-preferences"><LanguageSwitch locale={locale} /><ThemeSwitch locale={locale} /></div>
-        <Link href={`/${locale}/projects`} className="text-link">← {ui.projects}</Link>
-        <Link href={`/${locale}/research`}>{ui.research}</Link>
+        <Link href={`/classic/${locale}/projects`} className="text-link">← {ui.projects}</Link>
+        <Link href={`/classic/${locale}/research`}>{ui.research}</Link>
         <a href={pdf} download className="resume-download">{ui.download} ↓</a>
       </MobileNavigation>
     </header>

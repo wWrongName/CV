@@ -4,7 +4,7 @@
   "headline": "Fullstack Development, Infrastructure & Management",
   "location": "Saint Petersburg",
   "format": "Remote · project engagements and long-term collaboration",
-  "summary": "I build web services, accelerate software delivery and keep infrastructure running reliably. I combine fullstack development, DevOps and frontend team coordination, from the user interface to deployment and maintenance. I automate manual operations so teams spend less time on repetitive work and service failures. I use LLMs, Claude Code and OpenAI Codex in development.",
+  "summary": "I build web services, accelerate software delivery and keep infrastructure running reliably. I combine fullstack development, DevOps and frontend team coordination, from the user interface to deployment and maintenance. I automate manual operations so teams spend less time on repetitive work and service failures.",
   "contacts": [
     {
       "label": "wwr0ngn4m3@gmail.com",
@@ -31,10 +31,6 @@
     {
       "label": "Development and data",
       "text": "TypeScript, Next.js, React, Redux, Node.js, Express.js, Solidity, Web3, PostgreSQL, Microsoft SQL Server, MariaDB, MongoDB"
-    },
-    {
-      "label": "AI development tools",
-      "text": "LLM, Claude Code, OpenAI Codex"
     }
   ],
   "jobs": [

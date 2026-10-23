@@ -1,0 +1,9 @@
+Position03: cases. Original placement, dimensions and counter occlusion are unchanged.
+Clips: local shoulder breathing, irregular blink, hair tips and a small adjustment of folder angle. Folder and both gripping hands share one mesh influence; no cutout seam or separate hand drift. Legs remain fixed. The gesture is a slight holding adjustment, not page turning.
+Master: artwork/character-projects-neutral-v2.png, original629x1514 canvas. Removed red cheek hatches/blush through a registered ImageGen cheek cleanup. Only cheek regions were applied; original eyes, outline, pose, folder and clothing remain. Default master was similarly cleaned in artwork/character-idle-neutral-v3.png. Tightened default blink mask so old cheek markings cannot flash back.
+Eye frame: character-projects-blink-v1.png; registered from the original cropped face, restricted to eyelid regions to exclude the generated red cheek marks. Prompts: projects-blink-v1-prompt.txt, projects-neutral-face-prompt.txt, default-neutral-face-prompt.txt. Raw generated cleanup sources are saved under artwork. Registration counts: projects203, default527, blink78.
+Motion uses the continuous mesh renderer already used by solutions. Added optional per-position influences and amplitudes; the default solutions parameters stay identical. Actual decoding governs appearance; static neutral image remains the fallback, and reduced-motion/mobile use static behaviour. Navigation is immediate.
+
+Head: occasional2degree side tilt around neck335,295, with a smooth neck blend270..325. Ease1400ms, hold1300ms, return1700ms, then rest; alternate sides each17.2s cycle. Eyelid overlay shares the same head rotation, so blinking stays registered. No neck cutout seam.
+
+Review: user requested frequent head motion. Replaced the occasional hold schedule with continuous slow sway combining two rhythms1350ms and3300ms, keeping2degree maximum and shared eyelid registration.

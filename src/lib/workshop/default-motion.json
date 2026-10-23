@@ -1,0 +1,57 @@
+{
+  "position": "default",
+  "canvas": {
+    "width": 1365,
+    "height": 900
+  },
+  "blink": {
+    "src": "/workshop/character-default-blink-neutral-v2.webp",
+    "x": 298,
+    "y": 251,
+    "width": 258,
+    "height": 119,
+    "durationMs": 170,
+    "intervalsMs": [
+      4300,
+      6100,
+      5200,
+      7400,
+      4800
+    ]
+  },
+  "breath": {
+    "field": "/workshop/character-default-breath-field-v3.png",
+    "scale": 26,
+    "durationsMs": [
+      4400,
+      5100,
+      4700,
+      5400
+    ],
+    "padding": 24
+  },
+  "hair": {
+    "field": "/workshop/character-default-hair-field-v1.png",
+    "padding": 24,
+    "scale": 18
+  },
+  "gaze": {
+    "whites": "/workshop/character-default-eye-whites-v1.webp",
+    "irises": "/workshop/character-default-irises-v1.webp",
+    "x": 298,
+    "y": 251,
+    "width": 258,
+    "height": 119,
+    "center": {
+      "x": 432,
+      "y": 314
+    },
+    "maxX": 10,
+    "maxY": 6,
+    "responseMs": 95,
+    "openings": [
+      "316,334 325,326 339,319 354,315 370,313 382,316 388,323 388,336 382,346 367,352 349,355 332,353 322,346",
+      "461,296 471,286 487,280 502,276 517,275 529,280 535,287 533,300 526,310 513,317 497,321 480,320 469,313"
+    ]
+  }
+}

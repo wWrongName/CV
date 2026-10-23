@@ -38,7 +38,7 @@ export const messages = {
     "scrollHint": "← → или прокрутка",
     "no3d": "3D недоступно в этом браузере",
     "readResume": "Читать резюме",
-    "simplified": "Упрощённый режим",
+    "simplified": "Упрощенный режим",
     "download": "Скачать PDF",
     "downloadFull": "Скачать полное резюме в PDF",
     "skills": "Основные навыки",

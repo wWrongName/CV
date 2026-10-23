@@ -1,0 +1,12 @@
+[
+  {
+    "key": "cradle",
+    "path": "/Users/wwrongname/Repositories/CV/artwork/reference-cradle-v3.png",
+    "prompt": "Use case: precise-object-edit. Edit this Newton cradle game sprite. Preserve exact dark warm brown wood, antique bronze frame, silver balls, pixel-edged cartoon illustration and amber lighting. Correct perspective to almost straight-on front elevation, horizontal level base, only a very shallow top surface visible, no yaw to the side. All five balls hang straight down motionless in a horizontal touching row. Keep whole object isolated, no shelf or books, transparent background. Strong clean edges, no glow. Designed to rest flat on a horizontal cabinet shelf seen from straight in front slightly above. Entire object visible."
+  },
+  {
+    "key": "resume",
+    "path": "/Users/wwrongname/Repositories/CV/artwork/reference-resume-v3.png",
+    "prompt": "Use case: precise-object-edit. Edit this CV clipboard sprite, preserving its parchment, dark wooden clipboard, amber ink, small same cartoon portrait and CV lettering, pixel-edged hand illustrated style. Change pose: clipboard is partly propped up at a moderate angle around 45 degrees from horizontal, bottom edge resting on shelf, top leaning back toward cabinet wall, a casual half standing lean, not flat and not fully upright. Camera straight ahead slightly above, negligible sideways yaw. Whole clipboard isolated on transparent background. No shelf, no wall, no other items, no light halo. This will fit into left corner of a low cabinet cubby."
+  }
+]

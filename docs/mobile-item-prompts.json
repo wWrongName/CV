@@ -1,0 +1,75 @@
+{
+  "portrait": "Use case: identity-preserve. Asset: a THREE-FRAME horizontal sprite strip for the small printed CV portrait in the attached workshop illustration. The attachment is a character/style reference, not a background to redraw. Generate ONLY THREE equally sized square portrait cells in ONE row, edge to edge, with no gutters, no labels, no surrounding room or CV. Overall image 3:1 landscape. Same young fictional anime boy from the tiny resume photo: messy dark brown hair, dark charcoal hoodie, warm neutral skin, simple calm eyes, NO red marks or blush under eyes. Preserve the original modest simple illustrated character, inked edges and warm brown/amber palette, muted plain brown background, like a small printed portrait. His shoulders/body stay precisely identical and registered in all cells, head size and eye height consistent. Left cell: head visibly turned 25 degrees to viewer's LEFT, eyes looking left. Center cell: facing forward, calm neutral expression. Right cell: head visibly turned 25 degrees to viewer's RIGHT, eyes looking right. Head turns must clearly change facial silhouette and visible cheek/ear, not merely slide the same face. Square head-and-shoulders portraits, hair fully within each cell, head fills the upper 70%, hoodie shoulders in lower 30%. No props, no text, no photo realism, no glow. This is an animation sprite sheet, keep all three portraits the same scale and shoulders still.",
+  "cats": [
+    {
+      "key": "cats",
+      "prompt": "Use case: background-extraction. Asset: TWO separate sleeping-cat cutouts in one horizontal sprite sheet, transparent background. Image 1 contains a small sleeping black-and-white cat on the desk to the right of the laptop. Image 2 contains a larger black-and-white sleeping cat on a cushion in front of Telegram. Extract/recreate ONLY those two cats, preserving each original sleeping pose, black/white markings, paw positions, ink texture and amber rim light. Left cell: cat from image 1, facing toward viewer's right, narrow curled sleeping body. Right cell: cat from image 2, head toward viewer's left, rounded body to the right with white paws in front. Same scale within each cell, no rotation. Each entire cat fully visible including ears and paws. No desk, no cushion, no plants, no shadows outside the cats, no extra objects, no lettering. Exactly two equal square cells edge to edge in one row, one cat centered in each, only small transparent padding, true alpha background. Keep the cats simple and illustrated exactly in the source style, not photoreal.",
+      "refs": [
+        "/Users/wwrongname/Repositories/CV/public/workshop/mobile-welcome-scene-v2-480.webp",
+        "/Users/wwrongname/Repositories/CV/public/workshop/mobile-contact-scene-v4-480.webp"
+      ],
+      "transparent": true
+    },
+    {
+      "key": "about-clean",
+      "prompt": "Use case: precise-object-edit. Edit the attached scene. REMOVE ONLY THE SLEEPING BLACK-AND-WHITE CAT and reconstruct the small background directly behind it. Keep the empty wooden desktop exactly in place. Preserve the laptop or Telegram screen, mug, foliage, furniture, lighting, camera, all positions, all lettering, aspect ratio and every other detail. No other edits. Return the full scene with just the cat gone; same composition and original warm illustrated texture.",
+      "refs": [
+        "/Users/wwrongname/Repositories/CV/public/workshop/mobile-welcome-scene-v2-480.webp"
+      ],
+      "transparent": false
+    },
+    {
+      "key": "contact-clean",
+      "prompt": "Use case: precise-object-edit. Edit the attached scene. REMOVE ONLY THE SLEEPING BLACK-AND-WHITE CAT and reconstruct the small background directly behind it. Keep the empty wooden desktop and the original empty red-brown sleeping cushion exactly in place. Preserve the laptop or Telegram screen, mug, foliage, furniture, lighting, camera, all positions, all lettering, aspect ratio and every other detail. No other edits. Return the full scene with just the cat gone; same composition and original warm illustrated texture.",
+      "refs": [
+        "/Users/wwrongname/Repositories/CV/public/workshop/mobile-contact-scene-v4-480.webp"
+      ],
+      "transparent": false
+    }
+  ],
+  "lamps": [
+    {
+      "key": "sprites",
+      "prompt": "Use case: background-extraction. Asset: FOUR individual transparent lamp sprites in a precise 2 by 2 grid of equal square cells. Top left: caged lantern from reference 1. Top right: black industrial pendant shade and caged bulb from reference 2. Bottom left: brass pendant shade and glowing underside from reference 3. Bottom right: bare filament bulb and black socket from reference 4. Extract ONLY each lamp body, preserving its EXACT source silhouette, camera angle, original warm illumination and hand-inked texture. Do not include wall brackets, long ceiling wires, wood, wall, foliage, shadows outside the lamp, glow halos outside the silhouette or any other room pixels. Keep the tiny top hanging ring/socket attachment as part of each lamp. Place each entire object centered in its cell with its upper attachment near the top, small transparent padding, no clipping, no rotation from source. True transparent alpha background. No text, no grid lines, no extra lamps. These are separate game sprites for rigid pendulum animation; do not redesign them.",
+      "refs": [
+        "/Users/wwrongname/Repositories/CV/public/workshop/mobile-welcome-scene-v2-480.webp",
+        "/Users/wwrongname/Repositories/CV/public/workshop/mobile-services-scene-v7-480.webp",
+        "/Users/wwrongname/Repositories/CV/public/workshop/mobile-experience-scene-v5-480.webp",
+        "/Users/wwrongname/Repositories/CV/public/workshop/mobile-contact-scene-v4-480.webp"
+      ],
+      "alpha": true
+    },
+    {
+      "key": "about-plate",
+      "prompt": "Use case: precise-object-edit. Remove ONLY the caged lantern on the left, excluding its fixed wall bracket from the attached workshop scene. Reconstruct the empty stationary background behind that lamp in the original style and lighting. KEEP the fixed mounting bracket/ceiling attachment or wire. Keep every other object and pixel arrangement exactly unchanged: cat, laptop, desk, foliage, papers, lettering, composition, camera, warm amber lighting, original aspect ratio. No additional edits. Return the complete scene with just this lamp body removed.",
+      "refs": [
+        "/Users/wwrongname/Repositories/CV/public/workshop/mobile-welcome-scene-v2-480.webp"
+      ],
+      "alpha": false
+    },
+    {
+      "key": "services-plate",
+      "prompt": "Use case: precise-object-edit. Remove ONLY the black industrial pendant lamp at the top center, excluding its long ceiling wire from the attached workshop scene. Reconstruct the empty stationary background behind that lamp in the original style and lighting. KEEP the fixed mounting bracket/ceiling attachment or wire. Keep every other object and pixel arrangement exactly unchanged: cat, laptop, desk, foliage, papers, lettering, composition, camera, warm amber lighting, original aspect ratio. No additional edits. Return the complete scene with just this lamp body removed.",
+      "refs": [
+        "/Users/wwrongname/Repositories/CV/public/workshop/mobile-services-scene-v7-480.webp"
+      ],
+      "alpha": false
+    },
+    {
+      "key": "experience-plate",
+      "prompt": "Use case: precise-object-edit. Remove ONLY the brass pendant lamp at the upper right, excluding the fixed mounting point from the attached workshop scene. Reconstruct the empty stationary background behind that lamp in the original style and lighting. KEEP the fixed mounting bracket/ceiling attachment or wire. Keep every other object and pixel arrangement exactly unchanged: cat, laptop, desk, foliage, papers, lettering, composition, camera, warm amber lighting, original aspect ratio. No additional edits. Return the complete scene with just this lamp body removed.",
+      "refs": [
+        "/Users/wwrongname/Repositories/CV/public/workshop/mobile-experience-scene-v5-480.webp"
+      ],
+      "alpha": false
+    },
+    {
+      "key": "contact-plate",
+      "prompt": "Use case: precise-object-edit. Remove ONLY the bare glowing filament bulb with its black socket at the top center, excluding the ceiling wire from the attached workshop scene. Reconstruct the empty stationary background behind that lamp in the original style and lighting. KEEP the fixed mounting bracket/ceiling attachment or wire. Keep every other object and pixel arrangement exactly unchanged: cat, laptop, desk, foliage, papers, lettering, composition, camera, warm amber lighting, original aspect ratio. No additional edits. Return the complete scene with just this lamp body removed.",
+      "refs": [
+        "/Users/wwrongname/Repositories/CV/public/workshop/mobile-contact-scene-v4-480.webp"
+      ],
+      "alpha": false
+    }
+  ]
+}

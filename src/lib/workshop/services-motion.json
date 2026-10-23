@@ -1,0 +1,155 @@
+{
+  "position": "services",
+  "canvas": {
+    "width": 1000,
+    "height": 2094
+  },
+  "baseWidth": 663,
+  "padding": 24,
+  "blink": {
+    "src": "/workshop/character-services-blink-v1.webp",
+    "x": 363,
+    "y": 241,
+    "width": 66,
+    "height": 61,
+    "durationMs": 170,
+    "intervalsMs": [
+      5200,
+      4300,
+      6800,
+      5500
+    ]
+  },
+  "breath": {
+    "field": "/workshop/character-services-breath-field-v1.png",
+    "scale": 22,
+    "durationsMs": [
+      4700,
+      5200,
+      4400,
+      4900
+    ]
+  },
+  "hair": {
+    "field": "/workshop/character-services-hair-field-v1.png",
+    "scale": 12
+  },
+  "gesture": {
+    "mode": "wipe-glass-mesh",
+    "pivot": {
+      "x": 370,
+      "y": 704
+    },
+    "angleDegrees": 1.6,
+    "image": {
+      "width": 1000,
+      "height": 2094,
+      "master": "artwork/character-services-wipe-motion-v3.png",
+      "files": [
+        {
+          "src": "/workshop/character-services-wipe-motion-v3-500.webp",
+          "width": 500,
+          "height": 1047,
+          "bytes": 80714
+        },
+        {
+          "src": "/workshop/character-services-wipe-motion-v3-1000.webp",
+          "width": 1000,
+          "height": 2094,
+          "bytes": 220888
+        }
+      ]
+    },
+    "armOutline": [
+      [
+        375,
+        580
+      ],
+      [
+        550,
+        610
+      ],
+      [
+        650,
+        645
+      ],
+      [
+        760,
+        635
+      ],
+      [
+        900,
+        600
+      ],
+      [
+        1000,
+        600
+      ],
+      [
+        1000,
+        835
+      ],
+      [
+        760,
+        835
+      ],
+      [
+        735,
+        780
+      ],
+      [
+        700,
+        750
+      ],
+      [
+        655,
+        752
+      ],
+      [
+        620,
+        765
+      ],
+      [
+        575,
+        777
+      ],
+      [
+        530,
+        770
+      ],
+      [
+        490,
+        770
+      ],
+      [
+        440,
+        765
+      ],
+      [
+        401,
+        757
+      ],
+      [
+        365,
+        748
+      ],
+      [
+        336,
+        730
+      ],
+      [
+        330,
+        700
+      ],
+      [
+        330,
+        665
+      ],
+      [
+        348,
+        620
+      ]
+    ],
+    "periodMs": 2400
+  }
+}
