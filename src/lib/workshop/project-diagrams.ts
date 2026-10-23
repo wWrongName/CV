@@ -60,4 +60,3 @@ export const projectDiagrams: Record<string, ProjectDiagram> = {
     note: copy("Трафик и управление защитой — разные контуры. Сценарий задает порядок действий инженера; автоматический запуск скриптов по алерту здесь не предполагается.", "Traffic and protection management are separate paths. Runbooks guide the engineer; this diagram does not imply automatic script execution on an alert."),
   },
 };
-
