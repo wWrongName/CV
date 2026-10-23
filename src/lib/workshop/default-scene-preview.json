@@ -1,0 +1,26 @@
+{
+  "x": -50,
+  "y": -50,
+  "width": 200,
+  "height": 200,
+  "file": {
+    "src": "/workshop/default-scene-preview-v1-768.webp",
+    "width": 768,
+    "height": 512,
+    "bytes": 39588
+  },
+  "capture": {
+    "viewport": [
+      3072,
+      2048
+    ],
+    "stage": [
+      768,
+      512,
+      1536,
+      1024
+    ],
+    "scale": 0.25,
+    "note": "Art only. Captured with the actual CSS layout; board copy, badges and fixed UI remain live HTML."
+  }
+}

@@ -1,26 +1,14 @@
-import type { CSSProperties } from "react";
-import type { Locale } from "@/lib/i18n";
-import environment from "@/lib/workshop/environment.json";
+import preview from "@/lib/workshop/default-scene-preview.json";
 
 const mobileEmpty = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
-/** Reuse the 9KB room thumbnail while the independent room items decode. */
-export function WorkshopStartupPreview({ ready, locale }: { ready: boolean; locale: Locale }) {
-  const style: CSSProperties = {
-    left: `${environment.xPercent}%`, top: `${environment.yPercent}%`,
-    width: `${environment.widthPercent}%`, height: `${environment.heightPercent}%`,
-    transform: `matrix(${environment.matrix.join(",")})`,
-  };
-  const preview = environment.files[0];
-  return <div className="workshop-startup" data-ready={ready} role="status"
-    aria-label={locale === "ru" ? "Загрузка мастерской" : "Loading workshop"} aria-hidden={ready}>
-    <div className="workshop-startup-stage">
-      <picture className="workshop-world" style={style}>
-        <source media="(max-width: 899px)" srcSet={mobileEmpty} />
-        <img src={preview.src} width={preview.width} height={preview.height} alt="" decoding="async" fetchPriority="high" draggable={false} />
-      </picture>
-    </div>
-    <span className="workshop-startup-spinner" aria-hidden="true" />
-    <noscript><style>{`.workshop-startup{display:none}`}</style></noscript>
-  </div>;
+/** A captured default room on the same coordinate plane as the living scene. */
+export function WorkshopStartupPreview({ ready }: { ready: boolean }) {
+  return <><picture className="workshop-startup" data-ready={ready} aria-hidden="true"
+    style={{ left: `${preview.x}%`, top: `${preview.y}%`, width: `${preview.width}%`, height: `${preview.height}%` }}>
+    <source media="(max-width: 899px)" srcSet={mobileEmpty} />
+    <img src={preview.file.src} width={preview.file.width} height={preview.file.height} alt="" decoding="async" fetchPriority="high" draggable={false} />
+  </picture>
+    <noscript><style>{`.workshop-startup{display:none}.desktop-workshop[data-scene-ready=false] .workshop-stage :is(.workshop-world,.workshop-environment-tile,.workshop-furniture-piece,.workshop-art,.workshop-window-life,.workshop-reaction,.workshop-reaction-hand,.workshop-mug-steam){opacity:1}`}</style></noscript>
+  </>;
 }

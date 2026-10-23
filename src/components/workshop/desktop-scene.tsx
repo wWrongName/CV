@@ -155,13 +155,13 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
   const openAbout = () => { send({ type: "activate", target: "about" }); onEnter("about"); };
   const openContacts = () => { send({ type: "activate", target: "contact" }); onEnter("contact"); };
   return <main className="desktop-workshop" aria-label={ui.title} aria-busy={!sceneLoaded} data-scene-ready={sceneLoaded}>
-    <WorkshopStartupPreview ready={sceneLoaded} locale={locale} />
     <div ref={stage} className="workshop-stage"
       onPointerMove={event => {
         if (event.pointerType === "touch") return;
         const rect = event.currentTarget.getBoundingClientRect();
         send({ type: "pointer", x: Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)), y: Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height)) });
       }} onPointerLeave={() => send({ type: "pointer-leave" })}>
+      <WorkshopStartupPreview ready={sceneLoaded} />
       <WorkshopEnvironment />
       <WindowLife />
       <svg className="workshop-effect-defs" width="0" height="0" aria-hidden="true" focusable="false">
