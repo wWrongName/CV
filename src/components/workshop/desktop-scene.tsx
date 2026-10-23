@@ -100,6 +100,7 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
   const [enabled, setEnabled] = useState(false);
   const stage = useRef<HTMLDivElement>(null);
   const [sceneLoaded, setSceneLoaded] = useState(false);
+  const [boardReady, setBoardReady] = useState(false);
   const [preparedPositions, setPreparedPositions] = useState<ObjectId[]>([]);
   const [displayed, setDisplayed] = useState<ObjectId | null>(null);
   const [decoded, setDecoded] = useState<Partial<Record<ObjectId, boolean>>>({});
@@ -122,8 +123,15 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
     const afterLoad = async () => {
       // Visible room artwork and the initial character own the first network pass.
       const images = Array.from(stage.current?.querySelectorAll<HTMLImageElement>("img") || []);
-      await Promise.allSettled(images.map(image => image.decode()));
-      if (!cancelled) setSceneLoaded(true);
+      const results = await Promise.allSettled(images.map(image => image.decode()));
+      if (cancelled) return;
+      setSceneLoaded(true);
+      const boardIndex = images.findIndex(image => image.closest('[data-layer="chalkboard"]'));
+      const boardLoaded = results[boardIndex]?.status === "fulfilled" && images[boardIndex].naturalWidth > 1;
+      if (!boardLoaded) return;
+      // Request chalk lettering only when its real board texture is available.
+      await document.fonts.load("16px WWNChalk").catch(() => {});
+      if (!cancelled) setBoardReady(true);
     };
     if (document.readyState === "complete") void afterLoad();
     else window.addEventListener("load", afterLoad, { once: true });
@@ -170,13 +178,13 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
           <feDisplacementMap in="SourceGraphic" in2="grain" scale=".5" xChannelSelector="R" yChannelSelector="G" />
         </filter></defs>
       </svg>
-      <aside className="workshop-board-copy" role="status" aria-atomic="true" data-section={boardTarget || "default"}>
+      {sceneLoaded && boardReady && <aside className="workshop-board-copy" role="status" aria-atomic="true" data-section={boardTarget || "default"}>
         <h2>{boardCopy.title}</h2><p>{boardCopy.description}</p>
         {!boardTarget && <p className="workshop-board-links">
           <Link href={sectionHref("about", locale)} scroll={false} onNavigate={openAbout} onFocus={() => send({ type: "rest" })}>{getObjectLabel("about", locale).title} ↗</Link>
           <Link href={sectionHref("contact", locale)} scroll={false} onNavigate={openContacts} onFocus={() => send({ type: "rest" })}>{ui.invitation} ↗</Link>
         </p>}
-      </aside>
+      </aside>}
       <WorkshopSpeedTrail position={active} pending={target !== active} enabled={enabled && state.mode !== "reading"} />
       <WorkshopFurniture active={active} />
       <h1 className="workshop-scene-title">{ui.title}</h1>
