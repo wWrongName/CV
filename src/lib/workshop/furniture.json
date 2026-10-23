@@ -10,16 +10,34 @@
     "nativeHeight": 485,
     "files": [
       {
-        "src": "/workshop/workshop-rug-v1-1024.webp",
+        "src": "/workshop/decor-rug-05cba56787-96.webp",
+        "width": 96,
+        "height": 13,
+        "bytes": 2388
+      },
+      {
+        "src": "/workshop/decor-rug-8dbed8026a-192.webp",
+        "width": 192,
+        "height": 26,
+        "bytes": 8796
+      },
+      {
+        "src": "/workshop/decor-rug-a76a0bd29d-384.webp",
+        "width": 384,
+        "height": 51,
+        "bytes": 32996
+      },
+      {
+        "src": "/workshop/decor-rug-a040b51713-1024.webp",
         "width": 1024,
         "height": 137,
         "bytes": 79434
       },
       {
-        "src": "/workshop/workshop-rug-v1-2048.webp",
+        "src": "/workshop/decor-rug-646fb6159d-2048.webp",
         "width": 2048,
         "height": 274,
-        "bytes": 257932
+        "bytes": 229196
       }
     ],
     "support": {
@@ -39,16 +57,34 @@
     "nativeHeight": 883,
     "files": [
       {
-        "src": "/workshop/workshop-chalkboard-blank-v1-768.webp",
-        "width": 768,
-        "height": 444,
-        "bytes": 130168
+        "src": "/workshop/decor-chalkboard-ce2b39bb23-96.webp",
+        "width": 96,
+        "height": 56,
+        "bytes": 1930
       },
       {
-        "src": "/workshop/workshop-chalkboard-blank-v1-1536.webp",
+        "src": "/workshop/decor-chalkboard-4f0beee2d0-192.webp",
+        "width": 192,
+        "height": 111,
+        "bytes": 6112
+      },
+      {
+        "src": "/workshop/decor-chalkboard-d9a00f3b86-384.webp",
+        "width": 384,
+        "height": 222,
+        "bytes": 20654
+      },
+      {
+        "src": "/workshop/decor-chalkboard-4c7d4d229f-768.webp",
+        "width": 768,
+        "height": 444,
+        "bytes": 79758
+      },
+      {
+        "src": "/workshop/decor-chalkboard-3cf2c7ee79-1536.webp",
         "width": 1536,
         "height": 888,
-        "bytes": 494030
+        "bytes": 382680
       }
     ]
   },
@@ -64,16 +100,34 @@
     "nativeHeight": 319,
     "files": [
       {
-        "src": "/workshop/reference-shelves-left-v3-512.webp",
+        "src": "/workshop/decor-shelves-left-07512b5fd5-96.webp",
+        "width": 96,
+        "height": 30,
+        "bytes": 2592
+      },
+      {
+        "src": "/workshop/decor-shelves-left-2a92f42a5d-192.webp",
+        "width": 192,
+        "height": 60,
+        "bytes": 8570
+      },
+      {
+        "src": "/workshop/decor-shelves-left-b15831efe2-512.webp",
         "width": 512,
         "height": 159,
         "bytes": 19954
       },
       {
-        "src": "/workshop/reference-shelves-left-v3-1026.webp",
+        "src": "/workshop/decor-shelves-left-6fd550a318-768.webp",
+        "width": 768,
+        "height": 239,
+        "bytes": 22470
+      },
+      {
+        "src": "/workshop/decor-shelves-left-e950e3d943-1026.webp",
         "width": 1026,
         "height": 319,
-        "bytes": 56860
+        "bytes": 41736
       }
     ],
     "support": {
@@ -93,16 +147,34 @@
     "nativeHeight": 170,
     "files": [
       {
-        "src": "/workshop/reference-shelf-left-middle-v3-512.webp",
+        "src": "/workshop/decor-shelf-left-middle-05803f7cb4-96.webp",
+        "width": 96,
+        "height": 16,
+        "bytes": 1524
+      },
+      {
+        "src": "/workshop/decor-shelf-left-middle-b36a6f1b34-192.webp",
+        "width": 192,
+        "height": 33,
+        "bytes": 4856
+      },
+      {
+        "src": "/workshop/decor-shelf-left-middle-c3b5266351-512.webp",
         "width": 512,
         "height": 87,
         "bytes": 11818
       },
       {
-        "src": "/workshop/reference-shelf-left-middle-v3-1002.webp",
+        "src": "/workshop/decor-shelf-left-middle-7f18debdf2-768.webp",
+        "width": 768,
+        "height": 130,
+        "bytes": 14206
+      },
+      {
+        "src": "/workshop/decor-shelf-left-middle-3c52736309-1002.webp",
         "width": 1002,
         "height": 170,
-        "bytes": 33998
+        "bytes": 24616
       }
     ],
     "support": {
@@ -122,16 +194,34 @@
     "nativeHeight": 390,
     "files": [
       {
-        "src": "/workshop/reference-shelf-left-books-v3-512.webp",
+        "src": "/workshop/decor-shelf-left-books-22467afa92-96.webp",
+        "width": 96,
+        "height": 33,
+        "bytes": 4024
+      },
+      {
+        "src": "/workshop/decor-shelf-left-books-71d823cc97-192.webp",
+        "width": 192,
+        "height": 66,
+        "bytes": 13178
+      },
+      {
+        "src": "/workshop/decor-shelf-left-books-17e01d51f7-512.webp",
         "width": 512,
         "height": 177,
         "bytes": 31668
       },
       {
-        "src": "/workshop/reference-shelf-left-books-v3-1130.webp",
+        "src": "/workshop/decor-shelf-left-books-c84a1cfe29-768.webp",
+        "width": 768,
+        "height": 265,
+        "bytes": 38516
+      },
+      {
+        "src": "/workshop/decor-shelf-left-books-7f01b8c7fb-1130.webp",
         "width": 1130,
         "height": 390,
-        "bytes": 112660
+        "bytes": 104870
       }
     ],
     "support": {
@@ -151,16 +241,40 @@
     "nativeHeight": 189,
     "files": [
       {
-        "src": "/workshop/reference-shelf-left-bottom-v3-512.webp",
+        "src": "/workshop/decor-shelf-left-bottom-829f6e20de-96.webp",
+        "width": 96,
+        "height": 17,
+        "bytes": 1816
+      },
+      {
+        "src": "/workshop/decor-shelf-left-bottom-067e568ff5-192.webp",
+        "width": 192,
+        "height": 34,
+        "bytes": 5634
+      },
+      {
+        "src": "/workshop/decor-shelf-left-bottom-9bbc6f068c-384.webp",
+        "width": 384,
+        "height": 68,
+        "bytes": 8186
+      },
+      {
+        "src": "/workshop/decor-shelf-left-bottom-2e61008424-512.webp",
         "width": 512,
         "height": 91,
         "bytes": 13136
       },
       {
-        "src": "/workshop/reference-shelf-left-bottom-v3-1066.webp",
+        "src": "/workshop/decor-shelf-left-bottom-39203bdf77-768.webp",
+        "width": 768,
+        "height": 136,
+        "bytes": 15716
+      },
+      {
+        "src": "/workshop/decor-shelf-left-bottom-ae5bbca7c4-1066.webp",
         "width": 1066,
         "height": 189,
-        "bytes": 39466
+        "bytes": 28926
       }
     ],
     "support": {
@@ -180,16 +294,28 @@
     "nativeHeight": 1316,
     "files": [
       {
-        "src": "/workshop/reference-shelves-right-v3-512.webp",
+        "src": "/workshop/decor-shelves-right-d2fe0ba427-96.webp",
+        "width": 96,
+        "height": 165,
+        "bytes": 20730
+      },
+      {
+        "src": "/workshop/decor-shelves-right-ba2e8b74f5-384.webp",
+        "width": 384,
+        "height": 659,
+        "bytes": 64734
+      },
+      {
+        "src": "/workshop/decor-shelves-right-5da3851e9c-512.webp",
         "width": 512,
         "height": 878,
         "bytes": 159440
       },
       {
-        "src": "/workshop/reference-shelves-right-v3-767.webp",
+        "src": "/workshop/decor-shelves-right-f16c40da05-767.webp",
         "width": 767,
         "height": 1316,
-        "bytes": 311172
+        "bytes": 223152
       }
     ]
   },
@@ -205,16 +331,28 @@
     "nativeHeight": 948,
     "files": [
       {
-        "src": "/workshop/reference-radio-large-v4-256.webp",
+        "src": "/workshop/decor-radio-large-2ffdd0d0e5-96.webp",
+        "width": 96,
+        "height": 63,
+        "bytes": 4144
+      },
+      {
+        "src": "/workshop/decor-radio-large-9b22555627-256.webp",
         "width": 256,
         "height": 169,
         "bytes": 19308
       },
       {
-        "src": "/workshop/reference-radio-large-v4-512.webp",
+        "src": "/workshop/decor-radio-large-ade2faada8-384.webp",
+        "width": 384,
+        "height": 253,
+        "bytes": 26256
+      },
+      {
+        "src": "/workshop/decor-radio-large-256d75d8d1-512.webp",
         "width": 512,
         "height": 337,
-        "bytes": 52750
+        "bytes": 48264
       }
     ],
     "support": {
@@ -234,16 +372,40 @@
     "nativeHeight": 495,
     "files": [
       {
-        "src": "/workshop/reference-counter-v3-960.webp",
+        "src": "/workshop/decor-counter-d54d2d9e22-96.webp",
+        "width": 96,
+        "height": 24,
+        "bytes": 4068
+      },
+      {
+        "src": "/workshop/decor-counter-7ee25a9b65-192.webp",
+        "width": 192,
+        "height": 47,
+        "bytes": 5848
+      },
+      {
+        "src": "/workshop/decor-counter-68df5872e0-384.webp",
+        "width": 384,
+        "height": 94,
+        "bytes": 18360
+      },
+      {
+        "src": "/workshop/decor-counter-119c62dd87-768.webp",
+        "width": 768,
+        "height": 189,
+        "bytes": 36164
+      },
+      {
+        "src": "/workshop/decor-counter-54a80cfb66-960.webp",
         "width": 960,
         "height": 236,
         "bytes": 88900
       },
       {
-        "src": "/workshop/reference-counter-v3-2013.webp",
+        "src": "/workshop/decor-counter-5a030d3aeb-2013.webp",
         "width": 2013,
         "height": 495,
-        "bytes": 328860
+        "bytes": 184844
       }
     ],
     "support": {
@@ -263,16 +425,22 @@
     "nativeHeight": 955,
     "files": [
       {
-        "src": "/workshop/reference-sign-it-v4-384.webp",
-        "width": 384,
-        "height": 321,
-        "bytes": 44352
+        "src": "/workshop/decor-sign-04a0194a09-96.webp",
+        "width": 96,
+        "height": 80,
+        "bytes": 9848
       },
       {
-        "src": "/workshop/reference-sign-it-v4-768.webp",
+        "src": "/workshop/decor-sign-e9521b8fdb-384.webp",
+        "width": 384,
+        "height": 320,
+        "bytes": 27912
+      },
+      {
+        "src": "/workshop/decor-sign-97fff25e59-768.webp",
         "width": 768,
         "height": 641,
-        "bytes": 126684
+        "bytes": 80020
       }
     ]
   },
@@ -288,16 +456,28 @@
     "nativeHeight": 1531,
     "files": [
       {
-        "src": "/workshop/furniture-vine-left-v1-512.webp",
-        "width": 512,
-        "height": 1596,
-        "bytes": 383084
+        "src": "/workshop/decor-vine-left-4939b23d36-96.webp",
+        "width": 96,
+        "height": 299,
+        "bytes": 41044
       },
       {
-        "src": "/workshop/furniture-vine-left-v1-491.webp",
+        "src": "/workshop/decor-vine-left-e231c610ec-192.webp",
+        "width": 192,
+        "height": 599,
+        "bytes": 141396
+      },
+      {
+        "src": "/workshop/decor-vine-left-65bc72b760-384.webp",
+        "width": 384,
+        "height": 1197,
+        "bytes": 168608
+      },
+      {
+        "src": "/workshop/decor-vine-left-de91955447-491.webp",
         "width": 491,
         "height": 1531,
-        "bytes": 344342
+        "bytes": 339234
       }
     ]
   },
@@ -313,16 +493,28 @@
     "nativeHeight": 1531,
     "files": [
       {
-        "src": "/workshop/furniture-vine-left-v1-512.webp",
-        "width": 512,
-        "height": 1596,
-        "bytes": 383084
+        "src": "/workshop/decor-vine-left-4939b23d36-96.webp",
+        "width": 96,
+        "height": 299,
+        "bytes": 41044
       },
       {
-        "src": "/workshop/furniture-vine-left-v1-491.webp",
+        "src": "/workshop/decor-vine-left-e231c610ec-192.webp",
+        "width": 192,
+        "height": 599,
+        "bytes": 141396
+      },
+      {
+        "src": "/workshop/decor-vine-left-65bc72b760-384.webp",
+        "width": 384,
+        "height": 1197,
+        "bytes": 168608
+      },
+      {
+        "src": "/workshop/decor-vine-left-de91955447-491.webp",
         "width": 491,
         "height": 1531,
-        "bytes": 344342
+        "bytes": 339234
       }
     ]
   },
@@ -338,16 +530,28 @@
     "nativeHeight": 1448,
     "files": [
       {
-        "src": "/workshop/furniture-lamp-pendant-v1-512.webp",
+        "src": "/workshop/decor-lamp-pendant-c29404c914-96.webp",
+        "width": 96,
+        "height": 216,
+        "bytes": 11262
+      },
+      {
+        "src": "/workshop/decor-lamp-pendant-8c90ab9aff-384.webp",
+        "width": 384,
+        "height": 863,
+        "bytes": 34038
+      },
+      {
+        "src": "/workshop/decor-lamp-pendant-2d77460232-512.webp",
         "width": 512,
         "height": 1151,
         "bytes": 89002
       },
       {
-        "src": "/workshop/furniture-lamp-pendant-v1-644.webp",
+        "src": "/workshop/decor-lamp-pendant-a9c33dfaa3-644.webp",
         "width": 644,
         "height": 1448,
-        "bytes": 127646
+        "bytes": 118870
       }
     ]
   },
@@ -363,16 +567,22 @@
     "nativeHeight": 1442,
     "files": [
       {
-        "src": "/workshop/furniture-lamp-bulb-v1-512.webp",
-        "width": 512,
-        "height": 2115,
-        "bytes": 197214
+        "src": "/workshop/decor-lamp-bulb-d139e550a1-96.webp",
+        "width": 96,
+        "height": 397,
+        "bytes": 29712
       },
       {
-        "src": "/workshop/furniture-lamp-bulb-v1-349.webp",
+        "src": "/workshop/decor-lamp-bulb-9a8502da2f-192.webp",
+        "width": 192,
+        "height": 793,
+        "bytes": 102346
+      },
+      {
+        "src": "/workshop/decor-lamp-bulb-9edc34048f-349.webp",
         "width": 349,
         "height": 1442,
-        "bytes": 122166
+        "bytes": 114798
       }
     ]
   },
@@ -388,16 +598,40 @@
     "nativeHeight": 1311,
     "files": [
       {
-        "src": "/workshop/furniture-plant-left-v1-512.webp",
+        "src": "/workshop/decor-plant-left-5a0f539eea-96.webp",
+        "width": 96,
+        "height": 127,
+        "bytes": 21742
+      },
+      {
+        "src": "/workshop/decor-plant-left-0705381674-192.webp",
+        "width": 192,
+        "height": 255,
+        "bytes": 75078
+      },
+      {
+        "src": "/workshop/decor-plant-left-4108439382-384.webp",
+        "width": 384,
+        "height": 510,
+        "bytes": 95316
+      },
+      {
+        "src": "/workshop/decor-plant-left-567786aba2-512.webp",
         "width": 512,
         "height": 679,
         "bytes": 193640
       },
       {
-        "src": "/workshop/furniture-plant-left-v1-988.webp",
+        "src": "/workshop/decor-plant-left-247ebe8755-768.webp",
+        "width": 768,
+        "height": 1019,
+        "bytes": 242340
+      },
+      {
+        "src": "/workshop/decor-plant-left-7d04b6bea4-988.webp",
         "width": 988,
         "height": 1311,
-        "bytes": 552900
+        "bytes": 537450
       }
     ],
     "support": {
@@ -417,16 +651,40 @@
     "nativeHeight": 1490,
     "files": [
       {
-        "src": "/workshop/furniture-lamp-desk-v1-512.webp",
+        "src": "/workshop/decor-lamp-desk-a862c0aff5-96.webp",
+        "width": 96,
+        "height": 151,
+        "bytes": 10138
+      },
+      {
+        "src": "/workshop/decor-lamp-desk-0fc8aa597b-192.webp",
+        "width": 192,
+        "height": 302,
+        "bytes": 33292
+      },
+      {
+        "src": "/workshop/decor-lamp-desk-1033385988-384.webp",
+        "width": 384,
+        "height": 604,
+        "bytes": 47528
+      },
+      {
+        "src": "/workshop/decor-lamp-desk-f44163b71b-512.webp",
         "width": 512,
         "height": 805,
         "bytes": 81580
       },
       {
-        "src": "/workshop/furniture-lamp-desk-v1-948.webp",
+        "src": "/workshop/decor-lamp-desk-fc933f384b-768.webp",
+        "width": 768,
+        "height": 1207,
+        "bytes": 93696
+      },
+      {
+        "src": "/workshop/decor-lamp-desk-25b4d93826-948.webp",
         "width": 948,
         "height": 1490,
-        "bytes": 212632
+        "bytes": 163940
       }
     ],
     "support": {
@@ -446,16 +704,34 @@
     "nativeHeight": 1359,
     "files": [
       {
-        "src": "/workshop/furniture-plant-right-v1-512.webp",
+        "src": "/workshop/decor-plant-right-47d98e48bb-96.webp",
+        "width": 96,
+        "height": 140,
+        "bytes": 19490
+      },
+      {
+        "src": "/workshop/decor-plant-right-4089f60b32-192.webp",
+        "width": 192,
+        "height": 280,
+        "bytes": 66272
+      },
+      {
+        "src": "/workshop/decor-plant-right-24b50b258e-512.webp",
         "width": 512,
         "height": 747,
         "bytes": 177714
       },
       {
-        "src": "/workshop/furniture-plant-right-v1-931.webp",
+        "src": "/workshop/decor-plant-right-60e839b2da-768.webp",
+        "width": 768,
+        "height": 1121,
+        "bytes": 226786
+      },
+      {
+        "src": "/workshop/decor-plant-right-433e9acdda-931.webp",
         "width": 931,
         "height": 1359,
-        "bytes": 470450
+        "bytes": 457456
       }
     ]
   },
@@ -471,16 +747,34 @@
     "nativeHeight": 993,
     "files": [
       {
-        "src": "/workshop/reference-luggage-v3-512.webp",
+        "src": "/workshop/decor-luggage-45fac8ef7a-96.webp",
+        "width": 96,
+        "height": 109,
+        "bytes": 12950
+      },
+      {
+        "src": "/workshop/decor-luggage-b907f3d03c-384.webp",
+        "width": 384,
+        "height": 436,
+        "bytes": 39778
+      },
+      {
+        "src": "/workshop/decor-luggage-6b1669e332-512.webp",
         "width": 512,
         "height": 582,
         "bytes": 112416
       },
       {
-        "src": "/workshop/reference-luggage-v3-874.webp",
+        "src": "/workshop/decor-luggage-379d52b1d0-768.webp",
+        "width": 768,
+        "height": 873,
+        "bytes": 123926
+      },
+      {
+        "src": "/workshop/decor-luggage-fdb1bb70e4-874.webp",
         "width": 874,
         "height": 993,
-        "bytes": 304512
+        "bytes": 292452
       }
     ],
     "support": {
@@ -499,16 +793,34 @@
     "nativeHeight": 1314,
     "files": [
       {
-        "src": "/workshop/reference-drawings-v4-256.webp",
+        "src": "/workshop/decor-drawings-520dd980ff-96.webp",
+        "width": 96,
+        "height": 128,
+        "bytes": 17566
+      },
+      {
+        "src": "/workshop/decor-drawings-263961dfa0-192.webp",
+        "width": 192,
+        "height": 256,
+        "bytes": 20912
+      },
+      {
+        "src": "/workshop/decor-drawings-1ce7612bd7-256.webp",
         "width": 256,
         "height": 341,
         "bytes": 34596
       },
       {
-        "src": "/workshop/reference-drawings-v4-512.webp",
+        "src": "/workshop/decor-drawings-a4e11bf377-384.webp",
+        "width": 384,
+        "height": 512,
+        "bytes": 46206
+      },
+      {
+        "src": "/workshop/decor-drawings-f6edb43638-512.webp",
         "width": 512,
         "height": 682,
-        "bytes": 91372
+        "bytes": 86996
       }
     ],
     "support": {
@@ -528,16 +840,40 @@
     "nativeHeight": 1253,
     "files": [
       {
-        "src": "/workshop/furniture-stool-v1-512.webp",
+        "src": "/workshop/decor-stool-dd5b6d3858-96.webp",
+        "width": 96,
+        "height": 143,
+        "bytes": 16142
+      },
+      {
+        "src": "/workshop/decor-stool-1a287016df-192.webp",
+        "width": 192,
+        "height": 285,
+        "bytes": 57216
+      },
+      {
+        "src": "/workshop/decor-stool-dd28efaf1b-384.webp",
+        "width": 384,
+        "height": 570,
+        "bytes": 67676
+      },
+      {
+        "src": "/workshop/decor-stool-8d982a863e-512.webp",
         "width": 512,
         "height": 760,
         "bytes": 149250
       },
       {
-        "src": "/workshop/furniture-stool-v1-844.webp",
+        "src": "/workshop/decor-stool-5be8720c1d-768.webp",
+        "width": 768,
+        "height": 1140,
+        "bytes": 171166
+      },
+      {
+        "src": "/workshop/decor-stool-5b04ad1397-844.webp",
         "width": 844,
         "height": 1253,
-        "bytes": 366750
+        "bytes": 353948
       }
     ],
     "support": {
@@ -558,16 +894,28 @@
     "nativeHeight": 994,
     "files": [
       {
-        "src": "/workshop/reference-window-plant-v3-384.webp",
+        "src": "/workshop/decor-window-plant-c0a3df4705-96.webp",
+        "width": 96,
+        "height": 77,
+        "bytes": 11436
+      },
+      {
+        "src": "/workshop/decor-window-plant-b84746a4c7-192.webp",
+        "width": 192,
+        "height": 154,
+        "bytes": 36826
+      },
+      {
+        "src": "/workshop/decor-window-plant-4363e2a80d-384.webp",
         "width": 384,
         "height": 309,
         "bytes": 70338
       },
       {
-        "src": "/workshop/reference-window-plant-v3-768.webp",
+        "src": "/workshop/decor-window-plant-ae20aa7745-768.webp",
         "width": 768,
         "height": 618,
-        "bytes": 206440
+        "bytes": 203720
       }
     ]
   },
@@ -583,16 +931,16 @@
     "nativeHeight": 330,
     "files": [
       {
-        "src": "/workshop/reference-candle-v3-162.webp",
-        "width": 162,
-        "height": 330,
-        "bytes": 26244
+        "src": "/workshop/decor-candle-7f7f888dfa-96.webp",
+        "width": 96,
+        "height": 196,
+        "bytes": 9426
       },
       {
-        "src": "/workshop/reference-candle-v3-162.webp",
+        "src": "/workshop/decor-candle-e6f27aa029-162.webp",
         "width": 162,
         "height": 330,
-        "bytes": 26244
+        "bytes": 25806
       }
     ],
     "support": {
@@ -611,16 +959,28 @@
     "nativeHeight": 177,
     "files": [
       {
-        "src": "/workshop/reference-cat-v3-256.webp",
+        "src": "/workshop/decor-cat-8c64ba2971-96.webp",
+        "width": 96,
+        "height": 56,
+        "bytes": 3620
+      },
+      {
+        "src": "/workshop/decor-cat-71ab1059fd-192.webp",
+        "width": 192,
+        "height": 111,
+        "bytes": 9814
+      },
+      {
+        "src": "/workshop/decor-cat-d9db1163c1-256.webp",
         "width": 256,
         "height": 149,
         "bytes": 21572
       },
       {
-        "src": "/workshop/reference-cat-v3-305.webp",
+        "src": "/workshop/decor-cat-ef9e247aaa-305.webp",
         "width": 305,
         "height": 177,
-        "bytes": 28308
+        "bytes": 23016
       }
     ],
     "support": {
@@ -640,16 +1000,28 @@
     "nativeHeight": 1024,
     "files": [
       {
-        "src": "/workshop/reference-cradle-v4-256.webp",
+        "src": "/workshop/decor-cradle-17f1f22fc4-96.webp",
+        "width": 96,
+        "height": 71,
+        "bytes": 8540
+      },
+      {
+        "src": "/workshop/decor-cradle-48b024fed9-256.webp",
         "width": 256,
         "height": 189,
         "bytes": 19732
       },
       {
-        "src": "/workshop/reference-cradle-v4-512.webp",
+        "src": "/workshop/decor-cradle-1541fa94ef-384.webp",
+        "width": 384,
+        "height": 284,
+        "bytes": 29188
+      },
+      {
+        "src": "/workshop/decor-cradle-e9749d1eae-512.webp",
         "width": 512,
         "height": 378,
-        "bytes": 53660
+        "bytes": 50614
       }
     ],
     "support": {
@@ -669,16 +1041,28 @@
     "nativeHeight": 353,
     "files": [
       {
-        "src": "/workshop/reference-terrarium-v3-256.webp",
+        "src": "/workshop/decor-terrarium-34ea498127-96.webp",
+        "width": 96,
+        "height": 99,
+        "bytes": 19086
+      },
+      {
+        "src": "/workshop/decor-terrarium-b124e2c2fe-192.webp",
+        "width": 192,
+        "height": 198,
+        "bytes": 28436
+      },
+      {
+        "src": "/workshop/decor-terrarium-48e758d08e-256.webp",
         "width": 256,
         "height": 263,
         "bytes": 49292
       },
       {
-        "src": "/workshop/reference-terrarium-v3-343.webp",
+        "src": "/workshop/decor-terrarium-c5b76b675d-343.webp",
         "width": 343,
         "height": 353,
-        "bytes": 77372
+        "bytes": 76712
       }
     ],
     "support": {
@@ -698,16 +1082,28 @@
     "nativeHeight": 268,
     "files": [
       {
-        "src": "/workshop/reference-receiver-v3-256.webp",
+        "src": "/workshop/decor-receiver-24d40c0bc5-96.webp",
+        "width": 96,
+        "height": 69,
+        "bytes": 10562
+      },
+      {
+        "src": "/workshop/decor-receiver-cb77d78f89-192.webp",
+        "width": 192,
+        "height": 139,
+        "bytes": 11338
+      },
+      {
+        "src": "/workshop/decor-receiver-3006e6f645-256.webp",
         "width": 256,
         "height": 185,
         "bytes": 26142
       },
       {
-        "src": "/workshop/reference-receiver-v3-371.webp",
+        "src": "/workshop/decor-receiver-4488d81dff-371.webp",
         "width": 371,
         "height": 268,
-        "bytes": 46824
+        "bytes": 45838
       }
     ],
     "support": {
@@ -726,16 +1122,28 @@
     "nativeHeight": 1052,
     "files": [
       {
-        "src": "/workshop/reference-books-upper-v4-256.webp",
+        "src": "/workshop/decor-books-upright-3cc08fdfa1-96.webp",
+        "width": 96,
+        "height": 94,
+        "bytes": 17136
+      },
+      {
+        "src": "/workshop/decor-books-upright-49415b185b-256.webp",
         "width": 256,
         "height": 251,
         "bytes": 36452
       },
       {
-        "src": "/workshop/reference-books-upper-v4-512.webp",
+        "src": "/workshop/decor-books-upright-cf020d3d23-384.webp",
+        "width": 384,
+        "height": 376,
+        "bytes": 61402
+      },
+      {
+        "src": "/workshop/decor-books-upright-22255bdbf4-512.webp",
         "width": 512,
         "height": 501,
-        "bytes": 105948
+        "bytes": 102148
       }
     ],
     "support": {
@@ -754,16 +1162,34 @@
     "nativeHeight": 263,
     "files": [
       {
-        "src": "/workshop/reference-books-thin-v3-256.webp",
+        "src": "/workshop/decor-books-flat-lower-a0ef427b55-96.webp",
+        "width": 96,
+        "height": 13,
+        "bytes": 908
+      },
+      {
+        "src": "/workshop/decor-books-flat-lower-e7f8e5654d-192.webp",
+        "width": 192,
+        "height": 25,
+        "bytes": 2456
+      },
+      {
+        "src": "/workshop/decor-books-flat-lower-27ea2baf99-256.webp",
         "width": 256,
         "height": 34,
         "bytes": 5700
       },
       {
-        "src": "/workshop/reference-books-thin-v3-512.webp",
+        "src": "/workshop/decor-books-flat-lower-3da5eacf25-384.webp",
+        "width": 384,
+        "height": 50,
+        "bytes": 7280
+      },
+      {
+        "src": "/workshop/decor-books-flat-lower-cfa9de5efb-512.webp",
         "width": 512,
         "height": 67,
-        "bytes": 17330
+        "bytes": 13952
       }
     ],
     "support": {
@@ -783,16 +1209,28 @@
     "nativeHeight": 296,
     "files": [
       {
-        "src": "/workshop/reference-radio-small-v3-256.webp",
+        "src": "/workshop/decor-radio-small-755b9c4b6e-96.webp",
+        "width": 96,
+        "height": 85,
+        "bytes": 11244
+      },
+      {
+        "src": "/workshop/decor-radio-small-bbdb7522d8-192.webp",
+        "width": 192,
+        "height": 169,
+        "bytes": 12418
+      },
+      {
+        "src": "/workshop/decor-radio-small-16f088dc91-256.webp",
         "width": 256,
         "height": 226,
         "bytes": 29314
       },
       {
-        "src": "/workshop/reference-radio-small-v3-336.webp",
+        "src": "/workshop/decor-radio-small-5ca00be5c5-336.webp",
         "width": 336,
         "height": 296,
-        "bytes": 44240
+        "bytes": 42828
       }
     ],
     "support": {
@@ -812,16 +1250,28 @@
     "nativeHeight": 1496,
     "files": [
       {
-        "src": "/workshop/reference-pinned-aviation-v4-256.webp",
+        "src": "/workshop/decor-pinned-maps-5fb28b361d-96.webp",
+        "width": 96,
+        "height": 117,
+        "bytes": 17694
+      },
+      {
+        "src": "/workshop/decor-pinned-maps-4c7c86779f-192.webp",
+        "width": 192,
+        "height": 234,
+        "bytes": 19474
+      },
+      {
+        "src": "/workshop/decor-pinned-maps-703d8747f7-256.webp",
         "width": 256,
         "height": 312,
         "bytes": 46744
       },
       {
-        "src": "/workshop/reference-pinned-aviation-v4-307.webp",
+        "src": "/workshop/decor-pinned-maps-dd24fe97f8-307.webp",
         "width": 307,
         "height": 374,
-        "bytes": 62106
+        "bytes": 59856
       }
     ]
   },
@@ -837,16 +1287,28 @@
     "nativeHeight": 1508,
     "files": [
       {
-        "src": "/workshop/reference-sky-strip-v4-105.webp",
+        "src": "/workshop/decor-photo-strip-3e7938cc9e-105.webp",
         "width": 105,
         "height": 377,
         "bytes": 19218
       },
       {
-        "src": "/workshop/reference-sky-strip-v4-420.webp",
+        "src": "/workshop/decor-photo-strip-8863bb6fae-192.webp",
+        "width": 192,
+        "height": 689,
+        "bytes": 29498
+      },
+      {
+        "src": "/workshop/decor-photo-strip-45472f619c-384.webp",
+        "width": 384,
+        "height": 1379,
+        "bytes": 76882
+      },
+      {
+        "src": "/workshop/decor-photo-strip-f05976ad3d-420.webp",
         "width": 420,
         "height": 1508,
-        "bytes": 169086
+        "bytes": 119438
       }
     ]
   },
@@ -862,16 +1324,16 @@
     "nativeHeight": 244,
     "files": [
       {
-        "src": "/workshop/reference-telegram-cube-v3-176.webp",
-        "width": 176,
-        "height": 244,
-        "bytes": 26694
+        "src": "/workshop/decor-telegram-cube-0ef8202b1a-96.webp",
+        "width": 96,
+        "height": 133,
+        "bytes": 8344
       },
       {
-        "src": "/workshop/reference-telegram-cube-v3-176.webp",
+        "src": "/workshop/decor-telegram-cube-830c813af0-176.webp",
         "width": 176,
         "height": 244,
-        "bytes": 26694
+        "bytes": 25994
       }
     ],
     "support": {
@@ -892,16 +1354,28 @@
     "source": "exec-c5a978f4-5562-4c9a-b73e-35288052d74e.png",
     "files": [
       {
-        "src": "/workshop/reference-email-cube-v1-256.webp",
+        "src": "/workshop/decor-email-cube-c44a54e564-96.webp",
+        "width": 96,
+        "height": 133,
+        "bytes": 18264
+      },
+      {
+        "src": "/workshop/decor-email-cube-0d35c4d20a-256.webp",
         "width": 256,
         "height": 355,
         "bytes": 39150
       },
       {
-        "src": "/workshop/reference-email-cube-v1-512.webp",
+        "src": "/workshop/decor-email-cube-6ea2874b03-384.webp",
+        "width": 384,
+        "height": 533,
+        "bytes": 43902
+      },
+      {
+        "src": "/workshop/decor-email-cube-3e8ca60543-512.webp",
         "width": 512,
         "height": 711,
-        "bytes": 96794
+        "bytes": 73034
       }
     ],
     "support": {
@@ -921,16 +1395,28 @@
     "nativeHeight": 874,
     "files": [
       {
-        "src": "/workshop/reference-books-middle-v4-256.webp",
+        "src": "/workshop/decor-books-left-middle-43f1f369f1-96.webp",
+        "width": 96,
+        "height": 71,
+        "bytes": 10566
+      },
+      {
+        "src": "/workshop/decor-books-left-middle-c907f05fdd-256.webp",
         "width": 256,
         "height": 190,
         "bytes": 25384
       },
       {
-        "src": "/workshop/reference-books-middle-v4-512.webp",
+        "src": "/workshop/decor-books-left-middle-3a3d09a891-384.webp",
+        "width": 384,
+        "height": 286,
+        "bytes": 31210
+      },
+      {
+        "src": "/workshop/decor-books-left-middle-0d609ad400-512.webp",
         "width": 512,
         "height": 381,
-        "bytes": 70352
+        "bytes": 57166
       }
     ],
     "support": {
@@ -950,16 +1436,28 @@
     "nativeHeight": 358,
     "files": [
       {
-        "src": "/workshop/reference-desk-accessories-laptop-v3-384.webp",
-        "width": 384,
-        "height": 183,
-        "bytes": 15396
+        "src": "/workshop/decor-desk-accessories-447be51d94-96.webp",
+        "width": 96,
+        "height": 46,
+        "bytes": 1490
       },
       {
-        "src": "/workshop/reference-desk-accessories-laptop-v3-750.webp",
+        "src": "/workshop/decor-desk-accessories-12bb99fb13-192.webp",
+        "width": 192,
+        "height": 92,
+        "bytes": 3848
+      },
+      {
+        "src": "/workshop/decor-desk-accessories-90c2bff88a-384.webp",
+        "width": 384,
+        "height": 183,
+        "bytes": 9644
+      },
+      {
+        "src": "/workshop/decor-desk-accessories-098d153663-750.webp",
         "width": 750,
         "height": 358,
-        "bytes": 38596
+        "bytes": 24490
       }
     ],
     "support": {
@@ -979,16 +1477,22 @@
     "nativeHeight": 197,
     "files": [
       {
-        "src": "/workshop/reference-desk-accessories-mug-v3-192.webp",
-        "width": 192,
-        "height": 186,
-        "bytes": 13666
+        "src": "/workshop/decor-desk-accessories-mug-4bbdbb5c21-96.webp",
+        "width": 96,
+        "height": 93,
+        "bytes": 3494
       },
       {
-        "src": "/workshop/reference-desk-accessories-mug-v3-203.webp",
+        "src": "/workshop/decor-desk-accessories-mug-7f0570c1db-192.webp",
+        "width": 192,
+        "height": 186,
+        "bytes": 8338
+      },
+      {
+        "src": "/workshop/decor-desk-accessories-mug-045a264bf8-203.webp",
         "width": 203,
         "height": 197,
-        "bytes": 13762
+        "bytes": 9416
       }
     ],
     "support": {

@@ -1,4 +1,5 @@
 "use client";
+import { desktopImageSizes, imageSrcSet } from "@/lib/workshop/image-sizes";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { createCharacterMesh } from "./services-mesh";
@@ -19,7 +20,7 @@ export function CatSleepMotion({ layer }: { layer: CatLayer }) {
   const [ready, setReady] = useState(false);
   const [allowed, setAllowed] = useState(false);
   const [visible, setVisible] = useState(true);
-  const [small, large] = layer.files;
+  const small = layer.files[0];
   useEffect(() => {
     const media = matchMedia("(min-width: 900px) and (prefers-reduced-motion: no-preference)");
     const update = () => setAllowed(media.matches);
@@ -61,7 +62,7 @@ export function CatSleepMotion({ layer }: { layer: CatLayer }) {
   return <span className="workshop-furniture-piece workshop-cat-sleep" data-layer="cat" data-ready={ready} data-loaded={Boolean(source)} data-sleeping={visible}
     style={{ left: `${layer.x}%`, top: `${layer.y}%`, width: `${layer.width}%`, height: `${layer.height}%` } as CSSProperties}>
     <picture><source media="(max-width: 899px)" srcSet="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
-      <img ref={image} src={small.src} srcSet={`${small.src} ${small.width}w, ${large.src} ${large.width}w`} sizes={`${layer.width}vw`} width={305} height={177} alt="" decoding="async" draggable={false}
+      <img ref={image} src={small.src} srcSet={imageSrcSet(layer.files)} sizes={desktopImageSizes(layer.width)} width={305} height={177} alt="" decoding="async" draggable={false}
         onLoad={event => { const art = event.currentTarget; art.decode().then(() => setSource(art.currentSrc || art.src)).catch(() => {}); }} />
     </picture>
     <canvas ref={canvas} aria-hidden="true" />

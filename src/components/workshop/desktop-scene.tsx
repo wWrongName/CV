@@ -89,7 +89,7 @@ function WorkshopObject({ object, locale, onEnter, active }: Props & { object: S
     onBlur={() => { if (!contact) send({ type: "leave", target: object.id }); }}
     onClick={event => { if (event.button === 0 && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) { send({ type: "activate", target: object.id }); onEnter(object.id); } }}>
     {hitArea && <span className="workshop-object-hit-area" style={hitArea} aria-hidden="true" />}
-    <WorkshopArt art={object.art} eager motionActive={!active && state.mode !== "reading" && state.mode !== "opening"} />
+    <WorkshopArt art={object.art} width={object.width} eager motionActive={!active && state.mode !== "reading" && state.mode !== "opening"} />
     {!contact && <span className="workshop-object-name"><WorkshopIcon id={object.id} /><span><strong>{label.title}</strong><small>{sceneDetail}</small></span></span>}
   </Link>;
 }

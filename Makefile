@@ -36,6 +36,7 @@ typecheck: ## Generate route types, then check TypeScript
 test: ## Check navigation through all projects and stage boundaries
 	$(NODE) scripts/check-navigation.cjs
 	$(NODE) scripts/check-workshop.cjs
+	$(NODE) scripts/check-desktop-delivery.cjs
 	$(NODE) scripts/check-project-diagrams.cjs
 	$(NODE) scripts/check-mobile-workshop.cjs
 	$(NODE) scripts/check-mobile-motion.cjs

@@ -1,4 +1,5 @@
 "use client";
+import { desktopImageSizes, imageSrcSet } from "@/lib/workshop/image-sizes";
 
 import { useEffect, useRef, useState } from "react";
 import { createCharacterMesh } from "./services-mesh";
@@ -15,7 +16,7 @@ export function FoliageMotion({ layer }: { layer: VineLayer }) {
   const mesh = useRef<ReturnType<typeof createCharacterMesh> | null>(null);
   const [source, setSource] = useState("");
   const [allowed, setAllowed] = useState(false), [ready, setReady] = useState(false), [visible, setVisible] = useState(true);
-  const [small, large] = layer.files;
+  const small = layer.files[0];
   useEffect(() => {
     const media = matchMedia("(min-width: 900px) and (prefers-reduced-motion: no-preference)");
     const update = () => setAllowed(media.matches), visibility = () => setVisible(!document.hidden);
@@ -57,7 +58,7 @@ export function FoliageMotion({ layer }: { layer: VineLayer }) {
   return <span className="workshop-furniture-piece workshop-foliage-motion" data-layer={layer.id} data-ready={ready}
     style={{ left: `${layer.x}%`, top: `${layer.y}%`, width: `${layer.width}%`, height: `${layer.height}%` }}>
     <picture><source media="(max-width: 899px)" srcSet="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
-      <img ref={image} src={small.src} srcSet={`${small.src} ${small.width}w, ${large.src} ${large.width}w`} sizes={`${layer.width}vw`} width={layer.nativeWidth} height={layer.nativeHeight} alt="" decoding="async" draggable={false}
+      <img ref={image} src={small.src} srcSet={imageSrcSet(layer.files)} sizes={desktopImageSizes(layer.width)} width={layer.nativeWidth} height={layer.nativeHeight} alt="" decoding="async" draggable={false}
         onLoad={event => { const art = event.currentTarget; art.decode().then(() => setSource(art.currentSrc || art.src)).catch(() => {}); }} />
     </picture><canvas ref={canvas} aria-hidden="true" />
   </span>;

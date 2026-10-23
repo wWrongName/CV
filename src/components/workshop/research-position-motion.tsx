@@ -1,5 +1,7 @@
 "use client";
 
+import { motionImage } from "@/lib/workshop/motion-images";
+
 import { useEffect, useRef, useState, type RefObject } from "react";
 import motion from "@/lib/workshop/research-motion.json";
 import { sampleBlink, sampleBreath, sampleHair, sampleHeadTilt } from "@/lib/workshop/motion-timing";
@@ -26,8 +28,7 @@ export function ResearchPositionMotion({ baseSrc, active, foregroundHand }: { ba
     setReady(false);
     if (!allowed || !baseSrc || !canvas.current) return;
     let cancelled = false;
-    const node = canvas.current, image = new window.Image(), eyes = new window.Image(), handImage = new window.Image();
-    image.src = baseSrc; eyes.src = motion.blink.src; handImage.src = motion.hand.foregroundSrc;
+    const node = canvas.current, image = motionImage(baseSrc), eyes = motionImage(motion.blink.src), handImage = motionImage(motion.hand.foregroundSrc);
     Promise.all([image.decode(), eyes.decode(), handImage.decode()]).then(() => {
       if (cancelled) return;
       const settings = {

@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { desktopImageSizes, imageSrcSet } from "@/lib/workshop/image-sizes";
 import environment from "@/lib/workshop/environment.json";
 import tiles from "@/lib/workshop/environment-tiles.json";
 
 const mobileSource = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-type Tile = typeof tiles[number];
+type Tile = typeof tiles[number] & { files?: { src: string; width: number; height: number; bytes: number }[] };
 
 function tileLayout(tile: Tile) {
   const [a,b,c,d] = environment.matrix;
@@ -38,6 +39,8 @@ function EnvironmentTile({ tile }: { tile: Tile }) {
   const [requested, setRequested] = useState(tile.id === "center");
   const ref = useRef<HTMLDivElement>(null);
   const full = tile.file;
+  const sources = tile.files || [full];
+  const imageWidthPercent = tile.width * Math.hypot(environment.matrix[0], environment.matrix[1]) / 4 / 1536 * 100;
   const layout = tileLayout(tile);
   useEffect(() => {
     if (tile.id === "center") return;
@@ -59,7 +62,7 @@ function EnvironmentTile({ tile }: { tile: Tile }) {
   };
   return <div ref={ref} className="workshop-environment-tile" aria-hidden="true" data-tile={tile.id} data-requested={requested} style={layout.slot}>
     {requested && <picture><source media="(max-width: 899px)" srcSet={mobileSource} />
-      <img src={full.src} width={tile.width} height={tile.height}
+      <img src={sources[0].src} srcSet={imageSrcSet(sources)} sizes={desktopImageSizes(imageWidthPercent)} width={tile.width} height={tile.height}
         style={imageStyle} alt="" decoding="async" loading="eager" fetchPriority={tile.id === "center" ? "high" : "low"}
         draggable={false} onError={() => setFailed(true)} />
     </picture>}

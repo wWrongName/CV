@@ -1,5 +1,7 @@
 "use client";
 
+import { motionImage } from "@/lib/workshop/motion-images";
+
 import { useEffect, useRef, useState } from "react";
 import motion from "@/lib/workshop/services-motion.json";
 import { sampleBlink, sampleBreath, sampleHair } from "@/lib/workshop/motion-timing";
@@ -26,7 +28,7 @@ export function ServicesPositionMotion({ baseSrc, active }: { baseSrc: string; a
     if (!node) return;
     const files = motion.gesture.image.files;
     const file = files[node.getBoundingClientRect().width * devicePixelRatio > files[0].width ? 1 : 0];
-    const image = new window.Image(), eyelid = new window.Image(); image.src = file.src; eyelid.src = motion.blink.src;
+    const image = motionImage(file.src), eyelid = motionImage(motion.blink.src);
     Promise.all([image.decode(), eyelid.decode()]).then(() => {
       if (cancelled) return;
       renderer.current = createServicesMesh(node, image, { ...motion.canvas, pivot: motion.gesture.pivot, armOutline: motion.gesture.armOutline });

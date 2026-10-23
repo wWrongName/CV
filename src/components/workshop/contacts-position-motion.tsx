@@ -1,5 +1,7 @@
 "use client";
 
+import { motionImage } from "@/lib/workshop/motion-images";
+
 import { useEffect, useRef, useState } from "react";
 import motion from "@/lib/workshop/contacts-motion.json";
 import { sampleBlink, sampleBreath, sampleHair, sampleHeadTilt } from "@/lib/workshop/motion-timing";
@@ -25,8 +27,7 @@ export function ContactsPositionMotion({ baseSrc, active }: { baseSrc: string; a
     setReady(false);
     if (!allowed || !baseSrc || !canvas.current) return;
     let cancelled = false;
-    const node = canvas.current, image = new window.Image(), eyes = new window.Image();
-    image.src = baseSrc; eyes.src = motion.blink.src;
+    const node = canvas.current, image = motionImage(baseSrc), eyes = motionImage(motion.blink.src);
     Promise.all([image.decode(), eyes.decode()]).then(() => {
       if (cancelled) return;
       renderer.current = createCharacterMesh(node, image, {

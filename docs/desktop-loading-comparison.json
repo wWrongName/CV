@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-23",
+  "baselineCommit": "4d1dbf9",
+  "method": "Local production builds, same 1280x800 iframe / DPR 2.36, aggregate 10 Mbit/s + 100ms response latency, no browser cache. Timings are controlled comparisons, not universal device or network guarantees.",
+  "before": {
+    "viewport": "1280x800",
+    "dpr": 2.359999895095825,
+    "network": "10Mbps aggregate + 100ms response latency",
+    "cache": "disabled",
+    "ttfbMs": 151,
+    "loadMs": 5008,
+    "sceneReadyMs": 5401,
+    "allPosesReadyMs": 7802,
+    "totalKiB": 7431,
+    "artKiB": 7142,
+    "javascriptKiB": 189,
+    "requests": 89,
+    "backgroundGpuRenderers": 8,
+    "decodedPoseTextures": 0
+  },
+  "after": {
+    "viewport": "1280x800",
+    "dpr": 2.359999895095825,
+    "network": "10Mbps aggregate + 100ms response latency",
+    "cache": "disabled",
+    "ttfbMs": 145,
+    "loadMs": 3330,
+    "sceneReadyMs": 3701,
+    "allPosesReadyMs": 6201,
+    "totalKiB": 5377,
+    "artKiB": 5083,
+    "javascriptKiB": 193,
+    "requests": 89,
+    "backgroundGpuRenderers": 0,
+    "decodedPoseTextures": 8
+  },
+  "afterRepeat": {
+    "viewport": "1280x800",
+    "dpr": 2.359999895095825,
+    "network": "10Mbps aggregate + 100ms response latency",
+    "cache": "disabled",
+    "ttfbMs": 115,
+    "loadMs": 3275,
+    "sceneReadyMs": 3902,
+    "allPosesReadyMs": 6503,
+    "totalKiB": 5377,
+    "artKiB": 5083,
+    "javascriptKiB": 193,
+    "requests": 89,
+    "backgroundGpuRenderers": 0,
+    "decodedPoseTextures": 8
+  },
+  "firstHoverVerification": "All eight positions visited after prefetch; total transfer remained 5377 KiB, with no new art requests. Default restored. No browser errors/warnings.",
+  "mobileVerification": "390x780 browser viewport: zero desktop artwork or pose requests; mobile illustrations unchanged.",
+  "runtimePublic": {
+    "files": 277,
+    "bytes": 20234735
+  },
+  "imageQuality": "Native re-encodes: PSNR >=40.03 dB against the accepted delivered art; resized variants compared to Lanczos-resized reference, PSNR >=33.5 dB. Alpha unchanged by encoding. Smaller variants retain an existing delivery if cheaper. City, board and vine crops inspected side by side; layout and character art unchanged."
+}

@@ -64,3 +64,23 @@ Optimization candidates (not applied):
 - Desktop prop `sizes` currently advertises 16vw for all non-character art although actual about/blog widths are 4.8% / 3.15% of the stage. Correct scene-based sizes plus smaller responsive variants can avoid large deliveries for tiny books/frames. Furniture and reaction sizes should likewise follow the bounded stage rather than unrestricted viewport width.
 - Center environment tile has a single native 3592px delivery even on 1x screens. Responsive tile variants can reduce traffic while retaining the existing native file for Retina/large screens.
 - Eight hidden position components currently initialize their motion renderers after their images decode. Separating texture prefetch from first-use renderer allocation can lower GPU memory/context pressure while retaining instant static pose switches. This requires interaction/performance QA before changing behavior.
+
+## Desktop delivery optimization and comparison — 2026-10-23
+
+Implemented the candidates above. Every desktop image now advertises its real width on the bounded stage, with smaller responsive prop/furniture deliveries and responsive background tiles. Native image geometry, tile bleed, layer positions, alpha, desktop character art and mobile artwork are preserved. Native re-encodes have measured PSNR >=40.03 dB against the previous accepted delivery; resized variants use a >=33.5 dB gate against the resized reference. An existing delivery is retained when cheaper. Exact alpha is preserved by encoding. City, board and vine crops were visually compared at equal pixel scale. Originals remain in the ignored archive. Per-variant evidence is in desktop-encoding-report.json.
+
+Baseline 4d1dbf9 and optimized production builds were measured with the same 1280x800 iframe / DPR 2.36, shared 10 Mbit/s pipe, 100ms response latency and disabled browser cache:
+
+| Metric | Before | After (two runs) |
+| --- | --- | --- |
+| Window load | 5.01s | 3.28–3.33s |
+| Room and default motion ready | 5.40s | 3.70–3.90s |
+| Pose images/textures prepared | 7.80s | 6.20–6.50s |
+| Total transfer including background poses | 7,431 KiB | 5,377 KiB (-27.6%) |
+| Pose GPU renderers before first interaction | 8 | 0 |
+
+All eight poses still prefetch after the initial room pass. Decoded images are shared in memory between prefetch and first renderer setup, avoiding duplicate requests even with HTTP caching disabled. GPU renderers are allocated on first visit and retained for revisits; only the active position animates. Visiting all eight positions and returning to default added zero art requests and left total transfer at 5,377 KiB. Research hand layering and default return were checked visually; browser console had no errors/warnings. Two identical vine layers share URLs rather than downloading the same pixels twice.
+
+Mobile viewport 390x780 requested zero desktop artwork/poses. Production build (35 pages), make check, explicit public packaging and diff checks passed. Curated public output is 277 files / 20,234,735 bytes: more responsive variants slightly increase stored delivery inventory while substantially reducing the bytes selected by an individual browser. Superseded deliveries and QA pages are excluded. Added delivery checks validate variant metadata, stage sizing, texture selection and decoded-image reuse/failure retries. Raw before/after/repeat measurements and screenshots remain in the task workspace output/wwn-workshop/; compact results are in desktop-loading-comparison.json. Actual phone GPU/battery and production-network timings were not measured in this comparison.
+
+Final HTTP smoke of this build: all 277 packaged assets and 18 RU/EN section pages returned successfully; zero failures. Evidence: optimization-http-smoke.json in the task workspace.

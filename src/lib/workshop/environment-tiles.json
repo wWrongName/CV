@@ -24,11 +24,31 @@
     "width": 3592,
     "height": 2568,
     "file": {
-      "src": "/workshop/tile-d00e825b7442-center.webp",
+      "src": "/workshop/room-center-36d2b383ed-3592.webp",
       "width": 3592,
       "height": 2568,
-      "bytes": 1131912
-    }
+      "bytes": 471746
+    },
+    "files": [
+      {
+        "src": "/workshop/room-center-1e2d929e66-960.webp",
+        "width": 960,
+        "height": 686,
+        "bytes": 102008
+      },
+      {
+        "src": "/workshop/room-center-2431967929-1920.webp",
+        "width": 1920,
+        "height": 1373,
+        "bytes": 237538
+      },
+      {
+        "src": "/workshop/room-center-36d2b383ed-3592.webp",
+        "width": 3592,
+        "height": 2568,
+        "bytes": 471746
+      }
+    ]
   },
   {
     "id": "top-left",
@@ -55,11 +75,25 @@
     "width": 1284,
     "height": 772,
     "file": {
-      "src": "/workshop/tile-d00e825b7442-top-left.webp",
+      "src": "/workshop/room-top-left-81907849f8-1284.webp",
       "width": 1284,
       "height": 772,
-      "bytes": 92948
-    }
+      "bytes": 33586
+    },
+    "files": [
+      {
+        "src": "/workshop/room-top-left-1a6cb36312-960.webp",
+        "width": 960,
+        "height": 577,
+        "bytes": 22858
+      },
+      {
+        "src": "/workshop/room-top-left-81907849f8-1284.webp",
+        "width": 1284,
+        "height": 772,
+        "bytes": 33586
+      }
+    ]
   },
   {
     "id": "top-center",
@@ -86,11 +120,31 @@
     "width": 3592,
     "height": 772,
     "file": {
-      "src": "/workshop/tile-d00e825b7442-top-center.webp",
+      "src": "/workshop/room-top-center-efdf6afec9-3592.webp",
       "width": 3592,
       "height": 772,
-      "bytes": 233416
-    }
+      "bytes": 94056
+    },
+    "files": [
+      {
+        "src": "/workshop/room-top-center-afb0488a2e-960.webp",
+        "width": 960,
+        "height": 206,
+        "bytes": 19012
+      },
+      {
+        "src": "/workshop/room-top-center-b9c82e50eb-1920.webp",
+        "width": 1920,
+        "height": 413,
+        "bytes": 43088
+      },
+      {
+        "src": "/workshop/room-top-center-efdf6afec9-3592.webp",
+        "width": 3592,
+        "height": 772,
+        "bytes": 94056
+      }
+    ]
   },
   {
     "id": "top-right",
@@ -117,11 +171,25 @@
     "width": 1284,
     "height": 772,
     "file": {
-      "src": "/workshop/tile-d00e825b7442-top-right.webp",
+      "src": "/workshop/room-top-right-585b7a6698-1284.webp",
       "width": 1284,
       "height": 772,
-      "bytes": 115790
-    }
+      "bytes": 52254
+    },
+    "files": [
+      {
+        "src": "/workshop/room-top-right-4e503722b4-960.webp",
+        "width": 960,
+        "height": 577,
+        "bytes": 36450
+      },
+      {
+        "src": "/workshop/room-top-right-585b7a6698-1284.webp",
+        "width": 1284,
+        "height": 772,
+        "bytes": 52254
+      }
+    ]
   },
   {
     "id": "middle-left",
@@ -148,11 +216,25 @@
     "width": 1284,
     "height": 2568,
     "file": {
-      "src": "/workshop/tile-d00e825b7442-middle-left.webp",
+      "src": "/workshop/room-middle-left-f3f6469e25-1284.webp",
       "width": 1284,
       "height": 2568,
-      "bytes": 314828
-    }
+      "bytes": 119606
+    },
+    "files": [
+      {
+        "src": "/workshop/room-middle-left-876a26fd6b-960.webp",
+        "width": 960,
+        "height": 1920,
+        "bytes": 83588
+      },
+      {
+        "src": "/workshop/room-middle-left-f3f6469e25-1284.webp",
+        "width": 1284,
+        "height": 2568,
+        "bytes": 119606
+      }
+    ]
   },
   {
     "id": "middle-right",
@@ -179,11 +261,25 @@
     "width": 1284,
     "height": 2568,
     "file": {
-      "src": "/workshop/tile-d00e825b7442-middle-right.webp",
+      "src": "/workshop/room-middle-right-36ab0ab383-1284.webp",
       "width": 1284,
       "height": 2568,
-      "bytes": 419600
-    }
+      "bytes": 202828
+    },
+    "files": [
+      {
+        "src": "/workshop/room-middle-right-2697f47963-960.webp",
+        "width": 960,
+        "height": 1920,
+        "bytes": 145624
+      },
+      {
+        "src": "/workshop/room-middle-right-36ab0ab383-1284.webp",
+        "width": 1284,
+        "height": 2568,
+        "bytes": 202828
+      }
+    ]
   },
   {
     "id": "bottom-left",
@@ -210,11 +306,25 @@
     "width": 1284,
     "height": 772,
     "file": {
-      "src": "/workshop/tile-d00e825b7442-bottom-left.webp",
+      "src": "/workshop/room-bottom-left-b37109326f-1284.webp",
       "width": 1284,
       "height": 772,
-      "bytes": 74528
-    }
+      "bytes": 28234
+    },
+    "files": [
+      {
+        "src": "/workshop/room-bottom-left-999bc679af-960.webp",
+        "width": 960,
+        "height": 577,
+        "bytes": 19554
+      },
+      {
+        "src": "/workshop/room-bottom-left-b37109326f-1284.webp",
+        "width": 1284,
+        "height": 772,
+        "bytes": 28234
+      }
+    ]
   },
   {
     "id": "bottom-center",
@@ -241,11 +351,31 @@
     "width": 3592,
     "height": 772,
     "file": {
-      "src": "/workshop/tile-d00e825b7442-bottom-center.webp",
+      "src": "/workshop/room-bottom-center-0a5fd22fed-3592.webp",
       "width": 3592,
       "height": 772,
-      "bytes": 298818
-    }
+      "bytes": 119150
+    },
+    "files": [
+      {
+        "src": "/workshop/room-bottom-center-6294146d88-960.webp",
+        "width": 960,
+        "height": 206,
+        "bytes": 26922
+      },
+      {
+        "src": "/workshop/room-bottom-center-269de4dfa6-1920.webp",
+        "width": 1920,
+        "height": 413,
+        "bytes": 58940
+      },
+      {
+        "src": "/workshop/room-bottom-center-0a5fd22fed-3592.webp",
+        "width": 3592,
+        "height": 772,
+        "bytes": 119150
+      }
+    ]
   },
   {
     "id": "bottom-right",
@@ -272,10 +402,24 @@
     "width": 1284,
     "height": 772,
     "file": {
-      "src": "/workshop/tile-d00e825b7442-bottom-right.webp",
+      "src": "/workshop/room-bottom-right-e8f3d45a7e-1284.webp",
       "width": 1284,
       "height": 772,
-      "bytes": 89556
-    }
+      "bytes": 41712
+    },
+    "files": [
+      {
+        "src": "/workshop/room-bottom-right-87917c49be-960.webp",
+        "width": 960,
+        "height": 577,
+        "bytes": 29652
+      },
+      {
+        "src": "/workshop/room-bottom-right-e8f3d45a7e-1284.webp",
+        "width": 1284,
+        "height": 772,
+        "bytes": 41712
+      }
+    ]
   }
 ]
