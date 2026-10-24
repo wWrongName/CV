@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useLayoutEffect, useRef, type ReactNode } from "react";
 import type { Locale } from "@/lib/i18n";
+import { ProjectTabsScrollProvider } from "./project-tabs-scroll";
 import { CarvedChevron } from "./carved-chevron";
 import { getObjectLabel, telegramHref, workshopCopy, type SectionId } from "@/lib/workshop/sections";
 
@@ -38,7 +39,7 @@ export function WorkshopPanel({ locale, section, onClose, children }: { locale: 
       <Link ref={closeRef} href={`/${locale}`} scroll={false} className="workshop-panel-close" aria-label={ui.back}
         onClick={event => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onClose(); } }}><CarvedChevron direction="left" tone="text" className="workshop-back-chevron" /><span>{ui.back}</span><b aria-hidden="true">×</b></Link>
     </header>
-    <div className="workshop-panel-body" key={section}>{children}</div>
+    <ProjectTabsScrollProvider><div className="workshop-panel-body" key={section}>{children}</div></ProjectTabsScrollProvider>
     {section !== "contact" && <footer className="studio-panel-contact"><p>{locale === "ru" ? "Есть похожая задача?" : "Working on a similar challenge?"}</p><a href={telegramHref} target="_blank" rel="noreferrer">{locale === "ru" ? "Обсудим в Telegram" : "Let's talk on Telegram"}<span aria-hidden="true">↗</span></a></footer>}
   </dialog>;
 }

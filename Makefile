@@ -37,6 +37,7 @@ test: ## Check navigation through all projects and stage boundaries
 	$(NODE) scripts/check-navigation.cjs
 	$(NODE) scripts/check-workshop.cjs
 	$(NODE) scripts/check-desktop-delivery.cjs
+	$(NODE) scripts/check-panorama-loading.cjs
 	$(NODE) scripts/check-project-diagrams.cjs
 	$(NODE) scripts/check-mobile-workshop.cjs
 	$(NODE) scripts/check-mobile-motion.cjs

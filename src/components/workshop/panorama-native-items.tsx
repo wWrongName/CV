@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {processLampLevel} from "@/lib/workshop/mobile-motion";
 import registry from "@/lib/workshop/panorama-native-items.json";
+import { loadPanoramaImage } from "@/lib/workshop/panorama-loading";
 import type { SectionId } from "@/lib/workshop/sections";
 
 type Kind = "head" | "lamp" | "spindle" | "book" | "connector";
@@ -17,11 +18,10 @@ const eyes: Partial<Record<SectionId, number[][]>> = {
 };
 const bulbs:Record<SectionId,number[]>={about:[.925,.29,.04,.12],services:[.655,.10,.06,.055],projects:[.922,.245,.055,.045],research:[.862,.465,.08,.06],process:[.44,.07,.34,.11],blog:[.865,.375,.08,.06],experience:[.495,.33,.07,.055],contact:[.765,.17,.043,.10]};
 function surface(w: number, h: number) { const c = document.createElement("canvas"); c.width = w; c.height = h; return c; }
-function image(src: string): Promise<HTMLImageElement> { return new Promise((resolve, reject) => { const img = new Image(); img.onload = () => resolve(img); img.onerror = reject; img.src = src; }); }
 // Cropped auxiliary textures are registered back into the native scene coordinates.
 // The lossless source pixels and animation masks retain their original alignment.
 async function registeredImage(src: string, region: number[] | null): Promise<HTMLImageElement | HTMLCanvasElement> {
- const img=await image(src);if(!region)return img;
+ const img=await loadPanoramaImage(src);if(!region)return img;
  const [left,top,width,height,fullWidth,fullHeight]=region;
  const canvas=surface(fullWidth,fullHeight);canvas.getContext("2d")!.drawImage(img,left,top,width,height);return canvas;
 }

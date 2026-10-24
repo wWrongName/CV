@@ -7,6 +7,7 @@ import type { Journey } from "@/lib/journeys";
 import { sectionHref, projectHref } from "@/lib/workshop/sections";
 import Link from "next/link";
 import { projectDiagrams } from "@/lib/workshop/project-diagrams";
+import { useProjectTabsScroll } from "./project-tabs-scroll";
 import { caseStories } from "@/lib/workshop/case-stories";
 
 type Props = { projects: Journey[]; locale: Locale; initialProjectId?: string };
@@ -45,6 +46,8 @@ export function ProjectArchive({ projects, locale, initialProjectId }: Props) {
   const router = useRouter();
   const tabRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const root = useRef<HTMLDivElement>(null);
+  const tabs = useRef<HTMLDivElement>(null);
+  const tabsScroll = useProjectTabsScroll();
   const uid = useId().replace(/:/g, "");
   const project = projects.find(item => item.id === selected) || projects[0];
   const ru = locale === "ru";
@@ -53,6 +56,9 @@ export function ProjectArchive({ projects, locale, initialProjectId }: Props) {
     const readHash = () => { const hash = location.hash.slice(1); const item = projects.find(item => hash === item.id || hash.startsWith(`${item.id}-chapter-`)); if (item && (!initialProjectId || item.id !== selected)) router.replace(`${projectHref(locale, item.id)}${hash === item.id ? "" : `#${hash}`}`, { scroll: false }); };
     readHash(); addEventListener("hashchange", readHash); return () => removeEventListener("hashchange", readHash);
   }, [projects, locale, initialProjectId, selected, router]);
+  useLayoutEffect(() => {
+    if (tabs.current) tabs.current.scrollLeft = tabsScroll.current;
+  }, [project.id, tabsScroll]);
   useLayoutEffect(() => {
     const hash = location.hash.slice(1);
     if (hash.startsWith(`${project.id}-chapter-`)) document.getElementById(hash)?.scrollIntoView({ block: "start", behavior: "instant" });
@@ -75,7 +81,7 @@ export function ProjectArchive({ projects, locale, initialProjectId }: Props) {
   }
   return <div className="project-archive" ref={root}>
     <aside className="dossier-index"><div className="dossier-index-heading"><span className="dossier-eyebrow">WWN / IT SOLUTIONS</span><strong>{ru ? "Архив проектов" : "Project archive"}</strong><small>{String(projects.length).padStart(2,"0")} {ru ? "проектных дел" : "project files"}</small></div>
-      <div className="dossier-tabs" role="tablist" aria-label={ru ? "Выбрать проект" : "Select a project"}>
+      <div ref={tabs} onScroll={event => { tabsScroll.current = event.currentTarget.scrollLeft; }} className="dossier-tabs" role="tablist" aria-label={ru ? "Выбрать проект" : "Select a project"}>
         {projects.map((item, i) => <Link href={projectHref(locale, item.id)} scroll={false} prefetch={false} key={item.id} ref={node => { tabRefs.current[i] = node; }} role="tab" id={`${uid}-tab-${item.id}`} aria-selected={item.id === project.id} aria-controls={`${uid}-file`} tabIndex={item.id === project.id ? 0 : -1} onKeyDown={event => navigate(event, i)}>
           <span>{item.index}</span><span><strong>{item.name}</strong><small>{item.category}</small></span><b aria-hidden="true">→</b>
         </Link>)}
