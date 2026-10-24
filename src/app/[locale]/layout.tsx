@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ? "Web service development, infrastructure and automation. Projects, research and Ivan Velichko's experience."
     : "Разработка веб-сервисов, инфраструктура и автоматизация. Проекты, исследования и опыт Ивана Величко.";
   return {
+    metadataBase: new URL("https://wwncv.tech"),
     title: { default: title, template: "%s · WWN" },
     description,
     openGraph: { title, description, siteName: title, type: "website", locale: en ? "en_US" : "ru_RU" },

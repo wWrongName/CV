@@ -1,7 +1,12 @@
+import { pageAlternates } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { ResumeDocument } from "@/components/resume-document";
 import { isLocale } from "@/lib/i18n";
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) { return { title: (await params).locale === "en" ? "Resume" : "Резюме" }; }
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+  return { title: locale === "en" ? "Resume" : "Резюме", alternates: pageAlternates(locale, "experience") };
+}
 export default async function Experience({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
