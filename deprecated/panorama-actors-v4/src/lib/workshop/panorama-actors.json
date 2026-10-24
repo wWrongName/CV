@@ -1,0 +1,167 @@
+{
+  "about": {
+    "head": [
+      0.614,
+      0.478,
+      0.113,
+      0.15
+    ],
+    "lamp": [
+      0.906,
+      0.245,
+      0.066,
+      0.18
+    ],
+    "atlas": {
+      "src": "/workshop/panorama-about-actors-v1.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 700954
+    },
+    "lampOrigin": "50% 0%"
+  },
+  "services": {
+    "head": [
+      0.781,
+      0.309,
+      0.112,
+      0.176
+    ],
+    "lamp": [
+      0.635,
+      0,
+      0.107,
+      0.17
+    ],
+    "atlas": {
+      "src": "/workshop/panorama-services-actors-v1.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 861620
+    },
+    "lampOrigin": "50% 0%"
+  },
+  "projects": {
+    "head": [
+      0.538,
+      0.302,
+      0.146,
+      0.238
+    ],
+    "lamp": [
+      0.881,
+      0.11,
+      0.119,
+      0.23
+    ],
+    "atlas": {
+      "src": "/workshop/panorama-projects-actors-v1.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 734400
+    },
+    "lampOrigin": "100% 0%",
+    "lampSrc": "/workshop/panorama-projects-lamp-v1.webp"
+  },
+  "research": {
+    "head": [
+      0.537,
+      0.249,
+      0.176,
+      0.278
+    ],
+    "lamp": [
+      0.823,
+      0.33,
+      0.177,
+      0.4
+    ],
+    "atlas": {
+      "src": "/workshop/panorama-research-actors-v1.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 660804
+    },
+    "lampOrigin": "100% 100%",
+    "lampSrc": "/workshop/panorama-research-lamp-v1.webp"
+  },
+  "process": {
+    "head": [
+      0.703,
+      0.158,
+      0.165,
+      0.25
+    ],
+    "lamp": [
+      0.417,
+      0,
+      0.41,
+      0.18
+    ],
+    "atlas": {
+      "src": "/workshop/panorama-process-actors-v1.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 607068
+    },
+    "lampOrigin": "50% 0%"
+  },
+  "blog": {
+    "head": [
+      0.605,
+      0.22,
+      0.175,
+      0.292
+    ],
+    "lamp": [
+      0.844,
+      0.248,
+      0.156,
+      0.209
+    ],
+    "atlas": {
+      "src": "/workshop/panorama-blog-actors-v1.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 749286
+    },
+    "lampOrigin": "100% 20%",
+    "lampSrc": "/workshop/panorama-blog-lamp-v1.webp"
+  },
+  "experience": {
+    "head": [
+      0.633,
+      0.1,
+      0.202,
+      0.31
+    ],
+    "lamp": [
+      0.464,
+      0.255,
+      0.115,
+      0.263
+    ],
+    "atlas": {
+      "src": "/workshop/panorama-experience-actors-v1.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 797528
+    },
+    "lampOrigin": "18% 100%"
+  },
+  "contact": {
+    "lamp": [
+      0.753,
+      0,
+      0.069,
+      0.281
+    ],
+    "atlas": {
+      "src": "/workshop/panorama-contact-actors-v1.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 98686
+    },
+    "lampOrigin": "50% 0%"
+  }
+}

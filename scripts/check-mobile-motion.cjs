@@ -79,6 +79,4 @@ for(const [id,item] of Object.entries(mobileLampItems)) {
 }
 for(const item of Object.values(mobileDogItems))for(const src of [item.src,item.plateSrc])itemBytes+=fs.statSync(`public${src}`).size;
 assert.ok(itemBytes<384*1024,"all small mobile motion items fit within 384KiB combined");
-const tiles=JSON.parse(fs.readFileSync("src/lib/workshop/environment-tiles.json","utf8"));
-assert.ok(tiles.reduce((n,t)=>n+fs.statSync(`public${t.file.src}`).size,0)<4*1024*1024,"desktop delivery background stays within 4MiB at native resolution");
 console.log(`Independent mobile items: natural dog aspect/ground contact, quiet breathing, 3 head turns, visible lights, rigid lamp rotations and ${itemBytes} byte total item budget verified.`);

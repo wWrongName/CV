@@ -22,6 +22,10 @@ for(const item of Object.values(exportsMotion.mobileDogItems)) {
 for(const url of required) if(!fs.existsSync(path.join(publicDir,url))) throw new Error(`Missing runtime asset: ${url}`);
 const ordinary = walk(publicDir).filter(f=>!f.startsWith(path.join(publicDir,"workshop")+path.sep) && !path.basename(f).startsWith("__") && !path.relative(publicDir,f).split(path.sep).some(part=>part.startsWith(".")));
 const files = [...required].map(url=>path.join(publicDir,url)).concat(ordinary).sort();
+if(process.argv.includes("--list")) {
+  console.log(JSON.stringify(files.map(f=>path.relative(publicDir,f))));
+  process.exit(0);
+}
 const sourceBytes = walk(publicDir).reduce((n,f)=>n+fs.statSync(f).size,0);
 const bytes = files.reduce((n,f)=>n+fs.statSync(f).size,0);
 if(!process.argv.includes("--check")) {

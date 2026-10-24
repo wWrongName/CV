@@ -36,3 +36,6 @@ public/__*
 
 # Local archive of superseded illustration deliveries
 deprecated/workshop-assets/
+
+# Versioned historical scenes are retained in Git, excluded from build context.
+deprecated/

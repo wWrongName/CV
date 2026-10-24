@@ -1,0 +1,66 @@
+{
+  "about": {
+    "original": "/workshop/panorama-about-native-v5.webp",
+    "plate": "/workshop/panorama-about-plate-v4.webp",
+    "mask": "/workshop/panorama-about-selection-v1.webp",
+    "blink": null,
+    "whiteMask": false,
+    "toolMask": null
+  },
+  "services": {
+    "original": "/workshop/panorama-services-native-v5.webp",
+    "plate": "/workshop/panorama-services-plate-v4.webp",
+    "mask": "/workshop/panorama-services-selection-v1.webp",
+    "blink": "/workshop/panorama-services-blink-v5.webp",
+    "whiteMask": false,
+    "toolMask": "/workshop/panorama-services-whole-tool-v2.webp"
+  },
+  "projects": {
+    "original": "/workshop/panorama-projects-native-v5.webp",
+    "plate": "/workshop/panorama-projects-plate-v4.webp",
+    "mask": "/workshop/panorama-projects-selection-v1.webp",
+    "blink": "/workshop/panorama-projects-blink-v5.webp",
+    "whiteMask": false,
+    "toolMask": null
+  },
+  "research": {
+    "original": "/workshop/panorama-research-native-v5.webp",
+    "plate": "/workshop/panorama-research-plate-v4.webp",
+    "mask": "/workshop/panorama-research-selection-v1.webp",
+    "blink": "/workshop/panorama-research-blink-v5.webp",
+    "whiteMask": false,
+    "toolMask": null
+  },
+  "process": {
+    "original": "/workshop/panorama-process-native-v5.webp",
+    "plate": "/workshop/panorama-process-plate-v4.webp",
+    "mask": "/workshop/panorama-process-selection-v1.webp",
+    "blink": "/workshop/panorama-process-blink-v5.webp",
+    "whiteMask": true,
+    "toolMask": null
+  },
+  "blog": {
+    "original": "/workshop/panorama-blog-native-v5.webp",
+    "plate": "/workshop/panorama-blog-plate-v4.webp",
+    "mask": "/workshop/panorama-blog-selection-v1.webp",
+    "blink": "/workshop/panorama-blog-blink-v5.webp",
+    "whiteMask": false,
+    "toolMask": null
+  },
+  "experience": {
+    "original": "/workshop/panorama-experience-native-v5.webp",
+    "plate": "/workshop/panorama-experience-plate-v4.webp",
+    "mask": "/workshop/panorama-experience-selection-v1.webp",
+    "blink": "/workshop/panorama-experience-blink-v5.webp",
+    "whiteMask": false,
+    "toolMask": null
+  },
+  "contact": {
+    "original": "/workshop/panorama-contact-native-v5.webp",
+    "plate": "/workshop/panorama-contact-plate-v4.webp",
+    "mask": "/workshop/panorama-contact-selection-v1.webp",
+    "blink": null,
+    "whiteMask": false,
+    "toolMask": null
+  }
+}

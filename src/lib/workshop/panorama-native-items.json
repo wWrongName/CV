@@ -1,0 +1,274 @@
+{
+  "about": {
+    "original": "/workshop/panorama-about-native-v5.webp",
+    "plate": "/workshop/panorama-about-plate-crop-v1.webp",
+    "mask": "/workshop/panorama-about-selection-crop-v1.webp",
+    "blink": null,
+    "whiteMask": false,
+    "toolMask": null,
+    "originalRegion": null,
+    "blinkRegion": null,
+    "toolMaskRegion": null,
+    "plateRegion": [
+      951,
+      98,
+      634,
+      690,
+      1585,
+      992
+    ],
+    "maskRegion": [
+      951,
+      98,
+      634,
+      690,
+      1585,
+      992
+    ]
+  },
+  "services": {
+    "original": "/workshop/panorama-services-native-v5.webp",
+    "plate": "/workshop/panorama-services-plate-crop-v1.webp",
+    "mask": "/workshop/panorama-services-selection-crop-v1.webp",
+    "blink": "/workshop/panorama-services-blink-crop-v1.webp",
+    "whiteMask": false,
+    "toolMask": "/workshop/panorama-services-whole-tool-crop-v1.webp",
+    "originalRegion": null,
+    "blinkRegion": [
+      1282,
+      392,
+      30,
+      26,
+      1584,
+      993
+    ],
+    "toolMaskRegion": [
+      1025,
+      472,
+      43,
+      68,
+      1584,
+      993
+    ],
+    "plateRegion": [
+      988,
+      0,
+      431,
+      567,
+      1584,
+      993
+    ],
+    "maskRegion": [
+      988,
+      0,
+      431,
+      567,
+      1584,
+      993
+    ]
+  },
+  "projects": {
+    "original": "/workshop/panorama-projects-native-v5.webp",
+    "plate": "/workshop/panorama-projects-plate-crop-v1.webp",
+    "mask": "/workshop/panorama-projects-selection-crop-v1.webp",
+    "blink": "/workshop/panorama-projects-blink-crop-v1.webp",
+    "whiteMask": false,
+    "toolMask": null,
+    "originalRegion": null,
+    "blinkRegion": [
+      996,
+      405,
+      48,
+      34,
+      1584,
+      993
+    ],
+    "toolMaskRegion": null,
+    "plateRegion": [
+      813,
+      91,
+      771,
+      484,
+      1584,
+      993
+    ],
+    "maskRegion": [
+      813,
+      91,
+      771,
+      484,
+      1584,
+      993
+    ]
+  },
+  "research": {
+    "original": "/workshop/panorama-research-native-crop-v1.webp",
+    "plate": "/workshop/panorama-research-plate-crop-v1.webp",
+    "mask": "/workshop/panorama-research-selection-crop-v1.webp",
+    "blink": "/workshop/panorama-research-blink-crop-v1.webp",
+    "whiteMask": false,
+    "toolMask": null,
+    "originalRegion": [
+      832,
+      225,
+      752,
+      549,
+      1584,
+      993
+    ],
+    "blinkRegion": [
+      935,
+      413,
+      110,
+      47,
+      1584,
+      993
+    ],
+    "toolMaskRegion": null,
+    "plateRegion": [
+      832,
+      225,
+      752,
+      549,
+      1584,
+      993
+    ],
+    "maskRegion": [
+      832,
+      225,
+      752,
+      549,
+      1584,
+      993
+    ]
+  },
+  "process": {
+    "original": "/workshop/panorama-process-native-v5.webp",
+    "plate": "/workshop/panorama-process-plate-crop-v1.webp",
+    "mask": "/workshop/panorama-process-selection-crop-v1.webp",
+    "blink": "/workshop/panorama-process-blink-crop-v1.webp",
+    "whiteMask": true,
+    "toolMask": null,
+    "originalRegion": null,
+    "blinkRegion": [
+      1177,
+      282,
+      35,
+      31,
+      1586,
+      992
+    ],
+    "toolMaskRegion": null,
+    "plateRegion": [
+      657,
+      25,
+      721,
+      407,
+      1585,
+      992
+    ],
+    "maskRegion": [
+      657,
+      25,
+      721,
+      407,
+      1586,
+      992
+    ]
+  },
+  "blog": {
+    "original": "/workshop/panorama-blog-native-v5.webp",
+    "plate": "/workshop/panorama-blog-plate-crop-v1.webp",
+    "mask": "/workshop/panorama-blog-selection-crop-v1.webp",
+    "blink": "/workshop/panorama-blog-blink-crop-v1.webp",
+    "whiteMask": false,
+    "toolMask": null,
+    "originalRegion": null,
+    "blinkRegion": [
+      1079,
+      406,
+      93,
+      45,
+      1584,
+      993
+    ],
+    "toolMaskRegion": null,
+    "plateRegion": [
+      933,
+      193,
+      651,
+      363,
+      1584,
+      993
+    ],
+    "maskRegion": [
+      933,
+      193,
+      651,
+      363,
+      1584,
+      993
+    ]
+  },
+  "experience": {
+    "original": "/workshop/panorama-experience-native-v5.webp",
+    "plate": "/workshop/panorama-experience-plate-crop-v1.webp",
+    "mask": "/workshop/panorama-experience-selection-crop-v1.webp",
+    "blink": "/workshop/panorama-experience-blink-crop-v1.webp",
+    "whiteMask": false,
+    "toolMask": null,
+    "originalRegion": null,
+    "blinkRegion": [
+      1077,
+      267,
+      108,
+      63,
+      1584,
+      993
+    ],
+    "toolMaskRegion": null,
+    "plateRegion": [
+      713,
+      80,
+      613,
+      454,
+      1584,
+      993
+    ],
+    "maskRegion": [
+      713,
+      80,
+      613,
+      454,
+      1584,
+      993
+    ]
+  },
+  "contact": {
+    "original": "/workshop/panorama-contact-native-v5.webp",
+    "plate": "/workshop/panorama-contact-plate-crop-v1.webp",
+    "mask": "/workshop/panorama-contact-selection-crop-v1.webp",
+    "blink": null,
+    "whiteMask": false,
+    "toolMask": null,
+    "originalRegion": null,
+    "blinkRegion": null,
+    "toolMaskRegion": null,
+    "plateRegion": [
+      1170,
+      0,
+      151,
+      307,
+      1585,
+      992
+    ],
+    "maskRegion": [
+      1170,
+      0,
+      150,
+      307,
+      1584,
+      993
+    ]
+  }
+}

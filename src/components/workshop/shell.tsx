@@ -4,7 +4,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, type ReactNode } from "react";
 import type { Locale } from "@/lib/i18n";
 import { sectionFromPath, type ObjectId } from "@/lib/workshop/sections";
-import { DesktopWorkshop } from "./desktop-scene";
+import { StudioScene, StudioHeader, StudioHome } from "./studio";
+import "./studio.css";
 import { MobileWorkshopIndex } from "./mobile-index";
 import { WorkshopPanel } from "./panel";
 import { WorkshopInteractionProvider, useWorkshopInteraction } from "./interaction-provider";
@@ -24,6 +25,7 @@ function WorkshopShellContent({ locale, children }: { locale: Locale; children: 
     if (section) send({ type: "route-opened", target: section });
     else {
       send({ type: "route-closed" });
+      if (matchMedia("(min-width: 900px)").matches) send({ type: "rest" });
       if (origin.current) {
         const candidates = scene.current?.querySelectorAll<HTMLElement>(`[data-object="${origin.current}"]`);
         const visibleCandidates = candidates && Array.from(candidates).filter(element => {
@@ -45,9 +47,11 @@ function WorkshopShellContent({ locale, children }: { locale: Locale; children: 
   }, [locale, router]);
 
   if (section === undefined) return children;
-  return <div className="workshop-shell" data-panel-open={Boolean(section)}>
-    <div ref={scene} className="workshop-scene-root"><DesktopWorkshop locale={locale} onEnter={onEnter} /><MobileWorkshopIndex locale={locale} onEnter={onEnter} paused={Boolean(section)} /></div>
-    {section ? <WorkshopPanel key={section} section={section} locale={locale} onClose={onClose}>{children}</WorkshopPanel> : children}
+  return <div ref={scene} className="workshop-shell studio-shell" data-panel-open={Boolean(section)}>
+    <div className="workshop-scene-root"><StudioScene section={section} /><MobileWorkshopIndex locale={locale} onEnter={onEnter} paused={Boolean(section)} /></div>
+    <div className="studio-frame"><StudioHeader locale={locale} section={section}/>
+    {section ? <WorkshopPanel key={section} section={section} locale={locale} onClose={onClose}>{children}</WorkshopPanel> : <><StudioHome locale={locale}/>{children}</>}
+    </div>
   </div>;
 }
 

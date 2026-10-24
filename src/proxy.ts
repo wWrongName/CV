@@ -1,6 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
+import { preferredLocale } from "@/lib/preferred-locale";
 
 export function proxy(request: NextRequest) {
+  // Explicit /ru and /en links keep their language, including shared case URLs.
+  if (request.nextUrl.pathname === "/") {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${preferredLocale(request.headers.get("accept-language"))}`;
+    const response = NextResponse.redirect(url);
+    response.headers.set("Vary", "Accept-Language");
+    response.headers.set("Cache-Control", "private, no-store");
+    return response;
+  }
+
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const development = process.env.NODE_ENV === "development";
   const csp = [
@@ -22,4 +33,4 @@ export function proxy(request: NextRequest) {
   response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
   return response;
 }
-export const config = { matcher: "/control-room/:path*" };
+export const config = { matcher: ["/", "/control-room/:path*"] };

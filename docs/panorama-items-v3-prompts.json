@@ -1,0 +1,83 @@
+{
+  "mode": "built-in image_gen",
+  "backgrounds": [
+    {
+      "id": "about",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-about-v1.png",
+      "prompt": "Use case: precise-object-edit. Production desktop website illustration background. Improve actual visual clarity: redraw fine crisp clean linework and material details across the entire image, INCLUDING foreground and distant shelves; remove baked-in defocus, depth-of-field blur, smeared painterly patches and soft-focus haze. High-quality detailed anime architectural illustration, same artistic style, not photorealistic. Preserve EXACT composition, crop, perspective, character identity, pose, hands, clothing, objects and warm/cool lighting balance. Do not add logos or sleeve patches. Preserve WWN lettering only where already present. Preserve all book/typewriter orientations. REMOVE the sleeping dog entirely and reconstruct bare desktop under it. Dog will be a separate sprite. Keep mug/laptop and all other items. Remove existing clouds and reconstruct a clean clear dusk sky gradient, preserving stars, sun and city silhouettes. Moving clouds will be a separate layer. No UI or text overlays. Maximum available native resolution, ideally 3840x2400 wide landscape; do not change framing. Sharp, legible edges and detailed textures; no artificial sharpening halos."
+    },
+    {
+      "id": "services",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-services-v2.png",
+      "prompt": "Use case: precise-object-edit. Production desktop website illustration background. Improve actual visual clarity: redraw fine crisp clean linework and material details across the entire image, INCLUDING foreground and distant shelves; remove baked-in defocus, depth-of-field blur, smeared painterly patches and soft-focus haze. High-quality detailed anime architectural illustration, same artistic style, not photorealistic. Preserve EXACT composition, crop, perspective, character identity, pose, hands, clothing, objects and warm/cool lighting balance. Do not add logos or sleeve patches. Preserve WWN lettering only where already present. Preserve all book/typewriter orientations. No animals. No UI or text overlays. Maximum available native resolution, ideally 3840x2400 wide landscape; do not change framing. Sharp, legible edges and detailed textures; no artificial sharpening halos."
+    },
+    {
+      "id": "projects",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-projects-v1.png",
+      "prompt": "Use case: precise-object-edit. Production desktop website illustration background. Improve actual visual clarity: redraw fine crisp clean linework and material details across the entire image, INCLUDING foreground and distant shelves; remove baked-in defocus, depth-of-field blur, smeared painterly patches and soft-focus haze. High-quality detailed anime architectural illustration, same artistic style, not photorealistic. Preserve EXACT composition, crop, perspective, character identity, pose, hands, clothing, objects and warm/cool lighting balance. Do not add logos or sleeve patches. Preserve WWN lettering only where already present. Preserve all book/typewriter orientations. No animals. No UI or text overlays. Maximum available native resolution, ideally 3840x2400 wide landscape; do not change framing. Sharp, legible edges and detailed textures; no artificial sharpening halos."
+    },
+    {
+      "id": "research",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-research-v2.png",
+      "prompt": "Use case: precise-object-edit. Production desktop website illustration background. Improve actual visual clarity: redraw fine crisp clean linework and material details across the entire image, INCLUDING foreground and distant shelves; remove baked-in defocus, depth-of-field blur, smeared painterly patches and soft-focus haze. High-quality detailed anime architectural illustration, same artistic style, not photorealistic. Preserve EXACT composition, crop, perspective, character identity, pose, hands, clothing, objects and warm/cool lighting balance. Do not add logos or sleeve patches. Preserve WWN lettering only where already present. Preserve all book/typewriter orientations. No animals. No UI or text overlays. Maximum available native resolution, ideally 3840x2400 wide landscape; do not change framing. Sharp, legible edges and detailed textures; no artificial sharpening halos."
+    },
+    {
+      "id": "process",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-process-v1.png",
+      "prompt": "Use case: precise-object-edit. Production desktop website illustration background. Improve actual visual clarity: redraw fine crisp clean linework and material details across the entire image, INCLUDING foreground and distant shelves; remove baked-in defocus, depth-of-field blur, smeared painterly patches and soft-focus haze. High-quality detailed anime architectural illustration, same artistic style, not photorealistic. Preserve EXACT composition, crop, perspective, character identity, pose, hands, clothing, objects and warm/cool lighting balance. Do not add logos or sleeve patches. Preserve WWN lettering only where already present. Preserve all book/typewriter orientations. No animals. No UI or text overlays. Maximum available native resolution, ideally 3840x2400 wide landscape; do not change framing. Sharp, legible edges and detailed textures; no artificial sharpening halos."
+    },
+    {
+      "id": "blog",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-blog-v1.png",
+      "prompt": "Use case: precise-object-edit. Production desktop website illustration background. Improve actual visual clarity: redraw fine crisp clean linework and material details across the entire image, INCLUDING foreground and distant shelves; remove baked-in defocus, depth-of-field blur, smeared painterly patches and soft-focus haze. High-quality detailed anime architectural illustration, same artistic style, not photorealistic. Preserve EXACT composition, crop, perspective, character identity, pose, hands, clothing, objects and warm/cool lighting balance. Do not add logos or sleeve patches. Preserve WWN lettering only where already present. Preserve all book/typewriter orientations. No animals. No UI or text overlays. Maximum available native resolution, ideally 3840x2400 wide landscape; do not change framing. Sharp, legible edges and detailed textures; no artificial sharpening halos."
+    },
+    {
+      "id": "experience",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-experience-v1.png",
+      "prompt": "Use case: precise-object-edit. Production desktop website illustration background. Improve actual visual clarity: redraw fine crisp clean linework and material details across the entire image, INCLUDING foreground and distant shelves; remove baked-in defocus, depth-of-field blur, smeared painterly patches and soft-focus haze. High-quality detailed anime architectural illustration, same artistic style, not photorealistic. Preserve EXACT composition, crop, perspective, character identity, pose, hands, clothing, objects and warm/cool lighting balance. Do not add logos or sleeve patches. Preserve WWN lettering only where already present. Preserve all book/typewriter orientations. No animals. No UI or text overlays. Maximum available native resolution, ideally 3840x2400 wide landscape; do not change framing. Sharp, legible edges and detailed textures; no artificial sharpening halos."
+    },
+    {
+      "id": "contact",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-contact-v1.png",
+      "prompt": "Use case: precise-object-edit. Production desktop website illustration background. Improve actual visual clarity: redraw fine crisp clean linework and material details across the entire image, INCLUDING foreground and distant shelves; remove baked-in defocus, depth-of-field blur, smeared painterly patches and soft-focus haze. High-quality detailed anime architectural illustration, same artistic style, not photorealistic. Preserve EXACT composition, crop, perspective, character identity, pose, hands, clothing, objects and warm/cool lighting balance. Do not add logos or sleeve patches. Preserve WWN lettering only where already present. Preserve all book/typewriter orientations. REMOVE ONLY the sleeping dog, retaining the SAME cushion and reconstruct its fabric underneath; dog will be a separate sprite. No human. No UI or text overlays. Maximum available native resolution, ideally 3840x2400 wide landscape; do not change framing. Sharp, legible edges and detailed textures; no artificial sharpening halos."
+    }
+  ],
+  "paper": [
+    {
+      "id": "research",
+      "prompt": "Use case: precise-object-edit. Edit ONLY printed contents of the foreground open book. REMOVE all mountains, landscapes, pagodas, scenic pictures and decorative drawings from BOTH book pages. Replace with restrained technical engineering diagrams: linked server boxes, flow arrows, network nodes, small circuit schematics and simple line plots. The seated engineer is behind the book, so ALL content must read upright TO HIM, upside down from the foreground camera: chart axes labels and arrows face the reader. No large readable words needed. Preserve exact book physical shape, open pages, central gutter, perspective, hands and notebook, person, plain hoodie, room, light and all other pixels. Crisp fine technical pen linework on cream paper, not glowing UI, no mountains or outdoor landscapes anywhere on pages. Same full landscape frame."
+    },
+    {
+      "id": "process",
+      "prompt": "Use case: precise-object-edit. Correct ONLY the large foreground engineering plan on the tabletop. Replace the awkward accordion-fold map with ONE smooth almost-flat rectangular cream engineering blueprint, lying naturally on the same desktop in perspective. At most a subtle single central crease, no waves or zigzag folds. All printed content must face the standing engineer behind the desk at upper-right: the foreground camera sees technical labels, axes and diagrams upside down. Simple technical system/network schematic with server boxes, connection arrows and small charts; NO mountain illustration, no scenic images, no pagoda. Keep the plan in same foreground area, do not overlap or change his hands, face, pointing arm, clothes, wall board, lamp or other objects. Preserve entire scene/camera/composition and sharp linework; no UI."
+    }
+  ],
+  "flatPlan": "Use case: precise-object-edit. The foreground blueprint is now properly flat, but its PRINTED CONTENT still faces the camera. Rotate ONLY the ink diagrams printed on this sheet by exactly 180 degrees in the plane of the paper, keeping paper edges and all objects fixed. The standing engineer at the far side must read it. Concrete visual requirement: the two bar charts currently have bars growing upward from a baseline near the BOTTOM of the sheet; after rotation they must have a baseline near the TOP of the sheet and bars hanging DOWNWARD toward the camera, with label-lines ABOVE the bars. Diagram heading bars must sit along the lower/foreground paper edge and be upside down for camera. Preserve exact flat paper rectangle, perspective, same boxes/arrows/charts, all room and person pixels. No mountains, no new objects, no readable upright-to-camera text. Targeted reversal of PRINT only.",
+  "cloud": "Use case: illustration-story. Asset type: transparent animated cloud overlay for the supplied dusk city panorama. Generate ONLY several thin long wispy evening cloud banks with softly peach-lit lower edges and muted lavender upper silhouettes, matching the illustration's fine anime linework. Spread them horizontally in a wide landscape 16:10 frame, concentrated across the upper and middle thirds. Truly transparent background everywhere between clouds. NO sky-color rectangular background, no sun, stars, buildings, mountains, plants, character, furniture, words, or UI. Cloud edges soft and natural but inner shapes crisply illustrated. This is a cutout cloud sprite for slow horizontal drifting over a separate sky.",
+  "vine": "Use case: illustration-story. One isolated hanging ivy branch for an animated website item. Transparent background. A slender natural stem hanging vertically, with about 18 dark olive green ivy leaves, warm amber light along right edges, fine crisp anime illustration linework matching a cozy engineering workshop. Tapered at bottom, attachment stem at top center. ONLY the plant: no wall, shelf, labels, paper, books, vase, pot, shadows on background or text. Long narrow vertical composition with transparent margin for gentle rotation.",
+  "vineClean": "Use case: background-extraction. Edit target: this existing ivy sprite. Remove ALL diffuse glow, haze, colored background and soft shadows around the leaves. Output just the crisp opaque stem and leaves with genuinely transparent pixels between and around them. No ambient aura whatsoever, no blurred yellow/green ellipse. Preserve plant shape, colors, fine linework, vertical framing. Alpha should be fully opaque on leaves/stem and zero elsewhere except a 1-pixel antialiased boundary. Transparent background.",
+  "finalSources": {
+    "about": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-da7b3202-f059-42b4-ac26-c574ef46b433.png",
+    "services": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-e7255fc8-9dc9-4f30-a242-f739349df280.png",
+    "projects": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-c9c92b81-ffd3-45b7-8719-4dc3bbfe9e66.png",
+    "research": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-6e67d791-b59e-4cd8-a3fe-379a10f440ff.png",
+    "process": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-6fdfde17-a6c3-4a86-bec1-2ad957685fd7.png",
+    "blog": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-53072d1f-c79a-4a30-8b7d-a430637095a8.png",
+    "experience": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-dcebb857-975d-410f-8e7b-cbe2ed58793e.png",
+    "contact": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-0c3c25fc-4414-406e-a42c-39124b94f3f1.png",
+    "cloud": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-b1a50466-49cb-41d3-821a-acfdf7e6a251.png",
+    "vine": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-e9bf0453-f302-4194-849b-3e73c6920c7e.png"
+  },
+  "savedAssets": {
+    "about": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-about-crisp-v3.webp",
+    "services": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-services-crisp-v3.webp",
+    "projects": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-projects-crisp-v3.webp",
+    "research": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-research-crisp-v3.webp",
+    "process": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-process-crisp-v3.webp",
+    "blog": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-blog-crisp-v3.webp",
+    "experience": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-experience-crisp-v3.webp",
+    "contact": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-contact-crisp-v3.webp",
+    "cloud": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-clouds-item-v1.webp",
+    "vine": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-vine-item-v1.webp"
+  }
+}

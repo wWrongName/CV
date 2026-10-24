@@ -3,6 +3,8 @@ import { isLocale } from "@/lib/i18n";
 import { sectionIds, type SectionId } from "@/lib/workshop/sections";
 import { WorkshopContent } from "@/components/workshop/content";
 
+import { getJourneys } from "@/lib/localized-journeys";
+import { projectMetadata } from "@/lib/project-seo";
 import { pageMetadata, siteUrl } from "@/lib/seo";
 import russianResume from "@/lib/resume.json";
 import englishResume from "@/lib/resume.en.json";
@@ -12,6 +14,7 @@ export function generateStaticParams() { return sectionIds.map(section => ({ sec
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; section: string }> }) {
   const { locale, section } = await params;
   if (!isLocale(locale) || !sectionIds.includes(section as SectionId)) notFound();
+  if (section === "projects") return projectMetadata(locale, getJourneys(locale)[0].id);
   return pageMetadata(locale, section as SectionId);
 }
 export default async function SectionPage({ params }: { params: Promise<{ locale: string; section: string }> }) {

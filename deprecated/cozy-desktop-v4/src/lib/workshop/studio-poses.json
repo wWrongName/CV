@@ -1,0 +1,62 @@
+{
+  "idle": {
+    "files": [
+      {
+        "src": "/workshop/cozy-character-idle-v2-480.webp",
+        "width": 480,
+        "height": 427
+      },
+      {
+        "src": "/workshop/cozy-character-idle-v2-768.webp",
+        "width": 768,
+        "height": 683
+      }
+    ]
+  },
+  "write": {
+    "files": [
+      {
+        "src": "/workshop/cozy-character-write-v2-480.webp",
+        "width": 480,
+        "height": 427
+      },
+      {
+        "src": "/workshop/cozy-character-write-v2-768.webp",
+        "width": 768,
+        "height": 683
+      }
+    ]
+  },
+  "board": {
+    "files": [
+      {
+        "src": "/workshop/cozy-character-board-v3-480.webp",
+        "width": 480,
+        "height": 554,
+        "bytes": 50866
+      },
+      {
+        "src": "/workshop/cozy-character-board-v3-768.webp",
+        "width": 768,
+        "height": 886,
+        "bytes": 100344
+      }
+    ]
+  },
+  "review": {
+    "files": [
+      {
+        "src": "/workshop/cozy-character-review-v3-480.webp",
+        "width": 480,
+        "height": 426,
+        "bytes": 53024
+      },
+      {
+        "src": "/workshop/cozy-character-review-v3-768.webp",
+        "width": 768,
+        "height": 682,
+        "bytes": 106848
+      }
+    ]
+  }
+}

@@ -1,0 +1,289 @@
+{
+  "mode": "built-in image_gen",
+  "assets": {
+    "about": {
+      "atlas": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-6f359877-a5eb-445f-8eae-e95ddd7df60b.png",
+      "plate": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-5e8b46f4-eff8-41e3-a787-55f827736d59.png"
+    },
+    "services": {
+      "atlas": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-0955676a-92f4-48fa-8718-a18e847c3cb6.png",
+      "plate": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-6e598865-d7b9-4f30-a271-251874764d52.png"
+    },
+    "projects": {
+      "atlas": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-11b63bac-f870-4628-834c-57347e26bb77.png",
+      "plate": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-79e4b6eb-d1a0-4ef7-a054-7c4b8b956785.png"
+    },
+    "research": {
+      "atlas": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-3b7aa7b7-b468-44c1-beb6-bb6018a493c3.png",
+      "plate": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-260ad29e-55c2-4403-882d-03503d46f761.png"
+    },
+    "process": {
+      "atlas": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-f14d0e0f-82e3-4a49-a108-62ce1a146121.png",
+      "plate": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-ce4d36b9-821b-414c-a0cd-91168fb9da99.png"
+    },
+    "blog": {
+      "atlas": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-f159c94c-175d-472e-b765-2ffc48fcd281.png",
+      "plate": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-b4077a7d-7503-42f4-939f-b8ee9e422d15.png"
+    },
+    "experience": {
+      "atlas": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-22f5bbfe-d7f5-4497-ab94-7d6e6a7c2cc9.png",
+      "plate": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-17eef439-c9e4-4ab0-ad64-cac96fc6c5b4.png"
+    },
+    "contact": {
+      "atlas": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-5f3f431b-e662-4d5b-92ce-fae7a7e8af49.png",
+      "plate": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-23cad3a1-2873-4fd6-b2e5-5b78a4895cda.png"
+    }
+  },
+  "regions": {
+    "about": {
+      "head": [
+        0.614,
+        0.478,
+        0.113,
+        0.15
+      ],
+      "lamp": [
+        0.906,
+        0.245,
+        0.066,
+        0.18
+      ]
+    },
+    "services": {
+      "head": [
+        0.781,
+        0.309,
+        0.112,
+        0.176
+      ],
+      "lamp": [
+        0.635,
+        0,
+        0.107,
+        0.17
+      ]
+    },
+    "projects": {
+      "head": [
+        0.538,
+        0.302,
+        0.146,
+        0.238
+      ],
+      "lamp": [
+        0.881,
+        0.11,
+        0.119,
+        0.23
+      ]
+    },
+    "research": {
+      "head": [
+        0.537,
+        0.249,
+        0.176,
+        0.278
+      ],
+      "lamp": [
+        0.823,
+        0.33,
+        0.177,
+        0.4
+      ]
+    },
+    "process": {
+      "head": [
+        0.703,
+        0.158,
+        0.165,
+        0.25
+      ],
+      "lamp": [
+        0.417,
+        0,
+        0.41,
+        0.18
+      ]
+    },
+    "blog": {
+      "head": [
+        0.605,
+        0.22,
+        0.175,
+        0.292
+      ],
+      "lamp": [
+        0.84,
+        0.25,
+        0.16,
+        0.48
+      ]
+    },
+    "experience": {
+      "head": [
+        0.633,
+        0.1,
+        0.202,
+        0.31
+      ],
+      "lamp": [
+        0.464,
+        0.255,
+        0.115,
+        0.263
+      ]
+    },
+    "contact": {
+      "lamp": [
+        0.753,
+        0,
+        0.069,
+        0.281
+      ]
+    }
+  },
+  "skyMask": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-3fa6c61c-5091-493d-986c-a0510d2b236c.png",
+  "skyMaskPrompt": "Use case: precise-object-edit. Create an EXACT BLACK AND WHITE OCCLUSION MASK of the supplied panoramic illustration, same canvas, same crop, pixel-registered. Paint ONLY unobstructed open sky WHITE. Paint EVERY solid foreground object BLACK: entire city skyline including each tower/spire and roof, mountains, balcony, person, laptop, furniture, plants, every ivy leaf/stem, wooden roof beams, wall and lantern. White sky must remain visible in the small gaps between leaves and buildings wherever the original image shows sky. Pure black solid objects, pure white sky, crisp accurate silhouettes with antialiased boundaries. Do not invent geometry or change framing. This is a production luminance mask so moving clouds pass BEHIND buildings and plants; no text, no scenery colors, no shadows, no gradient, no decorative elements.",
+  "lampPaths": {
+    "projects": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-3c6b9f0b-60b3-42dc-add1-c42fd3945505.png",
+    "research": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-69ed9126-c3e2-47f1-9775-d6ee810ca671.png",
+    "blog": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-5c996722-fe35-440b-90e5-dcb0ba02ecc9.png"
+  },
+  "prompts": [
+    {
+      "id": "about",
+      "kind": "atlas",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-about-crisp-v3.png",
+      "prompt": "Use case: background-extraction. Create a precise 2x2 SPRITE SHEET from this supplied illustration, genuinely transparent background, equal cell sizes with invisible grid. No labels, frames, extra objects, glows, haze or background pixels. Preserve original illustration linework, exact face/hair identity, lighting and view angle; do not redesign. Cell 0 TOP-LEFT: isolated head with hair, ears, face, neck down to the hoodie collar, NO torso, NO hands. Match exact source pose. Cell 1 TOP-RIGHT: the EXACT SAME head in the EXACT SAME position/scale/orientation, changing ONLY eyelids to CLOSED for a natural blink. Head is seen from behind, so both frames must be identical; do not invent a face. Cell 2 BOTTOM-LEFT: isolate the MAIN caged wall lantern, matching the source exactly; NO walls, plants, shelf, desk or surrounding glow. Cell 3 BOTTOM-RIGHT: extract ONLY the small horizontal stack of books at the far right end of the desktop, x93–99%, y71–77%. Each item centered within its own cell with transparent margins; don't let items cross cell boundaries. Keep all item silhouettes complete. Square sprite sheet, maximum native resolution. Fine crisp antialiased cutout edges."
+    },
+    {
+      "id": "about",
+      "kind": "plate",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-about-crisp-v3.png",
+      "prompt": "Use case: precise-object-edit. Create a CLEAN BACKGROUND PLATE for independent animated items. Remove ONLY the engineer's HEAD including hair, face, ears and exposed neck, located approximately in normalized box [0.614,0.478,0.113,0.15]. Keep hoodie, shoulders, torso, hands, desk and all other body parts exactly as they are. Naturally reconstruct the original wall/books/sky behind the removed head. Do not add a replacement head. Remove the main lamp fixture and its visible supporting arm/cord within normalized box [0.906,0.245,0.066,0.18], naturally reconstructing wall/sky behind it. Remove the small stack of books at the far right edge of the desktop x93–99%, y71–77%, reconstruct bare desktop; they will be a separate foreground item. Keep every other detail, framing, camera, all objects, pose, color balance and sharp linework identical. In research preserve the technical diagrams in the book, no mountains. In process preserve the flat blueprint and its inverted-to-camera print orientation. DO NOT change anything else. Same entire widescreen canvas, exact object registration. No dogs (they are separate sprites), no new UI or text."
+    },
+    {
+      "id": "services",
+      "kind": "atlas",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-services-crisp-v3.png",
+      "prompt": "Use case: background-extraction. Create a precise 2x2 SPRITE SHEET from this supplied illustration, genuinely transparent background, equal cell sizes with invisible grid. No labels, frames, extra objects, glows, haze or background pixels. Preserve original illustration linework, exact face/hair identity, lighting and view angle; do not redesign. Cell 0 TOP-LEFT: isolated head with hair, ears, face, neck down to the hoodie collar, NO torso, NO hands. Match exact source pose. Cell 1 TOP-RIGHT: the EXACT SAME head in the EXACT SAME position/scale/orientation, changing ONLY eyelids to CLOSED for a natural blink.  Cell 2 BOTTOM-LEFT: isolate the MAIN hanging metal pendant lamp with cord, matching the source exactly; NO walls, plants, shelf, desk or surrounding glow. Cell 3 BOTTOM-RIGHT: extract ONLY the robot's vertical telescoping spindle/tool below its round wrist, near x65%,y50–58%, no robot arm or table. Each item centered within its own cell with transparent margins; don't let items cross cell boundaries. Keep all item silhouettes complete. Square sprite sheet, maximum native resolution. Fine crisp antialiased cutout edges."
+    },
+    {
+      "id": "services",
+      "kind": "plate",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-services-crisp-v3.png",
+      "prompt": "Use case: precise-object-edit. Create a CLEAN BACKGROUND PLATE for independent animated items. Remove ONLY the engineer's HEAD including hair, face, ears and exposed neck, located approximately in normalized box [0.781,0.309,0.112,0.176]. Keep hoodie, shoulders, torso, hands, desk and all other body parts exactly as they are. Naturally reconstruct the original wall/books/sky behind the removed head. Do not add a replacement head. Remove the main lamp fixture and its visible supporting arm/cord within normalized box [0.635,0,0.107,0.17], naturally reconstructing wall/sky behind it. Remove ONLY the robot's telescoping spindle/tool below its fixed wrist at x65%, y50–58%. Keep the rest of robot, its arm, circular wrist, base, vice and table unchanged; this small spindle will be a separate moving sprite. Keep every other detail, framing, camera, all objects, pose, color balance and sharp linework identical. In research preserve the technical diagrams in the book, no mountains. In process preserve the flat blueprint and its inverted-to-camera print orientation. DO NOT change anything else. Same entire widescreen canvas, exact object registration. No dogs (they are separate sprites), no new UI or text."
+    },
+    {
+      "id": "projects",
+      "kind": "atlas",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-projects-crisp-v3.png",
+      "prompt": "Use case: background-extraction. Create a precise 2x2 SPRITE SHEET from this supplied illustration, genuinely transparent background, equal cell sizes with invisible grid. No labels, frames, extra objects, glows, haze or background pixels. Preserve original illustration linework, exact face/hair identity, lighting and view angle; do not redesign. Cell 0 TOP-LEFT: isolated head with hair, ears, face, neck down to the hoodie collar, NO torso, NO hands. Match exact source pose. Cell 1 TOP-RIGHT: the EXACT SAME head in the EXACT SAME position/scale/orientation, changing ONLY eyelids to CLOSED for a natural blink.  Cell 2 BOTTOM-LEFT: isolate the MAIN desk lamp including its support arm/base visible in frame, matching the source exactly; NO walls, plants, shelf, desk or surrounding glow. Cell 3 BOTTOM-RIGHT: empty fully transparent. Each item centered within its own cell with transparent margins; don't let items cross cell boundaries. Keep all item silhouettes complete. Square sprite sheet, maximum native resolution. Fine crisp antialiased cutout edges."
+    },
+    {
+      "id": "projects",
+      "kind": "plate",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-projects-crisp-v3.png",
+      "prompt": "Use case: precise-object-edit. Create a CLEAN BACKGROUND PLATE for independent animated items. Remove ONLY the engineer's HEAD including hair, face, ears and exposed neck, located approximately in normalized box [0.538,0.302,0.146,0.238]. Keep hoodie, shoulders, torso, hands, desk and all other body parts exactly as they are. Naturally reconstruct the original wall/books/sky behind the removed head. Do not add a replacement head. Remove the main lamp fixture and its visible supporting arm/cord within normalized box [0.881,0.11,0.119,0.23], naturally reconstructing wall/sky behind it.  Keep every other detail, framing, camera, all objects, pose, color balance and sharp linework identical. In research preserve the technical diagrams in the book, no mountains. In process preserve the flat blueprint and its inverted-to-camera print orientation. DO NOT change anything else. Same entire widescreen canvas, exact object registration. No dogs (they are separate sprites), no new UI or text."
+    },
+    {
+      "id": "research",
+      "kind": "atlas",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-research-crisp-v3.png",
+      "prompt": "Use case: background-extraction. Create a precise 2x2 SPRITE SHEET from this supplied illustration, genuinely transparent background, equal cell sizes with invisible grid. No labels, frames, extra objects, glows, haze or background pixels. Preserve original illustration linework, exact face/hair identity, lighting and view angle; do not redesign. Cell 0 TOP-LEFT: isolated head with hair, ears, face, neck down to the hoodie collar, NO torso, NO hands. Match exact source pose. Cell 1 TOP-RIGHT: the EXACT SAME head in the EXACT SAME position/scale/orientation, changing ONLY eyelids to CLOSED for a natural blink.  Cell 2 BOTTOM-LEFT: isolate the MAIN desk lamp including its support arm/base visible in frame, matching the source exactly; NO walls, plants, shelf, desk or surrounding glow. Cell 3 BOTTOM-RIGHT: empty fully transparent. Each item centered within its own cell with transparent margins; don't let items cross cell boundaries. Keep all item silhouettes complete. Square sprite sheet, maximum native resolution. Fine crisp antialiased cutout edges."
+    },
+    {
+      "id": "research",
+      "kind": "plate",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-research-crisp-v3.png",
+      "prompt": "Use case: precise-object-edit. Create a CLEAN BACKGROUND PLATE for independent animated items. Remove ONLY the engineer's HEAD including hair, face, ears and exposed neck, located approximately in normalized box [0.537,0.249,0.176,0.278]. Keep hoodie, shoulders, torso, hands, desk and all other body parts exactly as they are. Naturally reconstruct the original wall/books/sky behind the removed head. Do not add a replacement head. Remove the main lamp fixture and its visible supporting arm/cord within normalized box [0.823,0.33,0.177,0.4], naturally reconstructing wall/sky behind it.  Keep every other detail, framing, camera, all objects, pose, color balance and sharp linework identical. In research preserve the technical diagrams in the book, no mountains. In process preserve the flat blueprint and its inverted-to-camera print orientation. DO NOT change anything else. Same entire widescreen canvas, exact object registration. No dogs (they are separate sprites), no new UI or text."
+    },
+    {
+      "id": "process",
+      "kind": "atlas",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-process-crisp-v3.png",
+      "prompt": "Use case: background-extraction. Create a precise 2x2 SPRITE SHEET from this supplied illustration, genuinely transparent background, equal cell sizes with invisible grid. No labels, frames, extra objects, glows, haze or background pixels. Preserve original illustration linework, exact face/hair identity, lighting and view angle; do not redesign. Cell 0 TOP-LEFT: isolated head with hair, ears, face, neck down to the hoodie collar, NO torso, NO hands. Match exact source pose. Cell 1 TOP-RIGHT: the EXACT SAME head in the EXACT SAME position/scale/orientation, changing ONLY eyelids to CLOSED for a natural blink.  Cell 2 BOTTOM-LEFT: isolate the MAIN long ceiling strip lamp with hanging supports, matching the source exactly; NO walls, plants, shelf, desk or surrounding glow. Cell 3 BOTTOM-RIGHT: empty fully transparent. Each item centered within its own cell with transparent margins; don't let items cross cell boundaries. Keep all item silhouettes complete. Square sprite sheet, maximum native resolution. Fine crisp antialiased cutout edges."
+    },
+    {
+      "id": "process",
+      "kind": "plate",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-process-crisp-v3.png",
+      "prompt": "Use case: precise-object-edit. Create a CLEAN BACKGROUND PLATE for independent animated items. Remove ONLY the engineer's HEAD including hair, face, ears and exposed neck, located approximately in normalized box [0.703,0.158,0.165,0.25]. Keep hoodie, shoulders, torso, hands, desk and all other body parts exactly as they are. Naturally reconstruct the original wall/books/sky behind the removed head. Do not add a replacement head. Remove the main lamp fixture and its visible supporting arm/cord within normalized box [0.417,0,0.41,0.18], naturally reconstructing wall/sky behind it.  Keep every other detail, framing, camera, all objects, pose, color balance and sharp linework identical. In research preserve the technical diagrams in the book, no mountains. In process preserve the flat blueprint and its inverted-to-camera print orientation. DO NOT change anything else. Same entire widescreen canvas, exact object registration. No dogs (they are separate sprites), no new UI or text."
+    },
+    {
+      "id": "blog",
+      "kind": "atlas",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-blog-crisp-v3.png",
+      "prompt": "Use case: background-extraction. Create a precise 2x2 SPRITE SHEET from this supplied illustration, genuinely transparent background, equal cell sizes with invisible grid. No labels, frames, extra objects, glows, haze or background pixels. Preserve original illustration linework, exact face/hair identity, lighting and view angle; do not redesign. Cell 0 TOP-LEFT: isolated head with hair, ears, face, neck down to the hoodie collar, NO torso, NO hands. Match exact source pose. Cell 1 TOP-RIGHT: the EXACT SAME head in the EXACT SAME position/scale/orientation, changing ONLY eyelids to CLOSED for a natural blink.  Cell 2 BOTTOM-LEFT: isolate the MAIN desk lamp including its support arm/base visible in frame, matching the source exactly; NO walls, plants, shelf, desk or surrounding glow. Cell 3 BOTTOM-RIGHT: empty fully transparent. Each item centered within its own cell with transparent margins; don't let items cross cell boundaries. Keep all item silhouettes complete. Square sprite sheet, maximum native resolution. Fine crisp antialiased cutout edges."
+    },
+    {
+      "id": "blog",
+      "kind": "plate",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-blog-crisp-v3.png",
+      "prompt": "Use case: precise-object-edit. Create a CLEAN BACKGROUND PLATE for independent animated items. Remove ONLY the engineer's HEAD including hair, face, ears and exposed neck, located approximately in normalized box [0.605,0.22,0.175,0.292]. Keep hoodie, shoulders, torso, hands, desk and all other body parts exactly as they are. Naturally reconstruct the original wall/books/sky behind the removed head. Do not add a replacement head. Remove the main lamp fixture and its visible supporting arm/cord within normalized box [0.84,0.25,0.16,0.48], naturally reconstructing wall/sky behind it.  Keep every other detail, framing, camera, all objects, pose, color balance and sharp linework identical. In research preserve the technical diagrams in the book, no mountains. In process preserve the flat blueprint and its inverted-to-camera print orientation. DO NOT change anything else. Same entire widescreen canvas, exact object registration. No dogs (they are separate sprites), no new UI or text."
+    },
+    {
+      "id": "experience",
+      "kind": "atlas",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-experience-crisp-v3.png",
+      "prompt": "Use case: background-extraction. Create a precise 2x2 SPRITE SHEET from this supplied illustration, genuinely transparent background, equal cell sizes with invisible grid. No labels, frames, extra objects, glows, haze or background pixels. Preserve original illustration linework, exact face/hair identity, lighting and view angle; do not redesign. Cell 0 TOP-LEFT: isolated head with hair, ears, face, neck down to the hoodie collar, NO torso, NO hands. Match exact source pose. Cell 1 TOP-RIGHT: the EXACT SAME head in the EXACT SAME position/scale/orientation, changing ONLY eyelids to CLOSED for a natural blink.  Cell 2 BOTTOM-LEFT: isolate the MAIN desk lamp including its support arm/base visible in frame, matching the source exactly; NO walls, plants, shelf, desk or surrounding glow. Cell 3 BOTTOM-RIGHT: empty fully transparent. Each item centered within its own cell with transparent margins; don't let items cross cell boundaries. Keep all item silhouettes complete. Square sprite sheet, maximum native resolution. Fine crisp antialiased cutout edges."
+    },
+    {
+      "id": "experience",
+      "kind": "plate",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-experience-crisp-v3.png",
+      "prompt": "Use case: precise-object-edit. Create a CLEAN BACKGROUND PLATE for independent animated items. Remove ONLY the engineer's HEAD including hair, face, ears and exposed neck, located approximately in normalized box [0.633,0.1,0.202,0.31]. Keep hoodie, shoulders, torso, hands, desk and all other body parts exactly as they are. Naturally reconstruct the original wall/books/sky behind the removed head. Do not add a replacement head. Remove the main lamp fixture and its visible supporting arm/cord within normalized box [0.464,0.255,0.115,0.263], naturally reconstructing wall/sky behind it.  Keep every other detail, framing, camera, all objects, pose, color balance and sharp linework identical. In research preserve the technical diagrams in the book, no mountains. In process preserve the flat blueprint and its inverted-to-camera print orientation. DO NOT change anything else. Same entire widescreen canvas, exact object registration. No dogs (they are separate sprites), no new UI or text."
+    },
+    {
+      "id": "contact",
+      "kind": "atlas",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-contact-crisp-v3.png",
+      "prompt": "Use case: background-extraction. Create a precise 2x2 SPRITE SHEET from this supplied illustration, genuinely transparent background, equal cell sizes with invisible grid. No labels, frames, extra objects, glows, haze or background pixels. Preserve original illustration linework, exact face/hair identity, lighting and view angle; do not redesign. Cells 0 TOP-LEFT and 1 TOP-RIGHT: empty transparent, there is no person. Cell 2 BOTTOM-LEFT: isolate the MAIN hanging bare bulb with black holder and full suspension cord, matching the source exactly; NO walls, plants, shelf, desk or surrounding glow. Cell 3 BOTTOM-RIGHT: empty fully transparent. Each item centered within its own cell with transparent margins; don't let items cross cell boundaries. Keep all item silhouettes complete. Square sprite sheet, maximum native resolution. Fine crisp antialiased cutout edges."
+    },
+    {
+      "id": "contact",
+      "kind": "plate",
+      "reference": "/Users/wwrongname/Repositories/CV/artwork/panorama-contact-crisp-v3.png",
+      "prompt": "Use case: precise-object-edit. Create a CLEAN BACKGROUND PLATE for independent animated items. There is no person to remove. Remove the main lamp fixture and its visible supporting arm/cord within normalized box [0.753,0,0.069,0.281], naturally reconstructing wall/sky behind it.  Keep every other detail, framing, camera, all objects, pose, color balance and sharp linework identical. In research preserve the technical diagrams in the book, no mountains. In process preserve the flat blueprint and its inverted-to-camera print orientation. DO NOT change anything else. Same entire widescreen canvas, exact object registration. No dogs (they are separate sprites), no new UI or text."
+    }
+  ],
+  "lampPrompts": [
+    "Use case: background-extraction. Extract ONLY the existing lamp visible in the UPPER RIGHT corner of the supplied scene: the warm metal shade and ONLY those jointed support/cord fragments that are actually visible at the right image edge. Preserve original view angle, proportions, lighting, silhouette and clipped-right framing EXACTLY. DO NOT invent a tabletop base, pedestal, extra arm, full stand, or missing parts. Do not change the fixture design. Everything except the existing visible lamp becomes truly transparent. Keep full original landscape canvas and original lamp placement if possible. Crisp isolated cutout without ambient glow, wall or black rectangle.",
+    "Use case: background-extraction. Extract ONLY the existing desk lamp visible at the RIGHT edge of the supplied research scene. Preserve EXACTLY the visible shade, bulb, joints and support arm fragments, including their original view angle, proportions, warm lighting and clipped-right/bottom framing. Do NOT invent a round tabletop pedestal/base or complete the missing parts outside the scene. Nothing except the existing visible lamp should remain. Truly transparent background, no glow, wall, foliage, paper, desk or black rectangle. Keep full original landscape canvas and lamp original placement if possible; no redesign. This is a cutout for independent rotation, so crisp edges and no background pixels.",
+    "Use case: background-extraction. Extract ONLY the existing desk lamp visible at the RIGHT edge of the supplied blog scene. Preserve EXACTLY the visible shade, bulb, joints and support arm fragments, including their original view angle, proportions, warm lighting and clipped-right/bottom framing. Do NOT invent a round tabletop pedestal/base or complete the missing parts outside the scene. Nothing except the existing visible lamp should remain. Truly transparent background, no glow, wall, foliage, paper, desk or black rectangle. Keep full original landscape canvas and lamp original placement if possible; no redesign. This is a cutout for independent rotation, so crisp edges and no background pixels."
+  ],
+  "savedAssets": {
+    "about": {
+      "plate": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-about-plate-v4.webp",
+      "atlas": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-about-actors-v1.webp"
+    },
+    "services": {
+      "plate": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-services-plate-v4.webp",
+      "atlas": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-services-actors-v1.webp"
+    },
+    "projects": {
+      "plate": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-projects-plate-v4.webp",
+      "atlas": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-projects-actors-v1.webp"
+    },
+    "research": {
+      "plate": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-research-plate-v4.webp",
+      "atlas": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-research-actors-v1.webp"
+    },
+    "process": {
+      "plate": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-process-plate-v4.webp",
+      "atlas": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-process-actors-v1.webp"
+    },
+    "blog": {
+      "plate": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-blog-plate-v4.webp",
+      "atlas": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-blog-actors-v1.webp"
+    },
+    "experience": {
+      "plate": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-experience-plate-v4.webp",
+      "atlas": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-experience-actors-v1.webp"
+    },
+    "contact": {
+      "plate": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-contact-plate-v4.webp",
+      "atlas": "/Users/wwrongname/Repositories/CV/public/workshop/panorama-contact-actors-v1.webp"
+    }
+  }
+}

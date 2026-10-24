@@ -1,0 +1,35 @@
+{
+  "sources": {
+    "about": {
+      "mask": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-976e0e2c-e2c0-4c9c-b78a-1d1abbd7061d.png"
+    },
+    "services": {
+      "mask": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-f259466c-e399-48d1-a13a-9a3f056cbcd4.png",
+      "blink": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-dafd5517-87a3-4724-babd-4c4434d10cd6.png"
+    },
+    "projects": {
+      "mask": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-61358456-c761-410a-9406-e4d5fa8af9a6.png",
+      "blink": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-8a7a4839-cf77-4690-9d05-68acbca947d9.png"
+    },
+    "research": {
+      "mask": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-99d1146c-5f3c-432b-9539-4d5896f30b55.png",
+      "blink": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-31e028b8-a13d-4e07-8649-ccbe730b91e1.png"
+    },
+    "process": {
+      "mask": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-5cbffe84-6cae-45bb-bc03-ef94327bbb5d.png",
+      "blink": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-257b43fd-6dd7-4bb5-97c6-8d6298fb19ed.png"
+    },
+    "blog": {
+      "mask": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-05946881-c2dc-4fa4-ad9a-cb46875bcf11.png",
+      "blink": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-07c56c09-ff32-410f-b7e8-4bee33bd7805.png"
+    },
+    "experience": {
+      "mask": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-8fae0382-30be-42dd-bee8-4ba3fbb1106d.png",
+      "blink": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-85dec480-b229-4f36-8c78-1b9d722738ca.png"
+    },
+    "contact": {
+      "mask": "/Users/wwrongname/.codex/generated_images/01a167ca-7d25-7503-b0ee-fa51b74f1c94/exec-9a7f0c5b-26e3-41c5-92f4-1fd0c35aeb2a.png"
+    }
+  },
+  "registration": "Full-frame original RGB pixels; native scale; only selected items move. Floating vine overlays removed; original foliage retained."
+}

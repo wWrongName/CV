@@ -1,0 +1,366 @@
+{
+  "publicFiles": [
+    "public/workshop/panorama-about-plate-v4.webp",
+    "public/workshop/panorama-about-selection-v1.webp",
+    "public/workshop/panorama-services-plate-v4.webp",
+    "public/workshop/panorama-services-selection-v1.webp",
+    "public/workshop/panorama-services-blink-v5.webp",
+    "public/workshop/panorama-services-whole-tool-v2.webp",
+    "public/workshop/panorama-projects-plate-v4.webp",
+    "public/workshop/panorama-projects-selection-v1.webp",
+    "public/workshop/panorama-projects-blink-v5.webp",
+    "public/workshop/panorama-research-plate-v4.webp",
+    "public/workshop/panorama-research-selection-v1.webp",
+    "public/workshop/panorama-research-native-v5.webp",
+    "public/workshop/panorama-research-blink-v5.webp",
+    "public/workshop/panorama-process-plate-v4.webp",
+    "public/workshop/panorama-process-selection-v1.webp",
+    "public/workshop/panorama-process-blink-v5.webp",
+    "public/workshop/panorama-blog-plate-v4.webp",
+    "public/workshop/panorama-blog-selection-v1.webp",
+    "public/workshop/panorama-blog-blink-v5.webp",
+    "public/workshop/panorama-experience-plate-v4.webp",
+    "public/workshop/panorama-experience-selection-v1.webp",
+    "public/workshop/panorama-experience-blink-v5.webp",
+    "public/workshop/panorama-contact-plate-v4.webp",
+    "public/workshop/panorama-contact-selection-v1.webp"
+  ],
+  "crops": [
+    {
+      "source": "public/workshop/panorama-about-plate-v4.webp",
+      "output": "public/workshop/panorama-about-plate-crop-v1.webp",
+      "region": [
+        951,
+        98,
+        634,
+        690,
+        1585,
+        992
+      ],
+      "bytesBefore": 1871068,
+      "bytesAfter": 589600
+    },
+    {
+      "source": "public/workshop/panorama-about-selection-v1.webp",
+      "output": "public/workshop/panorama-about-selection-crop-v1.webp",
+      "region": [
+        951,
+        98,
+        634,
+        690,
+        1585,
+        992
+      ],
+      "bytesBefore": 266354,
+      "bytesAfter": 120904
+    },
+    {
+      "source": "public/workshop/panorama-services-plate-v4.webp",
+      "output": "public/workshop/panorama-services-plate-crop-v1.webp",
+      "region": [
+        988,
+        0,
+        431,
+        567,
+        1584,
+        993
+      ],
+      "bytesBefore": 1882992,
+      "bytesAfter": 300128
+    },
+    {
+      "source": "public/workshop/panorama-services-selection-v1.webp",
+      "output": "public/workshop/panorama-services-selection-crop-v1.webp",
+      "region": [
+        988,
+        0,
+        431,
+        567,
+        1584,
+        993
+      ],
+      "bytesBefore": 242894,
+      "bytesAfter": 56292
+    },
+    {
+      "source": "public/workshop/panorama-services-blink-v5.webp",
+      "output": "public/workshop/panorama-services-blink-crop-v1.webp",
+      "region": [
+        1282,
+        392,
+        30,
+        26,
+        1584,
+        993
+      ],
+      "bytesBefore": 475358,
+      "bytesAfter": 1616
+    },
+    {
+      "source": "public/workshop/panorama-services-whole-tool-v2.webp",
+      "output": "public/workshop/panorama-services-whole-tool-crop-v1.webp",
+      "region": [
+        1025,
+        472,
+        43,
+        68,
+        1584,
+        993
+      ],
+      "bytesBefore": 148064,
+      "bytesAfter": 2232
+    },
+    {
+      "source": "public/workshop/panorama-projects-plate-v4.webp",
+      "output": "public/workshop/panorama-projects-plate-crop-v1.webp",
+      "region": [
+        813,
+        91,
+        771,
+        484,
+        1584,
+        993
+      ],
+      "bytesBefore": 1987390,
+      "bytesAfter": 434486
+    },
+    {
+      "source": "public/workshop/panorama-projects-selection-v1.webp",
+      "output": "public/workshop/panorama-projects-selection-crop-v1.webp",
+      "region": [
+        813,
+        91,
+        771,
+        484,
+        1584,
+        993
+      ],
+      "bytesBefore": 314274,
+      "bytesAfter": 97018
+    },
+    {
+      "source": "public/workshop/panorama-projects-blink-v5.webp",
+      "output": "public/workshop/panorama-projects-blink-crop-v1.webp",
+      "region": [
+        996,
+        405,
+        48,
+        34,
+        1584,
+        993
+      ],
+      "bytesBefore": 504276,
+      "bytesAfter": 2608
+    },
+    {
+      "source": "public/workshop/panorama-research-plate-v4.webp",
+      "output": "public/workshop/panorama-research-plate-crop-v1.webp",
+      "region": [
+        832,
+        225,
+        752,
+        549,
+        1584,
+        993
+      ],
+      "bytesBefore": 2050256,
+      "bytesAfter": 505502
+    },
+    {
+      "source": "public/workshop/panorama-research-selection-v1.webp",
+      "output": "public/workshop/panorama-research-selection-crop-v1.webp",
+      "region": [
+        832,
+        225,
+        752,
+        549,
+        1584,
+        993
+      ],
+      "bytesBefore": 357130,
+      "bytesAfter": 145616
+    },
+    {
+      "source": "public/workshop/panorama-research-native-v5.webp",
+      "output": "public/workshop/panorama-research-native-crop-v1.webp",
+      "region": [
+        832,
+        225,
+        752,
+        549,
+        1584,
+        993
+      ],
+      "bytesBefore": 2075424,
+      "bytesAfter": 514446
+    },
+    {
+      "source": "public/workshop/panorama-research-blink-v5.webp",
+      "output": "public/workshop/panorama-research-blink-crop-v1.webp",
+      "region": [
+        935,
+        413,
+        110,
+        47,
+        1584,
+        993
+      ],
+      "bytesBefore": 514008,
+      "bytesAfter": 6636
+    },
+    {
+      "source": "public/workshop/panorama-process-plate-v4.webp",
+      "output": "public/workshop/panorama-process-plate-crop-v1.webp",
+      "region": [
+        657,
+        25,
+        721,
+        407,
+        1585,
+        992
+      ],
+      "bytesBefore": 1910142,
+      "bytesAfter": 313920
+    },
+    {
+      "source": "public/workshop/panorama-process-selection-v1.webp",
+      "output": "public/workshop/panorama-process-selection-crop-v1.webp",
+      "region": [
+        657,
+        25,
+        721,
+        407,
+        1586,
+        992
+      ],
+      "bytesBefore": 144286,
+      "bytesAfter": 53696
+    },
+    {
+      "source": "public/workshop/panorama-process-blink-v5.webp",
+      "output": "public/workshop/panorama-process-blink-crop-v1.webp",
+      "region": [
+        1177,
+        282,
+        35,
+        31,
+        1586,
+        992
+      ],
+      "bytesBefore": 443380,
+      "bytesAfter": 1868
+    },
+    {
+      "source": "public/workshop/panorama-blog-plate-v4.webp",
+      "output": "public/workshop/panorama-blog-plate-crop-v1.webp",
+      "region": [
+        933,
+        193,
+        651,
+        363,
+        1584,
+        993
+      ],
+      "bytesBefore": 2130408,
+      "bytesAfter": 295030
+    },
+    {
+      "source": "public/workshop/panorama-blog-selection-v1.webp",
+      "output": "public/workshop/panorama-blog-selection-crop-v1.webp",
+      "region": [
+        933,
+        193,
+        651,
+        363,
+        1584,
+        993
+      ],
+      "bytesBefore": 390422,
+      "bytesAfter": 91084
+    },
+    {
+      "source": "public/workshop/panorama-blog-blink-v5.webp",
+      "output": "public/workshop/panorama-blog-blink-crop-v1.webp",
+      "region": [
+        1079,
+        406,
+        93,
+        45,
+        1584,
+        993
+      ],
+      "bytesBefore": 539548,
+      "bytesAfter": 6034
+    },
+    {
+      "source": "public/workshop/panorama-experience-plate-v4.webp",
+      "output": "public/workshop/panorama-experience-plate-crop-v1.webp",
+      "region": [
+        713,
+        80,
+        613,
+        454,
+        1584,
+        993
+      ],
+      "bytesBefore": 2011070,
+      "bytesAfter": 355002
+    },
+    {
+      "source": "public/workshop/panorama-experience-selection-v1.webp",
+      "output": "public/workshop/panorama-experience-selection-crop-v1.webp",
+      "region": [
+        713,
+        80,
+        613,
+        454,
+        1584,
+        993
+      ],
+      "bytesBefore": 312022,
+      "bytesAfter": 113528
+    },
+    {
+      "source": "public/workshop/panorama-experience-blink-v5.webp",
+      "output": "public/workshop/panorama-experience-blink-crop-v1.webp",
+      "region": [
+        1077,
+        267,
+        108,
+        63,
+        1584,
+        993
+      ],
+      "bytesBefore": 493014,
+      "bytesAfter": 8714
+    },
+    {
+      "source": "public/workshop/panorama-contact-plate-v4.webp",
+      "output": "public/workshop/panorama-contact-plate-crop-v1.webp",
+      "region": [
+        1170,
+        0,
+        151,
+        307,
+        1585,
+        992
+      ],
+      "bytesBefore": 2144200,
+      "bytesAfter": 57510
+    },
+    {
+      "source": "public/workshop/panorama-contact-selection-v1.webp",
+      "output": "public/workshop/panorama-contact-selection-crop-v1.webp",
+      "region": [
+        1170,
+        0,
+        150,
+        307,
+        1584,
+        993
+      ],
+      "bytesBefore": 257506,
+      "bytesAfter": 19788
+    }
+  ]
+}

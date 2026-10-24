@@ -32,10 +32,13 @@ const labels: Record<Locale, Record<ObjectId, { title: string; detail: string }>
 export const getObjectLabel = (id: ObjectId, locale: Locale) => labels[locale][id];
 export const sectionHref = (id: SectionId, locale: Locale) => `/${locale}/${id}`;
 
+export const projectHref = (locale: Locale, id: string) => `/${locale}/projects/${id}`;
+
 /** Rendering mode never enters the URL: desktop and mobile share these routes. */
 export function sectionFromPath(pathname: string, locale: Locale): SectionId | null | undefined {
   const path = pathname.replace(/\/$/, "");
   if (path === `/${locale}`) return null;
+  if (path.startsWith(`/${locale}/projects/`)) return "projects";
   return sectionIds.find(id => path === sectionHref(id, locale));
 }
 

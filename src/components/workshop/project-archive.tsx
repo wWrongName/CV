@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, type KeyboardEvent } from "react";
+import { useRouter } from "next/navigation";
 import type { Locale } from "@/lib/i18n";
 import type { Journey } from "@/lib/journeys";
-import { sectionHref } from "@/lib/workshop/sections";
+import { sectionHref, projectHref } from "@/lib/workshop/sections";
 import Link from "next/link";
 import { projectDiagrams } from "@/lib/workshop/project-diagrams";
 import { caseStories } from "@/lib/workshop/case-stories";
 
-type Props = { projects: Journey[]; locale: Locale };
+type Props = { projects: Journey[]; locale: Locale; initialProjectId?: string };
 
 function ProjectDiagram({ project, locale }: { project: Journey; locale: Locale }) {
   const ru = locale === "ru";
@@ -39,27 +40,31 @@ function ProjectDiagram({ project, locale }: { project: Journey; locale: Locale 
   </figure>;
 }
 
-export function ProjectArchive({ projects, locale }: Props) {
-  const [selected, setSelected] = useState(projects[0].id);
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+export function ProjectArchive({ projects, locale, initialProjectId }: Props) {
+  const selected = initialProjectId ?? projects[0].id;
+  const router = useRouter();
+  const tabRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const root = useRef<HTMLDivElement>(null);
   const uid = useId().replace(/:/g, "");
   const project = projects.find(item => item.id === selected) || projects[0];
   const ru = locale === "ru";
   const story = caseStories[project.id];
   useEffect(() => {
-    const readHash = () => { const hash = location.hash.slice(1); const item = projects.find(item => hash === item.id || hash.startsWith(`${item.id}-chapter-`)); if (item) setSelected(item.id); };
+    const readHash = () => { const hash = location.hash.slice(1); const item = projects.find(item => hash === item.id || hash.startsWith(`${item.id}-chapter-`)); if (item && (!initialProjectId || item.id !== selected)) router.replace(`${projectHref(locale, item.id)}${hash === item.id ? "" : `#${hash}`}`, { scroll: false }); };
     readHash(); addEventListener("hashchange", readHash); return () => removeEventListener("hashchange", readHash);
-  }, [projects]);
+  }, [projects, locale, initialProjectId, selected, router]);
   useLayoutEffect(() => {
     const hash = location.hash.slice(1);
     if (hash.startsWith(`${project.id}-chapter-`)) document.getElementById(hash)?.scrollIntoView({ block: "start", behavior: "instant" });
   }, [project.id]);
+  useEffect(() => {
+    if (!location.hash) root.current?.closest(".workshop-panel-body")?.scrollTo({ top: 0, behavior: "instant" });
+  }, [project.id]);
   function select(id: string) {
-    setSelected(id); history.replaceState(history.state, "", `#${id}`);
+    router.push(projectHref(locale, id), { scroll: false });
     root.current?.closest(".workshop-panel-body")?.scrollTo({ top: 0, behavior: "instant" });
   }
-  function navigate(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+  function navigate(event: KeyboardEvent<HTMLAnchorElement>, index: number) {
     let next = index;
     if (["ArrowDown", "ArrowRight"].includes(event.key)) next = (index + 1) % projects.length;
     else if (["ArrowUp", "ArrowLeft"].includes(event.key)) next = (index + projects.length - 1) % projects.length;
@@ -71,9 +76,9 @@ export function ProjectArchive({ projects, locale }: Props) {
   return <div className="project-archive" ref={root}>
     <aside className="dossier-index"><div className="dossier-index-heading"><span className="dossier-eyebrow">WWN / IT SOLUTIONS</span><strong>{ru ? "Архив проектов" : "Project archive"}</strong><small>{String(projects.length).padStart(2,"0")} {ru ? "проектных дел" : "project files"}</small></div>
       <div className="dossier-tabs" role="tablist" aria-label={ru ? "Выбрать проект" : "Select a project"}>
-        {projects.map((item, i) => <button key={item.id} ref={node => { tabRefs.current[i] = node; }} type="button" role="tab" id={`${uid}-tab-${item.id}`} aria-selected={item.id === project.id} aria-controls={`${uid}-file`} tabIndex={item.id === project.id ? 0 : -1} onClick={() => select(item.id)} onKeyDown={event => navigate(event, i)}>
+        {projects.map((item, i) => <Link href={projectHref(locale, item.id)} scroll={false} prefetch={false} key={item.id} ref={node => { tabRefs.current[i] = node; }} role="tab" id={`${uid}-tab-${item.id}`} aria-selected={item.id === project.id} aria-controls={`${uid}-file`} tabIndex={item.id === project.id ? 0 : -1} onKeyDown={event => navigate(event, i)}>
           <span>{item.index}</span><span><strong>{item.name}</strong><small>{item.category}</small></span><b aria-hidden="true">→</b>
-        </button>)}
+        </Link>)}
       </div>
       <div className="dossier-index-foot"><span aria-hidden="true">WWN</span><p>{ru ? "Задача. Решение. Как работает. Результат." : "Challenge. Solution. How it works. Outcome."}</p></div>
     </aside>

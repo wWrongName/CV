@@ -16,9 +16,6 @@ assert.match(source,/media="\(min-width: 900px\)" srcSet=\{desktopEmpty\}/,"desk
 assert.match(source,/loading=\{eager \? "eager" : "lazy"\}/,"below-fold art uses real lazy loading");
 assert.ok(!source.includes("setTimeout")&&!source.includes("touchmove"),"no artificial reveal or scroll interception");
 assert.ok(source.indexOf('<header className="mobile-workshop-header"') < source.indexOf('<div className="mobile-carousel"'),"fixed header must be outside the scroll rail");
-const desktop=fs.readFileSync("src/components/workshop/desktop-scene.tsx","utf8");
-assert.ok(!desktop.includes('className="workshop-utility"'));
-assert.match(desktop,/href=\{`\/classic\/\$\{locale\}`\} prefetch=\{false\}/);
 const css=fs.readFileSync("src/components/workshop/mobile-workshop.css","utf8");
 assert.match(css,/scroll-snap-type:x mandatory/,"native horizontal paging");
 assert.match(source,/aria-current=\{active === index/,"pagination follows the active slide");

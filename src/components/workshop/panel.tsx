@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useLayoutEffect, useRef, type ReactNode } from "react";
 import type { Locale } from "@/lib/i18n";
 import { CarvedChevron } from "./carved-chevron";
-import { getObjectLabel, workshopCopy, type SectionId } from "@/lib/workshop/sections";
+import { getObjectLabel, telegramHref, workshopCopy, type SectionId } from "@/lib/workshop/sections";
 
 export function WorkshopPanel({ locale, section, onClose, children }: { locale: Locale; section: SectionId; onClose: () => void; children: ReactNode }) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -13,14 +13,22 @@ export function WorkshopPanel({ locale, section, onClose, children }: { locale: 
   useLayoutEffect(() => {
     const dialog = ref.current;
     if (!dialog) return;
+    const media = matchMedia("(max-width: 899px)");
     const previousOverflow = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = "hidden";
-    // `open` supplies readable server-rendered content even without JavaScript.
-    // Promote to a native modal after hydration for inert background + focus trap.
-    dialog.close();
-    dialog.showModal();
-    closeRef.current?.focus({ preventScroll: true });
-    return () => { dialog.close(); document.documentElement.style.overflow = previousOverflow; };
+    const update = () => {
+      if (media.matches) {
+        dialog.close();
+        document.documentElement.style.overflow = "hidden";
+        dialog.showModal();
+      } else {
+        if (dialog.matches(":modal")) dialog.close();
+        document.documentElement.style.overflow = previousOverflow;
+        dialog.open = true;
+      }
+      if (media.matches) closeRef.current?.focus({ preventScroll: true });
+    };
+    update(); media.addEventListener("change", update);
+    return () => { media.removeEventListener("change", update); dialog.close(); document.documentElement.style.overflow = previousOverflow; };
   }, []);
   return <dialog ref={ref} open className="workshop-panel" data-section={section} aria-labelledby="workshop-panel-title"
     onCancel={event => { event.preventDefault(); onClose(); }}
@@ -31,5 +39,6 @@ export function WorkshopPanel({ locale, section, onClose, children }: { locale: 
         onClick={event => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onClose(); } }}><CarvedChevron direction="left" tone="text" className="workshop-back-chevron" /><span>{ui.back}</span><b aria-hidden="true">×</b></Link>
     </header>
     <div className="workshop-panel-body" key={section}>{children}</div>
+    {section !== "contact" && <footer className="studio-panel-contact"><p>{locale === "ru" ? "Есть похожая задача?" : "Working on a similar challenge?"}</p><a href={telegramHref} target="_blank" rel="noreferrer">{locale === "ru" ? "Обсудим в Telegram" : "Let's talk on Telegram"}<span aria-hidden="true">↗</span></a></footer>}
   </dialog>;
 }
