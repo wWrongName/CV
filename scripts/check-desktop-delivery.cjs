@@ -23,6 +23,7 @@ for(const group of [...Object.values(assets),...furniture,...tiles]){
  const files=group.files||[group.file];assert.ok(files.length>=2,'responsive variants exist');let previous=0;
  for(const file of files){assert.ok(file.width>previous,'srcset widths are unique and ascending');previous=file.width;const b=fs.readFileSync('public'+file.src);assert.equal(b.length,file.bytes);const m=await sharp(b).metadata();assert.equal(m.width,file.width);assert.equal(m.height,file.height);count++;}
 }
+for(const field of require('../docs/lossless-motion-fields.json')){const raw=await sharp('public'+field.src).ensureAlpha().raw().toBuffer();assert.equal(require('node:crypto').createHash('sha256').update(raw).digest('hex'),field.rgbaSha256,'motion fields preserve every decoded RGBA pixel');}
 const center=tiles.find(t=>t.id==='center');assert.ok(center.files.some(f=>f.width<=1920),'ordinary screens need not fetch the native 3592px tile');
 console.log(`Desktop delivery: ${count} correctly sized variants, stage-bound sizes and lean motion texture manifests verified.`);
 })().catch(e=>{console.error(e);process.exitCode=1});

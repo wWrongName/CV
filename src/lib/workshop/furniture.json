@@ -948,39 +948,39 @@
     }
   },
   {
-    "id": "cat",
-    "x": 64.58333333333334,
-    "y": 56.91280737704918,
-    "width": 5.729166666666666,
-    "height": 4.987192622950819,
-    "source": "exec-1fa230d4-05aa-4709-a35a-3559d9d78b28.png",
-    "master": "artwork/reference-cat-v3.png",
+    "id": "dog",
+    "x": 63.04791666666667,
+    "y": 54.239672131147536,
+    "width": 8.8,
+    "height": 7.66032786885246,
+    "source": "exec-07c64873-2b05-4b05-9251-9ad3a06a33ef.png",
+    "master": "artwork/desktop-cavalier-master.png",
     "nativeWidth": 305,
     "nativeHeight": 177,
     "files": [
       {
-        "src": "/workshop/decor-cat-8c64ba2971-96.webp",
+        "src": "/workshop/decor-cavalier-v1-96.webp",
         "width": 96,
         "height": 56,
-        "bytes": 3620
+        "bytes": 3900
       },
       {
-        "src": "/workshop/decor-cat-71ab1059fd-192.webp",
+        "src": "/workshop/decor-cavalier-v1-192.webp",
         "width": 192,
         "height": 111,
-        "bytes": 9814
+        "bytes": 10606
       },
       {
-        "src": "/workshop/decor-cat-d9db1163c1-256.webp",
+        "src": "/workshop/decor-cavalier-v1-256.webp",
         "width": 256,
         "height": 149,
-        "bytes": 21572
+        "bytes": 16656
       },
       {
-        "src": "/workshop/decor-cat-ef9e247aaa-305.webp",
+        "src": "/workshop/decor-cavalier-v1-305.webp",
         "width": 305,
         "height": 177,
-        "bytes": 23016
+        "bytes": 21514
       }
     ],
     "support": {

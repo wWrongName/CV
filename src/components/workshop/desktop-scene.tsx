@@ -33,7 +33,7 @@ function WorkshopIcon({ id }: { id: ObjectId }) {
   return <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" aria-hidden="true"><path d={paths[id] || paths.blog} /></svg>;
 }
 
-function WorkshopObject({ object, locale, onEnter, active }: Props & { object: SceneObject; active: ObjectId | null }) {
+function WorkshopObject({ object, locale, onEnter, active, loadArtwork }: Props & { object: SceneObject; active: ObjectId | null; loadArtwork: boolean }) {
   const { state, send } = useWorkshopInteraction();
   const label = getObjectLabel(object.id, locale);
   const contact = object.id === "contact";
@@ -89,7 +89,7 @@ function WorkshopObject({ object, locale, onEnter, active }: Props & { object: S
     onBlur={() => { if (!contact) send({ type: "leave", target: object.id }); }}
     onClick={event => { if (event.button === 0 && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) { send({ type: "activate", target: object.id }); onEnter(object.id); } }}>
     {hitArea && <span className="workshop-object-hit-area" style={hitArea} aria-hidden="true" />}
-    <WorkshopArt art={object.art} width={object.width} eager motionActive={!active && state.mode !== "reading" && state.mode !== "opening"} />
+    <WorkshopArt art={object.art} width={object.width} load={loadArtwork} eager motionActive={!active && state.mode !== "reading" && state.mode !== "opening"} />
     {!contact && <span className="workshop-object-name"><WorkshopIcon id={object.id} /><span><strong>{label.title}</strong><small>{sceneDetail}</small></span></span>}
   </Link>;
 }
@@ -100,6 +100,7 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
   const [enabled, setEnabled] = useState(false);
   const stage = useRef<HTMLDivElement>(null);
   const [sceneLoaded, setSceneLoaded] = useState(false);
+  const [loadArtwork, setLoadArtwork] = useState(false);
   const [boardReady, setBoardReady] = useState(false);
   const [preparedPositions, setPreparedPositions] = useState<ObjectId[]>([]);
   const [displayed, setDisplayed] = useState<ObjectId | null>(null);
@@ -112,17 +113,53 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
     update(); media.addEventListener("change", update);
     return () => media.removeEventListener("change", update);
   }, []);
-  const target = enabled && (state.mode === "attending" || state.mode === "opening") && state.target ? state.target : null;
+  useEffect(() => {
+    if (loadArtwork) return;
+    const media = window.matchMedia("(min-width: 900px)");
+    const preview = stage.current?.querySelector<HTMLImageElement>(".workshop-startup img");
+    let firstFrame = 0, secondFrame = 0, timeout = 0, scheduled = false, cancelled = false;
+    const reveal = () => {
+      if (cancelled || scheduled || !media.matches) return;
+      scheduled = true;
+      window.clearTimeout(timeout);
+      // Paint the tiny finished room before its heavy live layers compete for bandwidth.
+      firstFrame = requestAnimationFrame(() => { secondFrame = requestAnimationFrame(() => {
+        if (!cancelled && media.matches) setLoadArtwork(true);
+        else scheduled = false;
+      }); });
+    };
+    const prepare = () => {
+      if (!media.matches) return;
+      window.clearTimeout(timeout);
+      // A broken or stalled preview must not block the real room.
+      timeout = window.setTimeout(reveal, 800);
+      if (preview?.complete) void preview.decode().then(reveal, reveal);
+    };
+    preview?.addEventListener("load", reveal);
+    preview?.addEventListener("error", reveal);
+    media.addEventListener("change", prepare);
+    prepare();
+    return () => {
+      cancelled = true; window.clearTimeout(timeout);
+      cancelAnimationFrame(firstFrame); cancelAnimationFrame(secondFrame);
+      preview?.removeEventListener("load", reveal); preview?.removeEventListener("error", reveal);
+      media.removeEventListener("change", prepare);
+    };
+  }, [loadArtwork]);
+  const target = enabled && loadArtwork && (state.mode === "attending" || state.mode === "opening") && state.target ? state.target : null;
   const active = visiblePosition(target, displayed, decoded);
   useLayoutEffect(() => {
     if (!target) setDisplayed(null);
     else if (decoded[target]) setDisplayed(target);
   }, [target, decoded]);
   useEffect(() => {
-    let cancelled = false;
+    if (!loadArtwork) return;
+    let cancelled = false, frame = 0;
     const afterLoad = async () => {
-      // Visible room artwork and the initial character own the first network pass.
-      const images = Array.from(stage.current?.querySelectorAll<HTMLImageElement>("img") || []);
+      // Let responsive image selection settle, then wait only for live room art.
+      await new Promise<void>(resolve => { frame = requestAnimationFrame(() => resolve()); });
+      if (cancelled) return;
+      const images = Array.from(stage.current?.querySelectorAll<HTMLImageElement>("img") || []).filter(image => !image.closest("[data-pose], .workshop-startup"));
       const results = await Promise.allSettled(images.map(image => image.decode()));
       if (cancelled) return;
       setSceneLoaded(true);
@@ -133,10 +170,9 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
       await document.fonts.load("16px WWNChalk").catch(() => {});
       if (!cancelled) setBoardReady(true);
     };
-    if (document.readyState === "complete") void afterLoad();
-    else window.addEventListener("load", afterLoad, { once: true });
-    return () => { cancelled = true; window.removeEventListener("load", afterLoad); };
-  }, [enabled]);
+    void afterLoad();
+    return () => { cancelled = true; cancelAnimationFrame(frame); };
+  }, [enabled, loadArtwork]);
   useEffect(() => {
     if (!enabled || !sceneLoaded) return;
     // Only one background sprite is requested at a time. A hovered sprite bypasses
@@ -162,7 +198,7 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
   const boardCopy = boardTarget ? getBoardCopy(boardTarget, locale) : { title: ui.greeting, description: ui.boardIntro };
   const openAbout = () => { send({ type: "activate", target: "about" }); onEnter("about"); };
   const openContacts = () => { send({ type: "activate", target: "contact" }); onEnter("contact"); };
-  return <main className="desktop-workshop" aria-label={ui.title} aria-busy={!sceneLoaded} data-scene-ready={sceneLoaded}>
+  return <main className="desktop-workshop" aria-label={ui.title} aria-busy={!sceneLoaded} data-scene-ready={sceneLoaded} data-artwork-requested={loadArtwork}>
     <div ref={stage} className="workshop-stage"
       onPointerMove={event => {
         if (event.pointerType === "touch") return;
@@ -170,8 +206,8 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
         send({ type: "pointer", x: Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)), y: Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height)) });
       }} onPointerLeave={() => send({ type: "pointer-leave" })}>
       <WorkshopStartupPreview ready={sceneLoaded} />
-      <WorkshopEnvironment />
-      <WindowLife />
+      {loadArtwork && <WorkshopEnvironment />}
+      {loadArtwork && <WindowLife />}
       <svg className="workshop-effect-defs" width="0" height="0" aria-hidden="true" focusable="false">
         <defs><filter id="workshop-chalk-stroke" x="-3%" y="-3%" width="106%" height="106%">
           <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="7" result="grain" />
@@ -186,9 +222,9 @@ export function DesktopWorkshop({ locale, onEnter }: Props) {
         </p>}
       </aside>}
       <WorkshopSpeedTrail position={active} pending={target !== active} enabled={enabled && state.mode !== "reading"} />
-      <WorkshopFurniture active={active} />
+      {loadArtwork && <WorkshopFurniture active={active} />}
       <h1 className="workshop-scene-title">{ui.title}</h1>
-      <div className="workshop-objects">{desktopObjects.map(object => <WorkshopObject key={object.id} object={object} locale={locale} onEnter={onEnter} active={active} />)}</div>
+      <div className="workshop-objects">{desktopObjects.map(object => <WorkshopObject key={object.id} object={object} locale={locale} onEnter={onEnter} active={active} loadArtwork={loadArtwork} />)}</div>
       <div className="workshop-contact-zone"
         onPointerEnter={event => { if (event.pointerType !== "touch") send({type:"attend",target:"contact",source:"pointer"}); }}
         onPointerLeave={() => send({type:"leave",target:"contact"})}

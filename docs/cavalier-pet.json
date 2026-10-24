@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-24",
+  "tool": "Built-in imagegen",
+  "generatedFile": "exec-07c64873-2b05-4b05-9251-9ad3a06a33ef.png",
+  "master": "artwork/cavalier-master.png",
+  "desktopMaster": "artwork/desktop-cavalier-master.png",
+  "prompt": "Use case: precise-object-edit. Asset type: isolated transparent sleeping pet sprite for an existing illustrated workshop website. Replace the cats in the references with ONE sleeping Cavalier King Charles Spaniel (Blenheim coat: chestnut-red patches and cream-white muzzle, central forehead blaze, paws and chest). References are style and lighting references, NOT multiple subjects to reproduce. Output only one complete dog, no scenery. Match the existing ink-outlined hand-painted anime adventure-game illustration style exactly: dark warm brown outlines, restrained painterly fur detail, dark amber rim light from upper left, warm shadows, no photo realism, no glossy 3D, no cute toy/chibi proportions. Composition: low, compact curled sleeping pose viewed slightly from above at tabletop level, head resting on its front paws at lower LEFT, relaxed closed eyes, recognizable long soft wavy floppy spaniel ears hanging beside the face, rounded torso on RIGHT, hind legs tucked, feathered tail curled toward front. Body must have believable volume, visible chest, head and paws resting on the same horizontal plane. Entire dog fits in roughly 1.8:1 width:height silhouette, centered with minimal transparent padding. Do not include a table, mat, cushion, cast shadow rectangle, collar, symbols, text or zzz; those come from the site. Actual transparent alpha background. Preserve the warm handmade atmosphere and crisp silhouette of the reference sprites.\n",
+  "desktop": {
+    "widthPercent": 8.8,
+    "groundPercent": 61.9,
+    "reference": "Matched to the dog/head and dog/torso proportions of the mobile welcome scene. Native canvas remains 305x177; paws retain their tabletop baseline."
+  },
+  "mobile": {
+    "about": "134px wide in 480px artwork",
+    "contact": "292px wide in 480px artwork",
+    "staticFallback": "Baked from the same room plate and independent sprite; no cat flashes before motion."
+  }
+}

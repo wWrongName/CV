@@ -9,6 +9,6 @@ export function WorkshopStartupPreview({ ready }: { ready: boolean }) {
     <source media="(max-width: 899px)" srcSet={mobileEmpty} />
     <img src={preview.file.src} width={preview.file.width} height={preview.file.height} alt="" decoding="async" fetchPriority="high" draggable={false} />
   </picture>
-    <noscript><style>{`.workshop-startup{display:none}.desktop-workshop[data-scene-ready=false] .workshop-stage :is(.workshop-world,.workshop-environment-tile,.workshop-furniture-piece,.workshop-art,.workshop-window-life,.workshop-reaction,.workshop-reaction-hand,.workshop-mug-steam){opacity:1}`}</style></noscript>
+    <noscript><style>{`.workshop-startup{display:block;opacity:1;visibility:visible}.desktop-workshop[data-scene-ready=false] .workshop-stage :is(.workshop-world,.workshop-environment-tile,.workshop-furniture-piece,.workshop-art,.workshop-window-life,.workshop-reaction,.workshop-reaction-hand,.workshop-mug-steam){opacity:1}`}</style></noscript>
   </>;
 }

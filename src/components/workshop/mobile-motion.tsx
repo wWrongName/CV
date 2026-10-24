@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type RefObject } from "react";
 import type { SectionId } from "@/lib/workshop/sections";
-import { blogVineAngle, cityWindowLevel, processLampLevel, resumePortraitFrame, mobileLampItems, lampItemAngle, mobileCatItems, catItemLayout, coverTransform, mobileMotion, motionBudget, patchOffset, type MotionPatch } from "@/lib/workshop/mobile-motion";
+import { blogVineAngle, cityWindowLevel, processLampLevel, resumePortraitFrame, mobileLampItems, lampItemAngle, mobileDogItems, dogItemLayout, coverTransform, mobileMotion, motionBudget, patchOffset, type MotionPatch } from "@/lib/workshop/mobile-motion";
 
 type Point = [number, number];
 type Texture = { patch: MotionPatch; image: HTMLCanvasElement; weights: number[]; columns: number; rows: number };
@@ -162,8 +162,8 @@ function featheredPlate(image: HTMLImageElement) {
   }
   return plate;
 }
-function drawSleepingCat(ctx: CanvasRenderingContext2D, scene: "about" | "contact", t: number, sprite: HTMLImageElement) {
-  const box = catItemLayout(scene,sprite.naturalWidth,sprite.naturalHeight,t);
+function drawSleepingDog(ctx: CanvasRenderingContext2D, scene: "about" | "contact", t: number, sprite: HTMLImageElement) {
+  const box = dogItemLayout(scene,sprite.naturalWidth,sprite.naturalHeight,t);
   // A separate transparent item, anchored at the paws. No room pixels deform.
   ctx.drawImage(sprite,box.x,box.y,box.width,box.height);
 }
@@ -186,8 +186,8 @@ export function MobileSceneMotion({ image, scene, active }: { image: RefObject<H
     let lamp: HTMLImageElement | null = null, emptyLampImage: HTMLImageElement | null = null, emptyLampPlate: HTMLCanvasElement | null = null;
     function prepareLampPlate() { if (emptyLampImage && !disposed) emptyLampPlate = featheredPlate(emptyLampImage); }
     let vine: HTMLImageElement | null = null, vinePlate: HTMLImageElement | null = null;
-    let cat: HTMLImageElement | null = null, emptyCatImage: HTMLImageElement | null = null, emptyCatPlate: HTMLCanvasElement | null = null;
-    function prepareCatPlate() { if (emptyCatImage && !disposed) emptyCatPlate = featheredPlate(emptyCatImage); }
+    let dog: HTMLImageElement | null = null, emptyDogImage: HTMLImageElement | null = null, emptyDogPlate: HTMLCanvasElement | null = null;
+    function prepareDogPlate() { if (emptyDogImage && !disposed) emptyDogPlate = featheredPlate(emptyDogImage); }
     function loadPortraits() {
       if (!portraitImage || disposed) return;
       for (let i = 0; i < 3; i++) {
@@ -219,9 +219,9 @@ export function MobileSceneMotion({ image, scene, active }: { image: RefObject<H
           ctx.save(); ctx.translate(36, 0); ctx.rotate(blogVineAngle(elapsed));
           ctx.drawImage(vine, -36, 0, width, height); ctx.restore();
         }
-        if ((scene === "about" || scene === "contact") && cat?.complete && cat.naturalWidth && emptyCatPlate) {
-          const clean = mobileCatItems[scene].plate;
-          ctx.drawImage(emptyCatPlate,clean[0],clean[1],clean[2],clean[3]);
+        if ((scene === "about" || scene === "contact") && dog?.complete && dog.naturalWidth && emptyDogPlate) {
+          const clean = mobileDogItems[scene].plate;
+          ctx.drawImage(emptyDogPlate,clean[0],clean[1],clean[2],clean[3]);
         }
         const fixture = mobileLampItems[scene];
         if (fixture && lamp?.complete && lamp.naturalWidth && emptyLampPlate) {
@@ -229,10 +229,10 @@ export function MobileSceneMotion({ image, scene, active }: { image: RefObject<H
           ctx.save(); ctx.translate(...fixture.pivot); ctx.rotate(lampItemAngle(elapsed,fixture.period,fixture.angle));
           ctx.drawImage(lamp,fixture.box[0]-fixture.pivot[0],fixture.box[1]-fixture.pivot[1],fixture.box[2],fixture.box[3]); ctx.restore();
         }
-        accents(ctx, scene, elapsed, portraits, scene !== "contact" || Boolean(cat?.complete && cat.naturalWidth && emptyCatPlate));
-        // Screen light/noise is behind the cat. The foreground item is last.
-        if ((scene === "about" || scene === "contact") && cat?.complete && cat.naturalWidth && emptyCatPlate) drawSleepingCat(ctx,scene,elapsed,cat);
-        if (scene === "about") sleep(ctx,393,485,elapsed);
+        accents(ctx, scene, elapsed, portraits, scene !== "contact" || Boolean(dog?.complete && dog.naturalWidth && emptyDogPlate));
+        // Screen light/noise is behind the dog. The foreground item is last.
+        if ((scene === "about" || scene === "contact") && dog?.complete && dog.naturalWidth && emptyDogPlate) drawSleepingDog(ctx,scene,elapsed,dog);
+        if (scene === "about") sleep(ctx,333,486,elapsed);
         if (scene === "contact") sleep(ctx,131,570,elapsed);
         frames++; cost += performance.now() - start;
         if (frames % 32 === 0) {
@@ -254,11 +254,11 @@ export function MobileSceneMotion({ image, scene, active }: { image: RefObject<H
         emptyLampImage.addEventListener("load",prepareLampPlate,{ once:true });
         emptyLampImage.src = `/workshop/mobile-${scene}-lamp-plate-v1.webp`;
       }
-      if ((scene === "about" || scene === "contact") && !cat) {
-        cat = new Image(); cat.decoding = "async"; cat.src = `/workshop/mobile-${scene}-cat-v1.webp`;
-        emptyCatImage = new Image(); emptyCatImage.decoding = "async";
-        emptyCatImage.addEventListener("load",prepareCatPlate,{ once:true });
-        emptyCatImage.src = `/workshop/mobile-${scene}-cat-plate-${scene === "contact" ? "v2" : "v1"}.webp`;
+      if ((scene === "about" || scene === "contact") && !dog) {
+        dog = new Image(); dog.decoding = "async"; dog.src = mobileDogItems[scene].src;
+        emptyDogImage = new Image(); emptyDogImage.decoding = "async";
+        emptyDogImage.addEventListener("load",prepareDogPlate,{ once:true });
+        emptyDogImage.src = mobileDogItems[scene].plateSrc;
       }
       if (scene === "blog" && !vine) {
         vine = new Image(); vine.decoding = "async"; vine.src = "/workshop/mobile-blog-vine-v1.webp";
@@ -281,8 +281,8 @@ export function MobileSceneMotion({ image, scene, active }: { image: RefObject<H
       textures.forEach(tex => { tex.image.width = tex.image.height = 0; });
       emptyLampImage?.removeEventListener("load",prepareLampPlate);
       if (emptyLampPlate) emptyLampPlate.width = emptyLampPlate.height = 0;
-      emptyCatImage?.removeEventListener("load",prepareCatPlate);
-      if (emptyCatPlate) emptyCatPlate.width = emptyCatPlate.height = 0;
+      emptyDogImage?.removeEventListener("load",prepareDogPlate);
+      if (emptyDogPlate) emptyDogPlate.width = emptyDogPlate.height = 0;
       portraitImage?.removeEventListener("load", loadPortraits);
       portraits.forEach(cell => { cell.width = cell.height = 0; });
       el.width = el.height = 0;

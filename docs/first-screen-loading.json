@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-24",
+  "method": "Local production builds; 1280x800 CSS pixels, DPR 2.36; shared 10 Mbit/s plus 100ms response latency; no browser cache. Interface readiness is the first hydrated click-area DOM node with the preview loaded, not a universal TTI guarantee.",
+  "before": {
+    "previewReadyMs": 401,
+    "interfaceReadyMs": 3350,
+    "sceneReadyMs": 3601,
+    "allPosesReadyMs": 6112,
+    "loadMs": 3280,
+    "totalKiB": 5384,
+    "backgroundGpuRenderers": 0
+  },
+  "after": {
+    "previewReadyMs": 402,
+    "interfaceReadyMs": 601,
+    "sceneReadyMs": 3702,
+    "allPosesReadyMs": 6101,
+    "loadMs": 518,
+    "totalKiB": 5239,
+    "backgroundGpuRenderers": 0
+  },
+  "behavior": "The 39,438-byte captured room and live navigation labels render first. Room images begin after the preview/first paint and hydration; scene appearance still waits for real image decoding. Pose preparation remains after the room. The board retains its own decode/font gate.",
+  "failureVerification": "A preview response held for 10 seconds did not prevent data-scene-ready=true; the preview image was still incomplete when the real room and board became ready.",
+  "earlyNavigation": "A projects click before sceneReady was accepted and the panel opened. Under the synthetic HTTP/1 throttling its content can still wait about 3 seconds for the separate section bundle. Background image priority is low; navigation latency is not represented by interfaceReadyMs. An experimental dynamic module warmup added requests without improving the transition and was removed.",
+  "runtimePublic": {
+    "files": 277,
+    "bytes": 20095934
+  },
+  "losslessFieldSavingBytes": 139603,
+  "mobileMotionItemsBytes": 385436,
+  "tests": "Production build: 35 pages; TypeScript; make test; public packaging; all 277 assets and 18 RU/EN routes return successfully; normal browser console clean."
+}

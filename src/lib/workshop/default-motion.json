@@ -20,7 +20,7 @@
     ]
   },
   "breath": {
-    "field": "/workshop/character-default-breath-field-v3.png",
+    "field": "/workshop/character-default-breath-field-v3-lossless.webp",
     "scale": 26,
     "durationsMs": [
       4400,
@@ -31,7 +31,7 @@
     "padding": 24
   },
   "hair": {
-    "field": "/workshop/character-default-hair-field-v1.png",
+    "field": "/workshop/character-default-hair-field-v1-lossless.webp",
     "padding": 24,
     "scale": 18
   },

@@ -8,31 +8,31 @@ import { desktopImageSizes, imageSrcSet } from "@/lib/workshop/image-sizes";
 import type { ArtId } from "@/lib/workshop/scene";
 
 /** Native image decoding determines appearance. No timers, stagger or opacity gate. */
-export function WorkshopArt({ art, width, eager = false, motionActive = true }: { art: ArtId; width: number; eager?: boolean; motionActive?: boolean }) {
+export function WorkshopArt({ art, width, load = true, eager = false, motionActive = true }: { art: ArtId; width: number; load?: boolean; eager?: boolean; motionActive?: boolean }) {
   const [failed, setFailed] = useState(false);
   const [baseSrc, setBaseSrc] = useState("");
   const imageRef = useRef<HTMLImageElement>(null);
   useEffect(() => {
-    if (art !== "character" && art !== "services") return;
+    if (!load || (art !== "character" && art !== "services")) return;
     let cancelled = false;
     const image = imageRef.current;
-    if (image?.complete && image.naturalWidth) image.decode().then(() => {
+    if (image?.complete && image.naturalWidth > 1) image.decode().then(() => {
       if (!cancelled) setBaseSrc(image.currentSrc || image.src);
     }).catch(() => {});
     return () => { cancelled = true; };
-  }, [art]);
+  }, [art, load]);
   const asset = assets[art];
   const small = asset.files[0];
   return <span className="workshop-art" data-failed={failed || undefined}>
     {/* Pre-encoded sizes keep alpha sprites cheap and avoid first-request optimization. */}
     <picture><source media="(max-width: 899px)" srcSet="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
-    <img ref={imageRef} src={small.src} srcSet={imageSrcSet(asset.files)}
+    <img ref={imageRef} src={load ? small.src : "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"} srcSet={load ? imageSrcSet(asset.files) : undefined}
       sizes={desktopImageSizes(width)}
-      width={asset.width} height={asset.height} alt="" draggable={false}
+      width={asset.width} height={asset.height} style={!load ? { aspectRatio: `${asset.width} / ${asset.height}` } : undefined} fetchPriority="low" alt="" draggable={false}
       loading={eager ? "eager" : "lazy"} decoding="async"
-      onLoad={event => { if (art === "character" || art === "services") setBaseSrc(event.currentTarget.currentSrc || event.currentTarget.src); }}
+      onLoad={event => { if (load && event.currentTarget.naturalWidth > 1 && (art === "character" || art === "services")) setBaseSrc(event.currentTarget.currentSrc || event.currentTarget.src); }}
       onError={() => setFailed(true)} /></picture>
-  {art === "services" && <ServicesLight src={baseSrc} />}
-  {art === "character" && <DefaultPositionMotion baseSrc={baseSrc} active={motionActive} />}
+  {load && art === "services" && <ServicesLight src={baseSrc} />}
+  {load && art === "character" && <DefaultPositionMotion baseSrc={baseSrc} active={motionActive} />}
   </span>;
 }

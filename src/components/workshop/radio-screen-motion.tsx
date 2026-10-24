@@ -36,7 +36,7 @@ export function RadioScreenMotion({ layer }: { layer: RadioLayer }) {
   return <span className="workshop-furniture-piece workshop-radio" data-layer="receiver"
     style={{ left: `${layer.x}%`, top: `${layer.y}%`, width: `${layer.width}%`, height: `${layer.height}%` }}>
     <picture><source media="(max-width: 899px)" srcSet="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
-      <img src={small.src} srcSet={imageSrcSet(layer.files)} sizes={desktopImageSizes(layer.width)} width={large.width} height={large.height} alt="" decoding="async" draggable={false} />
+      <img src={small.src} srcSet={imageSrcSet(layer.files)} sizes={desktopImageSizes(layer.width)} width={large.width} height={large.height} fetchPriority="low" alt="" decoding="async" draggable={false} />
     </picture>
     <svg className="workshop-radio-screen" viewBox="0 0 371 268" aria-hidden="true" focusable="false">
       <defs><clipPath id={id}><path d="M164 130L239 131L238 186L163 185Z" /></clipPath>

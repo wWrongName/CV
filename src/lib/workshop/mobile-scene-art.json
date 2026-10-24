@@ -1,18 +1,18 @@
 {
   "about": {
-    "master": "artwork/mobile-welcome-foreground-v4.png",
+    "master": "artwork/mobile-about-cavalier-v1.png",
     "files": [
       {
-        "src": "/workshop/mobile-welcome-foreground-v4-480.webp",
+        "src": "/workshop/mobile-about-cavalier-v1-480.webp",
         "width": 480,
         "height": 1038,
-        "bytes": 187572
+        "bytes": 173672
       },
       {
-        "src": "/workshop/mobile-welcome-foreground-v4-853.webp",
+        "src": "/workshop/mobile-about-cavalier-v1-853.webp",
         "width": 853,
         "height": 1844,
-        "bytes": 437112
+        "bytes": 399900
       }
     ]
   },
@@ -119,19 +119,19 @@
     ]
   },
   "contact": {
-    "master": "artwork/mobile-contact-scene-v5.png",
+    "master": "artwork/mobile-contact-cavalier-v1.png",
     "files": [
       {
-        "src": "/workshop/mobile-contact-scene-v5-480.webp",
+        "src": "/workshop/mobile-contact-cavalier-v1-480.webp",
         "width": 480,
         "height": 1038,
-        "bytes": 112372
+        "bytes": 128634
       },
       {
-        "src": "/workshop/mobile-contact-scene-v5-853.webp",
+        "src": "/workshop/mobile-contact-cavalier-v1-853.webp",
         "width": 853,
         "height": 1844,
-        "bytes": 253074
+        "bytes": 296976
       }
     ]
   }

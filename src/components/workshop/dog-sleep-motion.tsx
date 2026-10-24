@@ -5,14 +5,14 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { createCharacterMesh } from "./services-mesh";
 import { sampleBreath } from "@/lib/workshop/motion-timing";
 
-type CatLayer = {
+type DogLayer = {
   x: number; y: number; width: number; height: number;
   files: { src: string; width: number; height: number }[];
 };
 const clamp = (n: number) => Math.max(0, Math.min(1, n));
 
 /** Only the curled back rises: the sleeping face, paws and tail keep their support. */
-export function CatSleepMotion({ layer }: { layer: CatLayer }) {
+export function DogSleepMotion({ layer }: { layer: DogLayer }) {
   const image = useRef<HTMLImageElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const mesh = useRef<ReturnType<typeof createCharacterMesh> | null>(null);
@@ -45,7 +45,7 @@ export function CatSleepMotion({ layer }: { layer: CatLayer }) {
         },
       });
       mesh.current.draw(0, 0, 0); setReady(true);
-    }).catch(() => { /* The original sleeping cat remains the static fallback. */ });
+    }).catch(() => { /* The original sleeping cavalier remains the static fallback. */ });
     return () => { cancelled = true; mesh.current?.dispose(); mesh.current = null; };
   }, [source, allowed]);
   useEffect(() => {
@@ -59,13 +59,13 @@ export function CatSleepMotion({ layer }: { layer: CatLayer }) {
     frame = requestAnimationFrame(draw);
     return () => cancelAnimationFrame(frame);
   }, [ready, visible]);
-  return <span className="workshop-furniture-piece workshop-cat-sleep" data-layer="cat" data-ready={ready} data-loaded={Boolean(source)} data-sleeping={visible}
+  return <span className="workshop-furniture-piece workshop-dog-sleep" data-layer="dog" data-ready={ready} data-loaded={Boolean(source)} data-sleeping={visible}
     style={{ left: `${layer.x}%`, top: `${layer.y}%`, width: `${layer.width}%`, height: `${layer.height}%` } as CSSProperties}>
     <picture><source media="(max-width: 899px)" srcSet="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
-      <img ref={image} src={small.src} srcSet={imageSrcSet(layer.files)} sizes={desktopImageSizes(layer.width)} width={305} height={177} alt="" decoding="async" draggable={false}
+      <img ref={image} src={small.src} srcSet={imageSrcSet(layer.files)} sizes={desktopImageSizes(layer.width)} width={305} height={177} fetchPriority="low" alt="" decoding="async" draggable={false}
         onLoad={event => { const art = event.currentTarget; art.decode().then(() => setSource(art.currentSrc || art.src)).catch(() => {}); }} />
     </picture>
     <canvas ref={canvas} aria-hidden="true" />
-    <span className="workshop-cat-dream" aria-hidden="true"><i>z</i><i>z</i><i>z</i></span>
+    <span className="workshop-dog-dream" aria-hidden="true"><i>z</i><i>z</i><i>z</i></span>
   </span>;
 }

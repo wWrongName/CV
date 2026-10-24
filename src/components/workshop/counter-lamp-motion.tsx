@@ -7,7 +7,7 @@ export function CounterLampMotion({ layer }: { layer: Layer }) {
   return <span className="workshop-furniture-piece workshop-counter-light" data-layer="counter"
     style={{ left: `${layer.x}%`, top: `${layer.y}%`, width: `${layer.width}%`, height: `${layer.height}%` }}>
     <picture><source media="(max-width: 899px)" srcSet="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
-      <img src={small.src} srcSet={imageSrcSet(layer.files)} sizes={desktopImageSizes(layer.width)} width={large.width} height={large.height} alt="" decoding="async" draggable={false} />
+      <img src={small.src} srcSet={imageSrcSet(layer.files)} sizes={desktopImageSizes(layer.width)} width={large.width} height={large.height} fetchPriority="low" alt="" decoding="async" draggable={false} />
     </picture>
     <svg className="workshop-contact-lamp-light" viewBox="0 0 1000 250" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <defs><radialGradient id="workshop-contact-lamp-falloff"><stop stopColor="white" /><stop offset=".45" stopColor="white" /><stop offset="1" stopColor="black" /></radialGradient>

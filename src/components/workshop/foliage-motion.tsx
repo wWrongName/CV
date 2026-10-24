@@ -58,7 +58,7 @@ export function FoliageMotion({ layer }: { layer: VineLayer }) {
   return <span className="workshop-furniture-piece workshop-foliage-motion" data-layer={layer.id} data-ready={ready}
     style={{ left: `${layer.x}%`, top: `${layer.y}%`, width: `${layer.width}%`, height: `${layer.height}%` }}>
     <picture><source media="(max-width: 899px)" srcSet="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
-      <img ref={image} src={small.src} srcSet={imageSrcSet(layer.files)} sizes={desktopImageSizes(layer.width)} width={layer.nativeWidth} height={layer.nativeHeight} alt="" decoding="async" draggable={false}
+      <img ref={image} src={small.src} srcSet={imageSrcSet(layer.files)} sizes={desktopImageSizes(layer.width)} width={layer.nativeWidth} height={layer.nativeHeight} fetchPriority="low" alt="" decoding="async" draggable={false}
         onLoad={event => { const art = event.currentTarget; art.decode().then(() => setSource(art.currentSrc || art.src)).catch(() => {}); }} />
     </picture><canvas ref={canvas} aria-hidden="true" />
   </span>;

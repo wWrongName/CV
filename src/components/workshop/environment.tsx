@@ -63,7 +63,7 @@ function EnvironmentTile({ tile }: { tile: Tile }) {
   return <div ref={ref} className="workshop-environment-tile" aria-hidden="true" data-tile={tile.id} data-requested={requested} style={layout.slot}>
     {requested && <picture><source media="(max-width: 899px)" srcSet={mobileSource} />
       <img src={sources[0].src} srcSet={imageSrcSet(sources)} sizes={desktopImageSizes(imageWidthPercent)} width={tile.width} height={tile.height}
-        style={imageStyle} alt="" decoding="async" loading="eager" fetchPriority={tile.id === "center" ? "high" : "low"}
+        style={imageStyle} alt="" decoding="async" loading="eager" fetchPriority="low"
         draggable={false} onError={() => setFailed(true)} />
     </picture>}
     <noscript><img src={full.src} width={tile.width} height={tile.height} style={imageStyle} alt="" loading="lazy" /></noscript>
@@ -76,5 +76,5 @@ export function WorkshopEnvironment() {
     left: `${environment.xPercent}%`, top: `${environment.yPercent}%`,
     width: `${environment.widthPercent}%`, height: `${environment.heightPercent}%`,
     transform: `matrix(${environment.matrix.join(",")})`,
-  }}><source media="(max-width: 899px)" srcSet={mobileSource} /><img src={environment.files[0].src} alt="" width={environment.files[0].width} height={environment.files[0].height} style={{width:"100%",height:"100%",display:"block"}} decoding="async" /></picture>{tiles.map(tile => <EnvironmentTile key={tile.id} tile={tile} />)}</>;
+  }}><source media="(max-width: 899px)" srcSet={mobileSource} /><img src={environment.files[0].src} alt="" width={environment.files[0].width} height={environment.files[0].height} style={{width:"100%",height:"100%",display:"block"}} decoding="async" fetchPriority="low" /></picture>{tiles.map(tile => <EnvironmentTile key={tile.id} tile={tile} />)}</>;
 }

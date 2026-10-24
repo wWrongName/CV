@@ -51,7 +51,7 @@ export function resumePortraitFrame(seconds: number) {
   return cycle < 1.2 ? 1 : cycle < 2.5 ? 0 : cycle < 3.2 ? 1 : cycle < 4.5 ? 2 : 1;
 }
 
-export function sleepingCatScale(seconds: number, scene: "about" | "contact") {
+export function sleepingDogScale(seconds: number, scene: "about" | "contact") {
   const inhale = .5 - .5 * Math.cos(seconds * Math.PI * 2 / 4.3);
   return 1 + (scene === "about" ? .035 : .025) * inhale;
 }
@@ -65,13 +65,13 @@ export const mobileLampItems: Partial<Record<SectionId,MobileLampItem>> = {
 };
 export function lampItemAngle(seconds: number, period: number, degrees = 1.2) { return Math.sin(seconds * Math.PI * 2 / period) * Math.PI * degrees / 180; }
 
-export const mobileCatItems = {
-  about: { x:302, bottom:534, width:134, plate:[296,466,150,72] as [number,number,number,number] },
-  contact: { x:35, bottom:671, width:292, plate:[23,516,317,165] as [number,number,number,number] },
+export const mobileDogItems = {
+  about: { src:"/workshop/sleeping-cavalier-v1-256.webp", plateSrc:"/workshop/mobile-about-pet-plate-v1.webp", x:302, bottom:534, width:134, plate:[296,466,150,72] as [number,number,number,number] },
+  contact: { src:"/workshop/sleeping-cavalier-v1-512.webp", plateSrc:"/workshop/mobile-contact-pet-plate-v2.webp", x:35, bottom:671, width:292, plate:[23,516,317,165] as [number,number,number,number] },
 };
-export function catItemLayout(scene: keyof typeof mobileCatItems, sourceWidth: number, sourceHeight: number, seconds = 0) {
-  const item = mobileCatItems[scene];
-  const height = item.width * sourceHeight / sourceWidth * sleepingCatScale(seconds,scene);
+export function dogItemLayout(scene: keyof typeof mobileDogItems, sourceWidth: number, sourceHeight: number, seconds = 0) {
+  const item = mobileDogItems[scene];
+  const height = item.width * sourceHeight / sourceWidth * sleepingDogScale(seconds,scene);
   return { x:item.x, y:item.bottom-height, width:item.width, height };
 }
 

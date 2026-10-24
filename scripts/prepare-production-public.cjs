@@ -15,9 +15,9 @@ for (const file of walk(path.join(root,"src"))) {
 const exportsMotion = {};
 new Function("exports",ts.transpileModule(fs.readFileSync(path.join(root,"src/lib/workshop/mobile-motion.ts"),"utf8"),{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText)(exportsMotion);
 for(const id of Object.keys(exportsMotion.mobileLampItems)) for(const suffix of ["lamp-v1","lamp-plate-v1"]) required.add(`/workshop/mobile-${id}-${suffix}.webp`);
-for(const id of Object.keys(exportsMotion.mobileCatItems)) {
-  required.add(`/workshop/mobile-${id}-cat-v1.webp`);
-  required.add(`/workshop/mobile-${id}-cat-plate-${id==="contact"?"v2":"v1"}.webp`);
+for(const item of Object.values(exportsMotion.mobileDogItems)) {
+  required.add(item.src);
+  required.add(item.plateSrc);
 }
 for(const url of required) if(!fs.existsSync(path.join(publicDir,url))) throw new Error(`Missing runtime asset: ${url}`);
 const ordinary = walk(publicDir).filter(f=>!f.startsWith(path.join(publicDir,"workshop")+path.sep) && !path.basename(f).startsWith("__") && !path.relative(publicDir,f).split(path.sep).some(part=>part.startsWith(".")));

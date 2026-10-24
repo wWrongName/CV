@@ -1,0 +1,18 @@
+[
+  {
+    "field": "breath",
+    "source": "/workshop/character-default-breath-field-v3.png",
+    "src": "/workshop/character-default-breath-field-v3-lossless.webp",
+    "before": 117546,
+    "after": 32336,
+    "rgbaSha256": "cb53a1749bcbbe35ec9dec69ff4787b561c6484f70591953474a3d0ff98e64a2"
+  },
+  {
+    "field": "hair",
+    "source": "/workshop/character-default-hair-field-v1.png",
+    "src": "/workshop/character-default-hair-field-v1-lossless.webp",
+    "before": 68223,
+    "after": 13830,
+    "rgbaSha256": "b3aa0f86a965a91dbf17c2e2fb6ad2769bc24d82eef16d86380a9d1b7886bbbf"
+  }
+]

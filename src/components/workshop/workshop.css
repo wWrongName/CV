@@ -55,8 +55,8 @@
 /* A thin page block and leather edge add depth without lifting the page plane. */
 .workshop-object[data-object=research] .workshop-art{position:relative;filter:drop-shadow(0 2px 1px #100d0d60)}
 
-/* Individual layers let the cat rest in front of the idle laptop. */
-.workshop-furniture{z-index:auto}.workshop-furniture-piece{z-index:1}.workshop-furniture-piece[data-layer=cat]{z-index:6}
+/* Individual layers let the cavalier rest in front of the idle laptop. */
+.workshop-furniture{z-index:auto}.workshop-furniture-piece{z-index:1}.workshop-furniture-piece[data-layer=dog]{z-index:6}
 
 .workshop-greeting::after{content:"";position:absolute;left:1.4cqw;bottom:-.65cqw;width:1cqw;height:1cqw;background:#222934;border-right:1px solid #8d795d;border-bottom:1px solid #8d795d;transform:skewY(-25deg) rotate(35deg)}
 
@@ -196,19 +196,19 @@
 .workshop-reaction-hand>canvas{display:block;width:100%;height:auto;aspect-ratio:1350/991}
 @media(prefers-reduced-motion:reduce){.workshop-reaction-hand{display:none}}
 
-/* Sleeping cat: the back breathes locally, while tiny dream letters float upwards. */
-.workshop-cat-sleep>picture{display:block;width:100%;height:100%}
-.workshop-cat-sleep>canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0}
-.workshop-cat-sleep[data-ready=true]>canvas{opacity:1}
-.workshop-cat-sleep[data-ready=true]>picture{opacity:0}
-.workshop-cat-dream{position:absolute;left:22%;top:28%;width:1px;height:1px;visibility:hidden}
-.workshop-cat-sleep[data-loaded=true] .workshop-cat-dream{visibility:visible}
-.workshop-cat-dream i{position:absolute;left:0;top:0;color:#e1cfab;font:clamp(8px,.7cqw,13px)/1 var(--workshop-chalk-font, cursive);font-style:normal;text-shadow:0 1px 1px #17141b90;opacity:0;animation:workshop-cat-dream 3.9s linear infinite}
-.workshop-cat-dream i:nth-child(2){animation-delay:1.3s}
-.workshop-cat-dream i:nth-child(3){animation-delay:2.6s}
-.workshop-cat-sleep[data-sleeping=false] .workshop-cat-dream i{animation-play-state:paused}
-@keyframes workshop-cat-dream{0%{opacity:0;transform:translate(0,0) scale(.65) rotate(-8deg)}18%{opacity:.75}70%{opacity:.6}100%{opacity:0;transform:translate(.65cqw,-2.6cqw) scale(1.12) rotate(8deg)}}
-@media(prefers-reduced-motion:reduce){.workshop-cat-sleep>canvas,.workshop-cat-dream{display:none}.workshop-cat-sleep>picture{opacity:1!important}}
+/* Sleeping cavalier: the back breathes locally, while tiny dream letters float upwards. */
+.workshop-dog-sleep>picture{display:block;width:100%;height:100%}
+.workshop-dog-sleep>canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0}
+.workshop-dog-sleep[data-ready=true]>canvas{opacity:1}
+.workshop-dog-sleep[data-ready=true]>picture{opacity:0}
+.workshop-dog-dream{position:absolute;left:22%;top:28%;width:1px;height:1px;visibility:hidden}
+.workshop-dog-sleep[data-loaded=true] .workshop-dog-dream{visibility:visible}
+.workshop-dog-dream i{position:absolute;left:0;top:0;color:#e1cfab;font:clamp(8px,.7cqw,13px)/1 var(--workshop-chalk-font, cursive);font-style:normal;text-shadow:0 1px 1px #17141b90;opacity:0;animation:workshop-dog-dream 3.9s linear infinite}
+.workshop-dog-dream i:nth-child(2){animation-delay:1.3s}
+.workshop-dog-dream i:nth-child(3){animation-delay:2.6s}
+.workshop-dog-sleep[data-sleeping=false] .workshop-dog-dream i{animation-play-state:paused}
+@keyframes workshop-dog-dream{0%{opacity:0;transform:translate(0,0) scale(.65) rotate(-8deg)}18%{opacity:.75}70%{opacity:.6}100%{opacity:0;transform:translate(.65cqw,-2.6cqw) scale(1.12) rotate(8deg)}}
+@media(prefers-reduced-motion:reduce){.workshop-dog-sleep>canvas,.workshop-dog-dream{display:none}.workshop-dog-sleep>picture{opacity:1!important}}
 
 /* Quiet rising vapor stays registered to the rim of the separate mug. */
 .workshop-mug-steam{position:absolute;z-index:7;overflow:visible;pointer-events:none}
