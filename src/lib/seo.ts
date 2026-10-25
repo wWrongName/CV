@@ -3,10 +3,11 @@ import type { Locale } from "@/lib/i18n";
 import type { SectionId } from "@/lib/workshop/sections";
 
 export const siteUrl = "https://wwncv.tech";
+export const siteName = "WWN - IT solutions";
 type PageId = SectionId | "home";
 const copy: Record<Locale, Record<PageId, [string, string]>> = {
   en: {
-    home: ["Ivan Velichko — DevOps, infrastructure & web development", "Independent engineering by Ivan Velichko: Kubernetes infrastructure, CI/CD automation and web service development. Remote project engagements and technical experience."],
+    home: ["Ivan Velichko — DevOps, infrastructure & web development", "Web development, DevOps and automation. Projects and contact details."],
     about: ["About Ivan Velichko — independent engineer", "Meet Ivan Velichko: fullstack development, DevOps, infrastructure automation and team process management. Explore experience and engineering projects."],
     services: ["DevOps consulting, Kubernetes & CI/CD services", "Project-based infrastructure and platform engineering, Kubernetes, CI/CD automation, monitoring and web service development with Ivan Velichko."],
     projects: ["Engineering projects — Kubernetes, CI/CD & platforms", "Explore Ivan Velichko's engineering projects: PaaS, Kubernetes delivery workflows, developer platforms, LLMOps and infrastructure reliability."],
@@ -17,7 +18,7 @@ const copy: Record<Locale, Record<PageId, [string, string]>> = {
     contact: ["Contact Ivan Velichko — discuss an engineering project", "Contact Ivan Velichko by Telegram or email to discuss infrastructure, DevOps automation or web service development for your project."],
   },
   ru: {
-    home: ["Иван Величко — DevOps, инфраструктура и веб-разработка", "Независимая инженерная практика Ивана Величко: Kubernetes, автоматизация CI/CD и разработка веб-сервисов. Удалённая проектная работа, кейсы и опыт."],
+    home: ["Иван Величко — DevOps, инфраструктура и веб-разработка", "Разработка сервисов, DevOps и автоматизация. Проекты и контакты."],
     about: ["Иван Величко — независимый инженер", "Fullstack-разработка, DevOps, автоматизация инфраструктуры и управление процессами команды. Опыт и инженерные проекты Ивана Величко."],
     services: ["Услуги DevOps: Kubernetes, CI/CD и инфраструктура", "Проектная работа с инфраструктурой и платформами, Kubernetes, автоматизацией CI/CD, мониторингом и разработкой веб-сервисов. Иван Величко."],
     projects: ["Инженерные кейсы — Kubernetes, CI/CD и платформы", "Проекты Ивана Величко: PaaS, доставка приложений в Kubernetes, платформы разработки, LLMOps и надёжность инфраструктуры. Задачи, решения и результаты."],
@@ -39,9 +40,10 @@ export function pageAlternates(locale: Locale, section: PageId = "home") {
 export function pageMetadata(locale: Locale, section: PageId = "home"): Metadata {
   const [title, description] = copy[locale][section];
   const alternates = pageAlternates(locale, section);
+  const shareTitle = section === "home" ? siteName : title;
   return {
     title: { absolute: `${title} · WWN` }, description, alternates,
-    openGraph: { title, description, url: alternates.canonical, siteName: "WWN - IT Solutions", type: "website", locale: locale === "en" ? "en_US" : "ru_RU", alternateLocale: locale === "en" ? "ru_RU" : "en_US" },
-    twitter: { card: "summary", title, description },
+    openGraph: { title: shareTitle, description, url: alternates.canonical, siteName, type: "website", locale: locale === "en" ? "en_US" : "ru_RU", alternateLocale: locale === "en" ? "ru_RU" : "en_US" },
+    twitter: { card: "summary", title: shareTitle, description },
   };
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/i18n";
+import { siteName } from "@/lib/seo";
 import { Analytics } from "@/components/analytics";
 import { WorkshopShell } from "@/components/workshop/shell";
 import "@/components/workshop/workshop.css";
@@ -10,7 +11,7 @@ export const dynamicParams = false;
 export function generateStaticParams() { return [{ locale: "ru" }, { locale: "en" }]; }
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const en = (await params).locale === "en";
-  const title = "WWN - IT Solutions";
+  const title = siteName;
   const description = en
     ? "Web service development, infrastructure and automation. Projects, research and Ivan Velichko's experience."
     : "Разработка веб-сервисов, инфраструктура и автоматизация. Проекты, исследования и опыт Ивана Величко.";
