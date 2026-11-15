@@ -28,9 +28,13 @@ h1 { margin: 0 0 12px; font-size: 24px; font-weight: 500; line-height: 1.13; let
   place-items: center;
   margin: 0;
   pointer-events: none;
-  font-size: clamp(30px, 8vw, 36px);
+  color: var(--muted);
+  font-size: clamp(25px, 7vw, 36px);
+  font-weight: 400;
+  letter-spacing: -.01em;
   text-align: center;
 }
+.hello strong { color: var(--ink) }
 h2 { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.25 }
 .services { position: relative }
 .services::before, .services::after {
@@ -92,7 +96,7 @@ h2 { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.25 }
 </style>
 <div class="widget" style="--step-duration:300ms; --result-delay:780ms">
   <p class="brand"><strong>WWN</strong> IT Solutions · Иван Величко</p>
-  <h1 class="hello hidden">Привет!</h1>
+  <h1 class="hello hidden"><span><strong>WWN</strong> IT Solutions</span></h1>
   <div class="pipeline">
     <h1>Чем могу помочь</h1>
     <div class="services">

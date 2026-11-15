@@ -24,9 +24,9 @@ test('sends a greeting with a link to the website in the private chat', async ()
   const [[method, payload]] = requests;
   assert.equal(method, 'sendMessage');
   assert.equal(payload.chat_id, 42);
-  assert.match(payload.text, /^Привет!/);
+  assert.equal(payload.text, 'Привет! Я Иван. Помогаю компаниям запускать веб-сервисы, настраивать инфраструктуру и автоматизировать рабочие процессы.');
   assert.deepEqual(payload.reply_markup.inline_keyboard, [
-    [{ text: 'Открыть визитку', web_app: { url: 'https://wwncv.tech/telegram/index.html' } }],
+    [{ text: 'Познакомимся', web_app: { url: 'https://wwncv.tech/telegram/index.html' } }],
   ]);
 });
 

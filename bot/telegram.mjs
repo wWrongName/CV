@@ -13,9 +13,9 @@ export async function replyToStart(request, update, username) {
   if (text !== '/start' && text !== `/start@${username.toLowerCase()}`) return;
   await request('sendMessage', {
     chat_id: message.chat.id,
-    text: 'Привет! Я Иван Величко. Помогаю запускать веб-сервисы, автоматизировать работу и снижать число сбоев.',
+    text: 'Привет! Я Иван. Помогаю компаниям запускать веб-сервисы, настраивать инфраструктуру и автоматизировать рабочие процессы.',
     reply_markup: {
-      inline_keyboard: [[{ text: 'Открыть визитку', web_app: { url: 'https://wwncv.tech/telegram/index.html' } }]],
+      inline_keyboard: [[{ text: 'Познакомимся', web_app: { url: 'https://wwncv.tech/telegram/index.html' } }]],
     },
   });
 }
