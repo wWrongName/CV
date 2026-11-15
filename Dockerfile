@@ -26,8 +26,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/.production/public ./public
 COPY --chown=nextjs:nodejs scripts/create-admin-config.mjs ./scripts/create-admin-config.mjs
-COPY --chown=nextjs:nodejs bot/greeting.html bot/render-greeting.mjs bot/telegram.mjs ./bot/
-COPY --chown=nextjs:nodejs src/lib/workshop/services.json ./src/lib/workshop/services.json
+COPY --chown=nextjs:nodejs bot/telegram.mjs ./bot/
 USER nextjs
 EXPOSE 3000
 HEALTHCHECK --interval=15s --timeout=5s --start-period=15s --retries=3 \

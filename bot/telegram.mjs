@@ -1,24 +1,28 @@
 import { rm, writeFile } from 'node:fs/promises';
 import { setTimeout as delay } from 'node:timers/promises';
 import { pathToFileURL } from 'node:url';
-import { loadGreeting } from './render-greeting.mjs';
 
 const readyFile = '/tmp/wwn-telegram-ready';
 
-export async function replyToStart(request, update, html, username) {
+export async function replyToStart(request, update, username) {
   const message = update.message;
   if (message?.chat?.type !== 'private' || message.from?.is_bot) return;
   const command = message.entities?.find((entity) => entity.offset === 0 && entity.type === 'bot_command');
   if (!command) return;
   const text = message.text?.slice(0, command.length)?.toLowerCase();
   if (text !== '/start' && text !== `/start@${username.toLowerCase()}`) return;
-  await request('sendWidget', { chat_id: message.chat.id, html });
+  await request('sendMessage', {
+    chat_id: message.chat.id,
+    text: 'Привет! Я Иван Величко. Помогаю запускать веб-сервисы, автоматизировать работу и снижать число сбоев.',
+    reply_markup: {
+      inline_keyboard: [[{ text: 'Открыть визитку', web_app: { url: 'https://wwncv.tech/telegram/index.html' } }]],
+    },
+  });
 }
 
 async function run() {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   if (!/^\d+:[\w-]+$/.test(token ?? '')) throw new Error('Set TELEGRAM_BOT_TOKEN in the bot environment');
-  const html = loadGreeting();
   const shutdown = new AbortController();
   process.once('SIGTERM', () => shutdown.abort());
   process.once('SIGINT', () => shutdown.abort());
@@ -68,7 +72,7 @@ async function run() {
       for (const update of updates) {
         if (shutdown.signal.aborted) break;
         try {
-          await replyToStart(request, update, html, username);
+          await replyToStart(request, update, username);
         } catch (error) {
           // A single rejected chat should not block the rest of the queue.
           if (![400, 403].includes(error.code)) throw error;

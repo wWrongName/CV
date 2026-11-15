@@ -36,7 +36,7 @@ export function renderGreeting(catalog, template) {
 }
 
 export function loadGreeting() {
-  const catalog = JSON.parse(readFileSync(new URL('../src/lib/workshop/services.json', import.meta.url), 'utf8'));
+  const catalog = JSON.parse(readFileSync(new URL('../../src/lib/workshop/services.json', import.meta.url), 'utf8'));
   const template = readFileSync(new URL('./greeting.html', import.meta.url), 'utf8');
   return renderGreeting(catalog, template);
 }

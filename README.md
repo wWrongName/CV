@@ -55,6 +55,7 @@ The Telegram greeting bot is included in the same release. To enable it, use a
 dedicated BotFather bot with no webhook and create `/opt/resume-site/telegram.env`
 (mode `0600`, readable by the deploy user) containing `TELEGRAM_BOT_TOKEN=...`.
 GitHub Actions starts the bot after the website passes its health check. Open the
-bot's private chat and send `/start` to see the animated greeting. If the file is
+bot's private chat and send `/start` for the welcome message and a link to the
+animated page. The Telegram HTML Bubble source is saved in `bot/html-bubble/`. If the file is
 absent, a fresh deployment runs only the website. To disable an existing bot,
 stop `telegram-bot` in the current release and remove the server env file.
