@@ -19,6 +19,7 @@ body { margin: 0; background: var(--paper); color: var(--ink); font: 14px/1.4 Ar
 .widget { padding: 17px 15px 24px; padding-bottom: max(24px, env(safe-area-inset-bottom)) }
 .brand { margin: 0 0 8px; color: var(--muted); font-size: 12px; letter-spacing: -.01em }
 .brand strong { color: var(--ink) }
+.widget.intro .brand { visibility: hidden }
 h1 { margin: 0 0 12px; font-size: 24px; font-weight: 500; line-height: 1.13; letter-spacing: -.045em }
 .hello {
   position: fixed;
@@ -63,7 +64,10 @@ h2 { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.25 }
   .running .services::after { animation: trace var(--result-delay) cubic-bezier(.4, 0, .6, 1) both }
   .running .service > div { animation: arrive var(--step-duration) var(--ease) var(--delay) both }
   .running .mark { animation: mark var(--step-duration) var(--ease) var(--delay) both }
-  .running .projects { animation: result 210ms var(--ease) var(--result-delay) both }
+  .running .projects {
+    animation: result 210ms var(--ease) var(--result-delay) both,
+               button-pulse var(--step-duration) var(--ease) var(--result-delay);
+  }
 }
 @keyframes greeting {
   0% { opacity: 0; transform: translateY(-36px); animation-timing-function: cubic-bezier(.16, 1, .3, 1) }
@@ -77,6 +81,9 @@ h2 { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.25 }
   0% { border-color: var(--line); color: var(--muted) }
   55% { border-color: var(--accent); background: #c6b89320 }
   100% { border-color: #c6b89369; background: var(--paper) }
+}
+@keyframes button-pulse {
+  55% { background: #c6b89345; border-color: var(--accent) }
 }
 @keyframes result {
   from { visibility: hidden; opacity: 0; transform: translateY(4px) }
@@ -116,14 +123,17 @@ h2 { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.25 }
   </div>
 </div>
 <script>
-const hello = document.querySelector('.hello');
+const widget = document.querySelector('.widget');
+const hello = widget.querySelector('.hello');
 const pipeline = document.querySelector('.pipeline');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!reducedMotion) {
+  widget.classList.add('intro');
   pipeline.classList.add('hidden');
   hello.addEventListener('animationend', () => {
     hello.classList.add('hidden');
+    widget.classList.remove('intro');
     pipeline.classList.add('running');
     pipeline.classList.remove('hidden');
   }, { once: true });
