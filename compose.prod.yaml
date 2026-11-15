@@ -25,5 +25,36 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  telegram-bot:
+    image: ${IMAGE:?Set an immutable image reference}
+    profiles: [telegram]
+    command: ["node", "bot/telegram.mjs"]
+    env_file:
+      - path: ${TELEGRAM_ENV_FILE:-./telegram.env}
+        required: false
+    restart: unless-stopped
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp:size=1m
+    mem_limit: 128m
+    cpus: 0.25
+    pids_limit: 32
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "node", "-e", "try { if(Date.now()-require('node:fs').statSync('/tmp/wwn-telegram-ready').mtimeMs>90000) process.exit(1) } catch { process.exit(1) }"]
+      interval: 5s
+      timeout: 3s
+      start_period: 40s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "2"
+
 volumes:
   site-data:

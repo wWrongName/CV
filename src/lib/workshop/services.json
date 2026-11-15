@@ -1,0 +1,77 @@
+[
+  {
+    "id": "infrastructure",
+    "ru": {
+      "title": "Инфраструктура и платформы",
+      "description": "Проектирование и развитие среды для запуска сервисов: контейнеризация, Kubernetes, облачные ресурсы и управление конфигурациями."
+    },
+    "en": {
+      "title": "Infrastructure and platforms",
+      "description": "Design and evolve environments for running services: containers, Kubernetes, cloud resources and configuration management."
+    },
+    "greeting": {
+      "title": "Запуск и развитие сервисов",
+      "description": "Подготовлю среду для запуска и роста."
+    }
+  },
+  {
+    "id": "delivery",
+    "ru": {
+      "title": "Автоматизация CI/CD",
+      "description": "Повторяемая сборка, проверка и доставка изменений. Меньше ручных действий между готовым кодом и работающим сервисом."
+    },
+    "en": {
+      "title": "CI/CD automation",
+      "description": "Repeatable builds, checks and software delivery. Fewer manual steps between finished code and a running service."
+    },
+    "greeting": {
+      "title": "Выпуск обновлений",
+      "description": "Автоматизирую проверку и выпуск изменений."
+    }
+  },
+  {
+    "id": "reliability",
+    "ru": {
+      "title": "Надежность и наблюдаемость",
+      "description": "Разбор сбоев, мониторинг, алерты и устранение повторяющихся проблем в работе инфраструктуры."
+    },
+    "en": {
+      "title": "Reliability and observability",
+      "description": "Investigate failures, configure monitoring and alerts, and address recurring infrastructure problems."
+    },
+    "greeting": {
+      "title": "Надежная работа",
+      "description": "Разберу сбои и настрою оповещения."
+    }
+  },
+  {
+    "id": "development",
+    "ru": {
+      "title": "Разработка сервисов",
+      "description": "Пользовательские интерфейсы, серверные приложения и внутренние инструменты под конкретный рабочий процесс."
+    },
+    "en": {
+      "title": "Service development",
+      "description": "User interfaces, backend applications and internal tools designed for a specific workflow."
+    },
+    "greeting": {
+      "title": "Разработка сервисов",
+      "description": "Сделаю веб-сервис или внутренний инструмент."
+    }
+  },
+  {
+    "id": "research",
+    "ru": {
+      "title": "Технические исследования",
+      "description": "Исследование нестандартных задач, проверка подходов и создание прототипов до внедрения в основной продукт."
+    },
+    "en": {
+      "title": "Technical research",
+      "description": "Investigate unusual challenges, validate approaches and build prototypes before production implementation."
+    },
+    "greeting": {
+      "title": "Проверка идеи",
+      "description": "Соберу прототип до полной разработки."
+    }
+  }
+]

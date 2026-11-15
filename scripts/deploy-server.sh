@@ -27,6 +27,9 @@ if [[ -L "$root/current" ]]; then
   [[ -f "$previous/.env" && -f "$previous/compose.prod.yaml" ]] || { echo "Previous release is incomplete" >&2; exit 1; }
 fi
 printf 'IMAGE=%s\nAPP_PORT=%s\nRUNTIME_ENV_FILE=%s/runtime.env\n' "$image" "$app_port" "$root" > "$release/.env"
+if [[ -s "$root/telegram.env" ]]; then
+  printf 'TELEGRAM_ENV_FILE=%s/telegram.env\n' "$root" >> "$release/.env"
+fi
 compose "$release" config --quiet
 if [[ -z "$previous" && -n $(compose "$release" ps -aq) ]]; then
   echo "Existing resume-site containers are not managed by this release directory; refusing to replace them." >&2
@@ -42,18 +45,33 @@ unset registry_token
 
 # Pull completes while the old release is still running.
 compose "$release" pull website
-if compose "$release" up -d --wait --wait-timeout 90; then
+if compose "$release" up -d --wait --wait-timeout 90 website; then
   if [[ -n "$previous" ]]; then
     ln -sfn "$previous" "$root/previous"
   fi
   ln -s "$release" "$root/.current-$$"
   mv -Tf "$root/.current-$$" "$root/current"
   printf 'Deployed %s\n' "$image"
+  if [[ -s "$root/telegram.env" ]]; then
+    if compose "$release" up -d --pull never --no-deps --wait --wait-timeout 70 telegram-bot; then
+      echo "Telegram bot is ready."
+    else
+      echo "Telegram bot did not become ready; the website release is live." >&2
+      compose "$release" logs --tail 20 telegram-bot >&2 || true
+      if [[ -n "$previous" ]] && grep -q '^TELEGRAM_ENV_FILE=' "$previous/.env"; then
+        compose "$previous" up -d --pull never --no-deps telegram-bot ||
+          echo "Could not restore the previous Telegram bot." >&2
+      else
+        compose "$release" rm -fs telegram-bot
+      fi
+      exit 1
+    fi
+  fi
 else
   compose "$release" logs --tail 80 website >&2 || true
   if [[ -n "$previous" ]]; then
     echo "Health check failed; restoring previous release." >&2
-    if ! compose "$previous" up -d --pull never --wait --wait-timeout 90; then
+    if ! compose "$previous" up -d --pull never --wait --wait-timeout 90 website; then
       echo "ROLLBACK FAILED: manual intervention required." >&2
       exit 2
     fi

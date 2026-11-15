@@ -3,6 +3,7 @@
 import os
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -11,7 +12,7 @@ DIGEST = 'ghcr.io/example/resume@sha256:' + 'a' * 64
 
 
 class DeploymentTest(unittest.TestCase):
-    def run_case(self, case, previous=True):
+    def run_case(self, case, previous=True, telegram=False):
         with tempfile.TemporaryDirectory(prefix='resume-deploy-test-') as temp:
             root = Path(temp)
             binary = root / 'bin'
@@ -23,6 +24,7 @@ printf '%s\\n' "$*" >> "$CALLS"
 if [[ "$1" == login ]]; then cat >/dev/null; exit 0; fi
 [[ "$*" != *"pull website"* || "$FAKE_CASE" != pull-fail ]] || exit 1
 if [[ "$*" == *" up -d "* ]]; then
+  if [[ "$*" == *"/new/"* && "$*" == *" telegram-bot" && "$FAKE_CASE" == telegram-fail ]]; then exit 1; fi
   if [[ "$*" == *"/new/"* && "$FAKE_CASE" == *health-fail* ]]; then exit 1; fi
   if [[ "$*" == *"/old/"* && "$FAKE_CASE" == rollback-health-fail ]]; then exit 1; fi
 fi
@@ -40,6 +42,13 @@ fi
                 (folder / '.env').write_text('IMAGE=previous\n')
             if previous:
                 (root / 'current').symlink_to(old)
+            if telegram:
+                (root / 'telegram.env').write_text('TELEGRAM_BOT_TOKEN=fake-bot-token\n')
+            if sys.platform == 'darwin':
+                # Emulate GNU mv -Tf atomic replacement of the current symlink.
+                move = binary / 'mv'
+                move.write_text(f'#!{sys.executable}\nimport os, sys\nos.replace(*sys.argv[2:])\n')
+                move.chmod(0o755)
             log = root / 'calls'
             env = dict(os.environ, PATH=str(binary) + os.pathsep + os.environ['PATH'],
                        CALLS=str(log), FAKE_CASE=case)
@@ -52,6 +61,21 @@ fi
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(current, new)
         self.assertNotIn('test-token', calls + result.stdout + result.stderr)
+
+    def test_bot_starts_only_with_server_configuration(self):
+        _, calls, _, _, _ = self.run_case('success')
+        self.assertNotIn('telegram-bot', calls)
+        result, calls, current, new, _ = self.run_case('success', telegram=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(current, new)
+        self.assertLess(calls.index('--wait-timeout 90 website'), calls.index('--wait-timeout 70 telegram-bot'))
+        self.assertNotIn('fake-bot-token', calls + result.stdout + result.stderr)
+
+    def test_bot_failure_does_not_roll_back_the_website(self):
+        result, calls, current, new, _ = self.run_case('telegram-fail', telegram=True)
+        self.assertEqual(result.returncode, 1)
+        self.assertEqual(current, new)
+        self.assertIn('rm -fs telegram-bot', calls)
 
     def test_failed_health_restores_previous(self):
         result, calls, current, _, old = self.run_case('health-fail')

@@ -30,6 +30,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec next typegen && pnpm typecheck
       - run: make test
+      - name: Test Telegram greeting
+        run: node --test bot/telegram.test.mjs
       - run: bash -n scripts/deploy-ssh.sh scripts/deploy-server.sh scripts/setup-admin.sh
       - run: python3 scripts/check-deploy.py
 

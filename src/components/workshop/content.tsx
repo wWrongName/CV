@@ -9,6 +9,7 @@ import englishResume from "@/lib/resume.en.json";
 import russianResearch from "@/lib/research.ru.json";
 import englishResearch from "@/lib/research.en.json";
 import type { Journey } from "@/lib/journeys";
+import serviceCatalog from "@/lib/workshop/services.json";
 import { sectionHref, telegramHref, type SectionId } from "@/lib/workshop/sections";
 
 function Contact({ locale }: { locale: Locale }) {
@@ -37,22 +38,6 @@ function Research({ locale }: { locale: Locale }) {
   return <article className="workshop-document"><span className="workshop-kicker">RESEARCH / WWN</span><h1>{study.title.replace(/\n/g, " ")}</h1><p className="workshop-document-lead">{study.summary}</p>{study.chapters.map((chapter, index) => <section key={chapter.label} id={`research-${index}`}><span className="workshop-kicker">{String(index + 1).padStart(2, "0")} / {chapter.label}</span><h2>{chapter.title}</h2><p>{chapter.text}</p><p className="workshop-result">{chapter.note}</p>{chapter.metrics && <dl className="workshop-metrics">{chapter.metrics.map(metric => <div key={metric.label}><dt>{metric.value}</dt><dd>{metric.label}<small>{metric.detail}</small></dd></div>)}</dl>}{chapter.details && <details><summary>{chapter.details.title}<b aria-hidden="true">+</b></summary><div><p>{chapter.details.text}</p></div></details>}</section>)}<Contact locale={locale} /></article>;
 }
 
-const services = {
-  ru: [
-    ["01", "Инфраструктура и платформы", "Проектирование и развитие среды для запуска сервисов: контейнеризация, Kubernetes, облачные ресурсы и управление конфигурациями."],
-    ["02", "Автоматизация CI/CD", "Повторяемая сборка, проверка и доставка изменений. Меньше ручных действий между готовым кодом и работающим сервисом."],
-    ["03", "Надежность и наблюдаемость", "Разбор сбоев, мониторинг, алерты и устранение повторяющихся проблем в работе инфраструктуры."],
-    ["04", "Разработка сервисов", "Пользовательские интерфейсы, серверные приложения и внутренние инструменты под конкретный рабочий процесс."],
-    ["05", "Технические исследования", "Исследование нестандартных задач, проверка подходов и создание прототипов до внедрения в основной продукт."],
-  ],
-  en: [
-    ["01", "Infrastructure and platforms", "Design and evolve environments for running services: containers, Kubernetes, cloud resources and configuration management."],
-    ["02", "CI/CD automation", "Repeatable builds, checks and software delivery. Fewer manual steps between finished code and a running service."],
-    ["03", "Reliability and observability", "Investigate failures, configure monitoring and alerts, and address recurring infrastructure problems."],
-    ["04", "Service development", "User interfaces, backend applications and internal tools designed for a specific workflow."],
-    ["05", "Technical research", "Investigate unusual challenges, validate approaches and build prototypes before production implementation."],
-  ],
-};
 const processSteps = {
   ru: [
     ["01", "Обсуждаем задачу", "Разбираемся, что нужно получить, как устроена текущая система и какие есть ограничения."],
@@ -81,6 +66,12 @@ export function WorkshopContent({ section, locale }: { section: SectionId; local
     : "I build web services, accelerate software delivery and keep infrastructure running reliably. I work across fullstack development and DevOps, from the user interface to deployment and maintenance. I also manage team processes. I automate manual operations so teams spend less time on repetitive work and service failures.";
   if (section === "about") return <article className="workshop-document"><span className="workshop-kicker">THE PERSON / WWN</span><h1>{ru ? "Привет, я Иван." : "Hi, I'm Ivan."}</h1><p className="workshop-document-lead">{ru ? "WWN — моя независимая инженерная практика." : "WWN is my independent engineering practice."}</p><p>{aboutSummary}</p><section><h2>{ru ? "От интерфейса до инфраструктуры" : "From interface to infrastructure"}</h2><p>{ru ? "Здесь собраны мои проекты, опыт и технические исследования. Работу в командах и личный вклад описываю в соответствующих разделах." : "This workshop brings together my projects, experience and technical research. The project descriptions distinguish team work and my own contributions."}</p><div className="workshop-document-links"><Link href={sectionHref("projects", locale)} scroll={false}>{ru ? "Открыть кейсы" : "Explore cases"} ↗</Link><Link href={sectionHref("experience", locale)} scroll={false}>{ru ? "Прочитать резюме" : "Read my resume"} ↗</Link></div></section><Contact locale={locale} /></article>;
   if (section === "blog") return <Publications locale={locale} />;
-  const items = section === "services" ? services[locale] : processSteps[locale];
+  const items = section === "services"
+    ? serviceCatalog.map((service, index) => [
+        String(index + 1).padStart(2, "0"),
+        service[locale].title,
+        service[locale].description,
+      ])
+    : processSteps[locale];
   return <article className="workshop-document"><span className="workshop-kicker">{section === "services" ? "ENGINEERING SOLUTIONS" : "WORKING TOGETHER"} / WWN</span><h1>{section === "services" ? ru ? "Разработка, инфраструктура и автоматизация." : "Development, infrastructure and automation." : ru ? "От задачи к работающему решению." : "From a challenge to a working solution."}</h1><p className="workshop-document-lead">{section === "services" ? ru ? "Разработка, инфраструктура и автоматизация под задачи проекта." : "Development, infrastructure and automation around your project's needs." : ru ? "Понятные этапы и согласованный результат." : "Clear milestones and an agreed outcome."}</p>{items.map(([number, title, text]) => <section className="workshop-service" key={number}><span className="workshop-kicker">{number}</span><div><h2>{title}</h2><p>{text}</p></div></section>)}<Contact locale={locale} /></article>;
 }

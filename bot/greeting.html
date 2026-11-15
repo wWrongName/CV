@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WWN · Разработка и инфраструктура</title>
+<style>
+:root { --paper: #111416; --ink: #f3f0e8; --muted: #bdc3bb; --line: #c6b89324; --accent: #c6b893; --ease: cubic-bezier(.22, .68, .25, 1) }
+* { box-sizing: border-box }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 14px/1.4 Arial, sans-serif }
+.widget { padding: 17px 15px 24px; padding-bottom: max(24px, env(safe-area-inset-bottom)) }
+.brand { margin: 0 0 8px; color: var(--muted); font-size: 12px; letter-spacing: -.01em }
+.brand strong { color: var(--ink) }
+h1 { margin: 0 0 12px; font-size: 24px; font-weight: 500; line-height: 1.13; letter-spacing: -.045em }
+.hello { margin-bottom: 0 }
+h2 { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.25 }
+.services { position: relative }
+.services::before, .services::after {
+  content: ""; position: absolute; top: 23px; bottom: 23px; left: 13px;
+  width: 1px; background: var(--line);
+}
+.services::after { background: var(--accent); transform-origin: top }
+.service { position: relative; z-index: 1; display: flex; align-items: center; gap: 11px; min-height: 46px; padding: 6px 0 }
+.service p { margin: 3px 0 0; color: var(--muted); font-size: 12px }
+.mark {
+  display: grid; place-items: center; flex: 0 0 27px; width: 27px; height: 27px;
+  border: 1px solid #c6b89369; border-radius: 50%; background: var(--paper);
+  color: var(--accent); font: 16px/1 monospace;
+}
+.projects {
+  display: inline-flex; align-items: center; gap: 12px; min-height: 44px;
+  margin-top: 13px; padding: 6px 8px 6px 15px; border: 1px solid #c6b89366;
+  border-radius: 999px; background: #c6b89314; color: var(--ink);
+  font-size: 13px; font-weight: 600; text-decoration: none;
+}
+.projects span {
+  display: grid; place-items: center; flex: 0 0 26px; width: 26px; height: 26px;
+  border-radius: 50%; background: var(--accent); color: #1b2224; font: 16px/1 Arial, sans-serif;
+}
+.projects:hover, .projects:active { background: #c6b89328; border-color: var(--accent) }
+.projects:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px }
+.hidden { display: none }
+@media (prefers-reduced-motion: no-preference) {
+  .hello.leaving { animation: leave 140ms ease-in both }
+  .running > h1 { animation: arrive 190ms var(--ease) both }
+  .running .services::after { animation: trace var(--result-delay) cubic-bezier(.4, 0, .6, 1) both }
+  .running .service > div { animation: arrive var(--step-duration) var(--ease) var(--delay) both }
+  .running .mark { animation: mark var(--step-duration) var(--ease) var(--delay) both }
+  .running .projects { animation: result 210ms var(--ease) var(--result-delay) both }
+}
+@keyframes leave { to { opacity: 0; transform: translateY(-3px) } }
+@keyframes arrive { from { opacity: 0; transform: translateY(4px) } }
+@keyframes trace { from { transform: scaleY(0) } to { transform: scaleY(1) } }
+@keyframes mark {
+  0% { border-color: var(--line); color: var(--muted) }
+  55% { border-color: var(--accent); background: #c6b89320 }
+  100% { border-color: #c6b89369; background: var(--paper) }
+}
+@keyframes result {
+  from { visibility: hidden; opacity: 0; transform: translateY(4px) }
+  to { visibility: visible; opacity: 1; transform: translateY(0) }
+}
+</style>
+<div class="widget" style="--step-duration:{{STEP_DURATION}}ms; --result-delay:{{RESULT_DELAY}}ms">
+  <p class="brand"><strong>WWN</strong> IT Solutions · Иван Величко</p>
+  <h1 class="hello hidden">Привет!</h1>
+  <div class="pipeline">
+    <h1>Чем могу помочь</h1>
+    <div class="services">
+{{SERVICES}}
+    </div>
+    <a class="projects" href="https://wwncv.tech/ru" target="_blank" rel="noopener noreferrer">
+      Смотреть проекты <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</div>
+<script>
+const hello = document.querySelector('.hello');
+const pipeline = document.querySelector('.pipeline');
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function showRoute() {
+  hello.classList.add('hidden');
+  if (!reducedMotion) pipeline.classList.add('running');
+  pipeline.classList.remove('hidden');
+}
+
+hello.classList.remove('hidden');
+pipeline.classList.add('hidden');
+setTimeout(() => {
+  if (reducedMotion) showRoute();
+  else {
+    hello.classList.add('leaving');
+    setTimeout(showRoute, 140);
+  }
+}, 2100);
+</script>
+</html>

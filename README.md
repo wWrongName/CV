@@ -50,3 +50,11 @@ in `resume-site_site-data` at `/app/data/admin.env` (mode `0600`). Existing cred
 are never overwritten. The volume configuration takes priority over legacy admin
 environment variables and survives container replacement. Back up this volume securely;
 `docker compose down -v` deletes it. The server needs Make, Bash and Docker Compose.
+
+The Telegram greeting bot is included in the same release. To enable it, use a
+dedicated BotFather bot with no webhook and create `/opt/resume-site/telegram.env`
+(mode `0600`, readable by the deploy user) containing `TELEGRAM_BOT_TOKEN=...`.
+GitHub Actions starts the bot after the website passes its health check. Open the
+bot's private chat and send `/start` to see the animated greeting. If the file is
+absent, a fresh deployment runs only the website. To disable an existing bot,
+stop `telegram-bot` in the current release and remove the server env file.
