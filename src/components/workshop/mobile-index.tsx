@@ -80,7 +80,7 @@ export function MobileWorkshopIndex({ locale, onEnter, paused = false }: { local
   }
 
   return <main className="mobile-workshop" aria-label={ui.title}>
-    <header className="mobile-workshop-header"><Link className="mobile-workshop-brand" href={`/${locale}`}>WWN<span>IT SOLUTIONS</span></Link><LanguageSwitch locale={locale} anchor={mobileSlideAnchor(active)} /></header>
+    <header className="mobile-workshop-header"><Link className="mobile-workshop-brand" href={`/${locale}`}><strong>WWN</strong> IT Solutions</Link><LanguageSwitch locale={locale} anchor={mobileSlideAnchor(active)} /></header>
     <div className="mobile-carousel" ref={rail} onKeyDown={onKeyDown} role="group" aria-roledescription={ru ? "карусель" : "carousel"} aria-label={ru ? "Разделы мастерской" : "Workshop sections"}>
       <section className="mobile-scene mobile-welcome" id="mobile-about" data-mobile-slide="0" aria-labelledby="mobile-about-title">
         <MobileClouds active={active === 0 && !paused} />
