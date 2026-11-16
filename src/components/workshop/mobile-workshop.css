@@ -29,7 +29,8 @@
   .mobile-card-copy{display:block;flex:1;min-width:0}
   .mobile-scene-card h1,.mobile-scene-card h2{font:600 21px/1.25 Arial,sans-serif;color:#f3f0e8;margin:0 0 7px;text-wrap:balance}
   .mobile-scene-card p{font:12px/1.7 var(--workshop-mono);color:#b4c2b9;margin:0}
-  .mobile-card-arrow{display:block;flex:none;width:18px;height:24px}
+  .mobile-card-dots{display:grid;place-items:center;flex:none;width:18px;height:24px}
+  .mobile-card-dots::before{content:"";width:3px;height:3px;border-radius:50%;background:currentColor;box-shadow:0 -5px currentColor,0 5px currentColor}
   .mobile-scene-card:focus-visible{outline:2px solid #f5d299;outline-offset:5px}
   .mobile-scene-card:active{background:#1b2223;border-color:#c6b893a6}
   /* One close action anchored to the dialog, in the thumb reach zone. */

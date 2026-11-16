@@ -10,7 +10,6 @@ import sceneArt from "@/lib/workshop/mobile-scene-art.json";
 import { mobileSlideAnchor, mobileSlideFromHash, mobileSlideIds } from "@/lib/workshop/mobile-navigation";
 import { MobileSceneMotion } from "./mobile-motion";
 import { MobileClouds } from "./mobile-clouds";
-import { CarvedChevron } from "./carved-chevron";
 
 const desktopEmpty = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 type File = { src: string; width: number; height: number };
@@ -86,13 +85,13 @@ export function MobileWorkshopIndex({ locale, onEnter, paused = false }: { local
         <MobileClouds active={active === 0 && !paused} />
         <MobileArt files={sceneArt.about.files} scene="about" active={active === 0 && !paused} className="mobile-scene-backdrop" eager sizes="(max-width: 899px) 100vw, 1px" />
         <Link className="mobile-scene-card" data-object="about" href={sectionHref("about",locale)} scroll={false} onNavigate={()=>onEnter("about")}>
-          <span className="mobile-card-copy"><h1 id="mobile-about-title">{ui.greeting}</h1><p>{ui.boardIntro}</p></span><CarvedChevron tone="text" className="mobile-card-arrow" />
+          <span className="mobile-card-copy"><h1 id="mobile-about-title">{ui.greeting}</h1><p>{ui.boardIntro}</p></span><span className="mobile-card-dots" aria-hidden="true" />
         </Link>
       </section>
       {mobileScenes.map((scene, index) => <section className="mobile-scene mobile-room" data-room={scene.id} data-mobile-slide={index+1} key={scene.id} id={`mobile-${scene.id}`} aria-labelledby={`mobile-${scene.id}-title`}>
         {prepared.includes(index+1) && <MobileArt files={sceneArt[scene.id].files} scene={scene.id} active={active === index+1 && !paused} className="mobile-scene-backdrop" sizes="(max-width: 899px) 100vw, 1px" />}
         <Link className="mobile-scene-card" data-object={scene.id} href={sectionHref(scene.id,locale)} scroll={false} onNavigate={()=>onEnter(scene.id)}>
-          <span className="mobile-card-copy"><h2 id={`mobile-${scene.id}-title`}>{scene.title[locale]}</h2><p>{scene.description[locale]}</p></span><CarvedChevron tone="text" className="mobile-card-arrow" />
+          <span className="mobile-card-copy"><h2 id={`mobile-${scene.id}-title`}>{scene.title[locale]}</h2><p>{scene.description[locale]}</p></span><span className="mobile-card-dots" aria-hidden="true" />
         </Link>
       </section>)}
     </div>
