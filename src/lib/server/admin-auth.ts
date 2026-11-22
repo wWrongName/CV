@@ -40,7 +40,7 @@ export function sameOrigin(headers: Headers, config: AdminConfig) {
 function equalText(a: string, b: string) {
   return timingSafeEqual(createHash("sha256").update(a).digest(), createHash("sha256").update(b).digest());
 }
-export async function verifyCredentials(username: string, password: string, config: AdminConfig) {
+export async function verifyCredentials(username: string, password: string, config: Pick<AdminConfig, "username" | "passwordHash">) {
   const [, salt, expected] = config.passwordHash.split(":");
   const derived = await new Promise<Buffer>((resolve, reject) => {
     scrypt(password, Buffer.from(salt, "hex"), 64, { N: 32768, r: 8, p: 3, maxmem: 64 * 1024 * 1024 },

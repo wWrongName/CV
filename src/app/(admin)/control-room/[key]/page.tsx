@@ -2,6 +2,8 @@ import { cookies, headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { adminConfig, allowedAdminRequest, sessionCookie, validSession } from "@/lib/server/admin-auth";
 import { readMetrics, type EventKind, type EventRow } from "@/lib/server/storage";
+import { readVpnSettings } from "@/lib/server/vpn-settings";
+import { VpnSettingsForm } from "@/components/admin/vpn-settings-form";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -11,7 +13,7 @@ function Breakdown({ title, kind, rows }: { title: string; kind: EventKind; rows
   rows.filter(row => row.kind === kind).forEach(row => totals.set(row.value, (totals.get(row.value) || 0) + row.count));
   return <section className="admin-panel"><h2>{title}</h2>{totals.size ? <table><thead><tr><th>Раздел</th><th>Количество</th></tr></thead><tbody>{[...totals].sort((a, b) => b[1] - a[1]).map(([value, count]) => <tr key={value}><td>{projectNames[value] || value}</td><td>{count.toLocaleString("ru-RU")}</td></tr>)}</tbody></table> : <p className="admin-muted">Пока нет событий.</p>}</section>;
 }
-export default async function AdminPage({ params, searchParams }: { params: Promise<{ key: string }>; searchParams: Promise<{ days?: string; error?: string }> }) {
+export default async function AdminPage({ params, searchParams }: { params: Promise<{ key: string }>; searchParams: Promise<{ days?: string; error?: string; vpnSaved?: string; vpnError?: string }> }) {
   const config = adminConfig();
   if (!config || (await params).key !== config.key || !allowedAdminRequest(new Headers(await headers()), config)) notFound();
   const base = `/control-room/${config.key}`;
@@ -35,11 +37,13 @@ export default async function AdminPage({ params, searchParams }: { params: Prom
   const peak = Math.max(1, ...daily.map(day => day.count));
   return <main className="admin-dashboard">
     <header className="admin-header"><div><div className="eyebrow">ИВАН ВЕЛИЧКО / САЙТ</div><h1>Статистика</h1></div><nav><a href="/ru">Открыть сайт ↗</a><form method="post" action={`${base}/logout`}><button className="admin-button secondary" type="submit">Выйти</button></form></nav></header>
+    <nav className="vpn-settings-nav"><a href="#vpn-settings">Настройки VPN для сотрудников</a></nav>
     <div className="admin-toolbar"><p>События за последние {days} дней · UTC</p><form method="get"><label htmlFor="days">Период</label><select id="days" name="days" defaultValue={days}><option value="7">7 дней</option><option value="30">30 дней</option><option value="90">90 дней</option></select><button type="submit" className="admin-button secondary">Показать</button></form></div>
     {process.env.ANALYTICS_ENABLED !== "true" && <p className="admin-notice">Сбор статистики выключен в настройках сервера.</p>}
     <section className="admin-totals" aria-label="Основные показатели">{([ ["Просмотры страниц", "page_view"], ["Открытия проектов", "project_open"], ["Нажатия «Скачать PDF»", "pdf_download"] ] as const).map(([label, kind]) => <div key={kind}><span>{label}</span><strong>{total(kind).toLocaleString("ru-RU")}</strong></div>)}</section>
     <section className="admin-panel"><h2>Просмотры по дням</h2><div className="admin-days">{daily.map(({ day, count }) => <div key={day}><time dateTime={day}>{day.slice(5).split("-").reverse().join(".")}</time><progress max={peak} value={count} aria-label={`${day}: ${count} просмотров`} /><span>{count}</span></div>)}</div></section>
     <div className="admin-grid"><Breakdown title="Страницы" kind="page_view" rows={rows}/><Breakdown title="Проекты" kind="project_open" rows={rows}/><Breakdown title="PDF по языкам" kind="pdf_download" rows={rows}/></div>
+    <VpnSettingsForm settings={readVpnSettings()} base={base} saved={query.vpnSaved} error={query.vpnError} />
     <footer className="admin-footnote">Считаются события, а не уникальные люди. PDF — нажатия кнопки, не подтверждение загрузки файла. Без tracking cookies и хранения IP; данные хранятся 365 дней. Сессия завершается после 30 минут бездействия или через 8 часов после входа.</footer>
   </main>;
 }
