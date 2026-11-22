@@ -1,5 +1,14 @@
 import type { NextConfig } from "next";
 const config: NextConfig = { output: "standalone", distDir: process.env.CV_BUILD_DIR || ".next", poweredByHeader: false, serverExternalPackages: ["better-sqlite3"],
+  async rewrites() {
+    return {
+      beforeFiles: (["ru", "en"] as const).map(locale => ({
+        source: `/${locale}`,
+        destination: locale === "ru" ? "/studio/index.html" : "/studio/en.html",
+        missing: [{ type: "query", key: "view", value: "workshop" }],
+      })),
+    };
+  },
   async headers() {
     return process.env.NODE_ENV === "production" ? [{ source: "/workshop/:path*", headers: [
       { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },

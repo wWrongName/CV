@@ -84,10 +84,20 @@ def main():
             else:
                 lang = 'en' if path.startswith('/en') else 'ru'
                 assert f'lang="{lang}"'.encode() in body, path
-        html = request('/ru')[1].decode()
-        assets = list(dict.fromkeys(re.findall(r'(?:src|href)="(/_next/static/[^"?]+)', html)))
-        assert assets, 'Missing production assets'
-        for path in assets:
+        assets = []
+        for route, bundle in (('/ru', 'studio.js'), ('/en', 'studio-en.js')):
+            html = request(route)[1].decode()
+            studio_assets = re.findall(r'(?:src|href)="(/studio/[^"]+)', html)
+            entries = {path.split('?', 1)[0] for path in studio_assets}
+            assert {f'/studio/{bundle}', '/studio/studio.css'} <= entries, (route, 'Missing studio assets')
+            assets.extend(studio_assets)
+        for route in ('/ru?view=workshop', '/en?view=workshop'):
+            legacy_html = request(route)[1].decode()
+            legacy_assets = re.findall(r'(?:src|href)="(/_next/static/[^"?]+)', legacy_html)
+            assert legacy_assets, (route, 'Missing Next.js assets')
+            assets.append(legacy_assets[0])
+        assets = list(dict.fromkeys(assets))
+        for path in dict.fromkeys([*assets, '/studio/sculpt/head-study.glb']):
             status, body, content_type = request(path)
             assert status == 200 and body and content_type != 'text/html', path
         paths += assets[:4]
