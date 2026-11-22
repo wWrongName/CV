@@ -1,5 +1,4 @@
 import "server-only";
-import { randomBytes, scrypt } from "node:crypto";
 import { getDatabase } from "./storage";
 
 export type VpnSettings = {
@@ -11,7 +10,7 @@ export const defaultVpnSettings: VpnSettings = {
   title: "WWN IT Solutions",
   downloadUrl: "https://github.com/Happ-proxy/happ-android/releases/latest",
   installText: "Скачайте Happ.apk и установите приложение. Если Android попросит, разрешите установку из браузера.",
-  connectText: "Скопируйте ссылку, добавьте её в Happ через «+» и включите VPN.",
+  connectText: "Скопируйте ссылку, добавьте её в Happ через «+» и подключитесь.",
   subscriptionUrl: "", username: "staff", passwordHash: "",
 };
 export function readVpnSettings(): VpnSettings {
@@ -31,8 +30,7 @@ export async function settingsFromForm(form: URLSearchParams, current: VpnSettin
     return text;
   };
   const title = value("title", 100), installText = value("installText", 600), connectText = value("connectText", 600);
-  const username = value("username", 64);
-  if (!title || !installText || !connectText || !/^[a-zA-Z0-9._-]{3,64}$/.test(username)) throw new Error("Заполните название, инструкции и логин.");
+  if (!title || !installText || !connectText) throw new Error("Заполните название и инструкции.");
   const url = (raw: string) => {
     const parsed = new URL(raw);
     if (parsed.protocol !== "https:" || parsed.username || parsed.password || parsed.hash) throw new Error("Используйте HTTPS-ссылки без логина и пароля.");
@@ -42,15 +40,7 @@ export async function settingsFromForm(form: URLSearchParams, current: VpnSettin
   if (download.hostname !== "github.com") throw new Error("Ссылка скачивания должна вести на github.com.");
   const rawSubscription = value("subscriptionUrl", 4000);
   const subscriptionUrl = rawSubscription ? url(rawSubscription).href : "";
-  const password = form.get("password") || "";
-  let passwordHash = current.passwordHash;
-  if (password) {
-    if (password.length < 12 || password.length > 128) throw new Error("Пароль должен содержать от 12 до 128 символов.");
-    const salt = randomBytes(16);
-    const derived = await new Promise<Buffer>((resolve, reject) => scrypt(password, salt, 64, { N: 32768, r: 8, p: 3, maxmem: 64 * 1024 * 1024 }, (error, key) => error ? reject(error) : resolve(key)));
-    passwordHash = `scrypt-v1:${salt.toString("hex")}:${derived.toString("hex")}`;
-  }
   const enabled = form.get("enabled") === "on";
-  if (enabled && !passwordHash) throw new Error("Перед включением страницы задайте пароль.");
-  return { enabled, title, downloadUrl: download.href, installText, connectText, subscriptionUrl, username, passwordHash };
+  // Preserve legacy fields for rollback; Basic authentication is no longer accepted.
+  return { ...current, enabled, title, downloadUrl: download.href, installText, connectText, subscriptionUrl };
 }

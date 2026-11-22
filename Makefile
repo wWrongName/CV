@@ -34,6 +34,7 @@ typecheck: ## Generate route types, then check TypeScript
 	$(PNPM) run typecheck
 
 test: ## Check navigation through all projects and stage boundaries
+	$(NODE) scripts/check-access-invitations.cjs
 	$(NODE) scripts/check-navigation.cjs
 	$(NODE) scripts/check-workshop.cjs
 	$(NODE) scripts/check-desktop-delivery.cjs

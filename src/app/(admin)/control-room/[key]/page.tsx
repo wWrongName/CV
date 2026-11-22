@@ -4,6 +4,8 @@ import { adminConfig, allowedAdminRequest, sessionCookie, validSession } from "@
 import { readMetrics, type EventKind, type EventRow } from "@/lib/server/storage";
 import { readVpnSettings } from "@/lib/server/vpn-settings";
 import { VpnSettingsForm } from "@/components/admin/vpn-settings-form";
+import { AccessInvitations } from "@/components/admin/access-invitations";
+import { listAccessInvitations } from "@/lib/server/access-invitations";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -37,13 +39,14 @@ export default async function AdminPage({ params, searchParams }: { params: Prom
   const peak = Math.max(1, ...daily.map(day => day.count));
   return <main className="admin-dashboard">
     <header className="admin-header"><div><div className="eyebrow">ИВАН ВЕЛИЧКО / САЙТ</div><h1>Статистика</h1></div><nav><a href="/ru">Открыть сайт ↗</a><form method="post" action={`${base}/logout`}><button className="admin-button secondary" type="submit">Выйти</button></form></nav></header>
-    <nav className="vpn-settings-nav"><a href="#vpn-settings">Настройки VPN для сотрудников</a></nav>
+    <nav className="vpn-settings-nav"><a href="#access-invitations">Доступ сотрудникам</a></nav>
     <div className="admin-toolbar"><p>События за последние {days} дней · UTC</p><form method="get"><label htmlFor="days">Период</label><select id="days" name="days" defaultValue={days}><option value="7">7 дней</option><option value="30">30 дней</option><option value="90">90 дней</option></select><button type="submit" className="admin-button secondary">Показать</button></form></div>
     {process.env.ANALYTICS_ENABLED !== "true" && <p className="admin-notice">Сбор статистики выключен в настройках сервера.</p>}
     <section className="admin-totals" aria-label="Основные показатели">{([ ["Просмотры страниц", "page_view"], ["Открытия проектов", "project_open"], ["Нажатия «Скачать PDF»", "pdf_download"] ] as const).map(([label, kind]) => <div key={kind}><span>{label}</span><strong>{total(kind).toLocaleString("ru-RU")}</strong></div>)}</section>
     <section className="admin-panel"><h2>Просмотры по дням</h2><div className="admin-days">{daily.map(({ day, count }) => <div key={day}><time dateTime={day}>{day.slice(5).split("-").reverse().join(".")}</time><progress max={peak} value={count} aria-label={`${day}: ${count} просмотров`} /><span>{count}</span></div>)}</div></section>
     <div className="admin-grid"><Breakdown title="Страницы" kind="page_view" rows={rows}/><Breakdown title="Проекты" kind="project_open" rows={rows}/><Breakdown title="PDF по языкам" kind="pdf_download" rows={rows}/></div>
     <VpnSettingsForm settings={readVpnSettings()} base={base} saved={query.vpnSaved} error={query.vpnError} />
+    <AccessInvitations base={base} invitations={listAccessInvitations()} />
     <footer className="admin-footnote">Считаются события, а не уникальные люди. PDF — нажатия кнопки, не подтверждение загрузки файла. Без tracking cookies и хранения IP; данные хранятся 365 дней. Сессия завершается после 30 минут бездействия или через 8 часов после входа.</footer>
   </main>;
 }

@@ -15,7 +15,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     saveVpnSettings(await settingsFromForm(form, readVpnSettings()));
     target.searchParams.set("vpnSaved", "1");
   } catch {
-    target.searchParams.set("vpnError", "Не удалось сохранить. Проверьте HTTPS-ссылки, заполнение полей и длину нового пароля (от 12 символов).");
+    target.searchParams.set("vpnError", "Не удалось сохранить. Проверьте HTTPS-ссылки и заполнение полей.");
   }
   target.hash = "vpn-settings";
   return NextResponse.redirect(target, 303);
