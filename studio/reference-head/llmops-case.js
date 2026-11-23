@@ -49,7 +49,6 @@ export function llmopsCaseContent() {
         <div class="paas-hero__result">
           <p class="paas-hero__label">Цель проекта</p>
           <p>Единый доступ к моделям внутри компании, мониторинг нагрузки и проверка качества перед обновлениями.</p>
-          <p class="llmops-pilot">Метрики проверим на пилоте.</p>
         </div>
       </div>
       <figure class="llmops-demo" data-llmops-demo>

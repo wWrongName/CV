@@ -4085,7 +4085,6 @@ void main() {
         <div class="paas-hero__result">
           <p class="paas-hero__label">Project goal</p>
           <p>Shared access to models on company infrastructure, load monitoring and pre-release quality checks.</p>
-          <p class="llmops-pilot">Metrics pending pilot validation.</p>
         </div>
       </div>
       <figure class="llmops-demo" data-llmops-demo>
