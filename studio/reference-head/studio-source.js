@@ -700,6 +700,8 @@ if (production) {
   });
 }
 let blinkTimer;
+// The release shell is laid out but hidden until its selected cover and menu are mounted.
+document.querySelector('.studio-layout').style.removeProperty('visibility');
 if (location.hash) syncLocation();
 if (!documentOpen && phase !== 'projects') void startHead();
 function scheduleBlink() {
