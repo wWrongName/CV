@@ -514,8 +514,8 @@ function documentMarkup(key){
  else if(key==='process')return processMarkup;
  else if(key==='research')return researchMarkup;
  else if(key==='blog')return blogMarkup;
- else if(key==='contact'){return `<article class="contact-view"><h1 id="document-title">Контакты</h1><div class="contact-layout">
-   <div class="contact-qr"><canvas role="img" aria-label="QR для Telegram"></canvas><button type="button">Сканировать QR</button></div>
+ else if(key==='contact'){return `<article class="contact-view"><h1 id="document-title" class="sr-only">Контакты</h1><div class="contact-layout">
+   <div class="contact-qr"><canvas role="img" aria-label="QR для Telegram"></canvas></div>
    <div class="contact-channels"><a class="contact-channel section-glass" href="${telegramUrl}" target="_blank" rel="noopener"><span>Telegram</span><strong>@wr0ngn4m3</strong></a>
    <a class="contact-channel section-glass" href="mailto:wwr0ngn4m3@gmail.com"><span>Почта</span><strong>wwr0ngn4m3@gmail.com</strong></a></div>
  </div></article>`;}

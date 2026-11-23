@@ -198,11 +198,6 @@
 #document-content:has(.section-page, .contact-view) {
   max-width: 1080px;
 }
-.contact-view h1 {
-  max-width: 17ch;
-  font-size: clamp(38px, 5.5vw, 76px);
-  line-height: .99;
-}
 .document-dialog .section-intro {
   text-align: center;
   margin: 0 auto clamp(28px, 6svh, 56px);
@@ -255,7 +250,7 @@
   padding: 18px 0;
   border-block: 1px solid #edeee540;
 }
-.case-outcome > span, .contact-channel > span, .contact-qr > button {
+.case-outcome > span, .contact-channel > span {
   color: var(--muted);
   font-size: 13px;
 }
@@ -828,18 +823,12 @@
   .paas-launch__art {font-size: min(6.7px, calc(100cqi / 39));}
 }
 
-.document-dialog .contact-view h1 {
-  max-width: none;
-  margin: 0;
-  text-align: center;
-  font-size: clamp(32px, 4.5vw, 55px);
-}
 .contact-layout {
   display: grid;
   justify-items: center;
   gap: clamp(14px, 4svh, 34px);
   max-width: 600px;
-  margin: clamp(12px, 3svh, 30px) auto 0;
+  margin: 0 auto;
 }
 .contact-channels {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; width: 100%;}
 .contact-channel {
@@ -876,7 +865,7 @@
 .document-dialog .document-back {
   position: fixed;
   z-index: 2;
-  inset: auto auto max(clamp(30px, 7svh, 82px), env(safe-area-inset-bottom)) 50%;
+  inset: auto auto var(--document-back-offset, max(clamp(30px, 7svh, 82px), env(safe-area-inset-bottom))) 50%;
   transform: translateX(-50%);
   display: grid;
   place-items: center;
@@ -890,10 +879,27 @@
 .contact-channel strong {font-size: clamp(17px, 2.5vw, 20px); font-weight: 500; overflow-wrap: anywhere;}
 .contact-channel:hover strong {text-decoration: underline; text-underline-offset: 4px;}
 .contact-qr {display: grid; justify-items: center; width: min(100%, clamp(212px, 35svh, 320px));}
-.contact-qr > button {border: 0; background: transparent; min-height: 44px; padding-inline: 10px; cursor: pointer;}
-.contact-qr > button:hover {color: var(--ink);}
 .contact-qr canvas {display: block; width: 100%; height: auto; aspect-ratio: 1;}
-.document-dialog:has(.contact-view) {animation: none;}
+.contact-qr--settled canvas {
+  filter: drop-shadow(1px 2px 0 #091c9c88) drop-shadow(2px 4px 5px #091a9d4a);
+}
+#document-dialog:has(.contact-view) {
+  --document-back-offset: max(clamp(30px, 7svh, 82px), env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  padding-bottom: calc(var(--document-back-offset) + 62px);
+  overflow: hidden;
+  animation: none;
+}
+#document-dialog #document-content:has(.contact-view) {
+  display: grid;
+  align-content: safe center;
+  width: 100%;
+  min-height: 0;
+  margin-block: 0;
+  padding-block: 12px;
+  overflow-y: auto;
+}
 .contact-qr-flight {position: fixed; inset: 0; z-index: 31; width: 100%; height: 100%; pointer-events: none;}
 @media (max-width: 600px) {
   .case-steps {grid-template-columns: minmax(0, 1fr);}
@@ -902,13 +908,6 @@
 }
 
 /* Opt-in contact layout previews. */
-[data-contact-style]:not([data-contact-style=""]) .contact-view h1 {
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: .12em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
 [data-contact-style]:not([data-contact-style=""]) .contact-layout {
   gap: clamp(12px, 2.5svh, 24px);
 }
@@ -958,9 +957,7 @@
   font: 400 14px/1.2 ui-monospace, monospace;
 }
 [data-contact-style="toolbar"] .contact-channels {gap: 8px; border-block-start: 1px solid #edeee539;}
-[data-contact-style]:not([data-contact-style=""]) .contact-view h1:focus {outline: none;}
 @media (max-height: 720px) {
-  [data-contact-style]:not([data-contact-style=""]) #document-content {margin-top: 18px;}
   [data-contact-style]:not([data-contact-style=""]) .contact-qr {width: min(100%, clamp(130px, 29svh, 200px));}
   [data-contact-style]:not([data-contact-style=""]) .contact-layout {gap: 8px;}
 }
