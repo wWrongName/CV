@@ -239,7 +239,7 @@ function frame(time) {
   }
   if((phase==='head'||phase==='assembling')&&!transition&&!documentOpen&&!reduced){
     const attention=coverPreview?.getAttention?.();
-    const tilt = deviceTilt.active && !pointerTracking;
+    const tilt = deviceTilt.active;
     const input = tilt ? {
       x: deviceTilt.x,
       y: deviceTilt.y,
