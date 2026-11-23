@@ -63,8 +63,11 @@ function mountEdgePreview(cover, style, preview) {
 }
 
 function frameCover(base, host, variant) {
-  if (mobile()) return { ...base, scale: .66, offsetY: .19 };
   const aspect = host.clientWidth / Math.max(1, host.clientHeight);
+  if (mobile()) {
+    const scale = base.scale * Math.min(1, (aspect || .47) / .47);
+    return { ...base, scale, offsetY: -.36 };
+  }
   return {
     ...base,
     scale: variant.scale,

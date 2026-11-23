@@ -1,4 +1,5 @@
 import content from './studio-content.js';
+import { deviceTilt, mountDeviceTilt } from './device-tilt.js';
 import {createIdleBehavior} from '../ascii-head-module/runtime/idle-behavior.js';
 import { createAsciiHead, HEAD_ANCHORS } from '../ascii-head-module/index.js';
 import { mountCoverVariants } from './cover-variants.js';
@@ -49,12 +50,14 @@ const languageSwitch = `<div class="cover-languages" role="group" aria-label="Я
     ? `<span lang="${language}" aria-current="true">${language.toUpperCase()}</span>`
     : `<a class="cover-locale" href="/${language}" hreflang="${language}" lang="${language}">${language.toUpperCase()}</a>`).join('')}
 </div>`;
-const directoryLinks = '<button data-open-projects>Проекты</button><button data-section="services">Решения</button><button data-section="about">О студии</button><button data-section="process">Процесс</button><button data-section="blog">Блог и публикации</button><button data-section="research">Исследования</button><button data-section="contact">Контакты</button>' + (production ? languageSwitch : '');
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const enableTilt = mountDeviceTilt(reduced);
+const tiltControl = enableTilt ? '<button type="button" data-enable-tilt>Включить наклон</button>' : '';
+const directoryLinks = '<button data-open-projects>Проекты</button><button data-section="services">Решения</button><button data-section="about">О студии</button><button data-section="process">Процесс</button><button data-section="blog">Блог и публикации</button><button data-section="research">Исследования</button><button data-section="contact">Контакты</button>' + tiltControl + (production ? languageSwitch : '');
 const host = $('head'), orbit = $('orbit'), projectLayer = $('projects');
 const goButton = $('go'), backButton = $('back'), status = $('demo-status');
 const coverDetails = $('cover-details');
 const coverLinks = [...coverDetails.querySelectorAll('.cover-link')];
-const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DEFAULT_VIEW = Object.freeze({ yaw: -.77, pitch: .087, scale: .84, offsetX: 0, offsetY: .22 });
 const TOP_VIEW = Object.freeze({ yaw: -.65, pitch: 1.12, scale: 1.6, offsetX: 0, offsetY: -1.15 });
 const transitionDuration = reduced ? 120 : 850;
@@ -77,6 +80,9 @@ const coverPreview = mountCoverVariants({
   host, cover: coverDetails, links: coverLinks, params: demoParams, onChange: updateCoverFrame, directoryMarkup: directoryLinks,
 });
 let coverView = coverPreview?.frame(DEFAULT_VIEW) ?? DEFAULT_VIEW;
+document.querySelector('[data-enable-tilt]')?.addEventListener('click', event => {
+  void enableTilt(event.currentTarget);
+});
 
 let head, headReady;
 
@@ -223,8 +229,14 @@ function frame(time) {
   }
   if((phase==='head'||phase==='assembling')&&!transition&&!documentOpen&&!reduced){
     const attention=coverPreview?.getAttention?.();
-    const pointer=attention ? { ...attention, present: true, tracking: true }
-      : {x:pointerX,y:pointerY,present:pointerPresent,tracking:pointerTracking};
+    const tilt = deviceTilt.active && !pointerTracking;
+    const input = tilt ? {
+      x: deviceTilt.x,
+      y: deviceTilt.y,
+      present: true,
+      tracking: Math.hypot(deviceTilt.x, deviceTilt.y) > .16,
+    } : {x:pointerX,y:pointerY,present:pointerPresent,tracking:pointerTracking};
+    const pointer = attention ? { ...attention, present: true, tracking: true } : input;
     const pose=idleBehavior.update(dt,pointer);
     head.setGaze(pose);
     document.body.dataset.attention=pose.attention;

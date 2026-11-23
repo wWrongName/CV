@@ -1,3 +1,4 @@
+import { deviceTilt } from './device-tilt.js';
 const sideCount = 7;
 const sector = 2 * Math.PI / sideCount;
 const frontZ = .24;
@@ -190,8 +191,9 @@ export function mountDeliveryObject(hub, reducedMotion, readStage) {
     }
     if (!reducedMotion) {
       const ease = 1 - Math.exp(-Math.min(delta, 100) / 155);
-      yaw += (.56 + Math.sin(elapsed / 1770) * .10 + pointer.x * .10 - yaw) * ease;
-      pitch += (.32 + Math.sin(elapsed / 2210) * .043 - pointer.y * .065 - pitch) * ease;
+      const input = deviceTilt.active ? deviceTilt : pointer;
+      yaw += (.56 + Math.sin(elapsed / 1770) * .10 + input.x * .10 - yaw) * ease;
+      pitch += (.32 + Math.sin(elapsed / 2210) * .043 - input.y * .065 - pitch) * ease;
     }
     const view = {cosYaw: Math.cos(yaw), sinYaw: Math.sin(yaw), cosPitch: Math.cos(pitch), sinPitch: Math.sin(pitch)};
     const centerY = height * .50;
@@ -234,6 +236,7 @@ export function mountDeliveryObject(hub, reducedMotion, readStage) {
   const options = {signal: listeners.signal};
   if (!reducedMotion) {
     hub.addEventListener('pointermove', event => {
+      if (event.pointerType === 'touch') return;
       const bounds = canvas.getBoundingClientRect();
       pointer.x = (event.clientX - bounds.left) / bounds.width * 2 - 1;
       pointer.y = (event.clientY - bounds.top) / bounds.height * 2 - 1;

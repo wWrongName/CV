@@ -1,3 +1,4 @@
+import { deviceTilt } from './device-tilt.js';
 const tierOffsets = [[-.34, -.42, .16], [.25, .14, -.14], [.49, .78, -.09]];
 const bounds = {x: 1.55, y: .235, z: .93};
 const surface = {
@@ -101,8 +102,9 @@ export function mountPaasLiveObject(canvas, reducedMotion, readStage) {
     }
 
     if (!reducedMotion) {
-      yaw = soften(yaw, .62 + Math.sin(time / 1900) * .18 + pointer.x * .24, movement * .55);
-      tilt = soften(tilt, .38 + Math.sin(time / 2300) * .04 - pointer.y * .09, movement * .55);
+      const input = deviceTilt.active ? deviceTilt : pointer;
+      yaw = soften(yaw, .62 + Math.sin(time / 1900) * .18 + input.x * .24, movement * .55);
+      tilt = soften(tilt, .38 + Math.sin(time / 2300) * .04 - input.y * .09, movement * .55);
     }
     const sx = Math.sin(yaw), cx = Math.cos(yaw);
     const sy = Math.sin(tilt), cy = Math.cos(tilt);
@@ -159,6 +161,7 @@ export function mountPaasLiveObject(canvas, reducedMotion, readStage) {
 
   if (!reducedMotion) {
     canvas.addEventListener('pointermove', event => {
+      if (event.pointerType === 'touch') return;
       const rect = canvas.getBoundingClientRect();
       pointer.x = (event.clientX - rect.left) / rect.width * 2 - 1;
       pointer.y = (event.clientY - rect.top) / rect.height * 2 - 1;
