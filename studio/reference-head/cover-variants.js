@@ -226,10 +226,12 @@ export function mountCoverVariants({ host, cover, links, onChange, directoryMark
       return { x: -.94, y: -.34 + activeIndex * .29 };
     },
     drawGuides(head) {
-      if (variant.id !== 'schematic' || mobile()) return;
+      if (variant.id !== 'schematic') return;
       const bounds = host.getBoundingClientRect();
       guides.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
-      const margin = 12;
+      const onMobile = mobile();
+      const margin = onMobile ? 7 : 12;
+      const leaderLength = onMobile ? 18 : 30;
       const projected = head.projectPoints(guidePoints);
       connectors.forEach((connector, index) => {
         const { line, marker, pulse } = connector;
@@ -239,7 +241,7 @@ export function mountCoverVariants({ host, cover, links, onChange, directoryMark
         const endX = (toLeft ? label.right + margin : label.left - margin) - bounds.left;
         const endY = label.top + label.height / 2 - bounds.top;
         const anchorX = index === 1 && !toLeft ? bounds.width - point.x : point.x;
-        const startX = toLeft ? Math.max(endX + 30, anchorX) : Math.min(endX - 30, anchorX);
+        const startX = toLeft ? Math.max(endX + leaderLength, anchorX) : Math.min(endX - leaderLength, anchorX);
         const cornerA = startX + (endX - startX) * .35;
         const cornerB = startX + (endX - startX) * .65;
         const path = `M${startX} ${point.y} H${cornerA} L${cornerB} ${endY} H${endX}`;

@@ -62,7 +62,8 @@ const openingDuration = .85;
 const openingNoteCue = .10 * openingDuration;
 let entryView = {...DEFAULT_VIEW}, pointerX=0, pointerY=0, pointerPresent=false, documentOpen=false, returnFocus=null;
 let pointerTracking = false;
-const idleBehavior=createIdleBehavior();
+const touchPointer=matchMedia('(pointer: coarse)').matches;
+const idleBehavior=createIdleBehavior({touch: touchPointer});
 const clamp = value => Math.max(0, Math.min(1, value));
 const smooth = value => { const x = clamp(value); return x * x * (3 - 2 * x); };
 const mix = (a, b, t) => a + (b - a) * t;
@@ -303,7 +304,7 @@ function startHead() {
     head = createAsciiHead(host, {
       modelUrl: new URL('./sculpt/head-study.glb?v=studio-1', import.meta.url).href,
       expressionsUrl: new URL('./sculpt/expressions.json', import.meta.url).href,
-      cellSize: 5.4,
+      cellSize: touchPointer ? 4.7 : 5.4,
       ink: '#edeee5',
       view: coverView,
       autoRotate: false,

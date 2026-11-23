@@ -1,6 +1,6 @@
 const TIERS = Object.freeze([
   Object.freeze({name: 'high', index: 0, fps: 60, dpr: 1.5, glyphBudget: 64000, sampleScale: 2, brushLimit: 16}),
-  Object.freeze({name: 'balanced', index: 1, fps: 60, dpr: 1.25, glyphBudget: 18000, sampleScale: 1, brushLimit: 12}),
+  Object.freeze({name: 'balanced', index: 1, fps: 60, dpr: 1.5, glyphBudget: 18000, sampleScale: 1, brushLimit: 12}),
   Object.freeze({name: 'light', index: 2, fps: 60, dpr: 1, glyphBudget: 10000, sampleScale: 1, brushLimit: 8}),
   Object.freeze({name: 'minimum', index: 3, fps: 30, dpr: 1, glyphBudget: 6000, sampleScale: 1, brushLimit: 6}),
 ]);
@@ -26,7 +26,7 @@ export function createAdaptiveQuality({coarse = false, fixed} = {}) {
   const memory = Number(globalThis.navigator?.deviceMemory);
   const threads = Number(globalThis.navigator?.hardwareConcurrency);
   const limitedDevice = memory > 0 && memory <= 4 && threads > 0 && threads <= 4;
-  let index = isFixed ? fixedNames[fixed] : coarse ? 2 : limitedDevice ? 1 : 0;
+  let index = isFixed ? fixedNames[fixed] : coarse ? (limitedDevice ? 2 : 1) : limitedDevice ? 1 : 0;
   let qualityReason = isFixed ? `fixed:${fixed}` : coarse ? 'coarse-pointer' : limitedDevice ? 'limited-device' : 'auto-default';
   let warmUntil = NaN, lastObserved = NaN, lastChange = -Infinity;
   let elapsed = 0, samples = 0, costs = [], badWindows = 0, stableMs = 0, measuredFps = NaN;

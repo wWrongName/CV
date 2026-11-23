@@ -160,14 +160,20 @@ body:is([data-phase="entering"], [data-phase="projects"], [data-phase="returning
   :is([data-cover-variant="editorial"], [data-cover-variant="focus"]) .experience {--cover-go-x: 80%;}
   [data-cover-variant] .cover-credit h1 {font-size: clamp(62px, 15vw, 100px);}
   [data-cover-variant] .footer {bottom: calc(var(--cover-floor) + 17px);}
-  [data-cover-variant="schematic"] .cover-variant-guides {display: none;}
-  [data-cover-variant="schematic"] .cover-links {
-    inset: auto var(--cover-edge) calc(var(--cover-floor) + 80px);
-    gap: 12px;
+  [data-cover-variant="schematic"] .cover-details::before {display: none;}
+  [data-cover-variant="schematic"] .cover-links {inset: 0;}
+  [data-cover-variant="schematic"] .cover-link {
+    position: absolute;
+    min-height: 44px;
+    padding-inline: 2px;
+    font-size: clamp(11px, 2.8vw, 13px);
+    opacity: 1;
   }
-  [data-cover-variant="schematic"] .cover-link {font-size: 11px;}
-  [data-cover-variant="schematic"] .cover-link-marker {display: block; width: 16px;}
-  [data-cover-variant="schematic"] .cover-link {inset: auto;}
+  [data-cover-variant="schematic"] .cover-link-marker {display: none;}
+  [data-cover-variant="schematic"] .cover-link--solutions {top: 28%; left: var(--cover-edge);}
+  [data-cover-variant="schematic"] .cover-link--process {top: 67%; right: var(--cover-edge); left: auto;}
+  [data-cover-variant="schematic"] .cover-link--research {top: 43%; right: var(--cover-edge);}
+  [data-cover-variant="schematic"] :is(.cover-link--research, .cover-link--process) .cover-link-note {left: auto; right: 0;}
   [data-cover-variant="dock"] .experience {--cover-go-x: 50%; --cover-floor: 50px;}
   [data-cover-variant="dock"] .cover-links {
     inset: auto var(--cover-edge) 5px;
@@ -184,8 +190,6 @@ body:is([data-phase="entering"], [data-phase="projects"], [data-phase="returning
 @media (max-width: 450px) {
   .cover-variant-toolbar {top: 103px;}
   .cover-variant-toolbar button {font-size: 11px; padding: 8px 9px;}
-  [data-cover-variant="schematic"] .cover-links {gap: 5px;}
-  [data-cover-variant="schematic"] .cover-link--research .cover-link-note {left: auto; right: 0;}
 }
 
 [data-cover-topbar] .studio-layout {--cover-nav-font-size: 13px;}

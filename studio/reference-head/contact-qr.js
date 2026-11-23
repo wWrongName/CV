@@ -76,10 +76,44 @@ export function animateContactQr(canvas, dialog, reducedMotion) {
   const ratio = Math.min(Math.max(devicePixelRatio || 1, 1), 2);
   canvas.width = canvas.height = Math.round(size * ratio);
   context.scale(canvas.width / size, canvas.height / size);
-  setGlyphStyle(context, glyphSize, '#edeee5');
-  for (const [x, y, glyph, opacity] of qrGlyphs) {
-    context.globalAlpha = opacity;
-    context.fillText(glyph, x, y, cell / 2);
+  if (matchMedia('(max-width: 640px)').matches) {
+    // Fit bold ASCII glyphs into the existing grid, leaving the dark modules empty.
+    const stamp = document.createElement('canvas');
+    const stampSize = 32;
+    const denseGlyphs = '#@';
+    stamp.width = stampSize * denseGlyphs.length;
+    stamp.height = stampSize;
+    const brush = stamp.getContext('2d');
+    for (const [index, glyph] of [...denseGlyphs].entries()) {
+      brush.font = '900 24px monospace';
+      brush.fillStyle = brush.strokeStyle = '#edeee5';
+      brush.lineWidth = 3;
+      const metrics = brush.measureText(glyph);
+      const width = metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight;
+      const height = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+      brush.save();
+      brush.beginPath();
+      brush.rect(index * stampSize, 0, stampSize, stampSize);
+      brush.clip();
+      brush.translate(index * stampSize, 0);
+      brush.scale(stampSize / width, stampSize / height);
+      brush.strokeText(glyph, metrics.actualBoundingBoxLeft, metrics.actualBoundingBoxAscent);
+      brush.fillText(glyph, metrics.actualBoundingBoxLeft, metrics.actualBoundingBoxAscent);
+      brush.restore();
+    }
+    const tile = cell / 2;
+    for (const [index, [x, y, , opacity]] of qrGlyphs.entries()) {
+      const glyphIndex = (index + Math.floor(index / offsets.length)) % denseGlyphs.length;
+      context.globalAlpha = opacity;
+      context.drawImage(stamp, glyphIndex * stampSize, 0, stampSize, stampSize,
+        x - tile / 2, y - tile / 2, tile, tile);
+    }
+  } else {
+    setGlyphStyle(context, glyphSize, '#edeee5');
+    for (const [x, y, glyph, opacity] of qrGlyphs) {
+      context.globalAlpha = opacity;
+      context.fillText(glyph, x, y, cell / 2);
+    }
   }
   function settle() {
     canvas.parentElement?.classList.add('contact-qr--settled');
