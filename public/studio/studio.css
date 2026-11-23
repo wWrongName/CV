@@ -1307,3 +1307,23 @@
   scrollbar-width: thin;
   scrollbar-color: #edeee56b transparent;
 }
+
+body:not([data-phase="loading"], [data-phase="error"]) .load-note {display: none;}
+
+@media (max-width: 600px) {
+  .cover-link-label {text-shadow: 0 1px 4px var(--blue), 0 0 7px var(--blue);}
+  .studio-layout {--muted: #edeee5d0;}
+  .cover-details::before {
+    height: clamp(150px, 27svh, 215px);
+    background: linear-gradient(0deg, var(--blue) 6%, #1234f5b8 49%, #1234f500);
+  }
+  #document-content:has(.paas-case) {
+    padding-inline: clamp(15px, 4.2vw, 24px);
+  }
+  .studio-offerings__body {padding-inline: clamp(16px, 4.5vw, 26px);}
+  .paas-deck__pages {padding-inline-end: 4px; scrollbar-color: #edeee545 transparent;}
+  .paas-chapter.paas-layers {gap: clamp(10px, 1.8svh, 16px);}
+  .paas-deck__footer {
+    padding-block-end: max(clamp(18px, 3.4svh, 28px), calc(env(safe-area-inset-bottom) + 7px));
+  }
+}

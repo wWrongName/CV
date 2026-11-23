@@ -77,7 +77,7 @@ export function createAsciiHead(host, options = {}) {
       #include <colorspace_fragment>
     }`});
   const target = new THREE.WebGLRenderTarget(1, 1, {depthBuffer: true});
-  const ascii = createAsciiPass(target.texture, {reduced});
+  const ascii = createAsciiPass(target.texture, {reduced, strongerGlyphs: coarse});
   ascii.setQuality(q); ascii.setSize(Math.max(2, finite(options.cellSize, 5.4)));
   setInk(options.ink || '#edeee5');
 

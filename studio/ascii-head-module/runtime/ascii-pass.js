@@ -6,12 +6,12 @@ const CHARACTERS = ' .,:;i!+*xso#%@';
 
 // Screen-space ASCII conversion of an ordinary, fully shaded 3D render.
 // Each cell samples the original image once. Effects adjust its glyph and placement.
-export function createAsciiPass(image, {reduced = false} = {}) {
+export function createAsciiPass(image, {reduced = false, strongerGlyphs = false} = {}) {
   const atlas = document.createElement('canvas');
   atlas.width = CHARACTERS.length * 40; atlas.height = 40;
   const ctx = atlas.getContext('2d');
   if (!ctx) throw new Error('ASCII rendering requires a 2D canvas context.');
-  ctx.font = '600 34px "Courier New", monospace';
+  ctx.font = `${strongerGlyphs ? 700 : 600} 34px "Courier New", monospace`;
   ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   for (let i = 0; i < CHARACTERS.length; i++) ctx.fillText(CHARACTERS[i], i * 40 + 20, 20);
   const texture = new THREE.CanvasTexture(atlas);
@@ -25,7 +25,7 @@ export function createAsciiPass(image, {reduced = false} = {}) {
     uniforms: {
       image: {value: image}, atlas: {value: texture}, glyphCount: {value: CHARACTERS.length},
       resolution: {value: new THREE.Vector2(1, 1)}, ink: {value: new THREE.Vector3(.93, .94, .90)},
-      cellHeight: {value: 12}, pixelRatio: {value: 1}, activeBrushCount: {value: 0},
+      inkGain: {value: strongerGlyphs ? 1.38 : 1}, cellHeight: {value: 12}, pixelRatio: {value: 1}, activeBrushCount: {value: 0},
       brushes: {value: brushes}, endpoints: {value: endpoints}, radius: {value: 80}, amplitude: {value: reduced ? 35 : 100},
       dispersal: {value: 0},
       crownOnly: {value: 0},
@@ -115,7 +115,7 @@ export function createAsciiPass(image, {reduced = false} = {}) {
     `,
     fragmentShader: `
       precision highp float;
-      uniform sampler2D atlas; uniform float glyphCount; uniform vec3 ink;
+      uniform sampler2D atlas; uniform float glyphCount; uniform vec3 ink; uniform float inkGain;
       varying float glyph; varying float coverage;
       void main() {
         if(coverage<.1)discard;
@@ -123,7 +123,7 @@ export function createAsciiPass(image, {reduced = false} = {}) {
         vec2 uv=vec2((glyph+clamp(local.x,.025,.975))/glyphCount,clamp(local.y,.025,.975));
         float mask=texture2D(atlas,uv).a;
         if(mask<.025)discard;
-        gl_FragColor=vec4(ink,mask*coverage);
+        gl_FragColor=vec4(ink,min(1.,mask*inkGain)*coverage);
       }
     `,
   });

@@ -11,40 +11,53 @@ const surface = {
   indicator: ['*', '#edeee5'],
 };
 
+const touchSurface = {
+  side: [':', '#edeee598'],
+  front: [':', '#edeee5c7'],
+  slot: ['.', '#edeee598'],
+  vent: ['x', '#edeee5c7'],
+  top: ['x', '#edeee5eb'],
+  topGrain: ['+', '#edeee5eb'],
+  edge: surface.edge,
+  indicator: surface.indicator,
+};
+
 function soften(from, to, amount) {
   return from + (to - from) * amount;
 }
 
-function surfaceGlyph(axis, x, y, z) {
+function surfaceGlyph(palette, axis, x, y, z) {
   const edge = .05;
   const nearX = Math.abs(x) > bounds.x - edge;
   const nearY = Math.abs(y) > bounds.y - edge;
   const nearZ = Math.abs(z) > bounds.z - edge;
 
   if ((axis === 0 && (nearY || nearZ)) || (axis === 1 && (nearX || nearZ)) ||
-      (axis === 2 && (nearX || nearY))) return surface.edge;
+      (axis === 2 && (nearX || nearY))) return palette.edge;
 
   if (axis === 2) {
-    if (Math.abs(y) < .095 && x > -.99 && x < .52) return surface.slot;
-    if (Math.abs(y) < .13 && (Math.abs(x - .86) < .10 || Math.abs(x - 1.14) < .09)) return surface.indicator;
-    return surface.front;
+    if (Math.abs(y) < .095 && x > -.99 && x < .52) return palette.slot;
+    if (Math.abs(y) < .13 && (Math.abs(x - .86) < .10 || Math.abs(x - 1.14) < .09)) return palette.indicator;
+    return palette.front;
   }
 
   if (axis === 0) {
     const vent = Math.abs(y) < .10 && Math.abs(z) < .65 && Math.cos(z * 44) > -.45;
-    return vent ? surface.vent : surface.side;
+    return vent ? palette.vent : palette.side;
   }
 
   const vent = Math.abs(x) < 1.05 && Math.abs(z) < .61 && Math.cos(z * 41) > -.3;
-  if (vent) return surface.vent;
+  if (vent) return palette.vent;
   const grain = Math.floor((x + 2) * 12) * 7 + Math.floor((z + 1) * 16) * 13;
-  return grain % 11 < 2 ? surface.topGrain : surface.top;
+  return grain % 11 < 2 ? palette.topGrain : palette.top;
 }
 
 export function mountPaasLiveObject(canvas, reducedMotion, readStage) {
   const context = canvas?.getContext('2d');
   if (!context) return undefined;
 
+  const touch = matchMedia('(pointer: coarse)').matches;
+  const palette = touch ? touchSurface : surface;
   const launch = canvas.closest('[data-paas-launch]');
   const steps = [...(launch?.querySelectorAll('[data-launch-step-state]') ?? [])];
   const positions = tierOffsets.map(offset => [...offset]);
@@ -111,7 +124,7 @@ export function mountPaasLiveObject(canvas, reducedMotion, readStage) {
     const cell = Math.max(4.5, width / 108, height / 78);
 
     context.clearRect(0, 0, width, height);
-    context.font = `600 ${Math.max(5, cell * 1.11)}px ui-monospace, monospace`;
+    context.font = `${touch ? 700 : 600} ${Math.max(5, cell * (touch ? 1.2 : 1.11))}px ui-monospace, monospace`;
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     for (let py = cell / 2; py < height; py += cell) {
@@ -131,7 +144,7 @@ export function mountPaasLiveObject(canvas, reducedMotion, readStage) {
               depth > (y + bounds.y) / ny || depth > (z + bounds.z) / nz) continue;
 
           nearest = depth;
-          mark = surfaceGlyph(depth === tx ? 0 : depth === ty ? 1 : 2,
+          mark = surfaceGlyph(palette, depth === tx ? 0 : depth === ty ? 1 : 2,
             x - nx * depth, y - ny * depth, z - nz * depth);
         }
         if (!mark) continue;

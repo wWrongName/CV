@@ -39,6 +39,7 @@ const glyphs = ['+', 'x', ':', '+'];
 export function mountOperationsScene(canvas, reducedMotion, readStep) {
   const context = canvas.getContext('2d');
   if (!context) return () => {};
+  const touch = matchMedia('(pointer: coarse)').matches;
   const started = performance.now();
   let frame = 0, width, height, last = -Infinity;
 
@@ -66,7 +67,7 @@ export function mountOperationsScene(canvas, reducedMotion, readStep) {
     context.clearRect(0, 0, width, height);
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.font = `600 ${Math.max(5, Math.min(11, scale * .126))}px ui-monospace, monospace`;
+    context.font = `${touch ? 700 : 600} ${Math.max(5, Math.min(11, scale * .126))}px ui-monospace, monospace`;
     context.fillStyle = '#edeee5';
 
     for (let segment = 0; segment < icons.length - 1; segment++) {
@@ -95,13 +96,13 @@ export function mountOperationsScene(canvas, reducedMotion, readStep) {
           path.forEach(([x, y], i) => {
             const viewX = x * cos - depth * sin;
             const viewDepth = x * sin + depth * cos;
-            context.globalAlpha = front ? Math.min(1, strength + signal * .16) : strength * (depth === -.25 ? .30 : .44);
+            context.globalAlpha = front ? Math.min(1, strength + signal * .16) : strength * (depth === -.25 ? .30 : .44) * (touch ? 1.28 : 1);
             context.fillText(front ? glyphs[i % glyphs.length] : '·', centerX + viewX * scale, centerY + (y + viewDepth * .43) * scale);
           });
         });
       }
 
-      context.globalAlpha = strength;
+      context.globalAlpha = Math.min(1, strength * (touch ? 1.28 : 1));
       context.fillText('o', centerX, routeY);
     });
 

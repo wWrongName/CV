@@ -29,6 +29,7 @@ export function mountTechParticles(map, reducedMotion, initialIndex, labels) {
   const context = canvas.getContext('2d');
   const stencil = document.createElement('canvas').getContext('2d', {willReadFrequently: true});
   if (!context || !stencil) return {select() {}, stop() {}};
+  const touch = matchMedia('(pointer: coarse)').matches;
   let index = initialIndex;
   let width = 0, height = 0, wordWidth = 0, wordHeight = 0, frame, started, step;
   let centerX = 0, centerY = 0;
@@ -40,7 +41,7 @@ export function mountTechParticles(map, reducedMotion, initialIndex, labels) {
     context.clearRect(0, 0, width, height);
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.font = `600 ${step * 1.12}px ui-monospace, monospace`;
+    context.font = `${touch ? 700 : 600} ${step * (touch ? 1.32 : 1.12)}px ui-monospace, monospace`;
     context.fillStyle = '#edeee5';
     const radiusX = width / 2 - step;
     const radiusY = Math.min(centerY, height - centerY, wordHeight * 1.32) - step;
@@ -54,7 +55,7 @@ export function mountTechParticles(map, reducedMotion, initialIndex, labels) {
       const distance = Math.hypot((x - centerX) / Math.max(1, radiusX), (y - centerY) / Math.max(1, radiusY));
       const fade = Math.max(0, Math.min(1, (1 - distance) / (.18 + Math.abs(noise) * .11)));
       const visibility = 1 - Math.min(1, burst * 4) * (1 - fade * fade * (3 - 2 * fade));
-      context.globalAlpha = alpha * (.76 + Math.abs(noise) * .24) * visibility;
+      context.globalAlpha = alpha * (touch ? .94 + Math.abs(noise) * .06 : .76 + Math.abs(noise) * .24) * visibility;
       if (context.globalAlpha > .01) context.fillText(glyphs[(i + Math.floor(burst * 5)) % glyphs.length], x, y);
       return {x, y, alpha};
     });

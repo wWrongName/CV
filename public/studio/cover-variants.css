@@ -806,3 +806,38 @@ body:is([data-phase="entering"], [data-phase="projects"], [data-phase="returning
   border-top: 1px solid #edeee53b;
   border-radius: 0 0 12px 12px;
 }
+
+@media (max-width: 600px) {
+  [data-cover-topbar] .masthead--aligned-brand {
+    top: max(clamp(16px, 3svh, 24px), env(safe-area-inset-top));
+  }
+  [data-cover-effect~="glass"] :is(.cover-topbar-group, .cover-menu > button[data-section="more"], .cover-directory) {
+    border-color: #edeee57c;
+    border-top-color: #edeee5b8;
+    background-image:
+      radial-gradient(ellipse at 26% 0%, #edeee52b, transparent 64%),
+      linear-gradient(164deg, #edeee518, #1234f52a 42%, #1234f543 82%, #edeee518);
+    box-shadow: inset 0 1px 1px #edeee55c, inset 0 -1px 2px #edeee539, 0 5px 16px #06188642;
+  }
+  [data-cover-effect~="glass"] .cover-directory {
+    inset-inline: 50% auto;
+    translate: -50% 0;
+    transform-origin: center top;
+    width: min(290px, calc(100vw - 32px));
+    max-height: min(64dvh, 430px);
+    background-color: #142ee0db;
+    -webkit-backdrop-filter: blur(1.5px) saturate(1.16);
+    backdrop-filter: blur(1.5px) saturate(1.16);
+  }
+  [data-cover-effect~="directory"] .cover-directory :is(button, a) {
+    min-height: 44px;
+    text-shadow: 0 1px 2px #071485b0;
+  }
+}
+@media (max-width: 600px) and (prefers-reduced-transparency: reduce) {
+  [data-cover-effect~="glass"] .cover-directory {
+    background-color: #142dd9;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}

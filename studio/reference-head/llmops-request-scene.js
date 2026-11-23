@@ -23,6 +23,7 @@ const model = modelPoints();
 export function mountRequestScene(canvas, reducedMotion, readStep) {
   const context = canvas.getContext('2d');
   if (!context) return () => {};
+  const touch = matchMedia('(pointer: coarse)').matches;
   const started = performance.now();
   let frame = 0;
   let lastDraw = -Infinity;
@@ -56,7 +57,7 @@ export function mountRequestScene(canvas, reducedMotion, readStep) {
     context.fillStyle = '#edeee5';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.font = `600 ${Math.max(5, scale * .13)}px ui-monospace, monospace`;
+    context.font = `${touch ? 700 : 600} ${Math.max(5, scale * .13)}px ui-monospace, monospace`;
 
     const density = width < 400 ? 2 : 1;
     for (let index = 0; index < model.length; index += density) {
@@ -70,7 +71,7 @@ export function mountRequestScene(canvas, reducedMotion, readStep) {
       const perspective = 1 / (1 - depth * .105);
       const brightness = (depth + 1.2) / 2.5;
       const glyph = glyphs[Math.min(5, Math.max(0, Math.floor((brightness + light * .55) * 4.1)))];
-      context.globalAlpha = Math.min(1, .15 + brightness * .55 + light * .38 + (trace ? .13 : 0));
+      context.globalAlpha = Math.min(1, (touch ? .25 : .15) + brightness * .55 + light * .38 + (trace ? .13 : 0));
       context.fillText(glyph, center.x + across * scale * perspective, center.y + (localY + depth * .21) * scale * perspective);
     }
 

@@ -23,6 +23,7 @@ const model = faces.map(face => ({
 export function mountStudioProcessScene(canvas, reducedMotion, readStep) {
   const context = canvas.getContext('2d');
   if (!context) return;
+  const touch = matchMedia('(pointer: coarse)').matches;
   const started = performance.now();
   let frame = 0, width = 0, height = 0, previous = -Infinity;
   let assembly = readStep();
@@ -49,13 +50,13 @@ export function mountStudioProcessScene(canvas, reducedMotion, readStep) {
 
     function dot(x, y, z, glyph, alpha) {
       const depth = x * sy + z * cy;
-      context.globalAlpha = alpha;
+      context.globalAlpha = Math.min(1, alpha * (touch ? 1.28 : 1));
       context.fillText(glyph, width * .5 + (x * cy - z * sy) * scale,
         height * .5 - (y * cp - depth * sp) * scale);
     }
 
     context.clearRect(0, 0, width, height);
-    context.font = `600 ${cell}px ui-monospace, monospace`;
+    context.font = `${touch ? 700 : 600} ${cell}px ui-monospace, monospace`;
     context.fillStyle = '#edeee5';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
