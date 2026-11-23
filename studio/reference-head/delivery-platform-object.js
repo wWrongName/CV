@@ -1,4 +1,5 @@
-import { deviceTilt } from './device-tilt.js';
+import {mountSceneInput} from './scene-input.js';
+
 const sideCount = 7;
 const sector = 2 * Math.PI / sideCount;
 const frontZ = .24;
@@ -161,7 +162,7 @@ export function mountDeliveryObject(hub, reducedMotion, readStage) {
   }));
   const listeners = new AbortController();
   const start = performance.now();
-  const pointer = {x: 0, y: 0};
+  const motion = mountSceneInput(hub, reducedMotion, canvas);
   let width = 0, height = 0, centerX = 0, size = 0, labels = [];
   let frame = 0, previous = -Infinity, visible = true;
   let yaw = .56, pitch = .32;
@@ -191,7 +192,7 @@ export function mountDeliveryObject(hub, reducedMotion, readStage) {
     }
     if (!reducedMotion) {
       const ease = 1 - Math.exp(-Math.min(delta, 100) / 155);
-      const input = deviceTilt.active ? deviceTilt : pointer;
+      const input = motion.read(now);
       yaw += (.56 + Math.sin(elapsed / 1770) * .10 + input.x * .10 - yaw) * ease;
       pitch += (.32 + Math.sin(elapsed / 2210) * .043 - input.y * .065 - pitch) * ease;
     }
@@ -234,16 +235,6 @@ export function mountDeliveryObject(hub, reducedMotion, readStage) {
   }
 
   const options = {signal: listeners.signal};
-  if (!reducedMotion) {
-    hub.addEventListener('pointermove', event => {
-      if (event.pointerType === 'touch') return;
-      const bounds = canvas.getBoundingClientRect();
-      pointer.x = (event.clientX - bounds.left) / bounds.width * 2 - 1;
-      pointer.y = (event.clientY - bounds.top) / bounds.height * 2 - 1;
-    }, options);
-    hub.addEventListener('pointerleave', () => {pointer.x = pointer.y = 0;}, options);
-  }
-
   document.addEventListener('visibilitychange', schedule, options);
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(canvas);
@@ -257,6 +248,7 @@ export function mountDeliveryObject(hub, reducedMotion, readStage) {
     cancelAnimationFrame(frame);
     resizeObserver.disconnect();
     visibilityObserver.disconnect();
+    motion.stop();
     listeners.abort();
   };
 }

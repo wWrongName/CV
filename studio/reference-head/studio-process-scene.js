@@ -1,3 +1,5 @@
+import {mountSceneInput} from './scene-input.js';
+
 const glyphs = ['·', ':', '+', 'x', '#'];
 
 const faces = [
@@ -23,6 +25,7 @@ const model = faces.map(face => ({
 export function mountStudioProcessScene(canvas, reducedMotion, readStep) {
   const context = canvas.getContext('2d');
   if (!context) return;
+  const motion = mountSceneInput(canvas, reducedMotion);
   const touch = matchMedia('(pointer: coarse)').matches;
   const started = performance.now();
   let frame = 0, width = 0, height = 0, previous = -Infinity;
@@ -42,8 +45,9 @@ export function mountStudioProcessScene(canvas, reducedMotion, readStep) {
     previous = now;
     const time = reducedMotion ? 0 : now - started;
     assembly += (readStep() - assembly) * (reducedMotion ? 1 : 1 - Math.exp(-Math.min(90, delta) / 310));
-    const yaw = .54 + Math.sin(time / 2060) * .095;
-    const pitch = .34 + Math.sin(time / 2450) * .048;
+    const input = motion.read(now);
+    const yaw = .54 + Math.sin(time / 2060) * .095 + input.x * .26;
+    const pitch = .34 + Math.sin(time / 2450) * .048 - input.y * .18;
     const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
     const scale = Math.min(width / 3.65, height / 3.25);
     const cell = Math.max(4, scale * .10);
@@ -97,6 +101,7 @@ export function mountStudioProcessScene(canvas, reducedMotion, readStep) {
   document.addEventListener('visibilitychange', schedule);
   resize();
   return () => {
+    motion.stop();
     cancelAnimationFrame(frame);
     observer.disconnect();
     document.removeEventListener('visibilitychange', schedule);

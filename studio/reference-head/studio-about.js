@@ -1,3 +1,4 @@
+import {mountSceneInput} from './scene-input.js';
 import {linkOutline} from './cover-brand.js';
 
 export const studioAboutMarkup = `
@@ -23,6 +24,7 @@ export function mountStudioMark(canvas, reducedMotion) {
   const context = canvas.getContext('2d');
   const stencil = document.createElement('canvas').getContext('2d');
   if (!context || !stencil) return;
+  const motion = mountSceneInput(canvas, reducedMotion);
   const stencilSize = 192;
   const stencilScale = stencilSize / 64;
   stencil.canvas.width = stencilSize;
@@ -51,8 +53,9 @@ export function mountStudioMark(canvas, reducedMotion) {
     }
     previous = now;
     const seconds = (now - started) / 1000;
-    const yaw = .40 + (reducedMotion ? 0 : Math.sin(seconds * .86) * .13);
-    const pitch = .26 + (reducedMotion ? 0 : Math.sin(seconds * .64) * .085);
+    const input = motion.read(now);
+    const yaw = .40 + (reducedMotion ? 0 : Math.sin(seconds * .86) * .13) + input.x * .24;
+    const pitch = .26 + (reducedMotion ? 0 : Math.sin(seconds * .64) * .085) - input.y * .18;
     const cosYaw = Math.cos(yaw), sinYaw = Math.sin(yaw);
     const cosPitch = Math.cos(pitch), sinPitch = Math.sin(pitch);
     const scale = Math.min(width / 65, height / 48);
@@ -114,6 +117,7 @@ export function mountStudioMark(canvas, reducedMotion) {
   resize();
 
   return () => {
+    motion.stop();
     cancelAnimationFrame(frame);
     resizeObserver.disconnect();
     visibilityObserver.disconnect();

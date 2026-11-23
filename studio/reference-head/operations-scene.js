@@ -1,3 +1,5 @@
+import {mountSceneInput} from './scene-input.js';
+
 function samplePath(vertices, spacing = .074) {
   return vertices.slice(1).flatMap(([endX, endY], index) => {
     const [x, y] = vertices[index];
@@ -39,6 +41,7 @@ const glyphs = ['+', 'x', ':', '+'];
 export function mountOperationsScene(canvas, reducedMotion, readStep) {
   const context = canvas.getContext('2d');
   if (!context) return () => {};
+  const motion = mountSceneInput(canvas, reducedMotion);
   const touch = matchMedia('(pointer: coarse)').matches;
   const started = performance.now();
   let frame = 0, width, height, last = -Infinity;
@@ -58,8 +61,10 @@ export function mountOperationsScene(canvas, reducedMotion, readStep) {
 
     const elapsed = reducedMotion ? 0 : now - started;
     const scale = Math.min(width / 5.65, height / 1.95);
-    const angle = -.30 + Math.sin(elapsed / 1450) * .065;
+    const input = motion.read(now);
+    const angle = -.30 + Math.sin(elapsed / 1450) * .065 + input.x * .32;
     const sin = Math.sin(angle), cos = Math.cos(angle);
+    const depthSlope = .43 - input.y * .28;
     const progress = elapsed % 3100 / 3100 * 3.05 - .35;
     const active = readStep?.();
     const routeY = height * .79;
@@ -97,7 +102,7 @@ export function mountOperationsScene(canvas, reducedMotion, readStep) {
             const viewX = x * cos - depth * sin;
             const viewDepth = x * sin + depth * cos;
             context.globalAlpha = front ? Math.min(1, strength + signal * .16) : strength * (depth === -.25 ? .30 : .44) * (touch ? 1.28 : 1);
-            context.fillText(front ? glyphs[i % glyphs.length] : '·', centerX + viewX * scale, centerY + (y + viewDepth * .43) * scale);
+            context.fillText(front ? glyphs[i % glyphs.length] : '·', centerX + viewX * scale, centerY + (y + viewDepth * depthSlope) * scale);
           });
         });
       }
@@ -133,6 +138,7 @@ export function mountOperationsScene(canvas, reducedMotion, readStep) {
   document.addEventListener('visibilitychange', onVisibility);
   resize();
   return () => {
+    motion.stop();
     cancelAnimationFrame(frame);
     observer.disconnect();
     document.removeEventListener('visibilitychange', onVisibility);

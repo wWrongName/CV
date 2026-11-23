@@ -1,3 +1,5 @@
+import {mountSceneInput} from './scene-input.js';
+
 const glyphs = ['·', ':', '+', 'x', '*', '#'];
 const cycle = 2550;
 
@@ -23,6 +25,7 @@ const model = modelPoints();
 export function mountRequestScene(canvas, reducedMotion, readStep) {
   const context = canvas.getContext('2d');
   if (!context) return () => {};
+  const motion = mountSceneInput(canvas, reducedMotion);
   const touch = matchMedia('(pointer: coarse)').matches;
   const started = performance.now();
   let frame = 0;
@@ -44,7 +47,10 @@ export function mountRequestScene(canvas, reducedMotion, readStep) {
     const compare = stage === 2 ? 1 : 0;
     comparison += (compare - comparison) * (reducedMotion ? 1 : .16);
     const progress = reducedMotion ? .5 : elapsed % cycle / cycle;
-    const pitch = reducedMotion ? .18 : .14 + .2 * Math.sin(elapsed / 1760);
+    const input = motion.read(time);
+    const pitch = reducedMotion ? .18 : .14 + .2 * Math.sin(elapsed / 1760) + input.x * .29;
+    const vertical = input.y * .23;
+    const cosVertical = Math.cos(vertical), sinVertical = Math.sin(vertical);
     const sine = Math.sin(pitch), cosine = Math.cos(pitch);
     const scale = Math.min(width / 6, height / 2.45);
     const center = {x: width / 2, y: height * .525};
@@ -66,13 +72,15 @@ export function mountRequestScene(canvas, reducedMotion, readStep) {
       const localY = y * Math.cos(rotation) - z * Math.sin(rotation);
       const localZ = y * Math.sin(rotation) + z * Math.cos(rotation);
       const across = x * cosine + localZ * sine;
-      const depth = -x * sine + localZ * cosine;
+      const rotatedDepth = -x * sine + localZ * cosine;
+      const depth = rotatedDepth * cosVertical + localY * sinVertical;
+      const viewY = localY * cosVertical - rotatedDepth * sinVertical;
       const light = Math.max(0, 1 - Math.abs(x - pulse) * 1.9) * visiblePulse;
       const perspective = 1 / (1 - depth * .105);
       const brightness = (depth + 1.2) / 2.5;
       const glyph = glyphs[Math.min(5, Math.max(0, Math.floor((brightness + light * .55) * 4.1)))];
       context.globalAlpha = Math.min(1, (touch ? .25 : .15) + brightness * .55 + light * .38 + (trace ? .13 : 0));
-      context.fillText(glyph, center.x + across * scale * perspective, center.y + (localY + depth * .21) * scale * perspective);
+      context.fillText(glyph, center.x + across * scale * perspective, center.y + (viewY + depth * .21) * scale * perspective);
     }
 
     for (const direction of [-1, 1]) {
@@ -117,6 +125,7 @@ export function mountRequestScene(canvas, reducedMotion, readStep) {
   resize();
 
   return () => {
+    motion.stop();
     cancelAnimationFrame(frame);
     observer.disconnect();
     document.removeEventListener('visibilitychange', onVisibility);

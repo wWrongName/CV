@@ -1,3 +1,4 @@
+import {mountSceneInput} from './scene-input.js';
 import {habrMask, devBadgePath} from './platform-marks.js';
 
 const points = [];
@@ -40,6 +41,7 @@ function platformSamples(platform) {
 export function mountEditorialScene(canvas, reducedMotion, readIndex, readVersions) {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
+  const motion = mountSceneInput(canvas, reducedMotion);
   const start = performance.now();
   let previous = -Infinity, width = 0, height = 0, frame = 0;
   let turn = readIndex();
@@ -56,7 +58,10 @@ export function mountEditorialScene(canvas, reducedMotion, readIndex, readVersio
     previous = time;
     const seconds = reducedMotion ? 0 : (time - start) / 1000;
     turn += (readIndex() - turn) * (1 - Math.exp(-Math.min(90, elapsed) / 180));
-    const tilt = .38 + Math.sin(seconds * .75) * .08 + Math.sin(turn * 1.9) * .14;
+    const input = motion.read(time);
+    const tilt = .38 + Math.sin(seconds * .75) * .08 + Math.sin(turn * 1.9) * .14 + input.x * .22;
+    const pitch = .34 - input.y * .19;
+    const pitchSin = Math.sin(pitch), pitchCos = Math.cos(pitch);
     const scale = Math.min(width, height) * .295;
     const sweep = (seconds * 9) % 42 - 6;
 
@@ -91,10 +96,10 @@ export function mountEditorialScene(canvas, reducedMotion, readIndex, readVersio
       const y = (row - 15.5) / 13 - page * .18;
       const z = page * .32;
       const fold = Math.max(0, col - 17) * Math.max(0, 6 - row) * .009;
-      const depth = Math.sin(tilt) * x + Math.sin(.34) * y + z - fold;
+      const depth = Math.sin(tilt) * x + pitchSin * y + z - fold;
       const perspective = 1 / (1 + depth * .25);
       const px = Math.cos(tilt) * x - .36 * y;
-      const py = .24 * x + Math.cos(.34) * y - z * .23;
+      const py = .24 * x + pitchCos * y - z * .23;
       const signal = reducedMotion ? 0 : Math.max(0, 1 - Math.abs(row - sweep) / 5);
       ctx.globalAlpha = Math.min(1, (page === 0 ? edge ? .76 : .48 : .35) + signal * .24);
       ctx.fillText(ink ? (col % 4 === 0 ? 'x' : '·') : (edge ? '+' : ':'), width / 2 + px * scale * perspective,
@@ -120,6 +125,7 @@ export function mountEditorialScene(canvas, reducedMotion, readIndex, readVersio
   resize();
   return {
     stop() {
+      motion.stop();
       cancelAnimationFrame(frame);
       observer.disconnect();
       document.removeEventListener('visibilitychange', schedule);

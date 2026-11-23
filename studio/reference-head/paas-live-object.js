@@ -1,4 +1,5 @@
-import { deviceTilt } from './device-tilt.js';
+import {mountSceneInput} from './scene-input.js';
+
 const tierOffsets = [[-.34, -.42, .16], [.25, .14, -.14], [.49, .78, -.09]];
 const bounds = {x: 1.55, y: .235, z: .93};
 const surface = {
@@ -62,7 +63,7 @@ export function mountPaasLiveObject(canvas, reducedMotion, readStage) {
   const launch = canvas.closest('[data-paas-launch]');
   const steps = [...(launch?.querySelectorAll('[data-launch-step-state]') ?? [])];
   const positions = tierOffsets.map(offset => [...offset]);
-  const pointer = {x: 0, y: 0};
+  const motion = mountSceneInput(canvas, reducedMotion);
   const listeners = new AbortController();
   const listenerOptions = {signal: listeners.signal};
   let width = 0, height = 0, frame = 0, previous = -Infinity, visible = true;
@@ -102,7 +103,7 @@ export function mountPaasLiveObject(canvas, reducedMotion, readStage) {
     }
 
     if (!reducedMotion) {
-      const input = deviceTilt.active ? deviceTilt : pointer;
+      const input = motion.read(time);
       yaw = soften(yaw, .62 + Math.sin(time / 1900) * .18 + input.x * .24, movement * .55);
       tilt = soften(tilt, .38 + Math.sin(time / 2300) * .04 - input.y * .09, movement * .55);
     }
@@ -159,15 +160,6 @@ export function mountPaasLiveObject(canvas, reducedMotion, readStage) {
     if (!reducedMotion) requestFrame();
   }
 
-  if (!reducedMotion) {
-    canvas.addEventListener('pointermove', event => {
-      if (event.pointerType === 'touch') return;
-      const rect = canvas.getBoundingClientRect();
-      pointer.x = (event.clientX - rect.left) / rect.width * 2 - 1;
-      pointer.y = (event.clientY - rect.top) / rect.height * 2 - 1;
-    }, listenerOptions);
-    canvas.addEventListener('pointerleave', () => { pointer.x = pointer.y = 0; }, listenerOptions);
-  }
   document.addEventListener('visibilitychange', requestFrame, listenerOptions);
   const sizeObserver = new ResizeObserver(resize);
   sizeObserver.observe(canvas);
@@ -182,6 +174,7 @@ export function mountPaasLiveObject(canvas, reducedMotion, readStage) {
     cancelAnimationFrame(frame);
     sizeObserver.disconnect();
     visibilityObserver.disconnect();
+    motion.stop();
     listeners.abort();
   };
 }

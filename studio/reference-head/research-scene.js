@@ -1,3 +1,5 @@
+import {mountSceneInput} from './scene-input.js';
+
 const glyphs = ['·', ':', '+', 'x', '#'];
 const samples = Array.from({length: 29 * 19}, (_, index) => {
   const u = (index % 29 - 14) / 14;
@@ -9,6 +11,7 @@ const samples = Array.from({length: 29 * 19}, (_, index) => {
 export function mountResearchScene(canvas, reducedMotion, readStep) {
   const context = canvas.getContext('2d');
   if (!context) return;
+  const motion = mountSceneInput(canvas, reducedMotion);
 
   let width = 0, height = 0, frame = 0;
   let previous = -Infinity;
@@ -29,8 +32,9 @@ export function mountResearchScene(canvas, reducedMotion, readStep) {
     previous = now;
     stage += (readStep() - stage) * (1 - Math.exp(-Math.min(80, delta) / 150));
     const time = reducedMotion ? 0 : (now - start) / 1000;
-    const yaw = -.51 + Math.sin(time * .68) * .09;
-    const pitch = .62 + Math.sin(time * .53) * .06;
+    const input = motion.read(now);
+    const yaw = -.51 + Math.sin(time * .68) * .09 + input.x * .26;
+    const pitch = .62 + Math.sin(time * .53) * .06 - input.y * .19;
     const scale = Math.min(width / 3.12, height / 2.3);
     const cy = Math.cos(yaw), sy = Math.sin(yaw);
     const cp = Math.cos(pitch), sp = Math.sin(pitch);
@@ -78,6 +82,7 @@ export function mountResearchScene(canvas, reducedMotion, readStep) {
   document.addEventListener('visibilitychange', schedule);
   resize();
   return () => {
+    motion.stop();
     cancelAnimationFrame(frame);
     observer.disconnect();
     document.removeEventListener('visibilitychange', schedule);
