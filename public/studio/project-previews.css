@@ -198,12 +198,10 @@
 @media (max-width: 600px) {
   .project-preview--carousel {
     --project-muted: #edeee5db;
-    inset-block: max(96px, 14svh) 93px;
-    grid-template-rows: auto minmax(min-content, 1fr);
-    align-content: start;
-    gap: clamp(12px, 2.1svh, 20px);
+    inset-block: max(102px, 14svh) 100px;
+    align-content: safe center;
+    gap: clamp(16px, 2.8svh, 24px);
   }
-  .project-preview--carousel .project-preview__rail-shell {align-self: center;}
   .project-preview--carousel .project-preview__rail {--rail-peek: 14px;}
   .project-preview--carousel .project-preview__slide {padding-inline: clamp(10px, 3vw, 16px);}
   .project-preview--carousel .project-preview__feature-copy h2 {font-size: clamp(25px, 7vw, 34px);}

@@ -18,7 +18,7 @@ function screen(title, className, body, labels, navigationLabel, headerAction) {
       ${body}
     </div>
     <footer class="paas-deck__footer">
-      <button type="button" class="paas-deck__back section-glass" aria-label="Назад" data-studio-back><span aria-hidden="true">←</span></button>
+      <button type="button" class="paas-deck__back section-glass" aria-label="Назад" data-studio-back><svg class="studio-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#studio-arrow-left"/></svg></button>
       ${choices(labels, navigationLabel, true)}
     </footer>
   </article>`;

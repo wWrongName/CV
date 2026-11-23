@@ -315,6 +315,9 @@
   cursor: pointer;
   font-size: 21px;
 }
+.studio-icon-definitions {position: absolute; pointer-events: none;}
+.paas-deck__back > .studio-arrow {display: block; width: 24px; height: 24px;}
+[data-project-shift="1"] > .studio-arrow {transform: scaleX(-1);}
 .paas-deck__tabs {
   display: flex;
   align-items: center;

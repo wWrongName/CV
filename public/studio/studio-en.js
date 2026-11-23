@@ -4216,8 +4216,8 @@ void main() {
   </div>
   <div class="project-preview__rail-shell">
     <div class="project-preview__rail-controls" role="group" aria-label="Browse projects">
-      <button class="paas-deck__back section-glass" type="button" data-project-shift="-1" aria-label="Previous project" disabled><span aria-hidden="true">←</span></button>
-      <button class="paas-deck__back section-glass" type="button" data-project-shift="1" aria-label="Next project"><span aria-hidden="true">→</span></button>
+      <button class="paas-deck__back section-glass" type="button" data-project-shift="-1" aria-label="Previous project" disabled><svg class="studio-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#studio-arrow-left"/></svg></button>
+      <button class="paas-deck__back section-glass" type="button" data-project-shift="1" aria-label="Next project"><svg class="studio-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#studio-arrow-left"/></svg></button>
     </div>
     <ul class="project-preview__rail" data-project-rail aria-label="Projects">
       ${$.map((J,Q)=>`<li ${Q===0?"data-project-current":""}>
@@ -4265,7 +4265,7 @@ void main() {
     </div>
   </div>
   <footer class="paas-deck__footer">
-    <button type="button" class="paas-deck__back section-glass" aria-label="Back" data-studio-back><span aria-hidden="true">←</span></button>
+    <button type="button" class="paas-deck__back section-glass" aria-label="Back" data-studio-back><svg class="studio-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#studio-arrow-left"/></svg></button>
     ${RJ(KW.map(({label:$})=>$),"Service areas",!0)}
   </footer>
 </article>`,nH=`<article class="section-page studio-screen studio-process">
@@ -4282,7 +4282,7 @@ void main() {
     </div>
   </div>
   <footer class="paas-deck__footer">
-    <button type="button" class="paas-deck__back section-glass" aria-label="Back" data-studio-back><span aria-hidden="true">←</span></button>
+    <button type="button" class="paas-deck__back section-glass" aria-label="Back" data-studio-back><svg class="studio-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#studio-arrow-left"/></svg></button>
     ${RJ(mH.map(([$])=>$),"Work stages",!0)}
   </footer>
 </article>`;function sH($,J){let Q=[...$.querySelectorAll("[data-studio-choice]")],Z=[...$.querySelectorAll("[data-studio-panel]")],W=$.querySelector(".studio-offerings__stage canvas"),K=$.querySelector(".studio-offerings__body"),X=new AbortController,H=-1,Y=$.classList.contains("studio-research")?uH:$.classList.contains("studio-process")?lH:null,U;function E(G){if(G===H)return;if(H=G,Q.forEach((q,M)=>{q.setAttribute("aria-pressed",String(M===G)),Z[M].hidden=M!==G}),K.scrollTop=0,!W)return;if(Y){if(J||!U)U?.(),U=Y(W,J,()=>H)}else U?.(),U=KW[G].visual(W,J)}return $.addEventListener("click",(G)=>{let q=G.target.closest("[data-studio-choice]");if(q)E(Number(q.dataset.studioChoice))},{signal:X.signal}),E(0),()=>{U?.(),X.abort()}}var oH={research:{id:"llm-security",index:"05",name:"AI",category:"AI SECURITY · RESEARCH",title:`Assessing AI
@@ -4351,7 +4351,7 @@ with measured limits`,text:"On 10 AdvBench prompts with TinyLlama-1.1B-Chat, tra
       ${Q}
     </div>
     <footer class="paas-deck__footer">
-      <button type="button" class="paas-deck__back section-glass" aria-label="Back" data-studio-back><span aria-hidden="true">←</span></button>
+      <button type="button" class="paas-deck__back section-glass" aria-label="Back" data-studio-back><svg class="studio-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#studio-arrow-left"/></svg></button>
       ${RJ(Z,W,!0)}
     </footer>
   </article>`}function MJ({title:$,text:J,note:Q,details:Z,metrics:W},K){return`<section class="research-chapter">
@@ -4411,7 +4411,7 @@ with measured limits`,text:"On 10 AdvBench prompts with TinyLlama-1.1B-Chat, tra
   </article>`}var O6,AM={paas:[SM,DH],llmops:[kH,BH],operations:[AH,TH],"delivery-platform":[hH,yH]};function TM($){let J=[...$.querySelectorAll('[role="tab"]')],Q=J.map((H)=>c1(H.getAttribute("aria-controls"))),Z=$.querySelector(".paas-deck__pages");$.querySelector(".paas-deck__back").addEventListener("click",SJ);let W=[...AM[$.dataset.caseDeck],FH].map((H)=>H($,C1)),K=0;W[K]?.start();function X(H){if(H===K)return;let Y=Q[H];W[K]?.stop(),Y.style.setProperty("--paas-entry-offset",H>K?"24px":"-24px"),Q[K].hidden=!0,Y.hidden=!1,J[K].tabIndex=-1,J[K].setAttribute("aria-selected","false"),J[H].tabIndex=0,J[H].setAttribute("aria-selected","true"),K=H,Z.scrollTop=0,W[K]?.start()}return J.forEach((H,Y)=>{H.addEventListener("click",()=>X(Y)),H.addEventListener("keydown",(U)=>{let E={ArrowLeft:(Y+J.length-1)%J.length,ArrowRight:(Y+1)%J.length,Home:0,End:J.length-1}[U.key];if(E===void 0)return;U.preventDefault(),X(E),J[E].focus({preventScroll:!0})})}),()=>W[K]?.stop()}function SM($){let J=$.querySelector("[data-paas-launch]"),Q=J.querySelector(".paas-launch__canvas"),Z=J.querySelector(".paas-launch__replay"),W,K;function X(){if(W?.(),W=UH(J,C1),!Q||K)return;Q.hidden=!1,K=M6(Q,C1),Q.hidden=!K,J.querySelector(".paas-launch__art").hidden=Boolean(K)}if(Z)Z.hidden=C1,Z.addEventListener("click",X);return{start:X,stop(){W?.(),K?.(),K=null}}}addEventListener("pagehide",()=>O6?.(),{once:!0});function OJ($,J,Q,Z=""){return`<article class="section-page paas-case${Z}" data-case-deck="${$}">
     <footer class="paas-deck__footer">
       <button type="button" class="paas-deck__back section-glass" aria-label="Back">
-        <span aria-hidden="true">←</span>
+        <svg class="studio-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#studio-arrow-left"/></svg>
       </button>
       <div class="paas-deck__tabs section-glass" role="tablist" aria-label="Case tabs for ${J}">
         ${Q.map(({id:W,label:K},X)=>`<button type="button" role="tab" id="${$}-tab-${W}" aria-controls="${$}-${W}" aria-selected="${X===0}" tabindex="${X===0?0:-1}">${K}</button>`).join("")}

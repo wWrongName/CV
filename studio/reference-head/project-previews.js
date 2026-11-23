@@ -109,8 +109,8 @@ function renderCarousel(projects) {
   </div>
   <div class="project-preview__rail-shell">
     <div class="project-preview__rail-controls" role="group" aria-label="Листать проекты">
-      <button class="paas-deck__back section-glass" type="button" data-project-shift="-1" aria-label="Предыдущий проект" disabled><span aria-hidden="true">←</span></button>
-      <button class="paas-deck__back section-glass" type="button" data-project-shift="1" aria-label="Следующий проект"><span aria-hidden="true">→</span></button>
+      <button class="paas-deck__back section-glass" type="button" data-project-shift="-1" aria-label="Предыдущий проект" disabled><svg class="studio-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#studio-arrow-left"/></svg></button>
+      <button class="paas-deck__back section-glass" type="button" data-project-shift="1" aria-label="Следующий проект"><svg class="studio-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#studio-arrow-left"/></svg></button>
     </div>
     <ul class="project-preview__rail" data-project-rail aria-label="Проекты">
       ${projects.map((project, index) => `<li ${index === 0 ? 'data-project-current' : ''}>

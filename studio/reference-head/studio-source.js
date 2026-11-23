@@ -453,7 +453,7 @@ function caseDeck(id, title, chapters, style = '') {
   return `<article class="section-page paas-case${style}" data-case-deck="${id}">
     <footer class="paas-deck__footer">
       <button type="button" class="paas-deck__back section-glass" aria-label="Назад">
-        <span aria-hidden="true">←</span>
+        <svg class="studio-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#studio-arrow-left"/></svg>
       </button>
       <div class="paas-deck__tabs section-glass" role="tablist" aria-label="Экраны кейса ${title}">
         ${chapters.map(({id: part, label}, index) => `<button type="button" role="tab" id="${id}-tab-${part}" aria-controls="${id}-${part}" aria-selected="${index === 0}" tabindex="${index === 0 ? 0 : -1}">${label}</button>`).join('')}
