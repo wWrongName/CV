@@ -73,7 +73,7 @@ export function mountCoverDirectory(menu, markup) {
     if (open && event.detail === 0) directory.querySelector('button, a').focus();
   });
   directory.addEventListener('click', event => {
-    if (!event.target.closest('button, a')) return;
+    if (event.target.closest('[data-enable-tilt]') || !event.target.closest('button, a')) return;
     setOpen(false);
     button.focus({ preventScroll: true });
   });

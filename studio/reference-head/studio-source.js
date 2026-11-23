@@ -52,7 +52,7 @@ const languageSwitch = `<div class="cover-languages" role="group" aria-label="Я
 </div>`;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const enableTilt = mountDeviceTilt(reduced);
-const tiltControl = enableTilt ? '<button type="button" data-enable-tilt>Включить наклон</button>' : '';
+const tiltControl = enableTilt ? '<button type="button" data-enable-tilt aria-live="polite">Включить наклон</button>' : '';
 const directoryLinks = '<button data-open-projects>Проекты</button><button data-section="services">Решения</button><button data-section="about">О студии</button><button data-section="process">Процесс</button><button data-section="blog">Блог и публикации</button><button data-section="research">Исследования</button><button data-section="contact">Контакты</button>' + tiltControl + (production ? languageSwitch : '');
 const host = $('head'), orbit = $('orbit'), projectLayer = $('projects');
 const goButton = $('go'), backButton = $('back'), status = $('demo-status');
@@ -80,8 +80,18 @@ const coverPreview = mountCoverVariants({
   host, cover: coverDetails, links: coverLinks, params: demoParams, onChange: updateCoverFrame, directoryMarkup: directoryLinks,
 });
 let coverView = coverPreview?.frame(DEFAULT_VIEW) ?? DEFAULT_VIEW;
-document.querySelector('[data-enable-tilt]')?.addEventListener('click', event => {
-  void enableTilt(event.currentTarget);
+document.querySelector('[data-enable-tilt]')?.addEventListener('click', async event => {
+  const button = event.currentTarget;
+  button.disabled = true;
+  button.textContent = 'Проверяем датчики…';
+  const state = await enableTilt();
+  const messages = {
+    active: 'Наклон включен',
+    blocked: 'Доступ к датчикам закрыт',
+    unavailable: 'Нет сигнала от датчиков',
+  };
+  button.textContent = messages[state];
+  button.disabled = false;
 });
 
 let head, headReady;
@@ -234,6 +244,7 @@ function frame(time) {
       x: deviceTilt.x,
       y: deviceTilt.y,
       present: true,
+      tilt: true,
       tracking: Math.hypot(deviceTilt.x, deviceTilt.y) > .16,
     } : {x:pointerX,y:pointerY,present:pointerPresent,tracking:pointerTracking};
     const pointer = attention ? { ...attention, present: true, tracking: true } : input;
