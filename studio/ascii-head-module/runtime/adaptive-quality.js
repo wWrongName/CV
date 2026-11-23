@@ -8,9 +8,10 @@ const TIERS = Object.freeze([
 const WARMUP_MS = 1500;
 const WINDOW_MS = 1200;
 const MIN_SAMPLES = 20;
-const RECOVERY_MS = 25000;
+const RECOVERY_MS = 3600;
 const DOWN_COOLDOWN_MS = 4000;
-const UP_COOLDOWN_MS = 30000;
+const UP_COOLDOWN_MS = 6000;
+const FAILED_UPGRADE_COOLDOWN_MS = 15000;
 
 function percentile95(values) {
   const sorted = [...values].sort((a, b) => a - b);
@@ -28,11 +29,11 @@ export function createAdaptiveQuality({coarse = false, fixed} = {}) {
   const limitedDevice = memory > 0 && memory <= 4 && threads > 0 && threads <= 4;
   let index = isFixed ? fixedNames[fixed] : coarse ? (limitedDevice ? 2 : 1) : limitedDevice ? 1 : 0;
   let qualityReason = isFixed ? `fixed:${fixed}` : coarse ? 'coarse-pointer' : limitedDevice ? 'limited-device' : 'auto-default';
-  let warmUntil = NaN, lastObserved = NaN, lastChange = -Infinity;
-  let elapsed = 0, samples = 0, costs = [], badWindows = 0, stableMs = 0, measuredFps = NaN;
+  let warmUntil = NaN, lastObserved = NaN, lastChange = -Infinity, lastUpgrade = -Infinity, retryUpgradeAfter = -Infinity;
+  let elapsed = 0, callbackElapsed = 0, samples = 0, costs = [], badWindows = 0, stableMs = 0, measuredFps = NaN;
 
   function resetWindow() {
-    elapsed = 0; samples = 0; costs = [];
+    elapsed = callbackElapsed = 0; samples = 0; costs = [];
   }
 
   function wake(now) {
@@ -44,6 +45,8 @@ export function createAdaptiveQuality({coarse = false, fixed} = {}) {
   }
 
   function change(next, now, reason) {
+    if (next < index) lastUpgrade = now;
+    else if (now - lastUpgrade < UP_COOLDOWN_MS) retryUpgradeAfter = now + FAILED_UPGRADE_COOLDOWN_MS;
     index = next; qualityReason = reason; lastChange = now;
     badWindows = 0; stableMs = 0;
     // Ignore the short allocation / shader warm-up after changing a tier.
@@ -55,7 +58,7 @@ export function createAdaptiveQuality({coarse = false, fixed} = {}) {
   return {
     current() {return TIERS[index];},
     wake,
-    observe(now, elapsedMs, cpuMs) {
+    observe(now, elapsedMs, cpuMs, callbackMs = elapsedMs) {
       if (!Number.isFinite(now) || !Number.isFinite(elapsedMs) || elapsedMs <= 0) return null;
       if (!Number.isFinite(warmUntil)) wake(now);
       // A missed lifecycle wake must not turn a hidden/idle gap into bad FPS.
@@ -64,11 +67,16 @@ export function createAdaptiveQuality({coarse = false, fixed} = {}) {
       }
       lastObserved = now;
       if (now < warmUntil) return null;
-      elapsed += elapsedMs; samples++;
+      elapsed += elapsedMs;
+      callbackElapsed += callbackMs > 0 && Number.isFinite(callbackMs) ? callbackMs : elapsedMs;
+      samples++;
       costs.push(Number.isFinite(cpuMs) && cpuMs >= 0 ? cpuMs : Infinity);
       if (elapsed < WINDOW_MS || samples < MIN_SAMPLES) return null;
 
       measuredFps = samples * 1000 / elapsed;
+      // The 30 FPS tier intentionally skips renders. Check the browser's callbacks
+      // separately so a display still capped at 30 FPS cannot trigger an upgrade.
+      const callbackFps = samples * 1000 / callbackElapsed;
       const cpu95 = percentile95(costs);
       const activeWindowMs = elapsed;
       const target = TIERS[index].fps;
@@ -82,9 +90,11 @@ export function createAdaptiveQuality({coarse = false, fixed} = {}) {
         }
       } else {
         badWindows = 0;
-        if (measuredFps > target * .94 && cpu95 < (1000 / target) * .5) stableMs += activeWindowMs;
-        else stableMs = 0;
-        if (index > 0 && stableMs >= RECOVERY_MS && now - lastChange >= UP_COOLDOWN_MS) {
+        const nextTier = TIERS[index - 1];
+        const hasHeadroom = nextTier && callbackFps >= nextTier.fps * .90 &&
+          measuredFps >= target * .90 && cpu95 < 660 / nextTier.fps;
+        stableMs = hasHeadroom ? stableMs + activeWindowMs : 0;
+        if (stableMs >= RECOVERY_MS && now - lastChange >= UP_COOLDOWN_MS && now >= retryUpgradeAfter) {
           return change(index - 1, now, 'sustained-headroom');
         }
       }

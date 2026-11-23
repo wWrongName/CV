@@ -58,6 +58,7 @@ const englishHtml = translate(russianHtml, 'index.html')
   .replace('<html lang="ru">', '<html lang="en">')
   .replace('hreflang="en" href="/en"', 'hreflang="ru" href="/ru"')
   .replaceAll('href="/ru', 'href="/en')
+  .replace('rel="canonical" href="https://wwnsolution.com/ru"', 'rel="canonical" href="https://wwnsolution.com/en"')
   .replace('hreflang="ru" href="/en"', 'hreflang="ru" href="/ru"')
   .replace('/studio/studio.js?', '/studio/studio-en.js?');
 await writeFile(resolve(output, 'en.html'), englishHtml);

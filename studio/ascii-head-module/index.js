@@ -21,7 +21,7 @@ export function createAsciiHead(host, options = {}) {
   let q = quality.current(), disposed = false, loaded = false, visible = true;
   let expressionController = null, expressionName = 'neutral', mesh = null, scheduled = 0, rendering = false;
   let width = 1, height = 1, bufferDpr = 0, sourceDirty = true, outputDirty = true;
-  let nextTick = 0, lastRender = 0, frames = 0, sourceFrames = 0, drag = null;
+  let nextTick = 0, lastRender = 0, lastCallback = 0, frames = 0, sourceFrames = 0, drag = null;
   let appliedBudget = q.glyphBudget, budgetTween = null, pendingQuality = null;
   let pendingCellSize = null, lastSizeApply = -Infinity, manualDetailUntil = 0;
   let autoRotate = !!options.autoRotate && !reduced, phase = 0, dispersal = 0;
@@ -92,7 +92,11 @@ export function createAsciiHead(host, options = {}) {
     if (disposed) return;
     sourceDirty ||= needsSource; outputDirty = true;
     if (document.hidden || !visible || scheduled || rendering) return;
-    nextTick = 0; lastRender = 0; quality.wake(performance.now());
+    const now = performance.now();
+    if (!lastRender || now - lastRender > 300) {
+      nextTick = lastRender = lastCallback = 0;
+      quality.wake(now);
+    }
     scheduled = requestAnimationFrame(frame);
   }
   function resizeSource() {
@@ -133,6 +137,8 @@ export function createAsciiHead(host, options = {}) {
   function frame(now) {
     scheduled = 0; if (disposed || document.hidden || !visible) return;
     const interval = 1000 / q.fps;
+    const callbackElapsed = lastCallback ? now - lastCallback : interval;
+    lastCallback = now;
     if ((nextTick && now + .4 < nextTick) || (lastRender && now - lastRender < interval * .65 - .4)) {
       scheduled = requestAnimationFrame(frame); return;
     }
@@ -163,7 +169,7 @@ export function createAsciiHead(host, options = {}) {
       ascii.update(now / 1000); renderer.setRenderTarget(null); renderer.clear(); renderer.render(ascii.scene, ascii.camera);
     } else {material.uniforms.encodeCrown.value=0; renderer.setRenderTarget(null); renderer.clear(); renderer.render(scene, camera); sourceFrames++; sourceDirty = false;}
     frames++;
-    const next = now >= manualDetailUntil ? quality.observe(now, elapsed, performance.now() - started) : null;
+    const next = now >= manualDetailUntil ? quality.observe(now, elapsed, performance.now() - started, callbackElapsed) : null;
     if (next) {pendingQuality = next; outputDirty = true;}
     rendering = false;
     const moving = autoRotate || drag || yaw !== goalYaw || pitch !== goalPitch || expression.active || changingBudget || pendingQuality || pendingCellSize !== null;

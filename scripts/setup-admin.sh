@@ -17,8 +17,8 @@ if "${compose[@]}" exec -T website test -e /app/data/admin.env; then
   exit 1
 fi
 read -r -p 'Admin username: ' username
-read -r -p 'Site origin [https://wwncv.tech]: ' origin
-origin=${origin:-https://wwncv.tech}
+read -r -p 'Site origin [https://wwnsolution.com]: ' origin
+origin=${origin:-https://wwnsolution.com}
 read -r -s -p 'Password (16–128 characters): ' password
 printf '\n'
 read -r -s -p 'Repeat password: ' confirmation

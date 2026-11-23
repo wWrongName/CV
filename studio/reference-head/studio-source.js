@@ -51,8 +51,8 @@ const languageSwitch = `<div class="cover-languages" role="group" aria-label="Я
     : `<a class="cover-locale" href="/${language}" hreflang="${language}" lang="${language}">${language.toUpperCase()}</a>`).join('')}
 </div>`;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const enableTilt = mountDeviceTilt(reduced);
-const tiltControl = enableTilt ? '<button type="button" data-enable-tilt aria-live="polite">Включить наклон</button>' : '';
+const enableTilt = mountDeviceTilt(reduced, hideTiltControl);
+const tiltControl = enableTilt ? '<button type="button" data-enable-tilt hidden aria-live="polite">Включить наклон</button>' : '';
 const directoryLinks = '<button data-open-projects>Проекты</button><button data-section="services">Решения</button><button data-section="about">О студии</button><button data-section="process">Процесс</button><button data-section="blog">Блог и публикации</button><button data-section="research">Исследования</button><button data-section="contact">Контакты</button>' + tiltControl + (production ? languageSwitch : '');
 const host = $('head'), orbit = $('orbit'), projectLayer = $('projects');
 const goButton = $('go'), backButton = $('back'), status = $('demo-status');
@@ -80,19 +80,27 @@ const coverPreview = mountCoverVariants({
   host, cover: coverDetails, links: coverLinks, params: demoParams, onChange: updateCoverFrame, directoryMarkup: directoryLinks,
 });
 let coverView = coverPreview?.frame(DEFAULT_VIEW) ?? DEFAULT_VIEW;
-document.querySelector('[data-enable-tilt]')?.addEventListener('click', async event => {
-  const button = event.currentTarget;
-  button.disabled = true;
-  button.textContent = 'Проверяем датчики…';
-  const state = await enableTilt();
-  const messages = {
-    active: 'Наклон включен',
-    blocked: 'Доступ к датчикам закрыт',
-    unavailable: 'Нет сигнала от датчиков',
-  };
-  button.textContent = messages[state];
-  button.disabled = false;
-});
+const tiltButton = document.querySelector('[data-enable-tilt]');
+function hideTiltControl() {
+  if (!tiltButton) return;
+  if (document.activeElement === tiltButton) {
+    tiltButton.closest('.cover-menu')?.querySelector('[data-section="more"]')?.focus({preventScroll: true});
+  }
+  tiltButton.hidden = true;
+}
+if (tiltButton) {
+  setTimeout(() => {
+    if (!deviceTilt.active) tiltButton.hidden = false;
+  }, 750);
+  tiltButton.addEventListener('click', async () => {
+    tiltButton.disabled = true;
+    tiltButton.textContent = 'Проверяем датчики…';
+    const state = await enableTilt();
+    if (state === 'active') hideTiltControl();
+    else tiltButton.textContent = state === 'blocked' ? 'Доступ к датчикам закрыт' : 'Нет сигнала от датчиков';
+    tiltButton.disabled = false;
+  });
+}
 
 let head, headReady;
 

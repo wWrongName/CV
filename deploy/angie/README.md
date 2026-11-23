@@ -1,18 +1,19 @@
 # Angie reverse proxy
 
 Target: Debian 13, `wwn@HOST` (`ssh swe-1`). Angie serves
-`wwncv.tech` over HTTPS and proxies to Docker on `127.0.0.1:3000`.
+`wwnsolution.com` over HTTPS and proxies to Docker on `127.0.0.1:3000`.
+`wwncv.tech` retains its own certificate and redirects to the new domain.
 
 ## DNS
 
-Keep the domain's existing Timeweb nameservers. Keep this record in its zone:
+Keep the domain's existing Timeweb nameservers. For each web domain keep one apex A record pointing to this server:
 
 | Type | Host | Value | TTL |
 | --- | --- | --- | --- |
 | A | @ | IP | 600 |
 
 MX and SPF records are only used for email; keep them if using Timeweb mail.
-No wildcard or `www` hostname is configured.
+The mail host, MX, SPF, DKIM and DMARC records stay in the existing mail setup.
 
 ## Installation
 
@@ -25,7 +26,8 @@ deb [signed-by=/usr/share/keyrings/angie-signing.gpg] https://download.angie.sof
 
 Back up `/etc/angie` before applying these files. Disable the package's
 `http.d/default.conf` (rename to `default.conf.disabled`). Copy `angie.conf` to
-`/etc/angie/angie.conf` and `http.d/wwncv.conf` to `/etc/angie/http.d/wwncv.conf`.
+`/etc/angie/angie.conf` and both files from `http.d/` into `/etc/angie/http.d/`.
+During migration verify the new domain over HTTPS before enabling the old-domain redirect.
 
 ```sh
 sudo angie -t
@@ -50,10 +52,11 @@ Angie handles the HTTP challenge automatically, including with the HTTPS redirec
 Failed requests retry after one hour; avoid repeated reloads during DNS setup.
 
 ```sh
-dig A wwncv.tech +short
+dig A wwnsolution.com +short
 sudo systemctl status angie
 sudo tail -n 30 /var/log/angie/error.log
-curl -I https://wwncv.tech/ru
+curl -I https://wwnsolution.com/ru
+curl -I https://wwncv.tech/en
 sudo openssl x509 -in /var/lib/angie/acme/wwncv/certificate.pem -noout -dates -issuer -ext subjectAltName
 ```
 

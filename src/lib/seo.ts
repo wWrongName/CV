@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n";
 import type { SectionId } from "@/lib/workshop/sections";
 
-export const siteUrl = "https://wwncv.tech";
+export const siteUrl = "https://wwnsolution.com";
 export const siteName = "WWN - IT solutions";
 type PageId = SectionId | "home";
 const copy: Record<Locale, Record<PageId, [string, string]>> = {

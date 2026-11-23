@@ -1,7 +1,7 @@
 // Shared by the portrait and the illustrations that already follow the mouse.
 export const deviceTilt = {x: 0, y: 0, active: false};
 
-export function mountDeviceTilt(reducedMotion) {
+export function mountDeviceTilt(reducedMotion, onActive) {
   const orientation = window.DeviceOrientationEvent;
   const motion = window.DeviceMotionEvent;
   if (reducedMotion || !(matchMedia('(any-pointer: coarse)').matches || navigator.maxTouchPoints > 0)) return;
@@ -27,7 +27,9 @@ export function mountDeviceTilt(reducedMotion) {
     const normalize = degrees => Math.sign(degrees) * Math.min(1, Math.max(0, Math.abs(degrees) - 1) / 11);
     deviceTilt.x = normalize(roll * cos - pitch * sin);
     deviceTilt.y = normalize(pitch * cos + roll * sin);
+    const wasActive = deviceTilt.active;
     deviceTilt.active = true;
+    if (!wasActive) onActive?.();
     firstReading?.();
   }
 

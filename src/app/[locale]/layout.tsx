@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/i18n";
-import { siteName } from "@/lib/seo";
+import { siteName, siteUrl } from "@/lib/seo";
 import { Analytics } from "@/components/analytics";
 import { WorkshopShell } from "@/components/workshop/shell";
 import "@/components/workshop/workshop.css";
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ? "Web service development, infrastructure and automation. Projects, research and Ivan Velichko's experience."
     : "Разработка веб-сервисов, инфраструктура и автоматизация. Проекты, исследования и опыт Ивана Величко.";
   return {
-    metadataBase: new URL("https://wwncv.tech"),
+    metadataBase: new URL(siteUrl),
     title: { default: title, template: "%s · WWN" },
     description,
     openGraph: { title, description, siteName: title, type: "website", locale: en ? "en_US" : "ru_RU" },
