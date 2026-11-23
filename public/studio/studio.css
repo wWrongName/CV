@@ -1330,3 +1330,24 @@ body:not([data-phase="loading"], [data-phase="error"]) .load-note {display: none
     padding-block-end: max(clamp(18px, 3.4svh, 28px), calc(env(safe-area-inset-bottom) + 7px));
   }
 }
+
+@media (max-width: 640px) and (max-height: 720px) {
+  .document-dialog .paas-details:has(.paas-tech-particle-field) {padding-block: 8px;}
+  .paas-chapter.paas-layers {padding-block: 0; gap: 8px;}
+  .paas-tech-visual {height: clamp(76px, 15svh, 108px);}
+  .paas-tech-map {margin-top: 6px; row-gap: 8px;}
+
+  .document-dialog .llmops-hero h1 {margin-block: 10px 14px;}
+  .llmops-hero .paas-hero__result {padding-top: 9px;}
+  .llmops-demo__art {height: clamp(82px, 15svh, 108px);}
+  .document-dialog .llmops-demo .llmops-demo__status {min-height: 2.8em; margin-top: 8px;}
+}
+
+
+@media (max-width: 640px) and (max-height: 600px) {
+  .document-dialog .paas-details:has(.paas-tech-particle-field) {padding-block: 6px;}
+  .document-dialog .llmops-hero {gap: 8px; padding-block: 2px 8px;}
+  .document-dialog .llmops-hero h1 {margin-block: 6px 9px;}
+  .llmops-demo__art {height: 72px;}
+  .llmops-demo__caption {padding-bottom: 4px;}
+}

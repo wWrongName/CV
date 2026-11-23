@@ -801,10 +801,29 @@ body:is([data-phase="entering"], [data-phase="projects"], [data-phase="returning
   [data-edge-style="details"] .cover-edge-label {padding-inline: 24px;}
 }
 
-[data-cover-effect~="directory"] .cover-directory .cover-locale {
-  margin-top: 6px;
-  border-top: 1px solid #edeee53b;
-  border-radius: 0 0 12px 12px;
+[data-cover-effect~="directory"] .cover-languages {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(48px, 1fr));
+  justify-self: center;
+  gap: 3px;
+  margin-block: 6px 2px;
+  padding: 3px;
+  border: 1px solid #edeee54c;
+  border-radius: 999px;
+  background: #0618864d;
+}
+[data-cover-effect~="directory"] .cover-directory .cover-languages :is(a, span) {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding-inline: 9px;
+  border-radius: 999px;
+  color: var(--ink);
+  font: 500 12px/1 ui-monospace, monospace;
+}
+.cover-languages [aria-current] {
+  background: #edeee52b;
+  box-shadow: inset 0 1px 1px #edeee537;
 }
 
 @media (max-width: 600px) {

@@ -44,7 +44,12 @@ if (production) {
 const requestedLayout = demoParams.get('projectLayout');
 const projectLayout = projectLayouts.has(requestedLayout) ? requestedLayout : '';
 const $ = id => document.getElementById(id);
-const directoryLinks = '<button data-open-projects>Проекты</button><button data-section="services">Решения</button><button data-section="about">О студии</button><button data-section="process">Процесс</button><button data-section="blog">Блог и публикации</button><button data-section="research">Исследования</button><button data-section="contact">Контакты</button>' + (production ? `<a class="cover-locale" href="/${alternateLocale}" hreflang="${alternateLocale}" lang="${alternateLocale}">${locale === 'ru' ? 'English' : 'Русский'}</a>` : '');
+const languageSwitch = `<div class="cover-languages" role="group" aria-label="Язык">
+  ${['ru', 'en'].map(language => language === locale
+    ? `<span lang="${language}" aria-current="true">${language.toUpperCase()}</span>`
+    : `<a class="cover-locale" href="/${language}" hreflang="${language}" lang="${language}">${language.toUpperCase()}</a>`).join('')}
+</div>`;
+const directoryLinks = '<button data-open-projects>Проекты</button><button data-section="services">Решения</button><button data-section="about">О студии</button><button data-section="process">Процесс</button><button data-section="blog">Блог и публикации</button><button data-section="research">Исследования</button><button data-section="contact">Контакты</button>' + (production ? languageSwitch : '');
 const host = $('head'), orbit = $('orbit'), projectLayer = $('projects');
 const goButton = $('go'), backButton = $('back'), status = $('demo-status');
 const coverDetails = $('cover-details');
