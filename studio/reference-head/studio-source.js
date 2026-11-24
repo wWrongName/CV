@@ -285,7 +285,6 @@ function moveTo(target) {
     return;
   }
   if (!ready && target === 0 && progress > 0) {
-    if (location.hash === '#projects') history.replaceState(null, '', location.pathname + location.search);
     progress = 0;
     transition = null;
     applyTransition();
@@ -295,7 +294,6 @@ function moveTo(target) {
     return;
   }
   if (!ready || (target === progress && !transition)) return;
-  if (target === 0 && location.hash === '#projects') history.replaceState(null, '', location.pathname + location.search);
   if(target===1&&progress===0){entryView={...head.getStats().view};head.setGaze();}
   transition = { from: progress, to: target, started: performance.now(), duration: transitionDuration * Math.max(.3, Math.abs(target - progress)) };
   markPhase(target ? 'entering' : 'returning');
@@ -489,7 +487,7 @@ addEventListener('pagehide', () => disposeDocumentView?.(), {once: true});
 function caseDeck(id, title, chapters, style = '') {
   return `<article class="section-page paas-case${style}" data-case-deck="${id}">
     <footer class="paas-deck__footer">
-      <button type="button" class="paas-deck__back section-glass" aria-label="Назад">
+      <button type="button" class="paas-deck__back section-glass" aria-label="Все проекты">
         <svg class="studio-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#studio-arrow-left"/></svg>
       </button>
       <div class="paas-deck__tabs section-glass" role="tablist" aria-label="Экраны кейса ${title}">
@@ -613,16 +611,17 @@ function hideDocument({restoreCover = true} = {}) {
   requestTick();
 }
 
-async function showProjectsFromDocument() {
+async function showProjectsFromDocument({replaceEntry = false} = {}) {
   const currentSection = documentContent.firstElementChild;
   if (!ready && !projectLayout) {
     await startHead();
     if (!ready) return;
     if (!documentOpen || documentContent.firstElementChild !== currentSection) return;
   }
+  if (replaceEntry) history.replaceState(null, '', '#projects');
+  else history.pushState({wwnPanel: true}, '', '#projects');
   settleProjects();
   hideDocument({restoreCover: false});
-  history.pushState({wwnPanel: true}, '', '#projects');
   backButton.focus({preventScroll: true});
 }
 
@@ -638,11 +637,12 @@ function openProjects() {
 }
 
 function closeProjects() {
-  if (history.state?.wwnPanel && location.hash === '#projects') history.back();
-  else moveTo(0);
+  history.replaceState(null, '', location.pathname + location.search);
+  syncLocation();
 }
 
 function settleProjects() {
+  openProjectsAfterLoading = false;
   entryView = coverView;
   transition = null;
   progress = 1;
@@ -652,7 +652,16 @@ function settleProjects() {
   positionCards();
   status.textContent = 'Проекты открыты.';
 }
-function closeDocument(){if(history.state?.wwnPanel)history.back();else {hideDocument();history.replaceState(null,'',location.pathname+location.search);}}
+function closeDocument() {
+  if (documentContent.firstElementChild?.hasAttribute('data-case-deck')) {
+    void showProjectsFromDocument({replaceEntry: true});
+  } else if (history.state?.wwnPanel) {
+    history.back();
+  } else {
+    hideDocument();
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+}
 $('close-document').addEventListener('click',closeDocument);
 homeLink.addEventListener('click', event => {
   if (event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -686,6 +695,7 @@ function syncLocation() {
     if ((ready || projectLayout) && phase !== 'projects') settleProjects();
   } else if (key) openDocument(decodeURIComponent(key), true);
   else {
+    openProjectsAfterLoading = false;
     if (documentOpen) hideDocument();
     if (progress > 0 || transition) moveTo(0);
     else void startHead();
